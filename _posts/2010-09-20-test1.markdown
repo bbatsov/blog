@@ -1,0 +1,7 @@
+---
+layout: post
+title: "The Best Kind of Joke"
+---
+
+# Test 1
+this is a test post
