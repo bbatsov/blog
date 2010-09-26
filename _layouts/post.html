@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <link href="/css/site.css" type="text/css" rel="stylesheet"/>
+        <title>Iteration Next - {{ page.title }}</title>
+    </head>
+
+    <body>
+        <div id="page">
+            <div id="header">
+                <h1>Iteration Next</h1>
+                <h2>by Bozhidar Batsov</h2>
+            </div>
+            <div id="middle">
+                <div id="menu">
+                    <a href="/index.html">Home</a>
+                    <a href="/archive.html">Archive</a>
+                    <a href="/projects.html">Projects</a>
+                    <a href="/about.html">About</a>
+                </div>
+                <div id="content">
+                    <h2>{{ page.title }}</h2>
+                    {{ content }}
+                    <em>Posted on {{ page.date | date_to_long_string }}.</em>
+                </div>
+            </div>
+            <div id="footer">
+                <p>Copyright &copy; 2010 Bozhidar Batsov. All Rights Reserved.</p>
+            </div>
+        </div>
+    </body>
+</html>

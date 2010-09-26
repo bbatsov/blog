@@ -15,12 +15,32 @@ width: 900px;
 margin: 0px auto;
 }
 
+#menu
+{
+  text-align: center;
+  list-style: circle;
+}
+
+#menu a
+{
+  display: inline;
+  padding: 0px 6px 0px;
+}
+
+.selected
+{ 
+  text-decoration: overline;
+}
+
+
 #header {
     height:108px;
     width:100%;
+    text-align: center;
 }
 
 #footer {
     width:100%;
     height:36px;
+    text-align:center;
 }
