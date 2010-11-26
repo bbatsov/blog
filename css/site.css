@@ -33,8 +33,21 @@ h3 {
 
 #page {
     display:block;    
-    width: 900px;
+    width: 1000px;
     margin: 0px auto;
+}
+
+#content {
+    float: left;
+    margin: 0px auto;
+    width: 900px;
+}
+
+#sidebar {
+    float: left;
+    display: block;
+    width: 100px;
+    margin-top: 300px;
 }
 
 #menu

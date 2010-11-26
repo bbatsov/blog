@@ -7,39 +7,76 @@
 
     <body>
         <div id="page">
-            <div id="header">
-                <h1>iteration.next()</h1>
-                <p class="comment">/** An online novel about the Source, the Force, the real life and everything
-                in between...**/<p>
-                <p class="em">by Bozhidar Batsov</p>
-            </div>
-            <div id="middle">
-                <div id="menu">
-                    <ul id="list-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="archive.html">Archive</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contacts.html">Contacts</a></li>
-                    </ul>
+            <div id="content">
+                <div id="header">
+                    <h1>iteration.next()</h1>
+                    <p class="comment">/** An online novel about the Source, the Force, the real life and everything
+                    in between...**/<p>
+                    <p class="em">by Bozhidar Batsov</p>
                 </div>
-                <div id="content">
-                    {{ content }}
+                <div id="middle">
+                    <div id="menu">
+                        <ul id="list-nav">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="archive.html">Archive</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contacts.html">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div id="content">
+                        {{ content }}
+                    </div>
+                </div>
+                <div id="footer">
+                    <p>Copyright &copy; 2010 Bozhidar Batsov. All Rights Reserved.</p>
+                    <!-- NACHALO NA TYXO.BG BROYACH -->
+                    <script  type="text/javascript">
+                        <!-- 
+                             d=document;
+                             d.write('<a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target=" blank"><img width="80" height="15" border="0" alt="Tyxo.bg counter"');
+                             d.write(' src="http://cnt.tyxo.bg/110731?rnd='+Math.round(Math.random()*2147483647));
+                             d.write('&sp='+screen.width+'x'+screen.height+'&r='+escape(d.referrer)+'" /><\/a>');
+                             //-->
+                    </script>
+                    <noscript><a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target="_blank"><img src="http://cnt.tyxo.bg/110731" width="80" height="15" border="0" alt="Tyxo.bg counter" /></a></noscript>
+                    <!-- KRAI NA TYXO.BG BROYACH -->
                 </div>
             </div>
-            <div id="footer">
-                <p>Copyright &copy; 2010 Bozhidar Batsov. All Rights Reserved.</p>
-                <!-- NACHALO NA TYXO.BG BROYACH -->
-                <script  type="text/javascript">
-                    <!-- 
-                         d=document;
-                         d.write('<a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target=" blank"><img width="80" height="15" border="0" alt="Tyxo.bg counter"');
-                         d.write(' src="http://cnt.tyxo.bg/110731?rnd='+Math.round(Math.random()*2147483647));
-                         d.write('&sp='+screen.width+'x'+screen.height+'&r='+escape(d.referrer)+'" /><\/a>');
-                         //-->
-                </script>
-                <noscript><a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target="_blank"><img src="http://cnt.tyxo.bg/110731" width="80" height="15" border="0" alt="Tyxo.bg counter" /></a></noscript>
-                <!-- KRAI NA TYXO.BG BROYACH -->
+            <div id="sidebar">
+                <div id="twitter">
+                    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+                    <script>
+                        new TWTR.Widget({
+                        version: 2,
+                        type: 'profile',
+                        rpp: 4,
+                        interval: 6000,
+                        width: 250,
+                        height: 300,
+                        theme: {
+                        shell: {
+                        background: '#333333',
+                        color: '#ffffff'
+                        },
+                        tweets: {
+                        background: '#000000',
+                        color: '#ffffff',
+                        links: '#4aed05'
+                        }
+                        },
+                        features: {
+                        scrollbar: false,
+                        loop: false,
+                        live: false,
+                        hashtags: true,
+                        timestamp: true,
+                        avatars: false,
+                        behavior: 'all'
+                        }
+                        }).render().setUser('bbatsov').start();
+                    </script>
+                </div>
             </div>
         </div>
     </body>
