@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <link href="/css/site.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+        <title>(think) - Using Emacs for Rails development: The perfect setup</title>
+    </head>
+
+    <body>
+        <div id="page">
+            <div id="content">
+                <div id="header">
+                    <h1>(think)</h1>
+                    <p class="comment">/** An online novel about the Source, the Force, the real life and everything
+                    in between...**/</p>
+                </div>
+                <div id="middle">
+                    <div id="menu">
+                        <ul id="list-nav">
+                            <li><a href="/index.html">Home</a></li>
+                            <li><a href="/archive.html">Archive</a></li>
+                            <li><a href="/projects.html">Projects</a></li>
+                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/contacts.html">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div id="content">
+                        <div id="post">
+    <h2><a href="/2008/06/19/emacs-rails.html">
+        Using Emacs for Rails development: The perfect setup
+    </a></h2>
+    <p>Lately, I’ve started digging more and more into Rails, preparing for the start of a Rails powered project. Although there are some IDEs offering decent Rails support(namely NetBeans, Komodo and Aptana Studio) I have always preferred the comfort of Emacs for various reasons. So naturally I embarked on a quest to setup a suitable environment for Rails development in Emacs. After a couple of days of searching and evaluating possible solutions I finally set up a wordy environment. It consists of a couple of components – ruby-mode, ruby-electric, nxhtml-mode and rinari.</p>
+
+<p>As you probably have guessed by now ruby-mode provides support for editing ruby source files. The mode is pretty feature complete and under active development, headed by none other than Matz himself. You can get it from the ruby svn repository. ruby-electric provides auto insertion of closing braces, quotes, ends, etc. It can also the found in the ruby repo. Instructions how to setup both modes can be found here. Although many people recommend adding pabbrev(a mode which provides auto-completion) to the setup, I don’t recommend it – I find the mode mostly annoying and stick to the old school dumb auto-completion with M-/ .</p>
+
+<p>nxhtml-mode is a pretty comprehensive package for web development in general. We need it for its excellent support for erubis templates(.rhtml, .erb.html) and of course xhtml and css.</p>
+
+<p>rinari is a mode for Rails development – it contains rich functionality such as the ability to easily navigate between models, views and controllers in a Rails application amongst other features. Instructions how to set up rinari together with nxhtml-mode can be found on rinari’s home page.</p>
+
+<p>It’s always a good idea to add ecb(the Emacs code browser) to the mix, though this is entirely optional.</p>
+
+<p>I hope you enjoy this setup and it helps boost your Rails productivity in Emacs</p>
+    <div style="font-style: italic; color: #7f9f7f;">Posted on 19 Jun 2008 by Bozhidar.</div>
+    <hr />
+    <div id="disqus">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript" src="http://disqus.com/forums/iteration-next/embed.js"></script>
+        <noscript><a href="http://iteration-next.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</div>
+
+                    </div>
+                </div>
+                <div id="footer">
+                    <p>Copyright &copy; 2010-2011 <a href="mailto:bozhidar.batsov@gmail.com">Bozhidar Batsov</a>. All Rights Reserved.</p>
+                    <!-- NACHALO NA TYXO.BG BROYACH -->
+                    <script  type="text/javascript">
+                        <!-- 
+                             d=document;
+                             d.write('<a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target=" blank"><img width="80" height="15" border="0" alt="Tyxo.bg counter"');
+                             d.write(' src="http://cnt.tyxo.bg/110731?rnd='+Math.round(Math.random()*2147483647));
+                             d.write('&sp='+screen.width+'x'+screen.height+'&r='+escape(d.referrer)+'" /><\/a>');
+                             //-->
+                    </script>
+                    <noscript><a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target="_blank"><img src="http://cnt.tyxo.bg/110731" width="80" height="15" border="0" alt="Tyxo.bg counter" /></a></noscript>
+                    <!-- KRAI NA TYXO.BG BROYACH -->
+                </div>
+            </div>
+            <div id="sidebar">
+                <div id="twitter">
+                    <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        new TWTR.Widget({
+                        version: 2,
+                        type: 'profile',
+                        rpp: 4,
+                        interval: 6000,
+                        width: 250,
+                        height: 300,
+                        theme: {
+                        shell: {
+                        background: '#333333',
+                        color: '#ffffff'
+                        },
+                        tweets: {
+                        background: '#000000',
+                        color: '#ffffff',
+                        links: '#4aed05'
+                        }
+                        },
+                        features: {
+                        scrollbar: false,
+                        loop: false,
+                        live: false,
+                        hashtags: true,
+                        timestamp: true,
+                        avatars: false,
+                        behavior: 'all'
+                        }
+                        }).render().setUser('bbatsov').start();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

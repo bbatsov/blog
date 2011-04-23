@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <link href="/css/site.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+        <title>(think) - A nice zsh prompt</title>
+    </head>
+
+    <body>
+        <div id="page">
+            <div id="content">
+                <div id="header">
+                    <h1>(think)</h1>
+                    <p class="comment">/** An online novel about the Source, the Force, the real life and everything
+                    in between...**/</p>
+                </div>
+                <div id="middle">
+                    <div id="menu">
+                        <ul id="list-nav">
+                            <li><a href="/index.html">Home</a></li>
+                            <li><a href="/archive.html">Archive</a></li>
+                            <li><a href="/projects.html">Projects</a></li>
+                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/contacts.html">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div id="content">
+                        <div id="post">
+    <h2><a href="/2008/07/27/zsh-prompt.html">
+        A nice zsh prompt
+    </a></h2>
+    <p>Recently I switched to zsh, after being a bash user for almost 5 years. I was in love with everything in zsh from day one, except one thing – the default prompt. Although zsh ships with several prompt themes, I didn’t like any of them so I looked around a little bit and constructed my own humble prompt. Here it goes:</p>
+
+<p>PROMPT=’<span>%n@%m %~</span>$ ‘</p>
+
+<p>In case you’re wondering what this gibberish means:</p>
+
+<p>%n stands for your username(e.g. bozhidar)</p>
+
+<p>%m stands for the first part of your machine’s hostname(you can use %M for the fully qualified name)</p>
+
+<p>%~ stands for the current directory path with your home dir aliased with an ‘~’ (if you want to see the path in its natural form use %d instead)</p>
+
+<p>All of this strange looking character combinations are called “escape sequences” and they have special significance to zsh. The rest of the characters in the prompt definition are represented literally in the resulting prompt. It looks like this(on my machine):</p>
+
+<p><span>bozhidar@drow ~/store</span>$</p>
+
+<p>If you like it simply put the prompt definition like in your .zshrc file. You may want to put a little bit different version of the prompt in the root user’s .zshrc(if you use root at all that is):</p>
+
+<p>PROMPT=’<span>%n@%m %~</span># ‘</p>
+
+<p>This follows the well established pattern that a normal shell and a root shell should be easily distinguished visually.</p>
+    <div style="font-style: italic; color: #7f9f7f;">Posted on 27 Jul 2008 by Bozhidar.</div>
+    <hr />
+    <div id="disqus">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript" src="http://disqus.com/forums/iteration-next/embed.js"></script>
+        <noscript><a href="http://iteration-next.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</div>
+
+                    </div>
+                </div>
+                <div id="footer">
+                    <p>Copyright &copy; 2010-2011 <a href="mailto:bozhidar.batsov@gmail.com">Bozhidar Batsov</a>. All Rights Reserved.</p>
+                    <!-- NACHALO NA TYXO.BG BROYACH -->
+                    <script  type="text/javascript">
+                        <!-- 
+                             d=document;
+                             d.write('<a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target=" blank"><img width="80" height="15" border="0" alt="Tyxo.bg counter"');
+                             d.write(' src="http://cnt.tyxo.bg/110731?rnd='+Math.round(Math.random()*2147483647));
+                             d.write('&sp='+screen.width+'x'+screen.height+'&r='+escape(d.referrer)+'" /><\/a>');
+                             //-->
+                    </script>
+                    <noscript><a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target="_blank"><img src="http://cnt.tyxo.bg/110731" width="80" height="15" border="0" alt="Tyxo.bg counter" /></a></noscript>
+                    <!-- KRAI NA TYXO.BG BROYACH -->
+                </div>
+            </div>
+            <div id="sidebar">
+                <div id="twitter">
+                    <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        new TWTR.Widget({
+                        version: 2,
+                        type: 'profile',
+                        rpp: 4,
+                        interval: 6000,
+                        width: 250,
+                        height: 300,
+                        theme: {
+                        shell: {
+                        background: '#333333',
+                        color: '#ffffff'
+                        },
+                        tweets: {
+                        background: '#000000',
+                        color: '#ffffff',
+                        links: '#4aed05'
+                        }
+                        },
+                        features: {
+                        scrollbar: false,
+                        loop: false,
+                        live: false,
+                        hashtags: true,
+                        timestamp: true,
+                        avatars: false,
+                        behavior: 'all'
+                        }
+                        }).render().setUser('bbatsov').start();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

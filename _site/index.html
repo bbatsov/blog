@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <link href="/css/site.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+        <title>(think) - Blogs posts</title>
+    </head>
+
+    <body>
+        <div id="page">
+            <div id="content">
+                <div id="header">
+                    <h1>(think)</h1>
+                    <p class="comment">/** An online novel about the Source, the Force, the real life and everything
+                    in between...**/</p>
+                </div>
+                <div id="middle">
+                    <div id="menu">
+                        <ul id="list-nav">
+                            <li><a href="/index.html">Home</a></li>
+                            <li><a href="/archive.html">Archive</a></li>
+                            <li><a href="/projects.html">Projects</a></li>
+                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/contacts.html">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div id="content">
+                        <h2 id='my_professional_cv_in_latex'><a href='/2010/09/07/cv-in-latex.html'>My professional CV in LaTeX</a></h2>
+<p>After a long period of planning I finally migrated my professional CV from Word to LaTeX last weekend. Since I live in the European Union I used the <a href='http://www.ctan.org/tex-archive/macros/latex/contrib/europecv/'>europecv</a> LaTeX class.</p><p>I’ve uploaded the LaTeX code into <a href='http://github.com/bbatsov/cv'>GitHub</a> feel free to borrow it for your CVs if you like it. You’ll have to compile the <strong>master.tex</strong> file with <strong>pdflatex</strong> to get a nicely formatted pdf version of the CV.</p>
+<p><em>Posted on 07 September 2010.</em></p>
+
+<h2 id='enabling_3d_support_for_nouveau_in_fedora_13'><a href='/2010/05/26/3d-support-nouveau-fedora-13.html'>Enabling 3D support for Nouveau in Fedora 13</a></h2>
+<p>Most of you probably have heard that Fedora 13 will feature experimental 3D support for the Nouveau open source driver for Nvidia cards. This support, however, is not enabled by default. To enable it you need to install the mesa-dri-drivers-experimental package. I, personally, do it like this(if you haven’t configured sudo, you’ll have to perform this as root):</p><p><code>sudo yum install mesa-dri-drivers-experimental</code></p><p>Afterwards you can enable Compuz, play chromium-bsu or whatever your heart desires.</p>
+<p><em>Posted on 26 May 2010.</em></p>
+
+<h2 id='changing_the_look__feel_in_netbeans_68'><a href='/2010/04/19/changing-laf-in-netbeans.html'>Changing the look &amp; feel in NetBeans 6.8</a></h2>
+<p>Recently I’ve been trying to switch my work environment theme to something with lower contrast(notably the excellent zenburn theme for emacs, vim, gnome terminal, gnome, etc). Swing applications however have difficulties with GTK themes when they are using the GTK+ look &amp; feel so I’ve decided to go to Nimbus – the new default look &amp; feel for Java apps since Java 6 Update 10.</p><p>The only problem with the plan was that there is no way to change the look and feel inside NetBeans – it had to be done by changing it’s configuration. This is done fairly easy. Just find the file /etc/netbeans.conf in NetBeans’s installation folder and append this to the netbeans_default_options section:</p><p>&#8211;laf Nimbus</p><p>Now you just have to (re)start NetBeans and you can enjoy Nimbus. More information about look &amp; feels in NetBeans can be found here.</p>
+<p><em>Posted on 19 April 2010.</em></p>
+
+<h2 id='how_to_enable_font_antialiasing_in_a_java_swing_app'><a href='/2010/02/26/enable-aa-in-swing.html'>How to enable font anti-aliasing in a Java Swing app</a></h2>
+<p>If you have access to the source, you can do this in the main method:</p><p>// enable anti-aliasing System.setProperty(&#8220;awt.useSystemAAFontSettings&#8221;,&#8221;on&#8221;); System.setProperty(&#8220;swing.aatext&#8221;, &#8220;true&#8221;); or, (and if you do not have access to the source, or if you find this easier) you can simply pass the system properties above to the JVM by adding these options to the command line:</p><p>-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true</p>
+<p><em>Posted on 26 February 2010.</em></p>
+
+<h2 id='how_to_center_a_jdialog_over_a_jframe_in_swing'><a href='/2009/12/18/center-jdialog-over-jframe.html'>How to center a JDialog over a JFrame in Swing</a></h2>
+<p>I always thought that the fact that JDialogs accepted a parent frame as a constructor argument was the thing, that would make the dialog’s position relative to that of the frame:</p><p><code>public JDialog(final java.awt.Frame parent, boolean modal)</code></p><p>Unfortunately all of my freshly opened dialogs would appear in the upper left angle of my screen, not centered over the parent JFrame. I looked around and found out that I simply needed one more method call per dialog:</p><p><code>theDialog.setLocationRelativeTo(theFrame);</code></p><p>You need to call this method before the JDialog’s show() method. Now everything is perfect and the dialog appears always right above the center of the frame.</p>
+<p><em>Posted on 18 December 2009.</em></p>
+                    </div>
+                </div>
+                <div id="footer">
+                    <p>Copyright &copy; 2010-2011 <a href="mailto:bozhidar.batsov@gmail.com">Bozhidar Batsov</a>. All Rights Reserved.</p>
+                    <!-- NACHALO NA TYXO.BG BROYACH -->
+                    <script  type="text/javascript">
+                        <!-- 
+                             d=document;
+                             d.write('<a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target=" blank"><img width="80" height="15" border="0" alt="Tyxo.bg counter"');
+                             d.write(' src="http://cnt.tyxo.bg/110731?rnd='+Math.round(Math.random()*2147483647));
+                             d.write('&sp='+screen.width+'x'+screen.height+'&r='+escape(d.referrer)+'" /><\/a>');
+                             //-->
+                    </script>
+                    <noscript><a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target="_blank"><img src="http://cnt.tyxo.bg/110731" width="80" height="15" border="0" alt="Tyxo.bg counter" /></a></noscript>
+                    <!-- KRAI NA TYXO.BG BROYACH -->
+                </div>
+            </div>
+            <div id="sidebar">
+                <div id="twitter">
+                    <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        new TWTR.Widget({
+                        version: 2,
+                        type: 'profile',
+                        rpp: 4,
+                        interval: 6000,
+                        width: 250,
+                        height: 300,
+                        theme: {
+                        shell: {
+                        background: '#333333',
+                        color: '#ffffff'
+                        },
+                        tweets: {
+                        background: '#000000',
+                        color: '#ffffff',
+                        links: '#4aed05'
+                        }
+                        },
+                        features: {
+                        scrollbar: false,
+                        loop: false,
+                        live: false,
+                        hashtags: true,
+                        timestamp: true,
+                        avatars: false,
+                        behavior: 'all'
+                        }
+                        }).render().setUser('bbatsov').start();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

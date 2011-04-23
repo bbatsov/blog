@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <link href="/css/site.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+        <title>(think) - Find out quickly which package provides a certain library with YUM</title>
+    </head>
+
+    <body>
+        <div id="page">
+            <div id="content">
+                <div id="header">
+                    <h1>(think)</h1>
+                    <p class="comment">/** An online novel about the Source, the Force, the real life and everything
+                    in between...**/</p>
+                </div>
+                <div id="middle">
+                    <div id="menu">
+                        <ul id="list-nav">
+                            <li><a href="/index.html">Home</a></li>
+                            <li><a href="/archive.html">Archive</a></li>
+                            <li><a href="/projects.html">Projects</a></li>
+                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/contacts.html">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div id="content">
+                        <div id="post">
+    <h2><a href="/2009/07/14/yum-provides.html">
+        Find out quickly which package provides a certain library with YUM
+    </a></h2>
+    <p>One of the most dreaded things that you can see while trying to run some application or trying to install an rpm package is a message saying that some required library is missing.</p>
+
+<p>Generally this is not a big problem, because most often the library that you miss is packaged in a package named similarly to the library. Sometime however this is not the case… Suppose for example</p>
+
+<p>that you’re trying to install IBM JDK 5.0 on a Fedora 11 box. You’ll most likely get the following error message:</p>
+
+<p>error: Failed dependencies: libstdc++.so.5 is needed by ibm-java2-i386-sdk-5.0-9.0.i386</p>
+
+<p>and there is no package named libstdc++ that you can install, so how can you find out which package do you need?</p>
+
+<p>The answer is simple:</p>
+
+<p>yum provides libstdc++.so.5</p>
+
+<p>And you get:</p>
+
+<p>Loaded plugins: fastestmirror, presto, refresh-packagekit compat-libstdc++-33-3.2.3-66.i586 : Compatibility standard C++ libraries Repo : fedora Matched from: Other : libstdc++.so.5</p>
+
+<p>Pretty neat, eh?</p>
+    <div style="font-style: italic; color: #7f9f7f;">Posted on 14 Jul 2009 by Bozhidar.</div>
+    <hr />
+    <div id="disqus">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript" src="http://disqus.com/forums/iteration-next/embed.js"></script>
+        <noscript><a href="http://iteration-next.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</div>
+
+                    </div>
+                </div>
+                <div id="footer">
+                    <p>Copyright &copy; 2010-2011 <a href="mailto:bozhidar.batsov@gmail.com">Bozhidar Batsov</a>. All Rights Reserved.</p>
+                    <!-- NACHALO NA TYXO.BG BROYACH -->
+                    <script  type="text/javascript">
+                        <!-- 
+                             d=document;
+                             d.write('<a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target=" blank"><img width="80" height="15" border="0" alt="Tyxo.bg counter"');
+                             d.write(' src="http://cnt.tyxo.bg/110731?rnd='+Math.round(Math.random()*2147483647));
+                             d.write('&sp='+screen.width+'x'+screen.height+'&r='+escape(d.referrer)+'" /><\/a>');
+                             //-->
+                    </script>
+                    <noscript><a href="http://www.tyxo.bg/?110731" title="Tyxo.bg counter" target="_blank"><img src="http://cnt.tyxo.bg/110731" width="80" height="15" border="0" alt="Tyxo.bg counter" /></a></noscript>
+                    <!-- KRAI NA TYXO.BG BROYACH -->
+                </div>
+            </div>
+            <div id="sidebar">
+                <div id="twitter">
+                    <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        new TWTR.Widget({
+                        version: 2,
+                        type: 'profile',
+                        rpp: 4,
+                        interval: 6000,
+                        width: 250,
+                        height: 300,
+                        theme: {
+                        shell: {
+                        background: '#333333',
+                        color: '#ffffff'
+                        },
+                        tweets: {
+                        background: '#000000',
+                        color: '#ffffff',
+                        links: '#4aed05'
+                        }
+                        },
+                        features: {
+                        scrollbar: false,
+                        loop: false,
+                        live: false,
+                        hashtags: true,
+                        timestamp: true,
+                        avatars: false,
+                        behavior: 'all'
+                        }
+                        }).render().setUser('bbatsov').start();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
