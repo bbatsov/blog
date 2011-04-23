@@ -1,0 +1,451 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+  <title>www.batsov.com</title>
+  <link href="http://www.batsov.com/"/>
+  <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
+  <updated>2011-04-24T01:25:27+03:00</updated>
+  <id>http://www.batsov.com/</id>
+  <author>
+    <name>Bozhidar Batsov</name>
+    <email>bozhidar.batsov@gmail.com</email>
+  </author>
+
+  
+  <entry>
+    <id>http://www.batsov.com/2011/04/24/emacs-dev-kit</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/24/emacs-dev-kit.html"/>
+    <title>Emacs Dev Kit</title>
+    <updated>2011-04-24T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;During the past few months I&amp;#8217;ve been working on a project to convert my vast Emacs configuration into something generally useful and self-contained that could help the general software engineer. Thus the &lt;a href='https://github.com/bbatsov/emacs-dev-kit'&gt;Emacs Dev Kit&lt;/a&gt; was born. Conceptually it&amp;#8217;s similar to the older &lt;a href='https://github.com/technomancy/emacs-starter-kit'&gt;Emacs Starter Kit&lt;/a&gt; and it even shares a bit of code with it. The Emacs Dev Kit, however, target more programming languages and features more customizations/enhancements.&lt;/p&gt;
+
+&lt;p&gt;EDT relies on ELPA for packages that are available there and packages everything else locally. At some point I&amp;#8217;ve played with the idea of using el-get instead, but I had a lot of problems with it and thought that using only ELPA would be better since it would be part of Emacs 24. Everything is tested only on the latest version of GNU Emacs(currently 23.2). I&amp;#8217;ve tried to do everything in the most efficient and modern way - for instance SLIME is supposed to be installed via Quicklisp so it could be easily updated without waiting for a new version of the EDK.&lt;/p&gt;
+
+&lt;p&gt;EDK currently offers enhanced(well, I know that this is subjective, but it feels enhanced at least to me) support for the following languages:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;C/C++&lt;/li&gt;
+
+&lt;li&gt;Clojure&lt;/li&gt;
+
+&lt;li&gt;Common Lisp&lt;/li&gt;
+
+&lt;li&gt;Emacs Lisp&lt;/li&gt;
+
+&lt;li&gt;Haskell&lt;/li&gt;
+
+&lt;li&gt;Java&lt;/li&gt;
+
+&lt;li&gt;LaTeX&lt;/li&gt;
+
+&lt;li&gt;Perl&lt;/li&gt;
+
+&lt;li&gt;Prolog&lt;/li&gt;
+
+&lt;li&gt;Python&lt;/li&gt;
+
+&lt;li&gt;Ruby&lt;/li&gt;
+
+&lt;li&gt;Scala&lt;/li&gt;
+
+&lt;li&gt;Scheme&lt;/li&gt;
+
+&lt;li&gt;XML&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It also offers an advanced ERC configuration(so that you can ask your questions on #freenode), extended keybindings and lots of general purpose utility functions.&lt;/p&gt;
+
+&lt;p&gt;EDT goes a step further and even includes a different color-theme by default - zenburn. You can turn it off easily of course, but I have the feeling that many programmers will appreciate its eye strain reducing qualities.&lt;/p&gt;
+
+&lt;p&gt;The project is still very young and mostly untested. I&amp;#8217;d be thankful for feedback, bug reports and suggestions.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2011/04/23/moving-to-jekyll</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/23/moving-to-jekyll.html"/>
+    <title>Moving from WordPress to Jekyll</title>
+    <updated>2011-04-23T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;This is my first post after a very long hiatus partially induced by a migration of my blog from WordPress to &lt;a href='https://github.com/mojombo/jekyll'&gt;Jekyll&lt;/a&gt;, which I started half an year ago and never quite finished(until today, that is).&lt;/p&gt;
+
+&lt;p&gt;I wasn&amp;#8217;t particularly unhappy with WordPress, but some things there irritated me - for instance it was hard to edit my posts within my beloved Emacs(and yes - I know all the options and I hate them all). Accidentally I&amp;#8217;ve stumbled upon the post &lt;a href='http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html'&gt;&amp;#8220;Bloggin like a hacker&amp;#8221;&lt;/a&gt; and I instantly knew Jekyll was what I needed. It allows me to create my posts as simple markdown templates, allows me to embed logic written in Ruby in them and it has built-in support for code highlighting(using the excellent Python library &lt;em&gt;pygments&lt;/em&gt;). It also allows me to store my blog under version control in github which is really nice.&lt;/p&gt;
+
+&lt;p&gt;Jekyll is not particularly well documented and I had a few problems with it at first, but I managed to overcome them all. One thing that will be problematic for some users is the need to add things like rss, commenting and analytics manually(they are bundled in a solution like WordPress). On the other hand - you&amp;#8217;re not tied to anything in particular and may choose the service you like the most. I chose &lt;a href='http://disqus.com'&gt;Disqus&lt;/a&gt; for the comments and Google Analytics for the site analytics(what a surprise).&lt;/p&gt;
+
+&lt;p&gt;By the way - my old blog Devcraft is no more. My new blog has a new domain and a new theme(based on my favourite coding theme &lt;a href='https://github.com/bbatsov/zenburn-emacs'&gt;Zenburn&lt;/a&gt;). I know that the blog is currently pig ugly and the content is not particularly great either, but I&amp;#8217;ll try to improve this along the way and add a lot of interesting and hopefully useful information.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2010/09/07/cv-in-latex</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2010/09/07/cv-in-latex.html"/>
+    <title>My professional CV in LaTeX</title>
+    <updated>2010-09-07T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;After a long period of planning I finally migrated my professional CV from Word to LaTeX last weekend. Since I live in the European Union I used the &lt;a href='http://www.ctan.org/tex-archive/macros/latex/contrib/europecv/'&gt;europecv&lt;/a&gt; LaTeX class.&lt;/p&gt;
+
+&lt;p&gt;I’ve uploaded the LaTeX code into &lt;a href='http://github.com/bbatsov/cv'&gt;GitHub&lt;/a&gt; feel free to borrow it for your CVs if you like it. You’ll have to compile the &lt;strong&gt;master.tex&lt;/strong&gt; file with &lt;strong&gt;pdflatex&lt;/strong&gt; to get a nicely formatted pdf version of the CV.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2010/05/26/3d-support-nouveau-fedora-13</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2010/05/26/3d-support-nouveau-fedora-13.html"/>
+    <title>Enabling 3D support for Nouveau in Fedora 13</title>
+    <updated>2010-05-26T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Most of you probably have heard that Fedora 13 will feature experimental 3D support for the Nouveau open source driver for Nvidia cards. This support, however, is not enabled by default. To enable it you need to install the mesa-dri-drivers-experimental package. I, personally, do it like this(if you haven’t configured sudo, you’ll have to perform this as root):&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;sudo yum install mesa-dri-drivers-experimental&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Afterwards you can enable Compuz, play chromium-bsu or whatever your heart desires.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2010/04/19/changing-laf-in-netbeans</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2010/04/19/changing-laf-in-netbeans.html"/>
+    <title>Changing the look & feel in NetBeans 6.8</title>
+    <updated>2010-04-19T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Recently I’ve been trying to switch my work environment theme to something with lower contrast(notably the excellent zenburn theme for emacs, vim, gnome terminal, gnome, etc). Swing applications however have difficulties with GTK themes when they are using the GTK+ look &amp;amp; feel so I’ve decided to go to Nimbus – the new default look &amp;amp; feel for Java apps since Java 6 Update 10.&lt;/p&gt;
+
+&lt;p&gt;The only problem with the plan was that there is no way to change the look and feel inside NetBeans – it had to be done by changing it’s configuration. This is done fairly easy. Just find the file /etc/netbeans.conf in NetBeans’s installation folder and append this to the netbeans_default_options section:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;--laf Nimbus&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Now you just have to (re)start NetBeans and you can enjoy Nimbus. More information about look &amp;amp; feels in NetBeans can be found here.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2010/02/26/enable-aa-in-swing</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2010/02/26/enable-aa-in-swing.html"/>
+    <title>How to enable font anti-aliasing in a Java Swing app</title>
+    <updated>2010-02-26T00:00:00+02:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;If you have access to the source, you can do this in the main method:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='java'&gt;&lt;span class='c1'&gt;// enable anti-aliasing&lt;/span&gt;
+&lt;span class='n'&gt;System&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;setProperty&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;awt.useSystemAAFontSettings&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;on&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt;
+&lt;span class='n'&gt;System&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;setProperty&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;swing.aatext&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;true&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Alternatively (and if you do not have access to the source, or if you find this easier) you can simply pass the system properties above to the JVM by adding these options to the command line:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2009/12/18/center-jdialog-over-jframe</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/12/18/center-jdialog-over-jframe.html"/>
+    <title>How to center a JDialog over a JFrame in Swing</title>
+    <updated>2009-12-18T00:00:00+02:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;I always thought that the fact that JDialogs accepted a parent frame as a constructor argument was the thing, that would make the dialog’s position relative to that of the frame:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='java'&gt;&lt;span class='kd'&gt;public&lt;/span&gt; &lt;span class='nf'&gt;JDialog&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='kd'&gt;final&lt;/span&gt; &lt;span class='n'&gt;java&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;awt&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;Frame&lt;/span&gt; &lt;span class='n'&gt;parent&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='kt'&gt;boolean&lt;/span&gt; &lt;span class='n'&gt;modal&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Unfortunately all of my freshly opened dialogs would appear in the upper left angle of my screen, not centered over the parent JFrame. I looked around and found out that I simply needed one more method call per dialog:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='java'&gt;&lt;span class='n'&gt;theDialog&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;setLocationRelativeTo&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;theFrame&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;You need to call this method before the JDialog’s show() method. Now everything is perfect and the dialog appears always right above the center of the frame.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2009/12/05/menubar-emacs</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/12/05/menubar-emacs.html"/>
+    <title>Accessing the menu bar in Emacs</title>
+    <updated>2009-12-05T00:00:00+02:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Have you ever been wondering how to access the Emacs menu bar, when using Emacs in console mode? The answer is easy – press F10 or type “M-x menu-bar-open”(both methods work in X as well, of course).&lt;/p&gt;
+
+&lt;p&gt;Although the menu bar is rarely used by seasoned Emacs veterans, exploring it is a great way to get started with the capabilities of the new modes, so being able to use it is generally a good thing.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2009/12/05/execute-stuff-after-zsh-login</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/12/05/execute-stuff-after-zsh-login.html"/>
+    <title>Automatically execute programs after zsh login</title>
+    <updated>2009-12-05T00:00:00+02:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Sometimes you may want to start a couple of programs just after an interactive login to your favourite shell, which in my case would be zsh. For example – I use Emacs as daemon process. I cannot use an init script to start it since the daemon is usable on a per user basis. The solution in this case is really simple – just create a .zlogin file in your home folder and put in it all the commands you want executed after you’ve logged into the shell. In my case I put “emacs –daemon” there and I soon as I’m logged in, the Emacs daemon is up waiting for incoming connections.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2009/09/25/xerox-phaser-3117-fedora</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/09/25/xerox-phaser-3117-fedora.html"/>
+    <title>Using Xerox Phaser 3117 on Fedora</title>
+    <updated>2009-09-25T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;The driver selected by default by Fedora 11 is not appropriate for Xerox Phaser 3117 – it will not print with it. However there is a very easy solution to the problem.&lt;/p&gt;
+
+&lt;p&gt;Go to System -&amp;gt; Administration -&amp;gt; Printing (In GNOME at least, in KDE it’s probably something similar). Right click the Xerox Phaser 3117 printer icon there and select “Properties” from the menu. Then in the “Make and model” section choose change and then select Samsung ML-1710.&lt;/p&gt;
+
+&lt;p&gt;After you apply the change you’ve just made, you can start printing with your Phaser.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2009/09/03/jboss-jvm-params</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/09/03/jboss-jvm-params.html"/>
+    <title>Mofidy JVM parameters for JBoss AS</title>
+    <updated>2009-09-03T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Most people have been in a situation requiring them to change one or more of the parameters passed to the JVM on top of which JBoss AS is running. For instance – you may need a bigger heap, bigger perm gen size or something else. The best place to put these parameters is probably the following file:&lt;/p&gt;
+
+&lt;p&gt;$JBOSS_HOME/bin/run.conf&lt;/p&gt;
+
+&lt;p&gt;where $JBOSS_HOME refers to the directory in which you’ve unpacked the JBoss AS distribution.&lt;/p&gt;
+
+&lt;p&gt;Look for this section:&lt;/p&gt;
+
+&lt;p&gt;if &lt;span&gt;&amp;#8220;x$JAVA_OPTS&amp;#8221; = &amp;#8220;x&amp;#8221;&lt;/span&gt;; then JAVA_OPTS=”…” fi&lt;/p&gt;
+
+&lt;p&gt;All you have to do now is adapt it to your needs.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2009/07/19/dotemacs-github</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/07/19/dotemacs-github.html"/>
+    <title>Emacs configuration in github</title>
+    <updated>2009-07-19T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;When you have applications, whose configuration is as complex as that of Emacs it’s always a good idea to store that configuration under version control so you can easily share it between multiple computers. You can always set up some version control system yourself, but it’s a lot more convenient(and much more reliable) to use an already existing code hosting solution such a GitHub. I have created a small repo there housing my humble Emacs configuration(.emacs, some custom stuff) and share it on all the computers that I work. You may have a look at my Emacs repo here.&lt;/p&gt;
+
+&lt;p&gt;In case you’re wondering why there is no file named .emacs in there – my .emacs actually consists of only one line:&lt;/p&gt;
+
+&lt;p&gt;(load “~/emacs/dot-emacs.el”)&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2009/07/14/yum-provides</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/07/14/yum-provides.html"/>
+    <title>Find out quickly which package provides a certain library with YUM</title>
+    <updated>2009-07-14T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;One of the most dreaded things that you can see while trying to run some application or trying to install an rpm package is a message saying that some required library is missing.&lt;/p&gt;
+
+&lt;p&gt;Generally this is not a big problem, because most often the library that you miss is packaged in a package named similarly to the library. Sometime however this is not the case… Suppose for example&lt;/p&gt;
+
+&lt;p&gt;that you’re trying to install IBM JDK 5.0 on a Fedora 11 box. You’ll most likely get the following error message:&lt;/p&gt;
+
+&lt;p&gt;error: Failed dependencies: libstdc++.so.5 is needed by ibm-java2-i386-sdk-5.0-9.0.i386&lt;/p&gt;
+
+&lt;p&gt;and there is no package named libstdc++ that you can install, so how can you find out which package do you need?&lt;/p&gt;
+
+&lt;p&gt;The answer is simple:&lt;/p&gt;
+
+&lt;p&gt;yum provides libstdc++.so.5&lt;/p&gt;
+
+&lt;p&gt;And you get:&lt;/p&gt;
+
+&lt;p&gt;Loaded plugins: fastestmirror, presto, refresh-packagekit compat-libstdc++-33-3.2.3-66.i586 : Compatibility standard C++ libraries Repo : fedora Matched from: Other : libstdc++.so.5&lt;/p&gt;
+
+&lt;p&gt;Pretty neat, eh?&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2009/07/13/java-type-indicators-eclipse</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/07/13/java-type-indicators-eclipse.html"/>
+    <title>Java type indicators in Eclipse</title>
+    <updated>2009-07-13T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;One of the things that I don’t like about the default Eclipse settings for Java development is that in the package explorer all Java files appear in the same manner(with the same icon). There is no visual distinction between abstract and concrete classes, enums, interfaces… Luckily for us Eclipse supports such a distinction and all you have to do is enable it.&lt;/p&gt;
+
+&lt;p&gt;Go to&lt;/p&gt;
+
+&lt;p&gt;Window -&amp;gt; Preferences -&amp;gt; General -&amp;gt; Appearance -&amp;gt; Label Decorations&lt;/p&gt;
+
+&lt;p&gt;and mark the check box saying “Java Type Indicator”. I’ve tested this on Eclipse 3.5 only, but I guess it is included in previous releases as well.&lt;/p&gt;
+
+&lt;p&gt;Eclipse, though not as feature rich as IntelliJ IDEA, offers a lot of features that one has to find for himself.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2009/05/19/emacs-shift-return</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/05/19/emacs-shift-return.html"/>
+    <title>Emulate the behaviour of Return+Shift(insert new line) from popular IDEs(IDEA, Eclipse) in Emacs</title>
+    <updated>2009-05-19T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;I’m very fond of the ability to insert a new line below the line I’m currently at, and to position the cursor at the beginning of that new line, offered by most IDEs, such as IntelliJ IDEA, Eclipse. It’s usually bound to Return(Enter)+Shift. Emacs(as far as I know) doesn’t have a function that does this thing by default, but one can easily create one, combining several well known functions in the process and bind that new function to the desired key combination. Here’s the snippet one might have in his .emacs(or other) “configuration” file:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='c1'&gt;;; insert an empty line after the current line and position the cursor on its beginning&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nb'&gt;defun&lt;/span&gt; &lt;span class='nv'&gt;insert-empty-line&lt;/span&gt; &lt;span class='p'&gt;()&lt;/span&gt;
+ &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;interactive&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+ &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;move-end-of-line&lt;/span&gt; &lt;span class='no'&gt;nil&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+ &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;open-line&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+ &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;next-line&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;global-set-key&lt;/span&gt; &lt;span class='nv'&gt;[&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;shift&lt;/span&gt; &lt;span class='nb'&gt;return&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;&lt;span class='nv'&gt;]&lt;/span&gt; &lt;span class='ss'&gt;&amp;#39;insert-empty-line&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2009/05/04/switch-string-idiom-java</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/05/04/switch-string-idiom-java.html"/>
+    <title>A switch on String idiom for Java</title>
+    <updated>2009-05-04T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;I’ve always been frustrated with the inability to write a switch on String in Java. However the enum type introduced in Java 5.0 somewhat diminishes the issue. Read this excellent &lt;a href='http://www.xefer.com/2006/12/switchonstring'&gt;article&lt;/a&gt; on the subject.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2008/09/29/singleton-java-ruby</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2008/09/29/singleton-java-ruby.html"/>
+    <title>The best way to implement the Singleton pattern in Java and Ruby</title>
+    <updated>2008-09-29T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;I haven’t posted anything lately, but I just received my brand new “Das Keyboard” and now I simply can’t stop typing. Recently I’ve been going through some effective technics to implement popular design patterns and I was surprised to see how few people where aware of them. For example since Java 5 the best way to implement the Singleton pattern is simply to use an enum like this:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='java'&gt;&lt;span class='kd'&gt;public&lt;/span&gt; &lt;span class='kd'&gt;enum&lt;/span&gt; &lt;span class='n'&gt;SomeClass&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;INSTANCE&lt;/span&gt;&lt;span class='o'&gt;;&lt;/span&gt;
+&lt;span class='o'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This is possible due to the fact that in Java(unlike in C++ and C#) enums are full-blown classes(although they do not support features like inheritance for example). You get an added bonus when using an enum class – you do not have to worry about serialization – this is handled for you behind the scenes.&lt;/p&gt;
+
+&lt;p&gt;And this is how one should implement the Singleton pattern in Ruby:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;span class='nb'&gt;require&lt;/span&gt; &lt;span class='s1'&gt;&amp;#39;singleton&amp;#39;&lt;/span&gt;
+
+&lt;span class='k'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;Some&lt;/span&gt;
+  &lt;span class='kp'&gt;include&lt;/span&gt; &lt;span class='no'&gt;Singleton&lt;/span&gt;
+&lt;span class='k'&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Through the magic of Ruby’s mix-ins you get a private constructor for your class and an ‘instance‘ method with which you can obtain a reference to the single instance of the class. And best of all – because this library has undergone a substantial degree of testing it is pretty much bulletproof. Things hardly get simpler than that.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2008/07/27/zsh-prompt</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2008/07/27/zsh-prompt.html"/>
+    <title>A nice zsh prompt</title>
+    <updated>2008-07-27T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Recently I switched to zsh, after being a bash user for almost 5 years. I was in love with everything in zsh from day one, except one thing – the default prompt. Although zsh ships with several prompt themes, I didn’t like any of them so I looked around a little bit and constructed my own humble prompt. Here it goes:&lt;/p&gt;
+
+&lt;p&gt;PROMPT=’&lt;span&gt;%n@%m %~&lt;/span&gt;$ ‘&lt;/p&gt;
+
+&lt;p&gt;In case you’re wondering what this gibberish means:&lt;/p&gt;
+
+&lt;p&gt;%n stands for your username(e.g. bozhidar)&lt;/p&gt;
+
+&lt;p&gt;%m stands for the first part of your machine’s hostname(you can use %M for the fully qualified name)&lt;/p&gt;
+
+&lt;p&gt;%~ stands for the current directory path with your home dir aliased with an ‘~’ (if you want to see the path in its natural form use %d instead)&lt;/p&gt;
+
+&lt;p&gt;All of this strange looking character combinations are called “escape sequences” and they have special significance to zsh. The rest of the characters in the prompt definition are represented literally in the resulting prompt. It looks like this(on my machine):&lt;/p&gt;
+
+&lt;p&gt;&lt;span&gt;bozhidar@drow ~/store&lt;/span&gt;$&lt;/p&gt;
+
+&lt;p&gt;If you like it simply put the prompt definition like in your .zshrc file. You may want to put a little bit different version of the prompt in the root user’s .zshrc(if you use root at all that is):&lt;/p&gt;
+
+&lt;p&gt;PROMPT=’&lt;span&gt;%n@%m %~&lt;/span&gt;# ‘&lt;/p&gt;
+
+&lt;p&gt;This follows the well established pattern that a normal shell and a root shell should be easily distinguished visually.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2008/06/19/emacs-rails</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2008/06/19/emacs-rails.html"/>
+    <title>Using Emacs for Rails development: The perfect setup</title>
+    <updated>2008-06-19T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Lately, I’ve started digging more and more into Rails, preparing for the start of a Rails powered project. Although there are some IDEs offering decent Rails support(namely NetBeans, Komodo and Aptana Studio) I have always preferred the comfort of Emacs for various reasons. So naturally I embarked on a quest to setup a suitable environment for Rails development in Emacs. After a couple of days of searching and evaluating possible solutions I finally set up a wordy environment. It consists of a couple of components – ruby-mode, ruby-electric, nxhtml-mode and rinari.&lt;/p&gt;
+
+&lt;p&gt;As you probably have guessed by now ruby-mode provides support for editing ruby source files. The mode is pretty feature complete and under active development, headed by none other than Matz himself. You can get it from the ruby svn repository. ruby-electric provides auto insertion of closing braces, quotes, ends, etc. It can also the found in the ruby repo. Instructions how to setup both modes can be found here. Although many people recommend adding pabbrev(a mode which provides auto-completion) to the setup, I don’t recommend it – I find the mode mostly annoying and stick to the old school dumb auto-completion with M-/ .&lt;/p&gt;
+
+&lt;p&gt;nxhtml-mode is a pretty comprehensive package for web development in general. We need it for its excellent support for erubis templates(.rhtml, .erb.html) and of course xhtml and css.&lt;/p&gt;
+
+&lt;p&gt;rinari is a mode for Rails development – it contains rich functionality such as the ability to easily navigate between models, views and controllers in a Rails application amongst other features. Instructions how to set up rinari together with nxhtml-mode can be found on rinari’s home page.&lt;/p&gt;
+
+&lt;p&gt;It’s always a good idea to add ecb(the Emacs code browser) to the mix, though this is entirely optional.&lt;/p&gt;
+
+&lt;p&gt;I hope you enjoy this setup and it helps boost your Rails productivity in Emacs&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2008/06/16/das-keyboard</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2008/06/16/das-keyboard.html"/>
+    <title>Das Keyboard</title>
+    <updated>2008-06-16T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Every professional developer knows how important to the development process the keyboard is, so it is only natural to be on the look for some quality piece of hardware. After a long research in the area of good keyboards I decided to upgrade my current rig to the recently released “Das Keyboard 3″. I have long heard stories about its quality and comfort and I hope I’ll experience them myself soon. So what are waiting for – research the market yourselves and make your pick, your hands deserve a quality keyboard!&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/2008/05/05/first-post</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2008/05/05/first-post.html"/>
+    <title>Every blog has its first post...</title>
+    <updated>2008-05-05T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Hello, everyone! Welcome to my blog!&lt;/p&gt;
+
+&lt;p&gt;I’ll post here bits and pieces inspired by my humble experience as a software developer. Expect to see here primarily stuff about Java and Ruby, but also about software development in general.&lt;/p&gt;
+
+&lt;p&gt;As a fan of the Star Wars franchise I often like to quote characters from the movies. I feel that this is the time for one such quote – “Always two there are, no more, no less. A master and an apprentice.”. I’m no dev wizard by any means, but I hope that I can help someone learn something helpful and maybe I’ll learn something from the readers of my blog(if I have any that is:)). In this sense one can say that in life we’re always the master and the apprentice at the same time…&lt;/p&gt;
+
+&lt;p&gt;I hope you’ll enjoy reading my blog!&lt;/p&gt;</content>
+  </entry>
+  
+ 
+</feed>
