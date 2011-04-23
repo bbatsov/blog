@@ -43,10 +43,15 @@
         How to enable font anti-aliasing in a Java Swing app
     </a></h2>
     <p>If you have access to the source, you can do this in the main method:</p>
-
-<p>// enable anti-aliasing System.setProperty(&#8220;awt.useSystemAAFontSettings&#8221;,&#8221;on&#8221;); System.setProperty(&#8220;swing.aatext&#8221;, &#8220;true&#8221;); or, (and if you do not have access to the source, or if you find this easier) you can simply pass the system properties above to the JVM by adding these options to the command line:</p>
-
-<p>-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true</p>
+<div class='highlight'><pre><code class='java'><span class='c1'>// enable anti-aliasing</span>
+<span class='n'>System</span><span class='o'>.</span><span class='na'>setProperty</span><span class='o'>(</span><span class='s'>&quot;awt.useSystemAAFontSettings&quot;</span><span class='o'>,</span><span class='s'>&quot;on&quot;</span><span class='o'>);</span>
+<span class='n'>System</span><span class='o'>.</span><span class='na'>setProperty</span><span class='o'>(</span><span class='s'>&quot;swing.aatext&quot;</span><span class='o'>,</span> <span class='s'>&quot;true&quot;</span><span class='o'>);</span>
+</code></pre>
+</div>
+<p>Alternatively (and if you do not have access to the source, or if you find this easier) you can simply pass the system properties above to the JVM by adding these options to the command line:</p>
+<div class='highlight'><pre><code class='console'><span class='go'>-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true</span>
+</code></pre>
+</div>
     <div style="font-style: italic; color: #7f9f7f;">Posted on 26 Feb 2010 by Bozhidar.</div>
     <hr />
     <div id="disqus">

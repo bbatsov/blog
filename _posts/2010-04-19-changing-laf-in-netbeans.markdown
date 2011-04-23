@@ -16,7 +16,9 @@ configuration. This is done fairly easy. Just find the file
 /etc/netbeans.conf in NetBeans’s installation folder and append this to
 the netbeans_default_options section:
 
+{% highlight console %}
 --laf Nimbus
+{% endhighlight %}
 
 Now you just have to (re)start NetBeans and you can enjoy Nimbus. More
 information about look & feels in NetBeans can be found here.

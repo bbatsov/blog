@@ -38,25 +38,57 @@
                         </ul>
                     </div>
                     <div id="content">
-                        <h2 id='my_professional_cv_in_latex'><a href='/2010/09/07/cv-in-latex.html'>My professional CV in LaTeX</a></h2>
+                        <h2 id='emacs_dev_kit'><a href='/2011/04/24/emacs-dev-kit.html'>Emacs Dev Kit</a></h2>
+<p>During the past few months I&#8217;ve been working on a project to convert my vast Emacs configuration into something generally useful and self-contained that could help the general software engineer. Thus the <a href='https://github.com/bbatsov/emacs-dev-kit'>Emacs Dev Kit</a> was born. Conceptually it&#8217;s similar to the older <a href='https://github.com/technomancy/emacs-starter-kit'>Emacs Starter Kit</a> and it even shares a bit of code with it. The Emacs Dev Kit, however, target more programming languages and features more customizations/enhancements.</p><p>EDT relies on ELPA for packages that are available there and packages everything else locally. At some point I&#8217;ve played with the idea of using el-get instead, but I had a lot of problems with it and thought that using only ELPA would be better since it would be part of Emacs 24. Everything is tested only on the latest version of GNU Emacs(currently 23.2). I&#8217;ve tried to do everything in the most efficient and modern way - for instance SLIME is supposed to be installed via Quicklisp so it could be easily updated without waiting for a new version of the EDK.</p><p>EDK currently offers enhanced(well, I know that this is subjective, but it feels enhanced at least to me) support for the following languages:</p><ul>
+<li>C/C++</li>
+
+<li>Clojure</li>
+
+<li>Common Lisp</li>
+
+<li>Emacs Lisp</li>
+
+<li>Haskell</li>
+
+<li>Java</li>
+
+<li>LaTeX</li>
+
+<li>Perl</li>
+
+<li>Prolog</li>
+
+<li>Python</li>
+
+<li>Ruby</li>
+
+<li>Scala</li>
+
+<li>Scheme</li>
+
+<li>XML</li>
+</ul><p>It also offers an advanced ERC configuration(so that you can ask your questions on #freenode), extended keybindings and lots of general purpose utility functions.</p><p>EDT goes a step further and even includes a different color-theme by default - zenburn. You can turn it off easily of course, but I have the feeling that many programmers will appreciate its eye strain reducing qualities.</p><p>The project is still very young and mostly untested. I&#8217;d be thankful for feedback, bug reports and suggestions.</p>
+<p><em>Posted on 24 April 2011.</em></p>
+
+<h2 id='moving_from_wordpress_to_jekyll'><a href='/2011/04/23/moving-to-jekyll.html'>Moving from WordPress to Jekyll</a></h2>
+<p>This is my first post after a very long hiatus partially induced by a migration of my blog from WordPress to <a href='https://github.com/mojombo/jekyll'>Jekyll</a>, which I started half an year ago and never quite finished(until today, that is).</p><p>I wasn&#8217;t particularly unhappy with WordPress, but some things there irritated me - for instance it was hard to edit my posts within my beloved Emacs(and yes - I know all the options and I hate them all). Accidentally I&#8217;ve stumbled upon the post <a href='http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html'>&#8220;Bloggin like a hacker&#8221;</a> and I instantly knew Jekyll was what I needed. It allows me to create my posts as simple markdown templates, allows me to embed logic written in Ruby in them and it has built-in support for code highlighting(using the excellent Python library <em>pygments</em>). It also allows me to store my blog under version control in github which is really nice.</p><p>Jekyll is not particularly well documented and I had a few problems with it at first, but I managed to overcome them all. One thing that will be problematic for some users is the need to add things like rss, commenting and analytics manually(they are bundled in a solution like WordPress). On the other hand - you&#8217;re not tied to anything in particular and may choose the service you like the most. I chose <a href='http://disqus.com'>Disqus</a> for the comments and Google Analytics for the site analytics(what a surprise).</p><p>By the way - my old blog Devcraft is no more. My new blog has a new domain and a new theme(based on my favourite coding theme <a href='https://github.com/bbatsov/zenburn-emacs'>Zenburn</a>). I know that the blog is currently pig ugly and the content is not particularly great either, but I&#8217;ll try to improve this along the way and add a lot of interesting and hopefully useful information.</p>
+<p><em>Posted on 23 April 2011.</em></p>
+
+<h2 id='my_professional_cv_in_latex'><a href='/2010/09/07/cv-in-latex.html'>My professional CV in LaTeX</a></h2>
 <p>After a long period of planning I finally migrated my professional CV from Word to LaTeX last weekend. Since I live in the European Union I used the <a href='http://www.ctan.org/tex-archive/macros/latex/contrib/europecv/'>europecv</a> LaTeX class.</p><p>I’ve uploaded the LaTeX code into <a href='http://github.com/bbatsov/cv'>GitHub</a> feel free to borrow it for your CVs if you like it. You’ll have to compile the <strong>master.tex</strong> file with <strong>pdflatex</strong> to get a nicely formatted pdf version of the CV.</p>
 <p><em>Posted on 07 September 2010.</em></p>
 
 <h2 id='enabling_3d_support_for_nouveau_in_fedora_13'><a href='/2010/05/26/3d-support-nouveau-fedora-13.html'>Enabling 3D support for Nouveau in Fedora 13</a></h2>
-<p>Most of you probably have heard that Fedora 13 will feature experimental 3D support for the Nouveau open source driver for Nvidia cards. This support, however, is not enabled by default. To enable it you need to install the mesa-dri-drivers-experimental package. I, personally, do it like this(if you haven’t configured sudo, you’ll have to perform this as root):</p><p><code>sudo yum install mesa-dri-drivers-experimental</code></p><p>Afterwards you can enable Compuz, play chromium-bsu or whatever your heart desires.</p>
+<p>Most of you probably have heard that Fedora 13 will feature experimental 3D support for the Nouveau open source driver for Nvidia cards. This support, however, is not enabled by default. To enable it you need to install the mesa-dri-drivers-experimental package. I, personally, do it like this(if you haven’t configured sudo, you’ll have to perform this as root):</p><div class='highlight'><pre><code class='console'><span class='go'>sudo yum install mesa-dri-drivers-experimental</span>
+</code></pre>
+</div><p>Afterwards you can enable Compuz, play chromium-bsu or whatever your heart desires.</p>
 <p><em>Posted on 26 May 2010.</em></p>
 
 <h2 id='changing_the_look__feel_in_netbeans_68'><a href='/2010/04/19/changing-laf-in-netbeans.html'>Changing the look &amp; feel in NetBeans 6.8</a></h2>
-<p>Recently I’ve been trying to switch my work environment theme to something with lower contrast(notably the excellent zenburn theme for emacs, vim, gnome terminal, gnome, etc). Swing applications however have difficulties with GTK themes when they are using the GTK+ look &amp; feel so I’ve decided to go to Nimbus – the new default look &amp; feel for Java apps since Java 6 Update 10.</p><p>The only problem with the plan was that there is no way to change the look and feel inside NetBeans – it had to be done by changing it’s configuration. This is done fairly easy. Just find the file /etc/netbeans.conf in NetBeans’s installation folder and append this to the netbeans_default_options section:</p><p>&#8211;laf Nimbus</p><p>Now you just have to (re)start NetBeans and you can enjoy Nimbus. More information about look &amp; feels in NetBeans can be found here.</p>
+<p>Recently I’ve been trying to switch my work environment theme to something with lower contrast(notably the excellent zenburn theme for emacs, vim, gnome terminal, gnome, etc). Swing applications however have difficulties with GTK themes when they are using the GTK+ look &amp; feel so I’ve decided to go to Nimbus – the new default look &amp; feel for Java apps since Java 6 Update 10.</p><p>The only problem with the plan was that there is no way to change the look and feel inside NetBeans – it had to be done by changing it’s configuration. This is done fairly easy. Just find the file /etc/netbeans.conf in NetBeans’s installation folder and append this to the netbeans_default_options section:</p><div class='highlight'><pre><code class='console'><span class='go'>--laf Nimbus</span>
+</code></pre>
+</div><p>Now you just have to (re)start NetBeans and you can enjoy Nimbus. More information about look &amp; feels in NetBeans can be found here.</p>
 <p><em>Posted on 19 April 2010.</em></p>
-
-<h2 id='how_to_enable_font_antialiasing_in_a_java_swing_app'><a href='/2010/02/26/enable-aa-in-swing.html'>How to enable font anti-aliasing in a Java Swing app</a></h2>
-<p>If you have access to the source, you can do this in the main method:</p><p>// enable anti-aliasing System.setProperty(&#8220;awt.useSystemAAFontSettings&#8221;,&#8221;on&#8221;); System.setProperty(&#8220;swing.aatext&#8221;, &#8220;true&#8221;); or, (and if you do not have access to the source, or if you find this easier) you can simply pass the system properties above to the JVM by adding these options to the command line:</p><p>-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true</p>
-<p><em>Posted on 26 February 2010.</em></p>
-
-<h2 id='how_to_center_a_jdialog_over_a_jframe_in_swing'><a href='/2009/12/18/center-jdialog-over-jframe.html'>How to center a JDialog over a JFrame in Swing</a></h2>
-<p>I always thought that the fact that JDialogs accepted a parent frame as a constructor argument was the thing, that would make the dialog’s position relative to that of the frame:</p><p><code>public JDialog(final java.awt.Frame parent, boolean modal)</code></p><p>Unfortunately all of my freshly opened dialogs would appear in the upper left angle of my screen, not centered over the parent JFrame. I looked around and found out that I simply needed one more method call per dialog:</p><p><code>theDialog.setLocationRelativeTo(theFrame);</code></p><p>You need to call this method before the JDialog’s show() method. Now everything is perfect and the dialog appears always right above the center of the frame.</p>
-<p><em>Posted on 18 December 2009.</em></p>
                     </div>
                 </div>
                 <div id="footer">

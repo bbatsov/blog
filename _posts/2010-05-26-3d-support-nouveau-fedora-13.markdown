@@ -10,6 +10,8 @@ you need to install the mesa-dri-drivers-experimental package. I,
 personally, do it like this(if you haven’t configured sudo, you’ll
 have to perform this as root):
 
-`sudo yum install mesa-dri-drivers-experimental`
+{% highlight console %}
+sudo yum install mesa-dri-drivers-experimental
+{% endhighlight %}
 
 Afterwards you can enable Compuz, play chromium-bsu or whatever your heart desires.
