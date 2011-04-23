@@ -4,7 +4,7 @@
         <link href="/css/site.css" type="text/css" rel="stylesheet"/>
         <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
         <link rel="alternate" type="application/atom+xml" href="atom.xml" title="Atom feed">
-        <title>(think) - Emulate the behaviour of Return+Shift(insert new line) from popular IDEs(IDEA, Eclipse) in Emacs</title>
+        <title>(think) - Add Atom feed to Jekyll powered blog</title>
 
         <script type="text/javascript">
             var _gaq = _gaq || [];
@@ -40,21 +40,18 @@
                     </div>
                     <div id="content">
                         <div id="post">
-    <h2><a href="/2009/05/19/emacs-shift-return.html">
-        Emulate the behaviour of Return+Shift(insert new line) from popular IDEs(IDEA, Eclipse) in Emacs
+    <h2><a href="/2011/04/24/add-atom-feed-to-jekyll.html">
+        Add Atom feed to Jekyll powered blog
     </a></h2>
-    <p>I’m very fond of the ability to insert a new line below the line I’m currently at, and to position the cursor at the beginning of that new line, offered by most IDEs, such as IntelliJ IDEA, Eclipse. It’s usually bound to Return(Enter)+Shift. Emacs(as far as I know) doesn’t have a function that does this thing by default, but one can easily create one, combining several well known functions in the process and bind that new function to the desired key combination. Here’s the snippet one might have in his .emacs(or other) “configuration” file:</p>
-<div class='highlight'><pre><code class='cl'><span class='c1'>;; insert an empty line after the current line and position the cursor on its beginning</span>
-<span class='p'>(</span><span class='nb'>defun</span> <span class='nv'>insert-empty-line</span> <span class='p'>()</span>
- <span class='p'>(</span><span class='nv'>interactive</span><span class='p'>)</span>
- <span class='p'>(</span><span class='nv'>move-end-of-line</span> <span class='no'>nil</span><span class='p'>)</span>
- <span class='p'>(</span><span class='nv'>open-line</span> <span class='mi'>1</span><span class='p'>)</span>
- <span class='p'>(</span><span class='nv'>next-line</span> <span class='mi'>1</span><span class='p'>))</span>
+    <p>As you know I&#8217;ve recently migrated my blog from WordPress to Jekyll. One of the things I had to do was add an Atom feed(RSS sucks). It was quite the easy task. I just had to create an <a href='https://github.com/bbatsov/blog/blob/master/atom.xml'>atom.xml</a> file and place in the root of my blog.</p>
 
-<span class='p'>(</span><span class='nv'>global-set-key</span> <span class='nv'>[</span><span class='p'>(</span><span class='nv'>shift</span> <span class='nb'>return</span><span class='p'>)</span><span class='nv'>]</span> <span class='ss'>&#39;insert-empty-line</span><span class='p'>)</span>
+<p>Afterwards I only had to link my default layout to the atom feed:</p>
+<div class='highlight'><pre><code class='xml'><span class='nt'>&lt;link</span> <span class='na'>rel=</span><span class='s'>&quot;alternate&quot;</span> <span class='na'>type=</span><span class='s'>&quot;application/atom+xml&quot;</span> <span class='na'>href=</span><span class='s'>&quot;atom.xml&quot;</span>
+<span class='na'>title=</span><span class='s'>&quot;Atom feed&quot;</span><span class='nt'>&gt;</span>
 </code></pre>
 </div>
-    <div style="font-style: italic; color: #7f9f7f;">Posted on 19 May 2009 by Bozhidar.</div>
+<p>At this point I was able to subscribe to my new atom feed(and hopefully my followers(which I may or may not have) were able to do the same).</p>
+    <div style="font-style: italic; color: #7f9f7f;">Posted on 24 Apr 2011 by Bozhidar.</div>
     <hr />
     <div id="disqus">
         <div id="disqus_thread"></div>
