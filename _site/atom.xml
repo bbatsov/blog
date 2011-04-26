@@ -4,13 +4,65 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-04-24T01:55:33+03:00</updated>
+  <updated>2011-04-26T15:13:04+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
     <email>bozhidar.batsov@gmail.com</email>
   </author>
 
+  
+  <entry>
+    <id>http://www.batsov.com/2011/04/26/jrebel-with-scala</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/26/jrebel-with-scala.html"/>
+    <title>Incremental development with Scala and JRebel</title>
+    <updated>2011-04-26T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;One of the things I love most about Lisp development is the ability to develop applications in an incremental interactive manner - you write one function, compile it, load into your current REPL session, make some adjustments and repeat this process until you get satisfactory results. You never stop to compile your project, you never have to restart your application server. Without those distractions it&amp;#8217;s easier to maintain your concentration and to remain in the &lt;em&gt;flow&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;With languages like Scala and Java, however, you cannot do this - at least without a bit of external help. This help comes in the form of an application called &lt;a href='http://www.zeroturnaround.com/jrebel/'&gt;JRebel&lt;/a&gt;, which basically reloads the classes in your program as you make changes to them and recompile them. JRebel is a commercial application and generally you have to pay to use it&amp;#8230; unless you want to you use it for Scala development, that is. ZeroTurnaround(the company that makes JRebel) offers &lt;a href='http://sales.zeroturnaround.com/wp-content/themes/zeroturnaround4.0/modals/applyForLicense.php'&gt;free licences to Scala developers&lt;/a&gt; and if you&amp;#8217;re one of them you should definitely get one.&lt;/p&gt;
+
+&lt;p&gt;Installing JRebel is trivial - generally you have to only extract a zip file(or use an installer) somewhere and drop in the JRebel folder the licence file that they have e-mail you. Afterwards you simply have to integrate JRebel with your build system. JRebel can also be integrated with IDEs, but I want cover this here. I use mostly &lt;a href='http://maven.apache.org'&gt;Maven 3&lt;/a&gt; and &lt;a href='http://code.google.com/p/simple-build-tool/'&gt;SBT&lt;/a&gt; so I&amp;#8217;ll show you what to do for them. With Maven you have to add the following to the &lt;em&gt;$MAVEN_OPTS&lt;/em&gt; environmental variable:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;export MAVEN_OPTS=-noverify -javaagent:/home/bozhidar/work/jrebel/jrebel.jar&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Since most people use JRebel for web development to avoid the need to restart their application containers and Scala&amp;#8217;s most prominent framework is &lt;a href='http://liftweb.net'&gt;Lift&lt;/a&gt; you&amp;#8217;d probably want to enable the JRebel Lift plug-in as well:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;export MAVEN_OPTS=-noverify -javaagent:/home/bozhidar/work/jrebel/jrebel.jar&lt;/span&gt;
+&lt;span class='go'&gt; -Drebel.lift_plugin=true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Stick this in your shell&amp;#8217;s init file and source it to make it available in the shell.&lt;/p&gt;
+
+&lt;p&gt;Now when you start your web app with&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;mvn jetty:run&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;And the continuous Scala compilation with&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;mvn scala:cc&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;The compiler with pickup the changes you made and JRebel will reload the changed classes behind the scenes. The development process this way starts to feel a bit like using a scripting language such as Ruby or PHP.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;#8217;re using SBT you should modify the sbt startup script to include the same options that I mentioned in the section about Maven configuration. Mine sbt script looks like this:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='gp'&gt;#&lt;/span&gt;!/bin/bash
+
+&lt;span class='go'&gt;java -noverify -javaagent:/home/bozhidar/work/jrebel/jrebel.jar&lt;/span&gt;
+&lt;span class='go'&gt; -Drebel.lift_plugin=true -XX:+CMSClassUnloadingEnabled&lt;/span&gt;
+&lt;span class='go'&gt; -XX:MaxPermSize=512m -Xmx512M -Xss2M -jar `dirname $0`/sbt-launch.jar&lt;/span&gt;
+&lt;span class='go'&gt; &amp;quot;$@&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Another use for JRebel is the Scala REPL itself. When you start the REPL from inside SBT for instance with the command:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;sbt console&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;changes to the imported classes will be reflected automatically without the need to do a &lt;em&gt;:replay&lt;/em&gt; or restart the REPL - something reminiscent of the interactive Lisp programming I mentioned earlier.&lt;/p&gt;
+
+&lt;p&gt;So what are you waiting for? Go grab JRebel and speed up your Scala development process.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <id>http://www.batsov.com/2011/04/24/emacs-dev-kit</id>
