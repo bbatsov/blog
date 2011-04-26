@@ -64,9 +64,11 @@ The Amazon Kindle store is always at hand.
 
 # The official lighted leather cover
 
-The cover is made of leather and makes the Kindle appearance quite
-similar to that of a real book. It also features LED light powered by
-the Kindle itself with which you can easily read even in the darkest
+The
+[cover](http://www.amazon.co.uk/Kindle-Lighted-Leather-Display-Generation/dp/B003DZ165W/ref=sr_1_1?ie=UTF8&qid=1303826907&sr=8-1)
+is made of leather and makes the Kindle appearance quite similar to
+that of a real book. It also features LED light powered by the Kindle
+itself with which you can easily read even in the darkest
 places. Unfortunately it's very expensive - it costs half as much as
 the Kindle...
 
