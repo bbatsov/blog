@@ -62,7 +62,9 @@ Jython - just to name a few) Java is still predominant by a wide
 margin and this is unlikely to change soon.
 
 I've taught a couple of introductory Java programming courses(in
-Bulgarian), but I'd recommend the ["Core Java"](http://www.amazon.com/Core-Java-TM-I--Fundamentals-8th/dp/0132354764/ref=sr_1_1?s=books&ie=UTF8&qid=1303901341&sr=1-1) over my lectures any day of
+Bulgarian), but I'd recommend the
+["Core Java"](http://www.amazon.com/Core-Java-TM-I--Fundamentals-8th/dp/0132354764/ref=sr_1_1?s=books&ie=UTF8&qid=1303901341&sr=1-1)
+book over my lectures any day of
 the week. :-)
 #Haskell
 ---

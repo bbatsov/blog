@@ -50,7 +50,7 @@ CL-USER> (penultimate '(1 2 3))
 The first element in the list is number 0.
 
 {% highlight cl %}
-CL-USER> (nth '(1 2 3) 1)
+CL-USER> (my-nth '(1 2 3) 1)
 2
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p103.lisp)

@@ -6,7 +6,7 @@ title: Blogs posts
 {% for post in site.posts limit:5 %}
 ## [{{ post.title }}]({{ post.url }})
 {{ post.content }}
-_Posted on {{ post.date | date_to_long_string }}._
+<div style="font-style: italic; color: #7f9f7f;">Posted on {{ post.date | date_to_string }} by Bozhidar.</div>
 
 [Comments]({{ post.url }}#disqus_thread)
 {% endfor %}
