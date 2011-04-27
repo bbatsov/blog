@@ -88,7 +88,7 @@ developer throughput. It also has the greatest support for text
 processing ever and an extremely flexible(albeit a bit of confusing)
 syntax. 
 
-Pick up a copy of ["Learning Perl"](http://oreilly.com/catalog/9780596520113) and just browse the excellent
+Pick up a copy of ["Learning Perl"](http://oreilly.com/catalog/9780596520113) or just browse the excellent
 *perldoc* and start coding in Perl right away.
 
 #Clojure

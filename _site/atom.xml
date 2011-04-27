@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-04-27T16:23:08+03:00</updated>
+  <updated>2011-04-27T17:22:38+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -55,7 +55,7 @@
 &lt;hr /&gt;
 &lt;p&gt;Once the undisputed king of the Internet Perl has recently fallen down from grace in its battle with the newer generation of dynamic languages like PHP, Ruby and Python. While I wouldn&amp;#8217;t advise anyone to start writing Web apps with Perl it&amp;#8217;s still the best language for writing administration and helper scripts with minimum fuss and maximum developer throughput. It also has the greatest support for text processing ever and an extremely flexible(albeit a bit of confusing) syntax.&lt;/p&gt;
 
-&lt;p&gt;Pick up a copy of &lt;a href='http://oreilly.com/catalog/9780596520113'&gt;&amp;#8220;Learning Perl&amp;#8221;&lt;/a&gt; and just browse the excellent &lt;em&gt;perldoc&lt;/em&gt; and start coding in Perl right away.&lt;/p&gt;
+&lt;p&gt;Pick up a copy of &lt;a href='http://oreilly.com/catalog/9780596520113'&gt;&amp;#8220;Learning Perl&amp;#8221;&lt;/a&gt; or just browse the excellent &lt;em&gt;perldoc&lt;/em&gt; and start coding in Perl right away.&lt;/p&gt;
 
 &lt;h1 id='clojure'&gt;Clojure&lt;/h1&gt;
 &lt;hr /&gt;
