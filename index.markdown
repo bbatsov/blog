@@ -7,4 +7,6 @@ title: Blogs posts
 ## [{{ post.title }}]({{ post.url }})
 {{ post.content }}
 _Posted on {{ post.date | date_to_long_string }}._
+
+[Comments]({{ post.url }}#disqus_thread)
 {% endfor %}
