@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-04-27T19:00:57+03:00</updated>
+  <updated>2011-04-27T20:10:19+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -78,6 +78,10 @@
 &lt;p&gt;An interesting blend of pure object orientation and functional programming with some concurrency support baked in(actors). Of the current crop of JVM languages next to Clojure Scala looks most promising. It features an advanced static type system(more advanced than Haskell&amp;#8217;s), state of the art Java integration, support for pattern matching, extractors and other functional goodness. If any language has a chance of displacing the Java programming language it must be Scala&amp;#8230;&lt;/p&gt;
 
 &lt;p&gt;Start your journey to Scala mastery with &lt;a href='http://www.artima.com/pins1ed/'&gt;&amp;#8220;Programming in Scala&amp;#8221;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id='javascript'&gt;JavaScript&lt;/h1&gt;
+&lt;hr /&gt;
+&lt;p&gt;We cannot conclude this whirlwind tour of notable programming languages without mentioning the King of the Web, the language that drove the Web 2.0 revolution - JavaScript. Although it has a terrible name(JavaScript shares nothing with Java), a questionable programming model built around mutating global variables and prototype instead of class inheritance it is supported virtually everywhere and any web developer will do well to learn some JavaScript.&lt;/p&gt;
 
 &lt;h1 id='conclusion'&gt;Conclusion&lt;/h1&gt;
 &lt;hr /&gt;

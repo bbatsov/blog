@@ -130,7 +130,18 @@ pattern matching, extractors and other functional goodness. If any
 language has a chance of displacing the Java programming language it
 must be Scala...
 
-Start your journey to Scala mastery with ["Programming in Scala"](http://www.artima.com/pins1ed/).
+Start your journey to Scala mastery with
+["Programming in Scala"](http://www.artima.com/pins1ed/).
+
+#JavaScript
+---
+We cannot conclude this whirlwind tour of notable programming
+languages without mentioning the King of the Web, the language that
+drove the Web 2.0 revolution - JavaScript. Although it has a terrible
+name(JavaScript shares nothing with Java), a questionable programming
+model built around mutating global variables and prototype instead of
+class inheritance it is supported virtually everywhere and any web
+developer will do well to learn some JavaScript.
 
 #Conclusion
 ---
