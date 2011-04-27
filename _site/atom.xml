@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-04-27T18:01:46+03:00</updated>
+  <updated>2011-04-27T19:00:57+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -621,7 +621,9 @@
     </author>
     <content type="html">&lt;p&gt;Recently I switched to zsh, after being a bash user for almost 5 years. I was in love with everything in zsh from day one, except one thing – the default prompt. Although zsh ships with several prompt themes, I didn’t like any of them so I looked around a little bit and constructed my own humble prompt. Here it goes:&lt;/p&gt;
 
-&lt;p&gt;PROMPT=’&lt;span&gt;%n@%m %~&lt;/span&gt;$ ‘&lt;/p&gt;
+&lt;p&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='gp'&gt;PROMPT=&amp;#39;[%n@%m %~]$&lt;/span&gt; &lt;span class='err'&gt;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;In case you’re wondering what this gibberish means:&lt;/p&gt;
 
@@ -633,11 +635,15 @@
 
 &lt;p&gt;All of this strange looking character combinations are called “escape sequences” and they have special significance to zsh. The rest of the characters in the prompt definition are represented literally in the resulting prompt. It looks like this(on my machine):&lt;/p&gt;
 
-&lt;p&gt;&lt;span&gt;bozhidar@drow ~/store&lt;/span&gt;$&lt;/p&gt;
+&lt;p&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;[bozhidar@drow ~/store]$&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;If you like it simply put the prompt definition like in your .zshrc file. You may want to put a little bit different version of the prompt in the root user’s .zshrc(if you use root at all that is):&lt;/p&gt;
 
-&lt;p&gt;PROMPT=’&lt;span&gt;%n@%m %~&lt;/span&gt;# ‘&lt;/p&gt;
+&lt;p&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='gp'&gt;PROMPT=&amp;#39;[%n@%m %~]#&lt;/span&gt; &lt;span class='err'&gt;&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;This follows the well established pattern that a normal shell and a root shell should be easily distinguished visually.&lt;/p&gt;</content>
   </entry>

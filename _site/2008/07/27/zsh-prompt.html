@@ -43,7 +43,9 @@
     <h2 class="title">A nice zsh prompt</h2>
     <p>Recently I switched to zsh, after being a bash user for almost 5 years. I was in love with everything in zsh from day one, except one thing – the default prompt. Although zsh ships with several prompt themes, I didn’t like any of them so I looked around a little bit and constructed my own humble prompt. Here it goes:</p>
 
-<p>PROMPT=’<span>%n@%m %~</span>$ ‘</p>
+<p><div class='highlight'><pre><code class='console'><span class='gp'>PROMPT=&#39;[%n@%m %~]$</span> <span class='err'>&#39;</span>
+</code></pre>
+</div></p>
 
 <p>In case you’re wondering what this gibberish means:</p>
 
@@ -55,11 +57,15 @@
 
 <p>All of this strange looking character combinations are called “escape sequences” and they have special significance to zsh. The rest of the characters in the prompt definition are represented literally in the resulting prompt. It looks like this(on my machine):</p>
 
-<p><span>bozhidar@drow ~/store</span>$</p>
+<p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@drow ~/store]$</span>
+</code></pre>
+</div></p>
 
 <p>If you like it simply put the prompt definition like in your .zshrc file. You may want to put a little bit different version of the prompt in the root user’s .zshrc(if you use root at all that is):</p>
 
-<p>PROMPT=’<span>%n@%m %~</span># ‘</p>
+<p><div class='highlight'><pre><code class='console'><span class='gp'>PROMPT=&#39;[%n@%m %~]#</span> <span class='err'>&#39;</span>
+</code></pre>
+</div></p>
 
 <p>This follows the well established pattern that a normal shell and a root shell should be easily distinguished visually.</p>
     <div style="font-style: italic; color: #7f9f7f;">Posted on 27 Jul 2008 by Bozhidar.</div>
