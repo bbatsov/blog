@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <link href="/css/site.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+        <link rel="alternate" type="application/atom+xml" href="atom.xml" title="Atom feed">
+        <title>(think) - Lisp Problems</title>
+
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-22917580-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </head>
+
+    <body>
+        <div id="page">
+            <div id="content">
+                <div id="header">
+                    <h1>(think)</h1>
+                    <p class="comment">/** An online novel about the Source, the Force, the real life and everything
+                    in between...**/</p>
+                </div>
+                <div id="middle">
+                    <div id="menu">
+                        <ul id="list-nav">
+                            <li><a href="/index.html">Home</a></li>
+                            <li><a href="/archive.html">Archive</a></li>
+                            <li><a href="/projects.html">Projects</a></li>
+                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/contacts.html">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div id="content">
+                        <div id="post">
+    <h2><a href="/lisp-problems.html">
+        Lisp Problems
+    </a></h2>
+    <p>This is a remake of the P-99: Ninety-Nine Prolog Problems collection that Werner Hett assembled over several years of teaching at the University of Applied Sciences (Berner Fachhochschule) at Biel-Bienne, Switzerland. The collection is structured into seven sections. I have renumbered the problems in order to get more freedom to rearrange things within the sections.</p>
+
+<p>The purpose of this problem collection is to give you the opportunity to practice your skills in logic programming. Your goal should be to find the most elegant solution of the given problems. Efficiency is important, but logical clarity is even more crucial. Some of the (easy) problems can be trivially solved using built-in functions. However, in these cases, you learn more if you try to find your own solution.</p>
+
+<p>The problems have different levels of difficulty. Those marked with a single asterisk (*) are easy. If you have successfully solved the preceeding problems you should be able to solve them within a few (say 15) minutes. Problems marked with two asterisks (**) are of intermediate difficulty. If you are a skilled Prolog programmer it shouldn&#8217;t take you more than 30-90 minutes to solve them. Problems marked with three asterisks (***) are more difficult. You may need more time (i.e. a few hours or more) to find a good solution.</p>
+
+<h2 id='lisp_lists'>Lisp Lists</h2>
+<hr />
+<p><em>1.01 (*) Find the last element of a list.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>my-last</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>3</span>
+</code></pre>
+</div>
+<p><em>1.02 (*) Find the penultimate(last but one) element of a list.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>penultimate</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p><em>1.03 (*) Find the nth element of a list.</em> The first element in the list is number 0.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nb'>nth</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>)</span> <span class='mi'>1</span><span class='p'>)</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p><em>1.04 (*) Find the number of elements of a list.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>my-length</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>3</span>
+</code></pre>
+</div>
+<p><em>1.05 (*) Reverse a list.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>my-reverse</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='p'>(</span><span class='mi'>3</span> <span class='mi'>2</span> <span class='mi'>1</span><span class='p'>)</span>
+</code></pre>
+</div>
+<p><em>1.06 (*) Find out whether a list is a palindrome.</em> A palindrome can be read forward or backward; e.g. <span>x,a,m,a,x</span>.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>palindrome-p</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='no'>NIL</span>
+<span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>palindrome-p</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span> <span class='mi'>2</span> <span class='mi'>1</span><span class='p'>))</span>
+<span class='no'>T</span>
+</code></pre>
+</div>
+<p><em>1.07 (**) Flatten a nested list structure.</em> Transform a list, possibly holding lists as elements into a &#8216;flat&#8217; list by replacing each list with its elements (recursively).</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>penultimate</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p><em>1.08 (**) Eliminate consecutive duplicates of list elements.</em> If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p><em>1.09 (**) Pack consecutive duplicates of list elements into sublists.</em> If a list contains repeated elements they should be placed in separate sublists.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- pack(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>a,a,a,a</span>,<span>b</span>,<span>c,c</span>,<span>a,a</span>,<span>d</span>,<span>e,e,e,e</span></span></p>
+
+<p><em>1.10 (*) Run-length encoding of a list.</em> Use the result of problem 1.09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as terms <span>N,E</span> where N is the number of duplicates of the element E.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- encode(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>4,a</span>,<span>1,b</span>,<span>2,c</span>,<span>2,a</span>,<span>1,d</span></span></p>
+
+<p><em>1.11 (*) Modified run-length encoding.</em> Modify the result of problem 1.10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as <span>N,E</span> terms.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- encode_modified(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>4,a</span>,b,<span>2,c</span>,<span>2,a</span>,d,<span>4,e</span></span></p>
+
+<p><em>1.12 (**) Decode a run-length encoded list.</em> Given a run-length code list generated as specified in problem 1.11. Construct its uncompressed version.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p><em>1.13 (**) Run-length encoding of a list (direct solution).</em> Implement the so-called run-length encoding data compression method directly. I.e. don&#8217;t explicitly create the sublists containing the duplicates, as in problem 1.09, but only count them. As in problem 1.11, simplify the result list by replacing the singleton terms <span>1,X</span> by X.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- encode_direct(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>4,a</span>,b,<span>2,c</span>,<span>2,a</span>,d,<span>4,e</span></span></p>
+
+<p><em>1.14 (*) Duplicate the elements of a list.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- dupli(<span>a,b,c,c,d</span>,X). X = <span>a,a,b,b,c,c,c,c,d,d</span></p>
+
+<p><em>1.15 (**) Duplicate the elements of a list a given number of times.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- dupli(<span>a,b,c</span>,3,X). X = <span>a,a,a,b,b,b,c,c,c</span></p>
+
+<p>What are the results of the goal: ?- dupli(X,3,Y).</p>
+
+<p><em>1.16 (**) Drop every N&#8217;th element from a list.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- drop(<span>a,b,c,d,e,f,g,h,i,k</span>,3,X). X = <span>a,b,d,e,g,h,k</span></p>
+
+<p><em>1.17 (*) Split a list into two parts; the length of the first part is given.</em> Do not use any predefined predicates.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- split(<span>a,b,c,d,e,f,g,h,i,k</span>,3,L1,L2). L1 = <span>a,b,c</span> L2 = <span>d,e,f,g,h,i,k</span></p>
+
+<p><em>1.18 (**) Extract a slice from a list.</em> Given two indices, I and K, the slice is the list containing the elements between the I&#8217;th and K&#8217;th element of the original list (both limits included). Start counting the elements with 1.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- slice(<span>a,b,c,d,e,f,g,h,i,k</span>,3,7,L). X = <span>c,d,e,f,g</span></p>
+
+<p><em>1.19 (**) Rotate a list N places to the left.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Examples: ?- rotate(<span>a,b,c,d,e,f,g,h</span>,3,X). X = <span>d,e,f,g,h,a,b,c</span></p>
+
+<p>?- rotate(<span>a,b,c,d,e,f,g,h</span>,-2,X). X = <span>g,h,a,b,c,d,e,f</span></p>
+
+<p>Hint: Use the predefined predicates length/2 and append/3, as well as the result of problem 1.17.</p>
+
+<p><em>1.20 (*) Remove the K&#8217;th element from a list.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- remove_at(X,<span>a,b,c,d</span>,2,R). X = b R = <span>a,c,d</span></p>
+
+<p><em>1.21 (*) Insert an element at a given position into a list.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- insert_at(alfa,<span>a,b,c,d</span>,2,L). L = <span>a,alfa,b,c,d</span></p>
+
+<p><em>1.22 (*) Create a list containing all integers within a given range.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- range(4,9,L). L = <span>4,5,6,7,8,9</span></p>
+
+<p><em>1.23 (**) Extract a given number of randomly selected elements from a list.</em> The selected items shall be put into a result list.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- rnd_select(<span>a,b,c,d,e,f,g,h</span>,3,L). L = <span>e,d,a</span></p>
+
+<p>Hint: Use the built-in random number generator random/2 and the result of problem 1.20.</p>
+
+<p><em>1.24 (*) Lotto: Draw N different random numbers from the set 1..M.</em> The selected numbers shall be put into a result list.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- rnd_select(6,49,L). L = <span>23,1,17,33,21,37</span></p>
+
+<p>Hint: Combine the solutions of problems 1.22 and 1.23.</p>
+
+<p><em>1.25 (*) Generate a random permutation of the elements of a list.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- rnd_permu(<span>a,b,c,d,e,f</span>,L). L = <span>b,a,d,c,e,f</span></p>
+
+<p>Hint: Use the solution of problem 1.23.</p>
+
+<p><em>1.26 (**) Generate the combinations of K distinct objects chosen from the N elements of a list</em> In how many ways can a committee of 3 be chosen from a group of 12 people? We all know that there are C(12,3) = 220 possibilities (C(N,K) denotes the well-known binomial coefficients). For pure mathematicians, this result may be great. But we want to really generate all the possibilities (via backtracking).</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- combination(3,<span>a,b,c,d,e,f</span>,L). L = <span>a,b,c</span> ; L = <span>a,b,d</span> ; L = <span>a,b,e</span> ; &#8230;</p>
+
+<p><em>1.27 (**) Group the elements of a set into disjoint subsets.</em> a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3 and 4 persons? Write a predicate that generates all the possibilities via backtracking.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- group3(<span>aldo,beat,carla,david,evi,flip,gary,hugo,ida</span>,G1,G2,G3). G1 = <span>aldo,beat</span>, G2 = <span>carla,david,evi</span>, G3 = <span>flip,gary,hugo,ida</span> &#8230;</p>
+
+<p>b) Generalize the above predicate in a way that we can specify a list of group sizes and the predicate will return a list of groups.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- group(<span>aldo,beat,carla,david,evi,flip,gary,hugo,ida</span>,<span>2,2,5</span>,Gs). Gs = <span><span>aldo,beat</span>,<span>carla,david</span>,<span>evi,flip,gary,hugo,ida</span></span> &#8230;</p>
+
+<p>Note that we do not want permutations of the group members; i.e. <span><span>aldo,beat</span>,&#8230;</span> is the same solution as <span><span>beat,aldo</span>,&#8230;</span>. However, we make a difference between <span><span>aldo,beat</span>,<span>carla,david</span>,&#8230;</span> and <span><span>carla,david</span>,<span>aldo,beat</span>,&#8230;</span>.</p>
+
+<p>You may find more about this combinatorial problem in a good book on discrete mathematics under the term &#8220;multinomial coefficients&#8221;.</p>
+
+<p><em>1.28 (**) Sorting a list of lists according to length of sublists</em> a) We suppose that a list (InList) contains elements that are lists themselves. The objective is to sort the elements of InList according to their length. E.g. short lists first, longer lists later, or vice versa.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- lsort(<span><span>a,b,c</span>,<span>d,e</span>,<span>f,g,h</span>,<span>d,e</span>,<span>i,j,k,l</span>,<span>m,n</span>,<span>o</span></span>,L). L = <span><span>o</span>, <span>d, e</span>, <span>d, e</span>, <span>m, n</span>, <span>a, b, c</span>, <span>f, g, h</span>, <span>i, j, k, l</span></span></p>
+
+<p>b) Again, we suppose that a list (InList) contains elements that are lists themselves. But this time the objective is to sort the elements of InList according to their length frequency; i.e. in the default, where sorting is done ascendingly, lists with rare lengths are placed first, others with a more frequent length come later.</p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<span class='mi'>2</span>
+</code></pre>
+</div>
+<p>Example: ?- lfsort(<span><span>a,b,c</span>,<span>d,e</span>,<span>f,g,h</span>,<span>d,e</span>,<span>i,j,k,l</span>,<span>m,n</span>,<span>o</span></span>,L). L = <span><span>i, j, k, l</span>, <span>o</span>, <span>a, b, c</span>, <span>f, g, h</span>, <span>d, e</span>, <span>d, e</span>, <span>m, n</span></span></p>
+
+<p>Note that in the above example, the first two lists in the result L have length 4 and 1, both lengths appear just once. The third and forth list have length 3; there are two list of this length. And finally, the last three lists have length 2. This is the most frequent length.</p>
+
+<h2 id='arithmetic'>Arithmetic</h2>
+<hr />
+<h2 id='logic_and_codes'>Logic and Codes</h2>
+<hr />
+<h2 id='binary_trees'>Binary Trees</h2>
+<hr />
+<h2 id='multiway_trees'>Multiway Trees</h2>
+<hr />
+<h2 id='graphs'>Graphs</h2>
+<hr />
+<h2 id='misc'>Misc</h2>
+<hr />
+    <div style="font-style: italic; color: #7f9f7f;">Posted on Liquid error: undefined method `strftime' for nil:NilClass by Bozhidar.</div>
+    <hr />
+    <div id="disqus">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript" src="http://disqus.com/forums/iteration-next/embed.js"></script>
+        <noscript><a href="http://iteration-next.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+</div>
+
+                    </div>
+                </div>
+                <div id="footer">
+                    <p>Copyright &copy; 2010-2011 <a href="mailto:bozhidar.batsov@gmail.com">Bozhidar Batsov</a>. All Rights Reserved.</p>
+                </div>
+            </div>
+            <div id="sidebar">
+                <div id="twitter">
+                    <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        new TWTR.Widget({
+                        version: 2,
+                        type: 'profile',
+                        rpp: 4,
+                        interval: 6000,
+                        width: 250,
+                        height: 300,
+                        theme: {
+                        shell: {
+                        background: '#333333',
+                        color: '#ffffff'
+                        },
+                        tweets: {
+                        background: '#000000',
+                        color: '#ffffff',
+                        links: '#4aed05'
+                        }
+                        },
+                        features: {
+                        scrollbar: false,
+                        loop: false,
+                        live: false,
+                        hashtags: true,
+                        timestamp: true,
+                        avatars: false,
+                        behavior: 'all'
+                        }
+                        }).render().setUser('bbatsov').start();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
