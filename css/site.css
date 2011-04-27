@@ -8,10 +8,17 @@ body {
 
 a:link {
     color: #8cd0d3;
+    text-decoration: none;
 }
 
 a:visited {
     color: #cc9393;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #bfebbf;
+    text-decoration: underline;
 }
 
 h1 {
@@ -23,8 +30,18 @@ h2 {
     color: #f0dfaf;
 }
 
+.title {
+    color: #f0dfaf;
+    text-decoration: underline;
+}
+
 h2 a:link {
     color: #f0dfaf;
+    text-decoration: underline
+}
+
+h2 a:hover {
+    color: #bfebbf;
 }
 
 h3 {

@@ -40,9 +40,7 @@
                     </div>
                     <div id="content">
                         <div id="post">
-    <h2><a href="/2009/12/05/execute-stuff-after-zsh-login.html">
-        Automatically execute programs after zsh login
-    </a></h2>
+    <h2 class="title">Automatically execute programs after zsh login</h2>
     <p>Sometimes you may want to start a couple of programs just after an interactive login to your favourite shell, which in my case would be zsh. For example – I use Emacs as daemon process. I cannot use an init script to start it since the daemon is usable on a per user basis. The solution in this case is really simple – just create a .zlogin file in your home folder and put in it all the commands you want executed after you’ve logged into the shell. In my case I put “emacs –daemon” there and I soon as I’m logged in, the Emacs daemon is up waiting for incoming connections.</p>
     <div style="font-style: italic; color: #7f9f7f;">Posted on 05 Dec 2009 by Bozhidar.</div>
     <hr />

@@ -40,9 +40,7 @@
                     </div>
                     <div id="content">
                         <div id="post">
-    <h2><a href="/lisp-problems.html">
-        Lisp Problems
-    </a></h2>
+    <h2 class="title">Lisp Problems</h2>
     <p>This is a remake of the P-99: Ninety-Nine Prolog Problems collection that Werner Hett assembled over several years of teaching at the University of Applied Sciences (Berner Fachhochschule) at Biel-Bienne, Switzerland. The collection is structured into seven sections. I have renumbered the problems in order to get more freedom to rearrange things within the sections.</p>
 
 <p>The purpose of this problem collection is to give you the opportunity to practice your skills in logic programming. Your goal should be to find the most elegant solution of the given problems. Efficiency is important, but logical clarity is even more crucial. Some of the (easy) problems can be trivially solved using built-in functions. However, in these cases, you learn more if you try to find your own solution.</p>
@@ -56,26 +54,36 @@
 <span class='mi'>3</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p101.lisp'>View solution</a></p>
+
 <p><em>1.02 (*) Find the penultimate(last but one) element of a list.</em></p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>penultimate</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p102.lisp'>View solution</a></p>
+
 <p><em>1.03 (*) Find the nth element of a list.</em> The first element in the list is number 0.</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nb'>nth</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>)</span> <span class='mi'>1</span><span class='p'>)</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p103.lisp'>View solution</a></p>
+
 <p><em>1.04 (*) Find the number of elements of a list.</em></p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>my-length</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>3</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p104.lisp'>View solution</a></p>
+
 <p><em>1.05 (*) Reverse a list.</em></p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>my-reverse</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='p'>(</span><span class='mi'>3</span> <span class='mi'>2</span> <span class='mi'>1</span><span class='p'>)</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p105.lisp'>View solution</a></p>
+
 <p><em>1.06 (*) Find out whether a list is a palindrome.</em> A palindrome can be read forward or backward; e.g. <span>x,a,m,a,x</span>.</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>palindrome-p</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='no'>NIL</span>
@@ -83,47 +91,55 @@
 <span class='no'>T</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p106.lisp'>View solution</a></p>
+
 <p><em>1.07 (**) Flatten a nested list structure.</em> Transform a list, possibly holding lists as elements into a &#8216;flat&#8217; list by replacing each list with its elements (recursively).</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>penultimate</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p107.lisp'>View solution</a></p>
+
 <p><em>1.08 (**) Eliminate consecutive duplicates of list elements.</em> If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p108.lisp'>View solution</a></p>
+
 <p><em>1.09 (**) Pack consecutive duplicates of list elements into sublists.</em> If a list contains repeated elements they should be placed in separate sublists.</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
-<p>Example: ?- pack(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>a,a,a,a</span>,<span>b</span>,<span>c,c</span>,<span>a,a</span>,<span>d</span>,<span>e,e,e,e</span></span></p>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p109.lisp'>View solution</a> Example: ?- pack(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>a,a,a,a</span>,<span>b</span>,<span>c,c</span>,<span>a,a</span>,<span>d</span>,<span>e,e,e,e</span></span></p>
 
 <p><em>1.10 (*) Run-length encoding of a list.</em> Use the result of problem 1.09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as terms <span>N,E</span> where N is the number of duplicates of the element E.</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
-<p>Example: ?- encode(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>4,a</span>,<span>1,b</span>,<span>2,c</span>,<span>2,a</span>,<span>1,d</span></span></p>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p110.lisp'>View solution</a> Example: ?- encode(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>4,a</span>,<span>1,b</span>,<span>2,c</span>,<span>2,a</span>,<span>1,d</span></span></p>
 
 <p><em>1.11 (*) Modified run-length encoding.</em> Modify the result of problem 1.10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as <span>N,E</span> terms.</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
-<p>Example: ?- encode_modified(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>4,a</span>,b,<span>2,c</span>,<span>2,a</span>,d,<span>4,e</span></span></p>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p111.lisp'>View solution</a> Example: ?- encode_modified(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>4,a</span>,b,<span>2,c</span>,<span>2,a</span>,d,<span>4,e</span></span></p>
 
 <p><em>1.12 (**) Decode a run-length encoded list.</em> Given a run-length code list generated as specified in problem 1.11. Construct its uncompressed version.</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
-<p><em>1.13 (**) Run-length encoding of a list (direct solution).</em> Implement the so-called run-length encoding data compression method directly. I.e. don&#8217;t explicitly create the sublists containing the duplicates, as in problem 1.09, but only count them. As in problem 1.11, simplify the result list by replacing the singleton terms <span>1,X</span> by X.</p>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p112.lisp'>View solution</a> <em>1.13 (**) Run-length encoding of a list (direct solution).</em> Implement the so-called run-length encoding data compression method directly. I.e. don&#8217;t explicitly create the sublists containing the duplicates, as in problem 1.09, but only count them. As in problem 1.11, simplify the result list by replacing the singleton terms <span>1,X</span> by X.</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p113.lisp'>View solution</a></p>
+
 <p>Example: ?- encode_direct(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>4,a</span>,b,<span>2,c</span>,<span>2,a</span>,d,<span>4,e</span></span></p>
 
 <p><em>1.14 (*) Duplicate the elements of a list.</em></p>
@@ -131,13 +147,15 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
-<p>Example: ?- dupli(<span>a,b,c,c,d</span>,X). X = <span>a,a,b,b,c,c,c,c,d,d</span></p>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p114.lisp'>View solution</a> Example: ?- dupli(<span>a,b,c,c,d</span>,X). X = <span>a,a,b,b,c,c,c,c,d,d</span></p>
 
 <p><em>1.15 (**) Duplicate the elements of a list a given number of times.</em></p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p115.lisp'>View solution</a></p>
+
 <p>Example: ?- dupli(<span>a,b,c</span>,3,X). X = <span>a,a,a,b,b,b,c,c,c</span></p>
 
 <p>What are the results of the goal: ?- dupli(X,3,Y).</p>
@@ -147,6 +165,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p116.lisp'>View solution</a></p>
+
 <p>Example: ?- drop(<span>a,b,c,d,e,f,g,h,i,k</span>,3,X). X = <span>a,b,d,e,g,h,k</span></p>
 
 <p><em>1.17 (*) Split a list into two parts; the length of the first part is given.</em> Do not use any predefined predicates.</p>
@@ -154,6 +174,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p117.lisp'>View solution</a></p>
+
 <p>Example: ?- split(<span>a,b,c,d,e,f,g,h,i,k</span>,3,L1,L2). L1 = <span>a,b,c</span> L2 = <span>d,e,f,g,h,i,k</span></p>
 
 <p><em>1.18 (**) Extract a slice from a list.</em> Given two indices, I and K, the slice is the list containing the elements between the I&#8217;th and K&#8217;th element of the original list (both limits included). Start counting the elements with 1.</p>
@@ -161,6 +183,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p118.lisp'>View solution</a></p>
+
 <p>Example: ?- slice(<span>a,b,c,d,e,f,g,h,i,k</span>,3,7,L). X = <span>c,d,e,f,g</span></p>
 
 <p><em>1.19 (**) Rotate a list N places to the left.</em></p>
@@ -168,6 +192,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p119.lisp'>View solution</a></p>
+
 <p>Examples: ?- rotate(<span>a,b,c,d,e,f,g,h</span>,3,X). X = <span>d,e,f,g,h,a,b,c</span></p>
 
 <p>?- rotate(<span>a,b,c,d,e,f,g,h</span>,-2,X). X = <span>g,h,a,b,c,d,e,f</span></p>
@@ -179,6 +205,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p120.lisp'>View solution</a></p>
+
 <p>Example: ?- remove_at(X,<span>a,b,c,d</span>,2,R). X = b R = <span>a,c,d</span></p>
 
 <p><em>1.21 (*) Insert an element at a given position into a list.</em></p>
@@ -186,6 +214,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p121.lisp'>View solution</a></p>
+
 <p>Example: ?- insert_at(alfa,<span>a,b,c,d</span>,2,L). L = <span>a,alfa,b,c,d</span></p>
 
 <p><em>1.22 (*) Create a list containing all integers within a given range.</em></p>
@@ -193,6 +223,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p122.lisp'>View solution</a></p>
+
 <p>Example: ?- range(4,9,L). L = <span>4,5,6,7,8,9</span></p>
 
 <p><em>1.23 (**) Extract a given number of randomly selected elements from a list.</em> The selected items shall be put into a result list.</p>
@@ -200,6 +232,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p123.lisp'>View solution</a></p>
+
 <p>Example: ?- rnd_select(<span>a,b,c,d,e,f,g,h</span>,3,L). L = <span>e,d,a</span></p>
 
 <p>Hint: Use the built-in random number generator random/2 and the result of problem 1.20.</p>
@@ -209,6 +243,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p124.lisp'>View solution</a></p>
+
 <p>Example: ?- rnd_select(6,49,L). L = <span>23,1,17,33,21,37</span></p>
 
 <p>Hint: Combine the solutions of problems 1.22 and 1.23.</p>
@@ -218,6 +254,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p125.lisp'>View solution</a></p>
+
 <p>Example: ?- rnd_permu(<span>a,b,c,d,e,f</span>,L). L = <span>b,a,d,c,e,f</span></p>
 
 <p>Hint: Use the solution of problem 1.23.</p>
@@ -227,6 +265,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p126.lisp'>View solution</a></p>
+
 <p>Example: ?- combination(3,<span>a,b,c,d,e,f</span>,L). L = <span>a,b,c</span> ; L = <span>a,b,d</span> ; L = <span>a,b,e</span> ; &#8230;</p>
 
 <p><em>1.27 (**) Group the elements of a set into disjoint subsets.</em> a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3 and 4 persons? Write a predicate that generates all the possibilities via backtracking.</p>
@@ -234,6 +274,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p127.lisp'>View solution</a></p>
+
 <p>Example: ?- group3(<span>aldo,beat,carla,david,evi,flip,gary,hugo,ida</span>,G1,G2,G3). G1 = <span>aldo,beat</span>, G2 = <span>carla,david,evi</span>, G3 = <span>flip,gary,hugo,ida</span> &#8230;</p>
 
 <p>b) Generalize the above predicate in a way that we can specify a list of group sizes and the predicate will return a list of groups.</p>
@@ -241,6 +283,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p127.lisp'>View solution</a></p>
+
 <p>Example: ?- group(<span>aldo,beat,carla,david,evi,flip,gary,hugo,ida</span>,<span>2,2,5</span>,Gs). Gs = <span><span>aldo,beat</span>,<span>carla,david</span>,<span>evi,flip,gary,hugo,ida</span></span> &#8230;</p>
 
 <p>Note that we do not want permutations of the group members; i.e. <span><span>aldo,beat</span>,&#8230;</span> is the same solution as <span><span>beat,aldo</span>,&#8230;</span>. However, we make a difference between <span><span>aldo,beat</span>,<span>carla,david</span>,&#8230;</span> and <span><span>carla,david</span>,<span>aldo,beat</span>,&#8230;</span>.</p>
@@ -252,6 +296,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p128.lisp'>View solution</a></p>
+
 <p>Example: ?- lsort(<span><span>a,b,c</span>,<span>d,e</span>,<span>f,g,h</span>,<span>d,e</span>,<span>i,j,k,l</span>,<span>m,n</span>,<span>o</span></span>,L). L = <span><span>o</span>, <span>d, e</span>, <span>d, e</span>, <span>m, n</span>, <span>a, b, c</span>, <span>f, g, h</span>, <span>i, j, k, l</span></span></p>
 
 <p>b) Again, we suppose that a list (InList) contains elements that are lists themselves. But this time the objective is to sort the elements of InList according to their length frequency; i.e. in the default, where sorting is done ascendingly, lists with rare lengths are placed first, others with a more frequent length come later.</p>
@@ -259,6 +305,8 @@
 <span class='mi'>2</span>
 </code></pre>
 </div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p128.lisp'>View solution</a></p>
+
 <p>Example: ?- lfsort(<span><span>a,b,c</span>,<span>d,e</span>,<span>f,g,h</span>,<span>d,e</span>,<span>i,j,k,l</span>,<span>m,n</span>,<span>o</span></span>,L). L = <span><span>i, j, k, l</span>, <span>o</span>, <span>a, b, c</span>, <span>f, g, h</span>, <span>d, e</span>, <span>d, e</span>, <span>m, n</span></span></p>
 
 <p>Note that in the above example, the first two lists in the result L have length 4 and 1, both lengths appear just once. The third and forth list have length 3; there are two list of this length. And finally, the last three lists have length 2. This is the most frequent length.</p>

@@ -40,9 +40,7 @@
                     </div>
                     <div id="content">
                         <div id="post">
-    <h2><a href="/2009/05/19/emacs-shift-return.html">
-        Emulate the behaviour of Return+Shift(insert new line) from popular IDEs(IDEA, Eclipse) in Emacs
-    </a></h2>
+    <h2 class="title">Emulate the behaviour of Return+Shift(insert new line) from popular IDEs(IDEA, Eclipse) in Emacs</h2>
     <p>I’m very fond of the ability to insert a new line below the line I’m currently at, and to position the cursor at the beginning of that new line, offered by most IDEs, such as IntelliJ IDEA, Eclipse. It’s usually bound to Return(Enter)+Shift. Emacs(as far as I know) doesn’t have a function that does this thing by default, but one can easily create one, combining several well known functions in the process and bind that new function to the desired key combination. Here’s the snippet one might have in his .emacs(or other) “configuration” file:</p>
 <div class='highlight'><pre><code class='cl'><span class='c1'>;; insert an empty line after the current line and position the cursor on its beginning</span>
 <span class='p'>(</span><span class='nb'>defun</span> <span class='nv'>insert-empty-line</span> <span class='p'>()</span>

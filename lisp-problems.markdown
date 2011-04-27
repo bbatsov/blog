@@ -36,6 +36,7 @@ more time (i.e. a few hours or more) to find a good solution.
 CL-USER> (my-last '(1 2 3))
 3
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p101.lisp)
 
 *1.02 (\*) Find the penultimate(last but one) element of a list.*
 
@@ -43,6 +44,7 @@ CL-USER> (my-last '(1 2 3))
 CL-USER> (penultimate '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p102.lisp)
 
 *1.03 (\*) Find the nth element of a list.*
 The first element in the list is number 0.
@@ -51,6 +53,7 @@ The first element in the list is number 0.
 CL-USER> (nth '(1 2 3) 1)
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p103.lisp)
 
 *1.04 (\*) Find the number of elements of a list.*
 
@@ -58,6 +61,7 @@ CL-USER> (nth '(1 2 3) 1)
 CL-USER> (my-length '(1 2 3))
 3
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p104.lisp)
 
 *1.05 (\*) Reverse a list.*
 
@@ -65,6 +69,7 @@ CL-USER> (my-length '(1 2 3))
 CL-USER> (my-reverse '(1 2 3))
 (3 2 1)
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p105.lisp)
 
 *1.06 (\*) Find out whether a list is a palindrome.*
 A palindrome can be read forward or backward; e.g. [x,a,m,a,x].
@@ -75,7 +80,7 @@ NIL
 CL-USER> (palindrome-p '(1 2 3 2 1))
 T
 {% endhighlight %}
-
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p106.lisp)
 
 *1.07 (\*\*) Flatten a nested list structure.*
 Transform a list, possibly holding lists as elements into a 'flat' list by replacing each list with its elements (recursively).
@@ -84,6 +89,7 @@ Transform a list, possibly holding lists as elements into a 'flat' list by repla
 CL-USER> (penultimate '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p107.lisp)
 
 *1.08 (\*\*) Eliminate consecutive duplicates of list elements.*
 If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.
@@ -92,6 +98,7 @@ If a list contains repeated elements they should be replaced with a single copy 
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p108.lisp)
 
 *1.09 (\*\*) Pack consecutive duplicates of list elements into sublists.*
 If a list contains repeated elements they should be placed in separate sublists.
@@ -100,7 +107,7 @@ If a list contains repeated elements they should be placed in separate sublists.
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
-
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p109.lisp)
 Example:
 ?- pack([a,a,a,a,b,c,c,a,a,d,e,e,e,e],X).
 X = [[a,a,a,a],[b],[c,c],[a,a],[d],[e,e,e,e]]
@@ -112,7 +119,7 @@ Use the result of problem 1.09 to implement the so-called run-length encoding da
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
-
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p110.lisp)
 Example:
 ?- encode([a,a,a,a,b,c,c,a,a,d,e,e,e,e],X).
 X = [[4,a],[1,b],[2,c],[2,a],[1,d][4,e]]
@@ -123,7 +130,7 @@ Modify the result of problem 1.10 in such a way that if an element has no duplic
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
-
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p111.lisp)
 Example:
 ?- encode_modified([a,a,a,a,b,c,c,a,a,d,e,e,e,e],X).
 X = [[4,a],b,[2,c],[2,a],d,[4,e]]
@@ -134,13 +141,14 @@ Given a run-length code list generated as specified in problem 1.11. Construct i
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
-
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p112.lisp)
 *1.13 (\*\*) Run-length encoding of a list (direct solution).*
 Implement the so-called run-length encoding data compression method directly. I.e. don't explicitly create the sublists containing the duplicates, as in problem 1.09, but only count them. As in problem 1.11, simplify the result list by replacing the singleton terms [1,X] by X.
 {% highlight cl %}
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p113.lisp)
 
 Example:
 ?- encode_direct([a,a,a,a,b,c,c,a,a,d,e,e,e,e],X).
@@ -151,7 +159,7 @@ X = [[4,a],b,[2,c],[2,a],d,[4,e]]
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
-
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p114.lisp)
 Example:
 ?- dupli([a,b,c,c,d],X).
 X = [a,a,b,b,c,c,c,c,d,d]
@@ -161,7 +169,7 @@ X = [a,a,b,b,c,c,c,c,d,d]
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
-
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p115.lisp)
 
 Example:
 ?- dupli([a,b,c],3,X).
@@ -175,6 +183,7 @@ What are the results of the goal:
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p116.lisp)
 
 
 Example:
@@ -188,6 +197,7 @@ Do not use any predefined predicates.
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p117.lisp)
 
 Example:
 ?- split([a,b,c,d,e,f,g,h,i,k],3,L1,L2).
@@ -201,6 +211,7 @@ Given two indices, I and K, the slice is the list containing the elements betwee
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p118.lisp)
 
 Example:
 ?- slice([a,b,c,d,e,f,g,h,i,k],3,7,L).
@@ -211,6 +222,7 @@ X = [c,d,e,f,g]
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p119.lisp)
 
 
 Examples:
@@ -227,6 +239,7 @@ Hint: Use the predefined predicates length/2 and append/3, as well as the result
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p120.lisp)
 
 
 Example:
@@ -240,6 +253,7 @@ R = [a,c,d]
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p121.lisp)
 
 
 Example:
@@ -251,6 +265,7 @@ L = [a,alfa,b,c,d]
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p122.lisp)
 
 
 Example:
@@ -264,6 +279,7 @@ The selected items shall be put into a result list.
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p123.lisp)
 
 Example:
 ?- rnd_select([a,b,c,d,e,f,g,h],3,L).
@@ -278,6 +294,7 @@ The selected numbers shall be put into a result list.
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p124.lisp)
 
 Example:
 ?- rnd_select(6,49,L).
@@ -291,6 +308,7 @@ Hint: Combine the solutions of problems 1.22 and 1.23.
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p125.lisp)
 
 Example:
 ?- rnd_permu([a,b,c,d,e,f],L).
@@ -305,6 +323,7 @@ In how many ways can a committee of 3 be chosen from a group of 12 people? We al
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p126.lisp)
 
 Example:
 ?- combination(3,[a,b,c,d,e,f],L).
@@ -320,6 +339,7 @@ a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p127.lisp)
 
 Example:
 ?- group3([aldo,beat,carla,david,evi,flip,gary,hugo,ida],G1,G2,G3).
@@ -331,6 +351,7 @@ b) Generalize the above predicate in a way that we can specify a list of group s
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p127.lisp)
 
 Example:
 ?- group([aldo,beat,carla,david,evi,flip,gary,hugo,ida],[2,2,5],Gs).
@@ -348,6 +369,7 @@ a) We suppose that a list (InList) contains elements that are lists themselves. 
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p128.lisp)
 
 Example:
 ?- lsort([[a,b,c],[d,e],[f,g,h],[d,e],[i,j,k,l],[m,n],[o]],L).
@@ -359,6 +381,7 @@ b) Again, we suppose that a list (InList) contains elements that are lists thems
 CL-USER> (compress '(1 2 3))
 2
 {% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p128.lisp)
 
 Example:
 ?- lfsort([[a,b,c],[d,e],[f,g,h],[d,e],[i,j,k,l],[m,n],[o]],L).

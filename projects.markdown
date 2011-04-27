@@ -10,4 +10,4 @@ order they are:
 * [zenburn colour theme for Emacs](https://github.com/bbatsov/zenburn-emacs)
 * [Emacs Dev Kit](https://github.com/bbatsov/emacs-dev-kit)
 * [Project Euler solutions in Clojure & Common Lisp](https://github.com/bbatsov/project-euler)
-* [Lisp Problems](http://www.batsov.com/lisp-problems.html)
+* [Lisp Problems](/lisp-problems.html)

@@ -40,9 +40,7 @@
                     </div>
                     <div id="content">
                         <div id="post">
-    <h2><a href="/2011/04/24/emacs-dev-kit.html">
-        Emacs Dev Kit
-    </a></h2>
+    <h2 class="title">Emacs Dev Kit</h2>
     <p>During the past few months I&#8217;ve been working on a project to convert my vast Emacs configuration into something generally useful and self-contained that could help the general software engineer. Thus the <a href='https://github.com/bbatsov/emacs-dev-kit'>Emacs Dev Kit</a> was born. Conceptually it&#8217;s similar to the older <a href='https://github.com/technomancy/emacs-starter-kit'>Emacs Starter Kit</a> and it even shares a bit of code with it. The Emacs Dev Kit, however, target more programming languages and features more customizations/enhancements.</p>
 
 <p>EDT relies on ELPA for packages that are available there and packages everything else locally. At some point I&#8217;ve played with the idea of using el-get instead, but I had a lot of problems with it and thought that using only ELPA would be better since it would be part of Emacs 24. Everything is tested only on the latest version of GNU Emacs(currently 23.2). I&#8217;ve tried to do everything in the most efficient and modern way - for instance SLIME is supposed to be installed via Quicklisp so it could be easily updated without waiting for a new version of the EDK.</p>

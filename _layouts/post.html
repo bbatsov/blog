@@ -3,9 +3,7 @@ layout: default
 ---
 
 <div id="post">
-    <h2><a href="{{ page.url }}">
-        {{ page.title }}
-    </a></h2>
+    <h2 class="title">{{ page.title }}</h2>
     {{ content }}
     <div style="font-style: italic; color: #7f9f7f;">Posted on {{ page.date | date_to_string }} by Bozhidar.</div>
     <hr />

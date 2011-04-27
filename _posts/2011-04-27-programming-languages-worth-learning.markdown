@@ -61,7 +61,7 @@ many other languages targeting the JVM(Scala, Groovy, Clojure, JRuby,
 Jython - just to name a few) Java is still predominant by a wide
 margin and this is unlikely to change soon.
 
-I've thought a couple of introductory Java programming courses(in
+I've taught a couple of introductory Java programming courses(in
 Bulgarian), but I'd recommend the ["Core Java"](http://www.amazon.com/Core-Java-TM-I--Fundamentals-8th/dp/0132354764/ref=sr_1_1?s=books&ie=UTF8&qid=1303901341&sr=1-1) over my lectures any day of
 the week. :-)
 #Haskell
@@ -81,9 +81,9 @@ Haskell"](http://book.realworldhaskell.org/read/)
 ---
 Once the undisputed king of the Internet Perl has recently fallen down
 from grace in its battle with the newer generation of dynamic
-languages like PHP, Ruby and Python. While I wouldn't advice anyone to
+languages like PHP, Ruby and Python. While I wouldn't advise anyone to
 start writing Web apps with Perl it's still the best language for
-write administration and helper scripts with minimum fuss and maximum
+writing administration and helper scripts with minimum fuss and maximum
 developer throughput. It also has the greatest support for text
 processing ever and an extremely flexible(albeit a bit of confusing)
 syntax. 
