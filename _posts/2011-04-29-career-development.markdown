@@ -115,7 +115,7 @@ Cons of moving:
   
 # Conclusion
 Topics such a career development are highly subjective and depend on a
-myriad of factors. My musing here are inspired by my 7 year long
+myriad of factors. My musings here are inspired by my 7 year long
 career as a software engineer that spanned over four employers and
 will probably soon include a fifth. This is not a lot of data to
 consider, but I can assure you that the traits that I describe are
