@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-04-29T16:35:16+03:00</updated>
+  <updated>2011-04-30T00:55:34+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -191,6 +191,10 @@ compinit
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Will take you to a folder named project/5.0/module(assuming that it exists of course). In general the command has the format &lt;code&gt;cd old new&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;zsh comes with a built-in pager(similar to less). To try it just type &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id='conclusion'&gt;Conclusion&lt;/h1&gt;
 

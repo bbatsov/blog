@@ -218,6 +218,9 @@ cd 4.0 5.0
 Will take you to a folder named project/5.0/module(assuming that it exists of course). In general
 the command has the format `cd old new`.
 
+* zsh comes with a built-in pager(similar to less). To try it just type <somefilename. This is 
+  more or less equivalent to typing `less somefilename`.
+
 # Conclusion
 
 There is no easy way to sum up everything that makes zsh great in a single blog post. I'll try to

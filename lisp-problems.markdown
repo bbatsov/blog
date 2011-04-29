@@ -72,7 +72,7 @@ CL-USER> (my-reverse '(1 2 3))
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p105.lisp)
 
 *1.06 (\*) Find out whether a list is a palindrome.*
-A palindrome can be read forward or backward; e.g. [x,a,m,a,x].
+_A palindrome can be read forward or backward; e.g. (1 2 3 2 1)._
 
 {% highlight cl %}
 CL-USER> (palindrome-p '(1 2 3))
@@ -83,10 +83,10 @@ T
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p106.lisp)
 
 *1.07 (\*\*) Flatten a nested list structure.*
-Transform a list, possibly holding lists as elements into a 'flat' list by replacing each list with its elements (recursively).
+_Transform a list, possibly holding lists as elements into a 'flat' list by replacing each list with its elements (recursively)._
 
 {% highlight cl %}
-CL-USER> (penultimate '(1 2 3))
+CL-USER> (flatten '(1 2 3))
 2
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p107.lisp)

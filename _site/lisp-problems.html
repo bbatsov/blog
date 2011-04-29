@@ -84,7 +84,7 @@
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p105.lisp'>View solution</a></p>
 
-<p><em>1.06 (*) Find out whether a list is a palindrome.</em> A palindrome can be read forward or backward; e.g. <span>x,a,m,a,x</span>.</p>
+<p><em>1.06 (*) Find out whether a list is a palindrome.</em> <em>A palindrome can be read forward or backward; e.g. (1 2 3 2 1).</em></p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>palindrome-p</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='no'>NIL</span>
 <span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>palindrome-p</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span> <span class='mi'>2</span> <span class='mi'>1</span><span class='p'>))</span>
@@ -93,8 +93,8 @@
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p106.lisp'>View solution</a></p>
 
-<p><em>1.07 (**) Flatten a nested list structure.</em> Transform a list, possibly holding lists as elements into a &#8216;flat&#8217; list by replacing each list with its elements (recursively).</p>
-<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>penultimate</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
+<p><em>1.07 (**) Flatten a nested list structure.</em> <em>Transform a list, possibly holding lists as elements into a &#8216;flat&#8217; list by replacing each list with its elements (recursively).</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>flatten</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
