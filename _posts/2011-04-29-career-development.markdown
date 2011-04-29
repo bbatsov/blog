@@ -92,7 +92,7 @@ to advance in the company along the way. Of course such companies have
 the nasty habit of going down under from time to time so you have to
 think long and hard before joining one if you're living under rent or
 have to pay down-payments on two mortgages. Of course if you're good
-enough at your job - you'll a new one soon enough and that shouldn't
+enough at your job - you'll find a new one soon enough and that shouldn't
 really be bothering you.
 
 Pros of moving:
@@ -111,7 +111,7 @@ Cons of moving:
 * the is the factor of uncertainty every time you start something new
 * you'll have to learn how to work and deal with your new colleagues
 * you might get more of the same work that made you leave in the first
-  place in case you have chosen carefully your new employer.
+  place in case you have not chosen carefully your new employer.
   
 # Conclusion
 Topics such a career development are highly subjective and depend on a

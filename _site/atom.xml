@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-04-29T13:26:21+03:00</updated>
+  <updated>2011-04-29T16:35:16+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -268,7 +268,7 @@ compinit
 
 &lt;p&gt;Moving to another company is not a silver bullet. Most of the time it guarantees you a higher salary(the top reason why people switch jobs), but it doesn&amp;#8217;t certainly mean you&amp;#8217;ll have a more interesting and fulfilling work. This is especially true if you go to work for some huge corporation and you&amp;#8217;re not part of its Research&amp;amp;Development department. I generally avoid such job offers. Corporations offer some measure of security, but little if any excitement.&lt;/p&gt;
 
-&lt;p&gt;I think that most people should try to find employment in companies that are start-ups or that regularly start to work on new projects. There one has plenty of opportunities to prove himself and to advance in the company along the way. Of course such companies have the nasty habit of going down under from time to time so you have to think long and hard before joining one if you&amp;#8217;re living under rent or have to pay down-payments on two mortgages. Of course if you&amp;#8217;re good enough at your job - you&amp;#8217;ll a new one soon enough and that shouldn&amp;#8217;t really be bothering you.&lt;/p&gt;
+&lt;p&gt;I think that most people should try to find employment in companies that are start-ups or that regularly start to work on new projects. There one has plenty of opportunities to prove himself and to advance in the company along the way. Of course such companies have the nasty habit of going down under from time to time so you have to think long and hard before joining one if you&amp;#8217;re living under rent or have to pay down-payments on two mortgages. Of course if you&amp;#8217;re good enough at your job - you&amp;#8217;ll find a new one soon enough and that shouldn&amp;#8217;t really be bothering you.&lt;/p&gt;
 
 &lt;p&gt;Pros of moving: * moving to a new company is likely to represent a raise in your salary you&amp;#8217;ll have to wait several years to get with your current employer * there is a strong possibility that your new work will be more exciting than your old one(after all you&amp;#8217;ve tried to pick a more exciting job, right?) * you might get to meet some interesting new people, learn from them and improve your professional skills&lt;/p&gt;
 
@@ -279,7 +279,7 @@ compinit
 
 &lt;li&gt;you&amp;#8217;ll have to learn how to work and deal with your new colleagues&lt;/li&gt;
 
-&lt;li&gt;you might get more of the same work that made you leave in the first place in case you have chosen carefully your new employer.&lt;/li&gt;
+&lt;li&gt;you might get more of the same work that made you leave in the first place in case you have not chosen carefully your new employer.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id='conclusion'&gt;Conclusion&lt;/h1&gt;
@@ -936,17 +936,29 @@ compinit
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
     </author>
-    <content type="html">&lt;p&gt;Lately, I’ve started digging more and more into Rails, preparing for the start of a Rails powered project. Although there are some IDEs offering decent Rails support(namely NetBeans, Komodo and Aptana Studio) I have always preferred the comfort of Emacs for various reasons. So naturally I embarked on a quest to setup a suitable environment for Rails development in Emacs. After a couple of days of searching and evaluating possible solutions I finally set up a wordy environment. It consists of a couple of components – ruby-mode, ruby-electric, nxhtml-mode and rinari.&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;strong&gt;Updated 29/04/2011&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;As you probably have guessed by now ruby-mode provides support for editing ruby source files. The mode is pretty feature complete and under active development, headed by none other than Matz himself. You can get it from the ruby svn repository. ruby-electric provides auto insertion of closing braces, quotes, ends, etc. It can also the found in the ruby repo. Instructions how to setup both modes can be found here. Although many people recommend adding pabbrev(a mode which provides auto-completion) to the setup, I don’t recommend it – I find the mode mostly annoying and stick to the old school dumb auto-completion with M-/ .&lt;/p&gt;
+&lt;p&gt;Lately, I’ve started digging more and more into Rails, preparing for the start of a Rails powered project. Although there are some IDEs offering decent Rails support(namely RubyMine, NetBeans, Komodo and Aptana Studio) I have always preferred the comfort of Emacs for various reasons. So naturally I embarked on a quest to setup a suitable environment for Rails development in Emacs. After a couple of days of searching and evaluating possible solutions I finally set up a worthy environment. It consists of a couple of components – &lt;a href='http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/misc/ruby-mode.el?view=log'&gt;ruby-mode&lt;/a&gt;, &lt;a href='http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/misc/inf-ruby.el?view=log'&gt;inf-ruby&lt;/a&gt;, &lt;a href='http://code.google.com/p/autopair/'&gt;autopair-mode&lt;/a&gt;, &lt;a href='http://ourcomments.org/Emacs/nXhtml/doc/nxhtml.html'&gt;nxhtml-mode&lt;/a&gt;, &lt;a href='http://code.google.com/p/yasnippet/'&gt;yasnippet&lt;/a&gt; and &lt;a href='http://rinari.rubyforge.org/'&gt;rinari&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;nxhtml-mode is a pretty comprehensive package for web development in general. We need it for its excellent support for erubis templates(.rhtml, .erb.html) and of course xhtml and css.&lt;/p&gt;
+&lt;p&gt;As you probably have guessed by now &lt;em&gt;ruby-mode&lt;/em&gt; provides support for editing ruby source files. The mode is pretty feature complete and under active development, headed by none other than Matz(Ruby&amp;#8217;s creator) himself. I can only assume that Matz is an Emacs user himself. You can get it from the ruby svn repository if you&amp;#8217;re using a version of Emacs older than Emacs 23(it&amp;#8217;s built-in there).&lt;/p&gt;
 
-&lt;p&gt;rinari is a mode for Rails development – it contains rich functionality such as the ability to easily navigate between models, views and controllers in a Rails application amongst other features. Instructions how to set up rinari together with nxhtml-mode can be found on rinari’s home page.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;inf-ruby&lt;/em&gt; is a mode that spawns and inferior ruby process(irb shell) to which you can directly send code from the ruby buffer you&amp;#8217;re currently editing. For instance - you can define a function and while your cursor is inside it you can press C-M-x - the function definition will be evaluated in irb automatically and you can test it there. This is extremely handy!&lt;/p&gt;
 
-&lt;p&gt;It’s always a good idea to add ecb(the Emacs code browser) to the mix, though this is entirely optional.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;autopair-mode&lt;/em&gt; provides auto insertion of closing braces, quotes, ends, etc. . Instructions how to setup both modes can be found here. It&amp;#8217;s a much more generic version of the &lt;em&gt;ruby-electric&lt;/em&gt; mode that used to do similar tasks, but just in Ruby buffers.&lt;/p&gt;
 
-&lt;p&gt;I hope you enjoy this setup and it helps boost your Rails productivity in Emacs&lt;/p&gt;</content>
+&lt;p&gt;Although many people recommend adding pabbrev(a mode which provides auto-completion) to the setup, I don’t recommend it – I find the mode mostly annoying and stick to the old school dumb auto-completion with M-/ . If you&amp;#8217;re shopping for autocompletion, however, a much better and smarter choice would be a RSense&lt;span&gt;http://cx4a.org/software/rsense/&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;yasnippet&lt;/em&gt; is a package that offers dynamically expandable code snippets(template), quite similar to ones in TextMate. It&amp;#8217;s very easy to add your very own snippets if you wish to.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;nxhtml-mode&lt;/em&gt; is a pretty comprehensive package for web development in general. We need it for its excellent support for erb templates(.rhtml, .erb.html) and of course xhtml and css. Lately it&amp;#8217;s not been as actively developed as it used to be, but it&amp;#8217;s still a pretty good mode. Alternatively you can use &lt;a href='https://github.com/nex3/haml'&gt;Haml&lt;/a&gt; and &lt;a href='https://github.com/antonj/scss-mode'&gt;SASS&lt;/a&gt; and forget about nxhtml. Both have pretty decent Emacs modes available.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;rinari&lt;/em&gt; is a mode for Rails development – it contains rich functionality such as the ability to easily navigate between models, views and controllers in a Rails apfplication amongst other features. Instructions how to set up rinari together with nxhtml-mode can be found on rinari’s home page.&lt;/p&gt;
+
+&lt;p&gt;It’s always a good idea to add &lt;a href='http://ecb.sourceforge.net/'&gt;ecb&lt;/a&gt;(the Emacs code browser) to the mix, though this is entirely optional.&lt;/p&gt;
+
+&lt;p&gt;A lot of the stuff I discussed here are part of the &lt;a href='https://github.com/bbatsov/emacs-dev-kit'&gt;Emacs Dev Kit&lt;/a&gt; that I develop and maintain. I urge you to use the EDK as a starting point to develop your very own customized version of Emacs. EDK comes with a few ruby-mode customizations, yari(ri integration for Emacs), haml and sass modes, autopair, yaml-mode, yasnippet, css-mode, ecb and a lot of other goodies(find-file-in-project being one of my favourites).&lt;/p&gt;
+
+&lt;p&gt;I hope you enjoy this setup and it helps boost your Rails productivity in Emacs.&lt;/p&gt;</content>
   </entry>
   
   <entry>
