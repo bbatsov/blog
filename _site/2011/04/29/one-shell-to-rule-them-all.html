@@ -78,58 +78,160 @@ compinit
 </div>
 <p>I don&#8217;t like very much the default zsh prompt and I generally change it right away. Have a look at my other <a href='/2008/07/27/zsh-prompt.html'>short article</a> on the topic.</p>
 
+<p>There a couple of configuration files related to zsh that you should know about:</p>
+
+<ul>
+<li>.zshrc - runs for each new shell(roughly equivalent to .bashrc)</li>
+
+<li>.zprofile - runs only for login shells(like .bash_profile)</li>
+
+<li>.zlogout - runs on logout</li>
+
+<li>.zshenv - holds environmental variables</li>
+</ul>
+
+<p>Here&#8217;s an example .zshenv file:</p>
+<div class='highlight'><pre><code class='bash'><span class='nb'>export </span><span class='nv'>JAVA_HOME</span><span class='o'>=</span>/usr/java/latest
+
+<span class='nb'>export </span><span class='nv'>SCALA_HOME</span><span class='o'>=</span>/opt/scala-2.8.1.final
+
+<span class='nb'>export </span><span class='nv'>M2_HOME</span><span class='o'>=</span>/opt/apache-maven-3.0.2
+
+<span class='nb'>export </span><span class='nv'>EDITOR</span><span class='o'>=</span><span class='s2'>&quot;emacsclient -t&quot;</span>
+<span class='nb'>export </span><span class='nv'>ALTERNATE_EDITOR</span><span class='o'>=</span><span class='s2'>&quot;&quot;</span>
+
+<span class='c'>#needed to properly display complex color-themes in Emacs and vim</span>
+<span class='nb'>export </span><span class='nv'>TERM</span><span class='o'>=</span>xterm-256color
+
+<span class='nb'>typeset</span> -U path
+<span class='nv'>path</span><span class='o'>=(</span><span class='nv'>$M2_HOME</span>/bin <span class='nv'>$SCALA_HOME</span>/bin ~/bin ~/Projects/work/bin <span class='nv'>$path</span><span class='o'>)</span>
+</code></pre>
+</div>
+<p>Please note the way in which the PATH variable is set in zsh, which differs substantially from bash(it&#8217;s just exported there as any other variable).</p>
+
 <h2 id='playing_around'>Playing around</h2>
 
 <p>At this point you have the legendary zsh autocompletion configured and you have enabled many of the zsh core features.</p>
 
-<ul>
-<li>autocd allows you to navigate to folders only with their name without the cd command. One of my favourite features. Now you can do things like</li>
-</ul>
+<p><strong>autocd</strong> allows you to navigate to folders only with their name without the cd command. One of my favourite features. Now you can do things like:</p>
+<div class='highlight'><pre><code class='console'><span class='go'>  </span>
+<span class='go'>[bozhidar@bozhidar ~]$ Downloads   </span>
+<span class='go'>[bozhidar@bozhidar ~/Downloads]$</span>
+</code></pre>
+</div>
+<p>Instead of:</p>
 
-<p><span>bozhidar@bozhidar ~</span>$ Downloads <br /><span>bozhidar@bozhidar ~/Downloads</span>$</p>
+<p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@bozhidar ~]$ cd Downloads   </span>
+<span class='go'>[bozhidar@bozhidar ~/Downloads]$</span>
+</code></pre>
+</div></p>
 
-<p>Instead of</p>
+<p>By the way autocd was added in bash 4.0 as well. You can enable it there with:</p>
 
-<p><span>bozhidar@bozhidar ~</span>$ cd Downloads <br /><span>bozhidar@bozhidar ~/Downloads</span>$</p>
+<p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@bozhidar ~]$ shopt -s autocd</span>
+</code></pre>
+</div></p>
 
-<p>autocd was added in bash 4.0 as well. You can enable it there with</p>
+<p><strong>appendhistory</strong> all your open shells share the same history which is handy if you want to refer commands from one shell in another with say Ctrl+R(reverse-history-search)</p>
 
-<p><span>bozhidar@bozhidar ~</span>$ shopt -s autocd</p>
+<p><strong>extendedglob</strong> allows you to recursive look for files in folders:</p>
 
-<ul>
-<li>
-<p>appendhistory all your open shells share the same history which is handy if you want to refer commands from one shell in another with say Ctrl+R(reverse-history-search)</p>
-</li>
+<p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@bozhidar ~]$ ls somedir/**/Makefile</span>
+</code></pre>
+</div></p>
 
-<li>
-<p>extendedglob allows you to recursive look for files in folders</p>
-</li>
-</ul>
+<p>is equivalent to:</p>
 
-<p><span>bozhidar@bozhidar ~</span>$ ls somedir/<strong>/Makefile</strong></p>
-
-<p>is equivalent to</p>
-
-<p><span>bozhidar@bozhidar ~</span>$ find somedir -name Makefile</p>
+<p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@bozhidar ~]$ find somedir -name Makefile</span>
+</code></pre>
+</div></p>
 
 <p>Most zsh users never use find for simple file look up. This feature was also added to bash 4.0 but it works in a slightly different manner.</p>
+<div class='highlight'><pre><code class='console'><span class='gp'>$</span> <span class='nb'>shopt</span> -s extglob
+</code></pre>
+</div>
+<p><strong>correct</strong> - autocorrects mistyped commands</p>
 
-<p>$ shopt -s extglob</p>
-
-<ul>
-<li>correct - autocorrects mistyped commands</li>
-</ul>
-
-<p><span>bozhidar@bozhidar</span>$ cta ~/.zshrc zsh: correct &#8216;cta&#8217; to &#8216;cat&#8217; <span>nyae</span>?</p>
+<p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@bozhidar]$ cta ~/.zshrc </span>
+<span class='go'>zsh: correct &#39;cta&#39; to &#39;cat&#39; [nyae]?</span>
+</code></pre>
+</div></p>
 
 <h1 id='keybindings'>Keybindings</h1>
 
-<p>By default zsh uses Emacs keybindings which is perfect for a long time Emacs user like me. zsh doesn&#8217;t use readline, instead it has its own line editing library called zle, which is much more powerful. vi users are not forgotten and can switch zsh to vi keybindings with the command</p>
-
-<p>bindkey -v</p>
-
+<p>By default zsh uses Emacs keybindings which is perfect for a long time Emacs user like me. zsh doesn&#8217;t use readline, instead it has its own line editing library called zle, which is much more powerful. vi users are not forgotten and can switch zsh to vi keybindings with the command:</p>
+<div class='highlight'><pre><code class='console'><span class='go'>bindkey -v</span>
+</code></pre>
+</div>
 <p>Mind that by default you&#8217;ll be in &#8220;insert&#8221; mode and have to press ESC to go into command mode.</p>
-    <div style="font-style: italic; color: #7f9f7f;">Posted on 28 Apr 2011 by Bozhidar.</div>
+
+<p>You can also create custom keybindings like this:</p>
+<div class='highlight'><pre><code class='console'><span class='go'>bindkey &#39;^[[H&#39; beginning-of-line</span>
+<span class='go'>bindkey &#39;^[[F&#39; end-of-line</span>
+</code></pre>
+</div>
+<p>This will bind the Home and End keys to the commands beginning-of-line and end-of-line.</p>
+
+<h1 id='aliases'>Aliases</h1>
+
+<p>Zsh has three different kinds of shell aliases.</p>
+
+<p><strong>Regular</strong> - same as in bash:</p>
+<div class='highlight'><pre><code class='console'><span class='go'>alias ll=&#39;ls -l&#39;</span>
+</code></pre>
+</div>
+<p><strong>Suffix</strong> - suffix aliases are supported in zsh since version 4.2.0. Some examples:</p>
+<div class='highlight'><pre><code class='console'><span class='go'>alias -s tex=emacs</span>
+<span class='go'>alias -s html=google-chrome</span>
+</code></pre>
+</div>
+<p>Now when you type in the console</p>
+<div class='highlight'><pre><code class='console'><span class='gp'>$</span> somefile.tex
+</code></pre>
+</div>
+<p>it will be opened automatically with Emacs. Similarly somefile.html would be opened by google-chrome. As you might imagine this feature is quite handy.</p>
+
+<p><strong>Global</strong> - global aliases can be used anywhere in the command line(as opposed to regular aliases that can used only in the beginning). Example:</p>
+<div class='highlight'><pre><code class='console'><span class='go'>alias -g ...=&#39;../..&#39;</span>
+<span class='go'>cd ...  </span>
+</code></pre>
+</div>
+<h1 id='some_tips_and_tricks'>Some tips and tricks</h1>
+
+<ul>
+<li>
+<p>press Alt+q in the middle of a command you&#8217;re typing. This will clear the console prompt and allow you execute another command(like a man lookup). Afterwards the things you&#8217;ve typed before the Alt+q will magically reappear.</p>
+</li>
+
+<li>
+<p>Imagine you&#8217;re in the folder <strong>project/4.0/module</strong>. Typing:</p>
+</li>
+</ul>
+<div class='highlight'><pre><code class='console'><span class='go'>cd 4.0 5.0 </span>
+</code></pre>
+</div>
+<p>Will take you to a folder named project/5.0/module(assuming that it exists of course). In general the command has the format <code>cd old new</code>.</p>
+
+<h1 id='conclusion'>Conclusion</h1>
+
+<p>There is no easy way to sum up everything that makes zsh great in a single blog post. I&#8217;ll try to expand and improve it in time. I hope I&#8217;ve whetted your appetite to try out zsh. If you like it well enough(of which I&#8217;m most certain you should have a look at the resources in the end as well).</p>
+
+<h1 id='useful_resources'>Useful resources</h1>
+
+<ul>
+<li><a href='http://www.bash2zsh.com/zsh_refcard/refcard.pdf'>zsh reference card</a></li>
+
+<li><a href='http://zsh.sourceforge.net/Doc/zsh_a4.pdf'>zsh manual</a></li>
+
+<li><a href='http://zsh.sourceforge.net/Guide/zshguide.html'>&#8220;A User&#8217;s Guide to Z-Shell&#8221;</a></li>
+
+<li><a href='http://zshwiki.org/home/'>zsh wiki</a></li>
+
+<li><a href='http://grml.org/zsh/zsh-lovers.html'>zsh lovers</a> - collection of tips and tricks</li>
+
+<li><a href='http://www.bash2zsh.com/'>&#8220;From Bash to Z Shell - Conquering the Command Line&#8221;</a></li>
+</ul>
+    <div style="font-style: italic; color: #7f9f7f;">Posted on 29 Apr 2011 by Bozhidar.</div>
     <hr />
     <div id="disqus">
         <div id="disqus_thread"></div>

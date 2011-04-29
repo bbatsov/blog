@@ -39,7 +39,7 @@
                         </ul>
                     </div>
                     <div id="content">
-                        <h2 id='one_shell_to_rule_them_all'><a href='/2011/04/28/one-shell-to-rule-them-all.html'>One shell to rule them all&#8230;</a></h2>
+                        <h2 id='one_shell_to_rule_them_all'><a href='/2011/04/29/one-shell-to-rule-them-all.html'>One shell to rule them all&#8230;</a></h2>
 <p>I&#8217;ve been using zsh for about three years now and continue to be impressed the its immense power and flexibility. Switching from bash to zsh was a decision as good as switching from Windows to GNU/Linux, from vim to Emacs, from Eclipse to IntelliJ IDEA. In other words - it was an extremely good decision. :-)</p><p>So I want to finally get the word out, showcase some nice zsh features and probably persuade a couple of bash users to try it. Be warned, however - after you try it there is no going back&#8230;</p><h2 id='getting_started'>Getting started</h2><p>Most distros come with bash by default so you&#8217;ll probably need to install zsh first and configure it as your user&#8217;s shell. On Fedora you&#8217;d do:</p>
 <p><p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@bozhidar ~]$ sudo yum install zsh</span>
 </code></pre>
@@ -59,32 +59,96 @@ autoload -Uz compinit
 compinit
 <span class='c'># End of lines added by compinstall</span>
 </code></pre>
-</div><p>I don&#8217;t like very much the default zsh prompt and I generally change it right away. Have a look at my other <a href='/2008/07/27/zsh-prompt.html'>short article</a> on the topic.</p><h2 id='playing_around'>Playing around</h2><p>At this point you have the legendary zsh autocompletion configured and you have enabled many of the zsh core features.</p><ul>
-<li>autocd allows you to navigate to folders only with their name without the cd command. One of my favourite features. Now you can do things like</li>
-</ul>
-<p><p><span>bozhidar@bozhidar ~</span>$ Downloads <br /><span>bozhidar@bozhidar ~/Downloads</span>$</p></p>
-<p>Instead of</p>
-<p><p><span>bozhidar@bozhidar ~</span>$ cd Downloads <br /><span>bozhidar@bozhidar ~/Downloads</span>$</p></p>
-<p>autocd was added in bash 4.0 as well. You can enable it there with</p>
-<p><p><span>bozhidar@bozhidar ~</span>$ shopt -s autocd</p></p>
-<ul>
+</div><p>I don&#8217;t like very much the default zsh prompt and I generally change it right away. Have a look at my other <a href='/2008/07/27/zsh-prompt.html'>short article</a> on the topic.</p><p>There a couple of configuration files related to zsh that you should know about:</p><ul>
+<li>.zshrc - runs for each new shell(roughly equivalent to .bashrc)</li>
+
+<li>.zprofile - runs only for login shells(like .bash_profile)</li>
+
+<li>.zlogout - runs on logout</li>
+
+<li>.zshenv - holds environmental variables</li>
+</ul><p>Here&#8217;s an example .zshenv file:</p><div class='highlight'><pre><code class='bash'><span class='nb'>export </span><span class='nv'>JAVA_HOME</span><span class='o'>=</span>/usr/java/latest
+
+<span class='nb'>export </span><span class='nv'>SCALA_HOME</span><span class='o'>=</span>/opt/scala-2.8.1.final
+
+<span class='nb'>export </span><span class='nv'>M2_HOME</span><span class='o'>=</span>/opt/apache-maven-3.0.2
+
+<span class='nb'>export </span><span class='nv'>EDITOR</span><span class='o'>=</span><span class='s2'>&quot;emacsclient -t&quot;</span>
+<span class='nb'>export </span><span class='nv'>ALTERNATE_EDITOR</span><span class='o'>=</span><span class='s2'>&quot;&quot;</span>
+
+<span class='c'>#needed to properly display complex color-themes in Emacs and vim</span>
+<span class='nb'>export </span><span class='nv'>TERM</span><span class='o'>=</span>xterm-256color
+
+<span class='nb'>typeset</span> -U path
+<span class='nv'>path</span><span class='o'>=(</span><span class='nv'>$M2_HOME</span>/bin <span class='nv'>$SCALA_HOME</span>/bin ~/bin ~/Projects/work/bin <span class='nv'>$path</span><span class='o'>)</span>
+</code></pre>
+</div><p>Please note the way in which the PATH variable is set in zsh, which differs substantially from bash(it&#8217;s just exported there as any other variable).</p><h2 id='playing_around'>Playing around</h2><p>At this point you have the legendary zsh autocompletion configured and you have enabled many of the zsh core features.</p><p><strong>autocd</strong> allows you to navigate to folders only with their name without the cd command. One of my favourite features. Now you can do things like:</p><div class='highlight'><pre><code class='console'><span class='go'>  </span>
+<span class='go'>[bozhidar@bozhidar ~]$ Downloads   </span>
+<span class='go'>[bozhidar@bozhidar ~/Downloads]$</span>
+</code></pre>
+</div><p>Instead of:</p>
+<p><p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@bozhidar ~]$ cd Downloads   </span>
+<span class='go'>[bozhidar@bozhidar ~/Downloads]$</span>
+</code></pre>
+</div></p></p>
+<p>By the way autocd was added in bash 4.0 as well. You can enable it there with:</p>
+<p><p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@bozhidar ~]$ shopt -s autocd</span>
+</code></pre>
+</div></p></p>
+<p><strong>appendhistory</strong> all your open shells share the same history which is handy if you want to refer commands from one shell in another with say Ctrl+R(reverse-history-search)</p><p><strong>extendedglob</strong> allows you to recursive look for files in folders:</p>
+<p><p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@bozhidar ~]$ ls somedir/**/Makefile</span>
+</code></pre>
+</div></p></p>
+<p>is equivalent to:</p>
+<p><p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@bozhidar ~]$ find somedir -name Makefile</span>
+</code></pre>
+</div></p></p>
+<p>Most zsh users never use find for simple file look up. This feature was also added to bash 4.0 but it works in a slightly different manner.</p><div class='highlight'><pre><code class='console'><span class='gp'>$</span> <span class='nb'>shopt</span> -s extglob
+</code></pre>
+</div><p><strong>correct</strong> - autocorrects mistyped commands</p>
+<p><p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@bozhidar]$ cta ~/.zshrc </span>
+<span class='go'>zsh: correct &#39;cta&#39; to &#39;cat&#39; [nyae]?</span>
+</code></pre>
+</div></p></p>
+<h1 id='keybindings'>Keybindings</h1><p>By default zsh uses Emacs keybindings which is perfect for a long time Emacs user like me. zsh doesn&#8217;t use readline, instead it has its own line editing library called zle, which is much more powerful. vi users are not forgotten and can switch zsh to vi keybindings with the command:</p><div class='highlight'><pre><code class='console'><span class='go'>bindkey -v</span>
+</code></pre>
+</div><p>Mind that by default you&#8217;ll be in &#8220;insert&#8221; mode and have to press ESC to go into command mode.</p><p>You can also create custom keybindings like this:</p><div class='highlight'><pre><code class='console'><span class='go'>bindkey &#39;^[[H&#39; beginning-of-line</span>
+<span class='go'>bindkey &#39;^[[F&#39; end-of-line</span>
+</code></pre>
+</div><p>This will bind the Home and End keys to the commands beginning-of-line and end-of-line.</p><h1 id='aliases'>Aliases</h1><p>Zsh has three different kinds of shell aliases.</p><p><strong>Regular</strong> - same as in bash:</p><div class='highlight'><pre><code class='console'><span class='go'>alias ll=&#39;ls -l&#39;</span>
+</code></pre>
+</div><p><strong>Suffix</strong> - suffix aliases are supported in zsh since version 4.2.0. Some examples:</p><div class='highlight'><pre><code class='console'><span class='go'>alias -s tex=emacs</span>
+<span class='go'>alias -s html=google-chrome</span>
+</code></pre>
+</div><p>Now when you type in the console</p><div class='highlight'><pre><code class='console'><span class='gp'>$</span> somefile.tex
+</code></pre>
+</div><p>it will be opened automatically with Emacs. Similarly somefile.html would be opened by google-chrome. As you might imagine this feature is quite handy.</p><p><strong>Global</strong> - global aliases can be used anywhere in the command line(as opposed to regular aliases that can used only in the beginning). Example:</p><div class='highlight'><pre><code class='console'><span class='go'>alias -g ...=&#39;../..&#39;</span>
+<span class='go'>cd ...  </span>
+</code></pre>
+</div><h1 id='some_tips_and_tricks'>Some tips and tricks</h1><ul>
 <li>
-<p>appendhistory all your open shells share the same history which is handy if you want to refer commands from one shell in another with say Ctrl+R(reverse-history-search)</p>
+<p>press Alt+q in the middle of a command you&#8217;re typing. This will clear the console prompt and allow you execute another command(like a man lookup). Afterwards the things you&#8217;ve typed before the Alt+q will magically reappear.</p>
 </li>
 
 <li>
-<p>extendedglob allows you to recursive look for files in folders</p>
+<p>Imagine you&#8217;re in the folder <strong>project/4.0/module</strong>. Typing:</p>
 </li>
-</ul>
-<p><p><span>bozhidar@bozhidar ~</span>$ ls somedir/<strong>/Makefile</strong></p></p>
-<p>is equivalent to</p>
-<p><p><span>bozhidar@bozhidar ~</span>$ find somedir -name Makefile</p></p>
-<p>Most zsh users never use find for simple file look up. This feature was also added to bash 4.0 but it works in a slightly different manner.</p><p>$ shopt -s extglob</p><ul>
-<li>correct - autocorrects mistyped commands</li>
-</ul>
-<p><p><span>bozhidar@bozhidar</span>$ cta ~/.zshrc zsh: correct &#8216;cta&#8217; to &#8216;cat&#8217; <span>nyae</span>?</p></p>
-<h1 id='keybindings'>Keybindings</h1><p>By default zsh uses Emacs keybindings which is perfect for a long time Emacs user like me. zsh doesn&#8217;t use readline, instead it has its own line editing library called zle, which is much more powerful. vi users are not forgotten and can switch zsh to vi keybindings with the command</p><p>bindkey -v</p><p>Mind that by default you&#8217;ll be in &#8220;insert&#8221; mode and have to press ESC to go into command mode.</p><div style='font-style: italic; color: #7f9f7f;'>Posted on 28 Apr 2011 by Bozhidar.</div>
-<p><a href='/2011/04/28/one-shell-to-rule-them-all.html#disqus_thread'>Comments</a></p>
+</ul><div class='highlight'><pre><code class='console'><span class='go'>cd 4.0 5.0 </span>
+</code></pre>
+</div><p>Will take you to a folder named project/5.0/module(assuming that it exists of course). In general the command has the format <code>cd old new</code>.</p><h1 id='conclusion'>Conclusion</h1><p>There is no easy way to sum up everything that makes zsh great in a single blog post. I&#8217;ll try to expand and improve it in time. I hope I&#8217;ve whetted your appetite to try out zsh. If you like it well enough(of which I&#8217;m most certain you should have a look at the resources in the end as well).</p><h1 id='useful_resources'>Useful resources</h1><ul>
+<li><a href='http://www.bash2zsh.com/zsh_refcard/refcard.pdf'>zsh reference card</a></li>
+
+<li><a href='http://zsh.sourceforge.net/Doc/zsh_a4.pdf'>zsh manual</a></li>
+
+<li><a href='http://zsh.sourceforge.net/Guide/zshguide.html'>&#8220;A User&#8217;s Guide to Z-Shell&#8221;</a></li>
+
+<li><a href='http://zshwiki.org/home/'>zsh wiki</a></li>
+
+<li><a href='http://grml.org/zsh/zsh-lovers.html'>zsh lovers</a> - collection of tips and tricks</li>
+
+<li><a href='http://www.bash2zsh.com/'>&#8220;From Bash to Z Shell - Conquering the Command Line&#8221;</a></li>
+</ul><div style='font-style: italic; color: #7f9f7f;'>Posted on 29 Apr 2011 by Bozhidar.</div>
+<p><a href='/2011/04/29/one-shell-to-rule-them-all.html#disqus_thread'>Comments</a></p>
 
 <h2 id='programming_languages_worth_learning'><a href='/2011/04/27/programming-languages-worth-learning.html'>Programming languages worth learning</a></h2>
 <p>Programming languages have always been a passion of mine and through the years I&#8217;ve learnt quite a few of them. The first one was Pascal some 13 years ago and the last was Scala just a couple of months ago.</p><p>Although the authors of many languages claim that the language they created is the greatest thing after hot water, this is rarely the case. Most of the &#8220;unique&#8221; features are not quite unique and the truly unique stuff is often just useless. I don&#8217;t believe that there is a single greatest and unparallelled language, but I do believe that some languages are more valuable them others in term of both theory(the concepts around which they revolve) and practice(the chances of you landing a job with them or simply getting a task done).</p><p>In this blog post I&#8217;ve review the ten or so languages that I found to be most enlightening/helpful to me over the years. I think that every professional software engineer should have at least a passing knowledge of them.</p><h1 id='c'>C</h1><hr /><p>The C programming language has been around for more than forty years now. While it&#8217;s often viewed as a higher level assembly language today in the era of Java, .Net and Python C remains the sole choice for doing serious system programming - writing drivers, all kinds of servers and virtual machines.</p><p>The best way to get started with C hasn&#8217;t changed in the past 20+ years - just pick a copy of <a href='http://www.amazon.com/Programming-Language-2nd-Brian-Kernighan/dp/0131103628'>&#8220;The C Programming Language&#8221;</a> by K&amp;R.</p><h1 id='lisp'>Lisp</h1><hr /><p><em>&#8220;Lisp is worth learning for the profound enlightenment experience you will have when you finally get it; that experience will make you a better programmer for the rest of your days, even if you never actually use Lisp itself a lot.&#8221;</em> - Eric Raymond</p><p>One of the oldest programming languages around - created in 1958 and still relevant today. Important for its unique code is data approach, advanced code generation facilities(macros) and the ability to develop software in incremental and interactive fashion. Although many of the features that originally made it truly unique(like garbage collection, if expression, function objects) are found in many modern languages Lisp still offers some compelling alternatives for those interested to explore it.</p><p>You cannot start with a better introduction to Lisp that Peter Seibel&#8217;s <a href='http://www.gigamonkeys.com/book/'>&#8220;Practical Common Lisp&#8221;</a>.</p><h1 id='java'>Java</h1><hr /><p>Let&#8217;s face it - if you&#8217;re in the market for jobs a third of them are about Java EE or Android development. The language is not quite elegant, but the platform is truly magnificent. Although there are many other languages targeting the JVM(Scala, Groovy, Clojure, JRuby, Jython - just to name a few) Java is still predominant by a wide margin and this is unlikely to change soon.</p><p>I&#8217;ve taught a couple of introductory Java programming courses(in Bulgarian), but I&#8217;d recommend the <a href='http://www.amazon.com/Core-Java-TM-I--Fundamentals-8th/dp/0132354764/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1303901341&amp;sr=1-1'>&#8220;Core Java&#8221;</a> book over my lectures any day of the week. :-)</p><h1 id='haskell'>Haskell</h1><hr /><p>Functional programming has been gaining popularity in recent years with the rise of parallel computers and of the pure functional programming languages Haskell is probably the closest to the mainstream. It features great ideas like type inference, lazy evaluation, monads, pattern matching. As with Lisp many of the features of Haskell can be found in more impure packages(like Scala and Clojure), but Haskell is still the top pure functional language in my humble opinion. It also has really great free learning resources on-line like <a href='http://learnyouahaskell.com/'>&#8220;Learn you a Haskell for great good&#8221;</a> and <a href='http://book.realworldhaskell.org/read/'>&#8220;Real world Haskell&#8221;</a></p><h1 id='perl'>Perl</h1><hr /><p>Once the undisputed king of the Internet Perl has recently fallen down from grace in its battle with the newer generation of dynamic languages like PHP, Ruby and Python. While I wouldn&#8217;t advise anyone to start writing Web apps with Perl it&#8217;s still the best language for writing administration and helper scripts with minimum fuss and maximum developer throughput. It also has the greatest support for text processing ever and an extremely flexible(albeit a bit of confusing) syntax.</p><p>Pick up a copy of <a href='http://oreilly.com/catalog/9780596520113'>&#8220;Learning Perl&#8221;</a> or just browse the excellent <em>perldoc</em> and start coding in Perl right away.</p><h1 id='clojure'>Clojure</h1><hr /><p>Clojure is a Lisp dialect with an unique support for parallel and concurrent programming and runs on top of the venerable JVM. If you&#8217;re looking to do some serious parallel programming look no further.</p><p>To get started I recommend you to watch the free Clojure screencasts on <a href='http://clojure.blip.tv/'>blip.tv</a>.</p><h1 id='prolog'>Prolog</h1><hr /><p>The most famous language from the logic programming family. Solving a problem like a sudoku puzzle in Prolog will be an eye opening experience for any developer. While it&#8217;s unlikely that you&#8217;ll ever use it practice the ideas found in Prolog will truly expand your thinking horizons.</p><h1 id='ruby'>Ruby</h1><hr /><p>A pure object oriented dynamic scripting language with a very nice support for metaprogramming. Has versions written in Java(JRuby) and .Net(IronRuby). The language became popular with the rise of the Ruby on Rails web framework, but it has many applications that don&#8217;t involve RoR or web development.</p><p><a href='http://www.amazon.com/Programming-Ruby-1-9-Pragmatic-Programmers/dp/1934356085/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1303901367&amp;sr=1-1'>&#8220;Programming Ruby&#8221;</a> and <a href='http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177/ref=sr_1_3?s=books&amp;ie=UTF8&amp;qid=1303901367&amp;sr=1-3'>&#8220;The Ruby Programming Language&#8221;</a> are two of the best introductory Ruby books around.</p><h1 id='scala'>Scala</h1><hr /><p>An interesting blend of pure object orientation and functional programming with some concurrency support baked in(actors). Of the current crop of JVM languages next to Clojure Scala looks most promising. It features an advanced static type system(more advanced than Haskell&#8217;s), state of the art Java integration, support for pattern matching, extractors and other functional goodness. If any language has a chance of displacing the Java programming language it must be Scala&#8230;</p><p>Start your journey to Scala mastery with <a href='http://www.artima.com/pins1ed/'>&#8220;Programming in Scala&#8221;</a>.</p><h1 id='javascript'>JavaScript</h1><hr /><p>We cannot conclude this whirlwind tour of notable programming languages without mentioning the King of the Web, the language that drove the Web 2.0 revolution - JavaScript. Although it has a terrible name(JavaScript shares nothing with Java), a questionable programming model built around mutating global variables and prototype instead of class inheritance it is supported virtually everywhere and any web developer will do well to learn some JavaScript.</p><h1 id='conclusion'>Conclusion</h1><hr /><p>We cannot be experts in ten or twenty programming languages - I&#8217;m certain of that. I do, however, believe that all the ideas and techniques that we discover in different programming languages will generally enrich our thinking and make us better software engineers in principle.</p><div style='font-style: italic; color: #7f9f7f;'>Posted on 27 Apr 2011 by Bozhidar.</div>

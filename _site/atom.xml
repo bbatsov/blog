@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-04-28T17:40:01+03:00</updated>
+  <updated>2011-04-29T11:22:47+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -13,10 +13,10 @@
 
   
   <entry>
-    <id>http://www.batsov.com/2011/04/28/one-shell-to-rule-them-all</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/28/one-shell-to-rule-them-all.html"/>
+    <id>http://www.batsov.com/2011/04/29/one-shell-to-rule-them-all</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/29/one-shell-to-rule-them-all.html"/>
     <title>One shell to rule them all...</title>
-    <updated>2011-04-28T00:00:00+03:00</updated>
+    <updated>2011-04-29T00:00:00+03:00</updated>
     <author>
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
@@ -58,57 +58,159 @@ compinit
 &lt;/div&gt;
 &lt;p&gt;I don&amp;#8217;t like very much the default zsh prompt and I generally change it right away. Have a look at my other &lt;a href='/2008/07/27/zsh-prompt.html'&gt;short article&lt;/a&gt; on the topic.&lt;/p&gt;
 
+&lt;p&gt;There a couple of configuration files related to zsh that you should know about:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;.zshrc - runs for each new shell(roughly equivalent to .bashrc)&lt;/li&gt;
+
+&lt;li&gt;.zprofile - runs only for login shells(like .bash_profile)&lt;/li&gt;
+
+&lt;li&gt;.zlogout - runs on logout&lt;/li&gt;
+
+&lt;li&gt;.zshenv - holds environmental variables&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here&amp;#8217;s an example .zshenv file:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='bash'&gt;&lt;span class='nb'&gt;export &lt;/span&gt;&lt;span class='nv'&gt;JAVA_HOME&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;/usr/java/latest
+
+&lt;span class='nb'&gt;export &lt;/span&gt;&lt;span class='nv'&gt;SCALA_HOME&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;/opt/scala-2.8.1.final
+
+&lt;span class='nb'&gt;export &lt;/span&gt;&lt;span class='nv'&gt;M2_HOME&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;/opt/apache-maven-3.0.2
+
+&lt;span class='nb'&gt;export &lt;/span&gt;&lt;span class='nv'&gt;EDITOR&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;emacsclient -t&amp;quot;&lt;/span&gt;
+&lt;span class='nb'&gt;export &lt;/span&gt;&lt;span class='nv'&gt;ALTERNATE_EDITOR&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;&lt;span class='s2'&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class='c'&gt;#needed to properly display complex color-themes in Emacs and vim&lt;/span&gt;
+&lt;span class='nb'&gt;export &lt;/span&gt;&lt;span class='nv'&gt;TERM&lt;/span&gt;&lt;span class='o'&gt;=&lt;/span&gt;xterm-256color
+
+&lt;span class='nb'&gt;typeset&lt;/span&gt; -U path
+&lt;span class='nv'&gt;path&lt;/span&gt;&lt;span class='o'&gt;=(&lt;/span&gt;&lt;span class='nv'&gt;$M2_HOME&lt;/span&gt;/bin &lt;span class='nv'&gt;$SCALA_HOME&lt;/span&gt;/bin ~/bin ~/Projects/work/bin &lt;span class='nv'&gt;$path&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Please note the way in which the PATH variable is set in zsh, which differs substantially from bash(it&amp;#8217;s just exported there as any other variable).&lt;/p&gt;
+
 &lt;h2 id='playing_around'&gt;Playing around&lt;/h2&gt;
 
 &lt;p&gt;At this point you have the legendary zsh autocompletion configured and you have enabled many of the zsh core features.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;autocd allows you to navigate to folders only with their name without the cd command. One of my favourite features. Now you can do things like&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;autocd&lt;/strong&gt; allows you to navigate to folders only with their name without the cd command. One of my favourite features. Now you can do things like:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;  &lt;/span&gt;
+&lt;span class='go'&gt;[bozhidar@bozhidar ~]$ Downloads   &lt;/span&gt;
+&lt;span class='go'&gt;[bozhidar@bozhidar ~/Downloads]$&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Instead of:&lt;/p&gt;
 
-&lt;p&gt;&lt;span&gt;bozhidar@bozhidar ~&lt;/span&gt;$ Downloads &lt;br /&gt;&lt;span&gt;bozhidar@bozhidar ~/Downloads&lt;/span&gt;$&lt;/p&gt;
+&lt;p&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;[bozhidar@bozhidar ~]$ cd Downloads   &lt;/span&gt;
+&lt;span class='go'&gt;[bozhidar@bozhidar ~/Downloads]$&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
 
-&lt;p&gt;Instead of&lt;/p&gt;
+&lt;p&gt;By the way autocd was added in bash 4.0 as well. You can enable it there with:&lt;/p&gt;
 
-&lt;p&gt;&lt;span&gt;bozhidar@bozhidar ~&lt;/span&gt;$ cd Downloads &lt;br /&gt;&lt;span&gt;bozhidar@bozhidar ~/Downloads&lt;/span&gt;$&lt;/p&gt;
+&lt;p&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;[bozhidar@bozhidar ~]$ shopt -s autocd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
 
-&lt;p&gt;autocd was added in bash 4.0 as well. You can enable it there with&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;appendhistory&lt;/strong&gt; all your open shells share the same history which is handy if you want to refer commands from one shell in another with say Ctrl+R(reverse-history-search)&lt;/p&gt;
 
-&lt;p&gt;&lt;span&gt;bozhidar@bozhidar ~&lt;/span&gt;$ shopt -s autocd&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;extendedglob&lt;/strong&gt; allows you to recursive look for files in folders:&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;appendhistory all your open shells share the same history which is handy if you want to refer commands from one shell in another with say Ctrl+R(reverse-history-search)&lt;/p&gt;
-&lt;/li&gt;
+&lt;p&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;[bozhidar@bozhidar ~]$ ls somedir/**/Makefile&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
 
-&lt;li&gt;
-&lt;p&gt;extendedglob allows you to recursive look for files in folders&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;is equivalent to:&lt;/p&gt;
 
-&lt;p&gt;&lt;span&gt;bozhidar@bozhidar ~&lt;/span&gt;$ ls somedir/&lt;strong&gt;/Makefile&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;is equivalent to&lt;/p&gt;
-
-&lt;p&gt;&lt;span&gt;bozhidar@bozhidar ~&lt;/span&gt;$ find somedir -name Makefile&lt;/p&gt;
+&lt;p&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;[bozhidar@bozhidar ~]$ find somedir -name Makefile&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;Most zsh users never use find for simple file look up. This feature was also added to bash 4.0 but it works in a slightly different manner.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='gp'&gt;$&lt;/span&gt; &lt;span class='nb'&gt;shopt&lt;/span&gt; -s extglob
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;correct&lt;/strong&gt; - autocorrects mistyped commands&lt;/p&gt;
 
-&lt;p&gt;$ shopt -s extglob&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;correct - autocorrects mistyped commands&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;span&gt;bozhidar@bozhidar&lt;/span&gt;$ cta ~/.zshrc zsh: correct &amp;#8216;cta&amp;#8217; to &amp;#8216;cat&amp;#8217; &lt;span&gt;nyae&lt;/span&gt;?&lt;/p&gt;
+&lt;p&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;[bozhidar@bozhidar]$ cta ~/.zshrc &lt;/span&gt;
+&lt;span class='go'&gt;zsh: correct &amp;#39;cta&amp;#39; to &amp;#39;cat&amp;#39; [nyae]?&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/p&gt;
 
 &lt;h1 id='keybindings'&gt;Keybindings&lt;/h1&gt;
 
-&lt;p&gt;By default zsh uses Emacs keybindings which is perfect for a long time Emacs user like me. zsh doesn&amp;#8217;t use readline, instead it has its own line editing library called zle, which is much more powerful. vi users are not forgotten and can switch zsh to vi keybindings with the command&lt;/p&gt;
+&lt;p&gt;By default zsh uses Emacs keybindings which is perfect for a long time Emacs user like me. zsh doesn&amp;#8217;t use readline, instead it has its own line editing library called zle, which is much more powerful. vi users are not forgotten and can switch zsh to vi keybindings with the command:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;bindkey -v&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Mind that by default you&amp;#8217;ll be in &amp;#8220;insert&amp;#8221; mode and have to press ESC to go into command mode.&lt;/p&gt;
 
-&lt;p&gt;bindkey -v&lt;/p&gt;
+&lt;p&gt;You can also create custom keybindings like this:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;bindkey &amp;#39;^[[H&amp;#39; beginning-of-line&lt;/span&gt;
+&lt;span class='go'&gt;bindkey &amp;#39;^[[F&amp;#39; end-of-line&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This will bind the Home and End keys to the commands beginning-of-line and end-of-line.&lt;/p&gt;
 
-&lt;p&gt;Mind that by default you&amp;#8217;ll be in &amp;#8220;insert&amp;#8221; mode and have to press ESC to go into command mode.&lt;/p&gt;</content>
+&lt;h1 id='aliases'&gt;Aliases&lt;/h1&gt;
+
+&lt;p&gt;Zsh has three different kinds of shell aliases.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Regular&lt;/strong&gt; - same as in bash:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;alias ll=&amp;#39;ls -l&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Suffix&lt;/strong&gt; - suffix aliases are supported in zsh since version 4.2.0. Some examples:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;alias -s tex=emacs&lt;/span&gt;
+&lt;span class='go'&gt;alias -s html=google-chrome&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Now when you type in the console&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='gp'&gt;$&lt;/span&gt; somefile.tex
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;it will be opened automatically with Emacs. Similarly somefile.html would be opened by google-chrome. As you might imagine this feature is quite handy.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Global&lt;/strong&gt; - global aliases can be used anywhere in the command line(as opposed to regular aliases that can used only in the beginning). Example:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;alias -g ...=&amp;#39;../..&amp;#39;&lt;/span&gt;
+&lt;span class='go'&gt;cd ...  &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id='some_tips_and_tricks'&gt;Some tips and tricks&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;press Alt+q in the middle of a command you&amp;#8217;re typing. This will clear the console prompt and allow you execute another command(like a man lookup). Afterwards the things you&amp;#8217;ve typed before the Alt+q will magically reappear.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Imagine you&amp;#8217;re in the folder &lt;strong&gt;project/4.0/module&lt;/strong&gt;. Typing:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='console'&gt;&lt;span class='go'&gt;cd 4.0 5.0 &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Will take you to a folder named project/5.0/module(assuming that it exists of course). In general the command has the format &lt;code&gt;cd old new&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id='conclusion'&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;There is no easy way to sum up everything that makes zsh great in a single blog post. I&amp;#8217;ll try to expand and improve it in time. I hope I&amp;#8217;ve whetted your appetite to try out zsh. If you like it well enough(of which I&amp;#8217;m most certain you should have a look at the resources in the end as well).&lt;/p&gt;
+
+&lt;h1 id='useful_resources'&gt;Useful resources&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://www.bash2zsh.com/zsh_refcard/refcard.pdf'&gt;zsh reference card&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://zsh.sourceforge.net/Doc/zsh_a4.pdf'&gt;zsh manual&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://zsh.sourceforge.net/Guide/zshguide.html'&gt;&amp;#8220;A User&amp;#8217;s Guide to Z-Shell&amp;#8221;&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://zshwiki.org/home/'&gt;zsh wiki&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://grml.org/zsh/zsh-lovers.html'&gt;zsh lovers&lt;/a&gt; - collection of tips and tricks&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.bash2zsh.com/'&gt;&amp;#8220;From Bash to Z Shell - Conquering the Command Line&amp;#8221;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
   </entry>
   
   <entry>
