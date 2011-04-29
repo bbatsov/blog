@@ -60,7 +60,7 @@ Pros of staying:
   in the company hierarchy if you're willing to stay long enough
   
 Cons of staying:
-* you limit you're professional development
+* you limit your professional development
 * you limit the possibilities for salary improvements
 
 In the end it seems to me that most people are not too fond of taking
