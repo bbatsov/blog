@@ -49,42 +49,54 @@
 
 <h2 id='lisp_lists'>Lisp Lists</h2>
 <hr />
-<p><em>1.01 (*) Find the last element of a list.</em></p>
+<p><strong>1.01 (*) Find the last element of a list.</strong></p>
+
+<p><em>Do not use the built-in LAST function.</em></p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>my-last</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>3</span>
 </code></pre>
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p101.lisp'>View solution</a></p>
 
-<p><em>1.02 (*) Find the penultimate(last but one) element of a list.</em></p>
+<p><strong>1.02 (*) Find the penultimate(last but one) element of a list.</strong></p>
+
+<p><em>Do not use a combination of LAST and BUTLAST.</em></p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>penultimate</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p102.lisp'>View solution</a></p>
 
-<p><em>1.03 (*) Find the nth element of a list.</em> The first element in the list is number 0.</p>
+<p><strong>1.03 (*) Find the nth element of a list.</strong></p>
+
+<p><em>Do not use the built-in function NTH. The first element in the list is number 0.</em></p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>my-nth</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>)</span> <span class='mi'>1</span><span class='p'>)</span>
 <span class='mi'>2</span>
 </code></pre>
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p103.lisp'>View solution</a></p>
 
-<p><em>1.04 (*) Find the number of elements of a list.</em></p>
+<p><strong>1.04 (*) Find the number of elements of a list.</strong></p>
+
+<p><em>Do not use the built-in function LENGTH.</em></p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>my-length</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>3</span>
 </code></pre>
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p104.lisp'>View solution</a></p>
 
-<p><em>1.05 (*) Reverse a list.</em></p>
+<p><strong>1.05 (*) Reverse a list.</strong></p>
+
+<p><em>Do not use the built-in function REVERSE.</em></p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>my-reverse</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='p'>(</span><span class='mi'>3</span> <span class='mi'>2</span> <span class='mi'>1</span><span class='p'>)</span>
 </code></pre>
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p105.lisp'>View solution</a></p>
 
-<p><em>1.06 (*) Find out whether a list is a palindrome.</em> <em>A palindrome can be read forward or backward; e.g. (1 2 3 2 1).</em></p>
+<p><strong>1.06 (*) Find out whether a list is a palindrome.</strong></p>
+
+<p><em>A palindrome can be read forward or backward; e.g. (1 2 3 2 1).</em></p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>palindrome-p</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='no'>NIL</span>
 <span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>palindrome-p</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span> <span class='mi'>2</span> <span class='mi'>1</span><span class='p'>))</span>
@@ -93,40 +105,50 @@
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p106.lisp'>View solution</a></p>
 
-<p><em>1.07 (**) Flatten a nested list structure.</em> <em>Transform a list, possibly holding lists as elements into a &#8216;flat&#8217; list by replacing each list with its elements (recursively).</em></p>
-<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>flatten</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
-<span class='mi'>2</span>
+<p><strong>1.07 (**) Flatten a nested list structure.</strong></p>
+
+<p><em>Transform a list, possibly holding lists as elements into a &#8216;flat&#8217; list by replacing each list with its elements (recursively).</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>flatten</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='nv'>a</span> <span class='p'>(</span><span class='nv'>b</span> <span class='nv'>c</span><span class='p'>)</span> <span class='p'>((</span><span class='nv'>d</span> <span class='nv'>e</span><span class='p'>)</span> <span class='nv'>f</span><span class='p'>)))</span>
+<span class='p'>(</span><span class='nv'>a</span> <span class='nv'>b</span> <span class='nv'>c</span> <span class='nv'>d</span> <span class='nv'>e</span> <span class='nv'>f</span><span class='p'>)</span>
 </code></pre>
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p107.lisp'>View solution</a></p>
 
-<p><em>1.08 (**) Eliminate consecutive duplicates of list elements.</em> If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.</p>
-<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
-<span class='mi'>2</span>
+<p><strong>1.08 (**) Eliminate consecutive duplicates of list elements.</strong></p>
+
+<p><em>If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>b</span> <span class='nv'>c</span> <span class='nv'>c</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>d</span> <span class='nv'>e</span> <span class='nv'>e</span> <span class='nv'>e</span> <span class='nv'>e</span><span class='p'>))</span>
+<span class='p'>(</span><span class='nv'>a</span> <span class='nv'>b</span> <span class='nv'>c</span> <span class='nv'>a</span> <span class='nv'>d</span> <span class='nv'>e</span><span class='p'>)</span>
 </code></pre>
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p108.lisp'>View solution</a></p>
 
-<p><em>1.09 (**) Pack consecutive duplicates of list elements into sublists.</em> If a list contains repeated elements they should be placed in separate sublists.</p>
-<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
-<span class='mi'>2</span>
-</code></pre>
-</div>
-<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p109.lisp'>View solution</a> Example: ?- pack(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>a,a,a,a</span>,<span>b</span>,<span>c,c</span>,<span>a,a</span>,<span>d</span>,<span>e,e,e,e</span></span></p>
+<p><strong>1.09 (**) Pack consecutive duplicates of list elements into sublists.</strong></p>
 
-<p><em>1.10 (*) Run-length encoding of a list.</em> Use the result of problem 1.09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as terms <span>N,E</span> where N is the number of duplicates of the element E.</p>
-<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
-<span class='mi'>2</span>
+<p><em>If a list contains repeated elements they should be placed in separate sublists.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>pack</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>b</span> <span class='nv'>c</span> <span class='nv'>c</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>d</span> <span class='nv'>e</span> <span class='nv'>e</span> <span class='nv'>e</span> <span class='nv'>e</span><span class='p'>))</span>
+<span class='p'>((</span><span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>a</span><span class='p'>)</span> <span class='p'>(</span><span class='nv'>b</span><span class='p'>)</span> <span class='p'>(</span><span class='nv'>c</span> <span class='nv'>c</span><span class='p'>)</span> <span class='p'>(</span><span class='nv'>a</span> <span class='nv'>a</span><span class='p'>)</span> <span class='p'>(</span><span class='nv'>d</span><span class='p'>)</span> <span class='p'>(</span><span class='nv'>e</span> <span class='nv'>e</span> <span class='nv'>e</span> <span class='nv'>e</span><span class='p'>))</span>
 </code></pre>
 </div>
-<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p110.lisp'>View solution</a> Example: ?- encode(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>4,a</span>,<span>1,b</span>,<span>2,c</span>,<span>2,a</span>,<span>1,d</span></span></p>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p109.lisp'>View solution</a></p>
 
-<p><em>1.11 (*) Modified run-length encoding.</em> Modify the result of problem 1.10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as <span>N,E</span> terms.</p>
-<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
-<span class='mi'>2</span>
+<p><strong>1.10 (*) Run-length encoding of a list.</strong></p>
+
+<p><em>Use the result of problem 1.09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as terms <span>N,E</span> where N is the number of duplicates of the element E.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>encode</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>b</span> <span class='nv'>c</span> <span class='nv'>c</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>d</span> <span class='nv'>e</span> <span class='nv'>e</span> <span class='nv'>e</span> <span class='nv'>e</span><span class='p'>))</span>
+<span class='p'>((</span><span class='mi'>4</span> <span class='nv'>a</span><span class='p'>)</span> <span class='p'>(</span><span class='mi'>1</span> <span class='nv'>b</span><span class='p'>)</span> <span class='p'>(</span><span class='mi'>2</span> <span class='nv'>c</span><span class='p'>)</span> <span class='p'>(</span><span class='mi'>2</span> <span class='nv'>a</span><span class='p'>)</span> <span class='p'>(</span><span class='mi'>1</span> <span class='nv'>d</span><span class='p'>)</span> <span class='p'>(</span><span class='mi'>4</span> <span class='nv'>e</span><span class='p'>))</span>
 </code></pre>
 </div>
-<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p111.lisp'>View solution</a> Example: ?- encode_modified(<span>a,a,a,a,b,c,c,a,a,d,e,e,e,e</span>,X). X = <span><span>4,a</span>,b,<span>2,c</span>,<span>2,a</span>,d,<span>4,e</span></span></p>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p110.lisp'>View solution</a></p>
+
+<p><strong>1.11 (*) Modified run-length encoding.</strong></p>
+
+<p><em>Modify the result of problem 1.10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as (number element) terms.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>encode-modified</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>b</span> <span class='nv'>c</span> <span class='nv'>c</span> <span class='nv'>a</span> <span class='nv'>a</span> <span class='nv'>d</span> <span class='nv'>e</span> <span class='nv'>e</span> <span class='nv'>e</span> <span class='nv'>e</span><span class='p'>))</span>
+<span class='p'>((</span><span class='mi'>4</span> <span class='nv'>a</span><span class='p'>)</span> <span class='nv'>b</span> <span class='p'>(</span><span class='mi'>2</span> <span class='nv'>c</span><span class='p'>)</span> <span class='p'>(</span><span class='mi'>2</span> <span class='nv'>a</span><span class='p'>)</span> <span class='nv'>d</span> <span class='p'>(</span><span class='mi'>4</span> <span class='nv'>e</span><span class='p'>))</span>
+</code></pre>
+</div>
+<p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p111.lisp'>View solution</a></p>
 
 <p><em>1.12 (**) Decode a run-length encoded list.</em> Given a run-length code list generated as specified in problem 1.11. Construct its uncompressed version.</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>

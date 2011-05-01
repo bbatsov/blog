@@ -30,7 +30,9 @@ more time (i.e. a few hours or more) to find a good solution.
 ##Lisp Lists
 ---
 
-*1.01 (\*) Find the last element of a list.*
+**1.01 (\*) Find the last element of a list.**
+
+_Do not use the built-in LAST function._
 
 {% highlight cl %}
 CL-USER> (my-last '(1 2 3))
@@ -38,7 +40,9 @@ CL-USER> (my-last '(1 2 3))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p101.lisp)
 
-*1.02 (\*) Find the penultimate(last but one) element of a list.*
+**1.02 (\*) Find the penultimate(last but one) element of a list.**
+
+_Do not use a combination of LAST and BUTLAST._
 
 {% highlight cl %}
 CL-USER> (penultimate '(1 2 3))
@@ -46,8 +50,9 @@ CL-USER> (penultimate '(1 2 3))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p102.lisp)
 
-*1.03 (\*) Find the nth element of a list.*
-The first element in the list is number 0.
+**1.03 (\*) Find the nth element of a list.**
+
+_Do not use the built-in function NTH. The first element in the list is number 0._
 
 {% highlight cl %}
 CL-USER> (my-nth '(1 2 3) 1)
@@ -55,7 +60,9 @@ CL-USER> (my-nth '(1 2 3) 1)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p103.lisp)
 
-*1.04 (\*) Find the number of elements of a list.*
+**1.04 (\*) Find the number of elements of a list.**
+
+_Do not use the built-in function LENGTH._
 
 {% highlight cl %}
 CL-USER> (my-length '(1 2 3))
@@ -63,7 +70,9 @@ CL-USER> (my-length '(1 2 3))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p104.lisp)
 
-*1.05 (\*) Reverse a list.*
+**1.05 (\*) Reverse a list.**
+
+_Do not use the built-in function REVERSE._
 
 {% highlight cl %}
 CL-USER> (my-reverse '(1 2 3))
@@ -71,7 +80,8 @@ CL-USER> (my-reverse '(1 2 3))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p105.lisp)
 
-*1.06 (\*) Find out whether a list is a palindrome.*
+**1.06 (\*) Find out whether a list is a palindrome.**
+
 _A palindrome can be read forward or backward; e.g. (1 2 3 2 1)._
 
 {% highlight cl %}
@@ -82,58 +92,64 @@ T
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p106.lisp)
 
-*1.07 (\*\*) Flatten a nested list structure.*
-_Transform a list, possibly holding lists as elements into a 'flat' list by replacing each list with its elements (recursively)._
+**1.07 (\*\*) Flatten a nested list structure.**
+
+_Transform a list, possibly holding lists as elements into a 'flat'
+list by replacing each list with its elements (recursively)._
 
 {% highlight cl %}
-CL-USER> (flatten '(1 2 3))
-2
+CL-USER> (flatten '(a (b c) ((d e) f)))
+(a b c d e f)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p107.lisp)
 
-*1.08 (\*\*) Eliminate consecutive duplicates of list elements.*
-If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.
+**1.08 (\*\*) Eliminate consecutive duplicates of list elements.**
+
+_If a list contains repeated elements they should be replaced with a
+single copy of the element. The order of the elements should not be
+changed._
 
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (compress '(a a a a b c c a a d e e e e))
+(a b c a d e)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p108.lisp)
 
-*1.09 (\*\*) Pack consecutive duplicates of list elements into sublists.*
-If a list contains repeated elements they should be placed in separate sublists.
+**1.09 (\*\*) Pack consecutive duplicates of list elements into sublists.**
+
+_If a list contains repeated elements they should be placed in
+separate sublists._
 
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (pack '(a a a a b c c a a d e e e e))
+((a a a a) (b) (c c) (a a) (d) (e e e e))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p109.lisp)
-Example:
-?- pack([a,a,a,a,b,c,c,a,a,d,e,e,e,e],X).
-X = [[a,a,a,a],[b],[c,c],[a,a],[d],[e,e,e,e]]
 
-*1.10 (\*) Run-length encoding of a list.*
-Use the result of problem 1.09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as terms [N,E] where N is the number of duplicates of the element E.
+**1.10 (\*) Run-length encoding of a list.**
+
+_Use the result of problem 1.09 to implement the so-called run-length
+encoding data compression method. Consecutive duplicates of elements
+are encoded as terms [N,E] where N is the number of duplicates of the
+element E._
 
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (encode '(a a a a b c c a a d e e e e))
+((4 a) (1 b) (2 c) (2 a) (1 d) (4 e))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p110.lisp)
-Example:
-?- encode([a,a,a,a,b,c,c,a,a,d,e,e,e,e],X).
-X = [[4,a],[1,b],[2,c],[2,a],[1,d][4,e]]
 
-*1.11 (\*) Modified run-length encoding.*
-Modify the result of problem 1.10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as [N,E] terms.
+**1.11 (\*) Modified run-length encoding.**
+
+_Modify the result of problem 1.10 in such a way that if an element has
+no duplicates it is simply copied into the result list. Only elements
+with duplicates are transferred as (number element) terms._
+
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (encode-modified '(a a a a b c c a a d e e e e))
+((4 a) b (2 c) (2 a) d (4 e))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p111.lisp)
-Example:
-?- encode_modified([a,a,a,a,b,c,c,a,a,d,e,e,e,e],X).
-X = [[4,a],b,[2,c],[2,a],d,[4,e]]
 
 *1.12 (\*\*) Decode a run-length encoded list.*
 Given a run-length code list generated as specified in problem 1.11. Construct its uncompressed version.
