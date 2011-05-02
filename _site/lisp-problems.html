@@ -178,24 +178,18 @@
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p114.lisp'>View solution</a></p>
 
 <p><em>1.15 (**) Duplicate the elements of a list a given number of times.</em></p>
-<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
-<span class='mi'>2</span>
+<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>duplicate-elems</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>)</span> <span class='mi'>3</span><span class='p'>)</span>
+<span class='p'>(</span><span class='mi'>1</span> <span class='mi'>1</span> <span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>2</span> <span class='mi'>2</span> <span class='mi'>3</span> <span class='mi'>3</span> <span class='mi'>3</span><span class='p'>)</span>
 </code></pre>
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p115.lisp'>View solution</a></p>
 
-<p>Example: ?- dupli(<span>a,b,c</span>,3,X). X = <span>a,a,a,b,b,b,c,c,c</span></p>
-
-<p>What are the results of the goal: ?- dupli(X,3,Y).</p>
-
 <p><em>1.16 (**) Drop every N&#8217;th element from a list.</em></p>
-<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
-<span class='mi'>2</span>
+<div class='highlight'><pre><code class='cl'><span class='nv'>LISP-PROBLEMS&gt;</span> <span class='p'>(</span><span class='nv'>drop</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span> <span class='mi'>4</span> <span class='mi'>5</span> <span class='mi'>6</span> <span class='mi'>7</span> <span class='mi'>8</span> <span class='mi'>9</span><span class='p'>)</span> <span class='mi'>2</span><span class='p'>)</span>
+<span class='p'>(</span><span class='mi'>1</span> <span class='mi'>3</span> <span class='mi'>5</span> <span class='mi'>7</span> <span class='mi'>9</span><span class='p'>)</span>
 </code></pre>
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p116.lisp'>View solution</a></p>
-
-<p>Example: ?- drop(<span>a,b,c,d,e,f,g,h,i,k</span>,3,X). X = <span>a,b,d,e,g,h,k</span></p>
 
 <p><em>1.17 (*) Split a list into two parts; the length of the first part is given.</em> Do not use any predefined predicates.</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
