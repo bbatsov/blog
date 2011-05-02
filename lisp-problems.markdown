@@ -152,59 +152,53 @@ CL-USER> (encode-modified '(a a a a b c c a a d e e e e))
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p111.lisp)
 
 *1.12 (\*\*) Decode a run-length encoded list.*
-Given a run-length code list generated as specified in problem 1.11. Construct its uncompressed version.
-{% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+
+_Given a run-length code list generated as specified in problem
+1.11. Construct its uncompressed version._ 
+
+{% highlight cl %} 
+CL-USER>
+(decode '((4 a) b (2 c) (2 a) d (4 e))) 
+(a a a a b c c a a d e e e e)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p112.lisp)
+
 *1.13 (\*\*) Run-length encoding of a list (direct solution).*
-Implement the so-called run-length encoding data compression method directly. I.e. don't explicitly create the sublists containing the duplicates, as in problem 1.09, but only count them. As in problem 1.11, simplify the result list by replacing the singleton terms [1,X] by X.
+
+_Implement the so-called run-length encoding data compression method
+directly. I.e. don't explicitly create the sublists containing the
+duplicates, as in problem 1.09, but only count them. As in problem
+1.11, simplify the result list by replacing the singleton terms (1 X)
+by X._
+
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (encode-direct '(a a a a b c c a a d e e e e))
+((4 a) b (2 c) (2 a) d (4 e))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p113.lisp)
 
-Example:
-?- encode_direct([a,a,a,a,b,c,c,a,a,d,e,e,e,e],X).
-X = [[4,a],b,[2,c],[2,a],d,[4,e]]
-
 *1.14 (\*) Duplicate the elements of a list.*
+
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (duplicate-elems '(1 2 3))
+(1 1 2 2 3 3)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p114.lisp)
-Example:
-?- dupli([a,b,c,c,d],X).
-X = [a,a,b,b,c,c,c,c,d,d]
 
 *1.15 (\*\*) Duplicate the elements of a list a given number of times.*
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (duplicate-elems '(1 2 3) 3)
+(1 1 1 2 2 2 3 3 3)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p115.lisp)
 
-Example:
-?- dupli([a,b,c],3,X).
-X = [a,a,a,b,b,b,c,c,c]
-
-What are the results of the goal:
-?- dupli(X,3,Y).
-
 *1.16 (\*\*) Drop every N'th element from a list.*
+
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+LISP-PROBLEMS> (drop '(1 2 3 4 5 6 7 8 9) 2)
+(1 3 5 7 9)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p116.lisp)
-
-
-Example:
-?- drop([a,b,c,d,e,f,g,h,i,k],3,X).
-X = [a,b,d,e,g,h,k]
 
 *1.17 (\*) Split a list into two parts; the length of the first part is given.*
 Do not use any predefined predicates.
