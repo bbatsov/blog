@@ -191,14 +191,12 @@
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p116.lisp'>View solution</a></p>
 
-<p><em>1.17 (*) Split a list into two parts; the length of the first part is given.</em> Do not use any predefined predicates.</p>
-<div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
-<span class='mi'>2</span>
+<p><em>1.17 (*) Split a list into two parts; the length of the first part is given.</em></p>
+<div class='highlight'><pre><code class='cl'><span class='nv'>LISP-PROBLEMS&gt;</span> <span class='p'>(</span><span class='nv'>split</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span> <span class='mi'>4</span> <span class='mi'>5</span><span class='p'>)</span> <span class='mi'>3</span><span class='p'>)</span>
+<span class='p'>((</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>)</span> <span class='p'>(</span><span class='mi'>4</span> <span class='mi'>5</span><span class='p'>))</span>
 </code></pre>
 </div>
 <p><a href='https://github.com/bbatsov/cl-99-problems/blob/master/p117.lisp'>View solution</a></p>
-
-<p>Example: ?- split(<span>a,b,c,d,e,f,g,h,i,k</span>,3,L1,L2). L1 = <span>a,b,c</span> L2 = <span>d,e,f,g,h,i,k</span></p>
 
 <p><em>1.18 (**) Extract a slice from a list.</em> Given two indices, I and K, the slice is the list containing the elements between the I&#8217;th and K&#8217;th element of the original list (both limits included). Start counting the elements with 1.</p>
 <div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>compress</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>

@@ -201,18 +201,12 @@ LISP-PROBLEMS> (drop '(1 2 3 4 5 6 7 8 9) 2)
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p116.lisp)
 
 *1.17 (\*) Split a list into two parts; the length of the first part is given.*
-Do not use any predefined predicates.
 
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+LISP-PROBLEMS> (split '(1 2 3 4 5) 3)
+((1 2 3) (4 5))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p117.lisp)
-
-Example:
-?- split([a,b,c,d,e,f,g,h,i,k],3,L1,L2).
-L1 = [a,b,c]
-L2 = [d,e,f,g,h,i,k]
 
 *1.18 (\*\*) Extract a slice from a list.*
 Given two indices, I and K, the slice is the list containing the elements between the I'th and K'th element of the original list (both limits included). Start counting the elements with 1.
