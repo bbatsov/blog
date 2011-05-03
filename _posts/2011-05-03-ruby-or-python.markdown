@@ -4,6 +4,7 @@ title: "Ruby or Python? Well, it depends..."
 ---
 
 ** Disclaimer **
+
 _If you're looking for a flame post - this is not one of them. I love
 both languages and I'll simply compare some of their features and
 possible uses._

@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-03T16:05:03+03:00</updated>
+  <updated>2011-05-03T16:07:34+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -21,7 +21,9 @@
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
     </author>
-    <content type="html">&lt;p&gt;** Disclaimer ** &lt;em&gt;If you&amp;#8217;re looking for a flame post - this is not one of them. I love both languages and I&amp;#8217;ll simply compare some of their features and possible uses.&lt;/em&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;** Disclaimer **&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;If you&amp;#8217;re looking for a flame post - this is not one of them. I love both languages and I&amp;#8217;ll simply compare some of their features and possible uses.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Ruby or Python? This is the Question! Well it might not be the Question, but it&amp;#8217;s a common question for many developers looking to break free from the statically typed language they know and learn a dynamic language. I personally know them both(though I know a bit more Ruby, than Python) and in this article I&amp;#8217;ll share my personal opinion on their strengths and weaknesses. You&amp;#8217;d probably do good to learn them both, but my arguments here may lead you to pick only one of the languages depending on you preferences.&lt;/p&gt;
 
