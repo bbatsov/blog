@@ -209,75 +209,50 @@ LISP-PROBLEMS> (split '(1 2 3 4 5) 3)
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p117.lisp)
 
 *1.18 (\*\*) Extract a slice from a list.*
-Given two indices, I and K, the slice is the list containing the elements between the I'th and K'th element of the original list (both limits included). Start counting the elements with 1.
+
+_Given two indices, START and END, the slice is the list containing the elements between them in the original list (both limits included). Start counting the elements with 0._
 
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER>  (slice '(1 2 3 4 5 6 7 9) 3 6)
+(4 5 6 7)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p118.lisp)
 
-Example:
-?- slice([a,b,c,d,e,f,g,h,i,k],3,7,L).
-X = [c,d,e,f,g]
-
 *1.19 (\*\*) Rotate a list N places to the left.*
-{% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (rotate '(1 2 3 4 5) 2)
+(3 4 5 2 1)
+CL-USER> (rotate '(1 2 3 4 5) -2)
+(4 5 3 2 1)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p119.lisp)
 
+_Hint: Use the predefined functions LENGTH and APPEND, as well as the result of problem 1.17._
 
-Examples:
-?- rotate([a,b,c,d,e,f,g,h],3,X).
-X = [d,e,f,g,h,a,b,c]
-
-?- rotate([a,b,c,d,e,f,g,h],-2,X).
-X = [g,h,a,b,c,d,e,f]
-
-Hint: Use the predefined predicates length/2 and append/3, as well as the result of problem 1.17.
-
-*1.20 (\*) Remove the K'th element from a list.*
+*1.20 (\*) Remove the n'th element from a list.*
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (remove-nth '(1 2 3 4) 2)
+(1 2 4)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p120.lisp)
-
-
-Example:
-?- remove_at(X,[a,b,c,d],2,R).
-X = b
-R = [a,c,d]
 
 *1.21 (\*) Insert an element at a given position into a list.*
 
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (insert '(1 2 3 4 5) 3 10)
+(3 2 1 10 4 5)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p121.lisp)
 
-
-Example:
-?- insert_at(alfa,[a,b,c,d],2,L).
-L = [a,alfa,b,c,d]
-
 *1.22 (\*) Create a list containing all integers within a given range.*
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (range 3 10)
+(3 4 5 6 7 8 9 10)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p122.lisp)
 
-
-Example:
-?- range(4,9,L).
-L = [4,5,6,7,8,9]
-
 *1.23 (\*\*) Extract a given number of randomly selected elements from a list.*
-The selected items shall be put into a result list.
+
+_The selected items shall be put into a result list._
 
 {% highlight cl %}
 CL-USER> (compress '(1 2 3))
