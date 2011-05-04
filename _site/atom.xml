@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-04T17:47:48+03:00</updated>
+  <updated>2011-05-04T17:48:39+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -243,7 +243,7 @@
 
 &lt;p&gt;&lt;em&gt;Hint: Combine the solutions of problems 1.22 and 1.23.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;1.25 (*) Generate a random permutation of the elements of a list.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.25 (*) Generate a random permutation of the elements of a list.&lt;/strong&gt;&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
 &lt;span class='mi'&gt;2&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -254,7 +254,7 @@
 
 &lt;p&gt;Hint: Use the solution of problem 1.23.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;1.26 (**) Generate the combinations of K distinct objects chosen from the N elements of a list&lt;/em&gt; In how many ways can a committee of 3 be chosen from a group of 12 people? We all know that there are C(12,3) = 220 possibilities (C(N,K) denotes the well-known binomial coefficients). For pure mathematicians, this result may be great. But we want to really generate all the possibilities (via backtracking).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.26 (**) Generate the combinations of K distinct objects chosen from the N elements of a list&lt;/strong&gt; In how many ways can a committee of 3 be chosen from a group of 12 people? We all know that there are C(12,3) = 220 possibilities (C(N,K) denotes the well-known binomial coefficients). For pure mathematicians, this result may be great. But we want to really generate all the possibilities (via backtracking).&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
 &lt;span class='mi'&gt;2&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -263,7 +263,7 @@
 
 &lt;p&gt;Example: ?- combination(3,&lt;span&gt;a,b,c,d,e,f&lt;/span&gt;,L). L = &lt;span&gt;a,b,c&lt;/span&gt; ; L = &lt;span&gt;a,b,d&lt;/span&gt; ; L = &lt;span&gt;a,b,e&lt;/span&gt; ; &amp;#8230;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;1.27 (**) Group the elements of a set into disjoint subsets.&lt;/em&gt; a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3 and 4 persons? Write a predicate that generates all the possibilities via backtracking.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.27 (**) Group the elements of a set into disjoint subsets.&lt;/strong&gt; a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3 and 4 persons? Write a predicate that generates all the possibilities via backtracking.&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
 &lt;span class='mi'&gt;2&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -285,7 +285,7 @@
 
 &lt;p&gt;You may find more about this combinatorial problem in a good book on discrete mathematics under the term &amp;#8220;multinomial coefficients&amp;#8221;.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;1.28 (**) Sorting a list of lists according to length of sublists&lt;/em&gt; a) We suppose that a list (InList) contains elements that are lists themselves. The objective is to sort the elements of InList according to their length. E.g. short lists first, longer lists later, or vice versa.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.28 (**) Sorting a list of lists according to length of sublists&lt;/strong&gt; a) We suppose that a list (InList) contains elements that are lists themselves. The objective is to sort the elements of InList according to their length. E.g. short lists first, longer lists later, or vice versa.&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
 &lt;span class='mi'&gt;2&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
