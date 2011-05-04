@@ -18,6 +18,86 @@ on their strengths and weaknesses. You'd probably do good to learn
 them both, but my arguments here may lead you to pick only one of the
 languages depending on you preferences.
 
+#Installation
+
+**Linux/Unix installation**
+
+If you're using a Linux distribution or some other Unix derivative
+such as *BSD or Solaris you'll probably be able to install Ruby and
+Python through the operating system's software management system. For
+instance on Debian Linux systems(Ubuntu is a popular Debian
+derivative) you can use apt to install them. Run the following
+commands as root or with sudo:
+
+{% highlight console %}
+$ apt-get install ruby
+$ apt-get install python
+{% endhighlight %}
+
+On Red Hat based distros like Fedora, CentOS, etc you can use yum
+instead:
+
+{% highlight console %}
+$ yum install ruby
+$ yum install python
+{% endhighlight %}
+
+You should keep in mind the fact that both Ruby and Python have two
+version that are commonly used at the moment. Ruby's current version
+is *1.9.2* and Python's is *3.2*. For various reasons(like backward
+compatibility for instance), however, the current versions are not
+widely deployed yet(especially Python 3). In most Linux distributions
+the package ruby will actually be Ruby 1.8.x and the package python
+will be Python 2.7.x. If your distribution is one of those - look for
+packages named ruby19(or similar) and python3:
+
+{% highlight console %}
+$ apt-get install ruby19
+$ apt-get install python3
+{% endhighlight %}
+
+or:
+
+{% highlight console %}
+$ apt-get install ruby19
+$ apt-get install python3
+{% endhighlight %}
+
+Using the distribution package management system is a simple solution,
+but in the case of Ruby it might not be best one. Most Ruby hackers
+favour a powerful bash script called RVM(Ruby Version Manager) that
+allows you to install several different version(or flavours of Ruby)
+and switch easily between them. Please refer to the official
+[RVM documentation](https://rvm.beginrescueend.com/) for installation
+and usage instructions.
+ 
+**Windows installation**
+
+Installing Ruby on Windows used to be a pretty hard task, but this is
+no longer the case now thanks to
+[the RubyInstaller for Windows](http://rubyinstaller.org/). This is a
+self-contained Windows-based installer that includes the Ruby
+language, an execution environment, important documentation, and
+more. It has two editions one for the older 1.8.x Ruby branch and one
+for the current 1.9.x.
+
+Python has several installation options for Windows - the most obvious
+being the
+[official Python installer for Windows](http://python.org/ftp/python/3.2/python-3.2.msi). [ActiveState's ActivePython](http://www.activestate.com/activepython)
+is another popular option packed with more features, but you should
+keep in mind that although the Community Edition is free ActivePython
+is not an open-source project. Personally I prefer ActivePython. Other
+prebuilt Python binaries for Windows are also available, but are not
+commonly used.
+
+**OS X installation**
+
+Ruby is generally preinstalled on OSX, but OSX users can also install
+it via [homebrew](http://mxcl.github.com/homebrew/) or RVM(as mentioned in the Linux section).
+
+The is an official [Python package for OSX](http://python.org/ftp/python/3.2/python-3.2-macosx10.6.dmg) available. Most users
+will probably prefer using homebrew, however.
+
 #Syntax & code structure
 
 Ruby makes heavy use of braces and keywords(like do/then/end) to
@@ -57,14 +137,20 @@ with shell and Perl scripts - Ruby and Python offer a solid
 alternative. Python has a richer system administration library so I'd
 prefer it over Ruby for such tasks. 
 
-Ruby has a lot of crust("heritage") from Perl - like a myriad of special
-variables that are now more or less deprecated. It also has much syntactic
-sugar. For instance predicate methods(those that return true or false)
-have name that end with ?(usually) like even?, odd?, prime?,
-etc. Methods that mutate the object on which they were invoked
-generally have the ! suffix - sort!, map!, etc. I find this a nice
-decision. In Ruby you generally have many ways to achieve the same
-result:
+Ruby has a lot of crust("heritage") from Perl - like a myriad of
+special variables that are now more or less deprecated. It also has
+much syntactic sugar - for instance do/end is commonly replaced by {}
+for blocks that are only one line long, there is special syntax for
+hashtables, whose keys are symbols, etc. 
+
+Since special symbols(non alphanumeric) are allowed in Ruby
+identifiers Ruby uses them to impose some naming conventions to make
+the source code a bit more readable in certain scenarios - for
+instance predicate methods(those that return true or false) have names
+that end with ?(usually) like even?, odd?, prime?, etc. Methods that
+mutate the object on which they were invoked generally have the !
+suffix - sort!, map!, etc. I find this a nice decision. In Ruby you
+generally have many ways to achieve the same result:
 
 {% highlight irb %}
 ruby-1.9.2-p0 > 1.even?
@@ -270,6 +356,52 @@ an excellent support for the superb Swing GUI framework and MacRuby
 has great support for building Cocoa Apps for OS X. I personally think
 that JRuby is the best Ruby distribution out there, but that's the
 point of another post entirely.
+
+# 3rd party library availability and installation
+
+It's not secret that part of Python's philosophy is that it comes with
+batteries included - meaning that it's standard library is vast and
+covers a lot of common tasks. In case you can't find what you're
+looking for in it you're left with an number of third party libraries
+for Python whose number can only be described by the word epic and
+that cover every task conceivable. [PyPi](http://pypi.python.org/pypi)
+maintains an up-to-date list of Python packages.
+
+You have several options in the department of python package
+management. If you're using ActivePython you can use the excellent
+[PyPM](http://code.activestate.com/pypm/) tool, which provides quick
+installation of thousands of packages for many Python versions and
+platforms for ActivePython distributions.
+
+[EasyInstall](http://peak.telecommunity.com/DevCenter/EasyInstall) is another popular solution that works with the standard
+Python distribution. Like PyPM it allows you easily search for and
+install Python packages from the PyPI that are bundled in Python's
+standard egg format(Jave developers might think of eggs as
+jars). EasyInstall has splendid documentation so I won't go into any
+details here.
+
+Linux users will also find a great selection of Python libraries
+prepackaged for use with the distribution's package manager.
+
+Ruby has an application that is more or less equivalent to EasyInstall
+called [RubyGems](http://rubygems.org/)(gems are the standard way to distribute Ruby
+libraries). Linux users can of course install Ruby libraries with the
+distribution's package manager as well. However, a lot less ruby
+libraries are generally prepackaged compared to Python. 
+
+Although tools like EasyInstall and RubyGems are easy to use and quite
+handy, I as a long-time Linux users dislike them a bit, since they
+circumvent the distributions native package handling. Unfortunately
+package maintainers cannot find the time to package every Python and
+Ruby library available so I guess EasyInstall and RubyGems won't be
+going anywhere soon and of course we have to consider Windows users
+for whom such applications are of great value given the lack of
+unified package management on Windows.
+
+One thing to keep in mind about installing eggs and gems is that some
+of them are implemented in C(usually for performance reasons) and are
+locally built prior to their installation - an operation bound to fail
+if you don't have a C compiler installed.
 
 # Misc
 
