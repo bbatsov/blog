@@ -151,7 +151,7 @@ CL-USER> (encode-modified '(a a a a b c c a a d e e e e))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p111.lisp)
 
-*1.12 (\*\*) Decode a run-length encoded list.*
+**1.12 (\*\*) Decode a run-length encoded list.**
 
 _Given a run-length code list generated as specified in problem
 1.11. Construct its uncompressed version._ 
@@ -163,7 +163,7 @@ CL-USER>
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p112.lisp)
 
-*1.13 (\*\*) Run-length encoding of a list (direct solution).*
+**1.13 (\*\*) Run-length encoding of a list (direct solution).**
 
 _Implement the so-called run-length encoding data compression method
 directly. I.e. don't explicitly create the sublists containing the
@@ -177,7 +177,7 @@ CL-USER> (encode-direct '(a a a a b c c a a d e e e e))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p113.lisp)
 
-*1.14 (\*) Duplicate the elements of a list.*
+**1.14 (\*) Duplicate the elements of a list.**
 
 {% highlight cl %}
 CL-USER> (duplicate-elems '(1 2 3))
@@ -185,14 +185,14 @@ CL-USER> (duplicate-elems '(1 2 3))
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p114.lisp)
 
-*1.15 (\*\*) Duplicate the elements of a list a given number of times.*
+**1.15 (\*\*) Duplicate the elements of a list a given number of times.**
 {% highlight cl %}
 CL-USER> (duplicate-elems '(1 2 3) 3)
 (1 1 1 2 2 2 3 3 3)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p115.lisp)
 
-*1.16 (\*\*) Drop every N'th element from a list.*
+**1.16 (\*\*) Drop every N'th element from a list.**
 
 {% highlight cl %}
 LISP-PROBLEMS> (drop '(1 2 3 4 5 6 7 8 9) 2)
@@ -200,7 +200,7 @@ LISP-PROBLEMS> (drop '(1 2 3 4 5 6 7 8 9) 2)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p116.lisp)
 
-*1.17 (\*) Split a list into two parts; the length of the first part is given.*
+**1.17 (\*) Split a list into two parts; the length of the first part is given.**
 
 {% highlight cl %}
 LISP-PROBLEMS> (split '(1 2 3 4 5) 3)
@@ -208,7 +208,7 @@ LISP-PROBLEMS> (split '(1 2 3 4 5) 3)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p117.lisp)
 
-*1.18 (\*\*) Extract a slice from a list.*
+**1.18 (\*\*) Extract a slice from a list.**
 
 _Given two indices, START and END, the slice is the list containing the elements between them in the original list (both limits included). Start counting the elements with 0._
 
@@ -218,7 +218,8 @@ CL-USER>  (slice '(1 2 3 4 5 6 7 9) 3 6)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p118.lisp)
 
-*1.19 (\*\*) Rotate a list N places to the left.*
+**1.19 (\*\*) Rotate a list N places to the left.**
+{% highlight cl %}
 CL-USER> (rotate '(1 2 3 4 5) 2)
 (3 4 5 2 1)
 CL-USER> (rotate '(1 2 3 4 5) -2)
@@ -228,14 +229,14 @@ CL-USER> (rotate '(1 2 3 4 5) -2)
 
 _Hint: Use the predefined functions LENGTH and APPEND, as well as the result of problem 1.17._
 
-*1.20 (\*) Remove the n'th element from a list.*
+**1.20 (\*) Remove the n'th element from a list.**
 {% highlight cl %}
 CL-USER> (remove-nth '(1 2 3 4) 2)
 (1 2 4)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p120.lisp)
 
-*1.21 (\*) Insert an element at a given position into a list.*
+**1.21 (\*) Insert an element at a given position into a list.**
 
 {% highlight cl %}
 CL-USER> (insert '(1 2 3 4 5) 3 10)
@@ -243,14 +244,16 @@ CL-USER> (insert '(1 2 3 4 5) 3 10)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p121.lisp)
 
-*1.22 (\*) Create a list containing all integers within a given range.*
+**1.22 (\*) Create a list containing all integers within a given
+  range.**
+  
 {% highlight cl %}
 CL-USER> (range 3 10)
 (3 4 5 6 7 8 9 10)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p122.lisp)
 
-*1.23 (\*\*) Extract a given number of randomly selected elements from a list.*
+**1.23 (\*\*) Extract a given number of randomly selected elements from a list.**
 
 _The selected items shall be put into a result list._
 

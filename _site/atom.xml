@@ -4,13 +4,320 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-04T15:59:49+03:00</updated>
+  <updated>2011-05-04T16:56:10+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
     <email>bozhidar.batsov@gmail.com</email>
   </author>
 
+  
+  <entry>
+    <id>http://www.batsov.com/2011/05/04/lisp-problems</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/05/04/lisp-problems.html"/>
+    <title>Lisp Problems</title>
+    <updated>2011-05-04T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;This is a remake of the P-99: Ninety-Nine Prolog Problems collection that Werner Hett assembled over several years of teaching at the University of Applied Sciences (Berner Fachhochschule) at Biel-Bienne, Switzerland. The collection is structured into seven sections. I have renumbered the problems in order to get more freedom to rearrange things within the sections.&lt;/p&gt;
+
+&lt;p&gt;The purpose of this problem collection is to give you the opportunity to practice your skills in logic programming. Your goal should be to find the most elegant solution of the given problems. Efficiency is important, but logical clarity is even more crucial. Some of the (easy) problems can be trivially solved using built-in functions. However, in these cases, you learn more if you try to find your own solution.&lt;/p&gt;
+
+&lt;p&gt;The problems have different levels of difficulty. Those marked with a single asterisk (*) are easy. If you have successfully solved the preceeding problems you should be able to solve them within a few (say 15) minutes. Problems marked with two asterisks (**) are of intermediate difficulty. If you are a skilled Prolog programmer it shouldn&amp;#8217;t take you more than 30-90 minutes to solve them. Problems marked with three asterisks (***) are more difficult. You may need more time (i.e. a few hours or more) to find a good solution.&lt;/p&gt;
+
+&lt;h2 id='lisp_lists'&gt;Lisp Lists&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;strong&gt;1.01 (*) Find the last element of a list.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Do not use the built-in LAST function.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;my-last&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='mi'&gt;3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p101.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.02 (*) Find the penultimate(last but one) element of a list.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Do not use a combination of LAST and BUTLAST.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;penultimate&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p102.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.03 (*) Find the nth element of a list.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Do not use the built-in function NTH. The first element in the list is number 0.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;my-nth&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p103.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.04 (*) Find the number of elements of a list.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Do not use the built-in function LENGTH.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;my-length&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='mi'&gt;3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p104.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.05 (*) Reverse a list.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Do not use the built-in function REVERSE.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;my-reverse&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p105.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.06 (*) Find out whether a list is a palindrome.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;A palindrome can be read forward or backward; e.g. (1 2 3 2 1).&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;palindrome-p&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='no'&gt;NIL&lt;/span&gt;
+&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;palindrome-p&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='no'&gt;T&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p106.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.07 (**) Flatten a nested list structure.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Transform a list, possibly holding lists as elements into a &amp;#8216;flat&amp;#8217; list by replacing each list with its elements (recursively).&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;flatten&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;((&lt;/span&gt;&lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='nv'&gt;f&lt;/span&gt;&lt;span class='p'&gt;)))&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;f&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p107.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.08 (**) Eliminate consecutive duplicates of list elements.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;If a list contains repeated elements they should be replaced with a single copy of the element. The order of the elements should not be changed.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p108.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.09 (**) Pack consecutive duplicates of list elements into sublists.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;If a list contains repeated elements they should be placed in separate sublists.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;pack&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='p'&gt;((&lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;b&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;d&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p109.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.10 (*) Run-length encoding of a list.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Use the result of problem 1.09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as terms &lt;span&gt;N,E&lt;/span&gt; where N is the number of duplicates of the element E.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;encode&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='p'&gt;((&lt;/span&gt;&lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p110.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.11 (*) Modified run-length encoding.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Modify the result of problem 1.10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as (number element) terms.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;encode-modified&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='p'&gt;((&lt;/span&gt;&lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p111.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.12 (**) Decode a run-length encoded list.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Given a run-length code list generated as specified in problem 1.11. Construct its uncompressed version.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt; 
+&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;decode&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;((&lt;/span&gt;&lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;)))&lt;/span&gt; 
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p112.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.13 (**) Run-length encoding of a list (direct solution).&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Implement the so-called run-length encoding data compression method directly. I.e. don&amp;#8217;t explicitly create the sublists containing the duplicates, as in problem 1.09, but only count them. As in problem 1.11, simplify the result list by replacing the singleton terms (1 X) by X.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;encode-direct&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='p'&gt;((&lt;/span&gt;&lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='nv'&gt;b&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='nv'&gt;c&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='nv'&gt;a&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='nv'&gt;d&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='nv'&gt;e&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p113.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.14 (*) Duplicate the elements of a list.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;duplicate-elems&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p114.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.15 (**) Duplicate the elements of a list a given number of times.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;duplicate-elems&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p115.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.16 (**) Drop every N&amp;#8217;th element from a list.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;LISP-PROBLEMS&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;drop&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt; &lt;span class='mi'&gt;6&lt;/span&gt; &lt;span class='mi'&gt;7&lt;/span&gt; &lt;span class='mi'&gt;8&lt;/span&gt; &lt;span class='mi'&gt;9&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt; &lt;span class='mi'&gt;7&lt;/span&gt; &lt;span class='mi'&gt;9&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p116.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.17 (*) Split a list into two parts; the length of the first part is given.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;LISP-PROBLEMS&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;split&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;((&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p117.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.18 (**) Extract a slice from a list.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Given two indices, START and END, the slice is the list containing the elements between them in the original list (both limits included). Start counting the elements with 0.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt;  &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;slice&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt; &lt;span class='mi'&gt;6&lt;/span&gt; &lt;span class='mi'&gt;7&lt;/span&gt; &lt;span class='mi'&gt;9&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;6&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt; &lt;span class='mi'&gt;6&lt;/span&gt; &lt;span class='mi'&gt;7&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p118.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.19 (**) Rotate a list N places to the left.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;rotate&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;rotate&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='mi'&gt;-2&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p119.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Hint: Use the predefined functions LENGTH and APPEND, as well as the result of problem 1.17.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.20 (*) Remove the n&amp;#8217;th element from a list.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;remove-nth&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p120.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.21 (*) Insert an element at a given position into a list.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;insert&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;10&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;10&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p121.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.22 (*) Create a list containing all integers within a given range.&lt;/strong&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;range&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;10&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt; &lt;span class='mi'&gt;6&lt;/span&gt; &lt;span class='mi'&gt;7&lt;/span&gt; &lt;span class='mi'&gt;8&lt;/span&gt; &lt;span class='mi'&gt;9&lt;/span&gt; &lt;span class='mi'&gt;10&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p122.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1.23 (**) Extract a given number of randomly selected elements from a list.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The selected items shall be put into a result list.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p123.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Example: ?- rnd_select(&lt;span&gt;a,b,c,d,e,f,g,h&lt;/span&gt;,3,L). L = &lt;span&gt;e,d,a&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Hint: Use the built-in random number generator random/2 and the result of problem 1.20.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;1.24 (*) Lotto: Draw N different random numbers from the set 1..M.&lt;/em&gt; The selected numbers shall be put into a result list.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p124.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Example: ?- rnd_select(6,49,L). L = &lt;span&gt;23,1,17,33,21,37&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Hint: Combine the solutions of problems 1.22 and 1.23.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;1.25 (*) Generate a random permutation of the elements of a list.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p125.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Example: ?- rnd_permu(&lt;span&gt;a,b,c,d,e,f&lt;/span&gt;,L). L = &lt;span&gt;b,a,d,c,e,f&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Hint: Use the solution of problem 1.23.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;1.26 (**) Generate the combinations of K distinct objects chosen from the N elements of a list&lt;/em&gt; In how many ways can a committee of 3 be chosen from a group of 12 people? We all know that there are C(12,3) = 220 possibilities (C(N,K) denotes the well-known binomial coefficients). For pure mathematicians, this result may be great. But we want to really generate all the possibilities (via backtracking).&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p126.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Example: ?- combination(3,&lt;span&gt;a,b,c,d,e,f&lt;/span&gt;,L). L = &lt;span&gt;a,b,c&lt;/span&gt; ; L = &lt;span&gt;a,b,d&lt;/span&gt; ; L = &lt;span&gt;a,b,e&lt;/span&gt; ; &amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;1.27 (**) Group the elements of a set into disjoint subsets.&lt;/em&gt; a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3 and 4 persons? Write a predicate that generates all the possibilities via backtracking.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p127.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Example: ?- group3(&lt;span&gt;aldo,beat,carla,david,evi,flip,gary,hugo,ida&lt;/span&gt;,G1,G2,G3). G1 = &lt;span&gt;aldo,beat&lt;/span&gt;, G2 = &lt;span&gt;carla,david,evi&lt;/span&gt;, G3 = &lt;span&gt;flip,gary,hugo,ida&lt;/span&gt; &amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;b) Generalize the above predicate in a way that we can specify a list of group sizes and the predicate will return a list of groups.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p127.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Example: ?- group(&lt;span&gt;aldo,beat,carla,david,evi,flip,gary,hugo,ida&lt;/span&gt;,&lt;span&gt;2,2,5&lt;/span&gt;,Gs). Gs = &lt;span&gt;&lt;span&gt;aldo,beat&lt;/span&gt;,&lt;span&gt;carla,david&lt;/span&gt;,&lt;span&gt;evi,flip,gary,hugo,ida&lt;/span&gt;&lt;/span&gt; &amp;#8230;&lt;/p&gt;
+
+&lt;p&gt;Note that we do not want permutations of the group members; i.e. &lt;span&gt;&lt;span&gt;aldo,beat&lt;/span&gt;,&amp;#8230;&lt;/span&gt; is the same solution as &lt;span&gt;&lt;span&gt;beat,aldo&lt;/span&gt;,&amp;#8230;&lt;/span&gt;. However, we make a difference between &lt;span&gt;&lt;span&gt;aldo,beat&lt;/span&gt;,&lt;span&gt;carla,david&lt;/span&gt;,&amp;#8230;&lt;/span&gt; and &lt;span&gt;&lt;span&gt;carla,david&lt;/span&gt;,&lt;span&gt;aldo,beat&lt;/span&gt;,&amp;#8230;&lt;/span&gt;.&lt;/p&gt;
+
+&lt;p&gt;You may find more about this combinatorial problem in a good book on discrete mathematics under the term &amp;#8220;multinomial coefficients&amp;#8221;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;1.28 (**) Sorting a list of lists according to length of sublists&lt;/em&gt; a) We suppose that a list (InList) contains elements that are lists themselves. The objective is to sort the elements of InList according to their length. E.g. short lists first, longer lists later, or vice versa.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p128.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Example: ?- lsort(&lt;span&gt;&lt;span&gt;a,b,c&lt;/span&gt;,&lt;span&gt;d,e&lt;/span&gt;,&lt;span&gt;f,g,h&lt;/span&gt;,&lt;span&gt;d,e&lt;/span&gt;,&lt;span&gt;i,j,k,l&lt;/span&gt;,&lt;span&gt;m,n&lt;/span&gt;,&lt;span&gt;o&lt;/span&gt;&lt;/span&gt;,L). L = &lt;span&gt;&lt;span&gt;o&lt;/span&gt;, &lt;span&gt;d, e&lt;/span&gt;, &lt;span&gt;d, e&lt;/span&gt;, &lt;span&gt;m, n&lt;/span&gt;, &lt;span&gt;a, b, c&lt;/span&gt;, &lt;span&gt;f, g, h&lt;/span&gt;, &lt;span&gt;i, j, k, l&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;b) Again, we suppose that a list (InList) contains elements that are lists themselves. But this time the objective is to sort the elements of InList according to their length frequency; i.e. in the default, where sorting is done ascendingly, lists with rare lengths are placed first, others with a more frequent length come later.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p128.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Example: ?- lfsort(&lt;span&gt;&lt;span&gt;a,b,c&lt;/span&gt;,&lt;span&gt;d,e&lt;/span&gt;,&lt;span&gt;f,g,h&lt;/span&gt;,&lt;span&gt;d,e&lt;/span&gt;,&lt;span&gt;i,j,k,l&lt;/span&gt;,&lt;span&gt;m,n&lt;/span&gt;,&lt;span&gt;o&lt;/span&gt;&lt;/span&gt;,L). L = &lt;span&gt;&lt;span&gt;i, j, k, l&lt;/span&gt;, &lt;span&gt;o&lt;/span&gt;, &lt;span&gt;a, b, c&lt;/span&gt;, &lt;span&gt;f, g, h&lt;/span&gt;, &lt;span&gt;d, e&lt;/span&gt;, &lt;span&gt;d, e&lt;/span&gt;, &lt;span&gt;m, n&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that in the above example, the first two lists in the result L have length 4 and 1, both lengths appear just once. The third and forth list have length 3; there are two list of this length. And finally, the last three lists have length 2. This is the most frequent length.&lt;/p&gt;
+
+&lt;h2 id='arithmetic'&gt;Arithmetic&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2 id='logic_and_codes'&gt;Logic and Codes&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2 id='binary_trees'&gt;Binary Trees&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2 id='multiway_trees'&gt;Multiway Trees&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2 id='graphs'&gt;Graphs&lt;/h2&gt;
+&lt;hr /&gt;
+&lt;h2 id='misc'&gt;Misc&lt;/h2&gt;
+&lt;hr /&gt;</content>
+  </entry>
   
   <entry>
     <id>http://www.batsov.com/2011/05/03/ruby-or-python</id>
@@ -572,11 +879,13 @@ compinit
 
 &lt;p&gt;Although the authors of many languages claim that the language they created is the greatest thing after hot water, this is rarely the case. Most of the &amp;#8220;unique&amp;#8221; features are not quite unique and the truly unique stuff is often just useless. I don&amp;#8217;t believe that there is a single greatest and unparallelled language, but I do believe that some languages are more valuable them others in term of both theory(the concepts around which they revolve) and practice(the chances of you landing a job with them or simply getting a task done).&lt;/p&gt;
 
-&lt;p&gt;In this blog post I&amp;#8217;ve review the ten or so languages that I found to be most enlightening/helpful to me over the years. I think that every professional software engineer should have at least a passing knowledge of them.&lt;/p&gt;
+&lt;p&gt;In this blog post I&amp;#8217;ve review the ten or so languages that I&amp;#8217;ve found to be most enlightening/helpful for me over the years. I think that every professional software engineer should have at least a passing knowledge of them.&lt;/p&gt;
 
 &lt;h1 id='c'&gt;C&lt;/h1&gt;
 &lt;hr /&gt;
-&lt;p&gt;The C programming language has been around for more than forty years now. While it&amp;#8217;s often viewed as a higher level assembly language today in the era of Java, .Net and Python C remains the sole choice for doing serious system programming - writing drivers, all kinds of servers and virtual machines.&lt;/p&gt;
+&lt;p&gt;The C programming language has been around for about forty years now(it appeared in 1973). While it&amp;#8217;s often viewed as a higher level assembly language today in the era of Java, .Net and Python, C remains the sole choice for doing serious system programming - writing drivers, all kinds of servers and virtual machines.&lt;/p&gt;
+
+&lt;p&gt;Learning C also give you an insight to the inner working of the computer like memory management and native data types(based on a CPU&amp;#8217;s registries).&lt;/p&gt;
 
 &lt;p&gt;The best way to get started with C hasn&amp;#8217;t changed in the past 20+ years - just pick a copy of &lt;a href='http://www.amazon.com/Programming-Language-2nd-Brian-Kernighan/dp/0131103628'&gt;&amp;#8220;The C Programming Language&amp;#8221;&lt;/a&gt; by K&amp;amp;R.&lt;/p&gt;
 
@@ -584,29 +893,37 @@ compinit
 &lt;hr /&gt;
 &lt;p&gt;&lt;em&gt;&amp;#8220;Lisp is worth learning for the profound enlightenment experience you will have when you finally get it; that experience will make you a better programmer for the rest of your days, even if you never actually use Lisp itself a lot.&amp;#8221;&lt;/em&gt; - Eric Raymond&lt;/p&gt;
 
-&lt;p&gt;One of the oldest programming languages around - created in 1958 and still relevant today. Important for its unique code is data approach, advanced code generation facilities(macros) and the ability to develop software in incremental and interactive fashion. Although many of the features that originally made it truly unique(like garbage collection, if expression, function objects) are found in many modern languages Lisp still offers some compelling alternatives for those interested to explore it.&lt;/p&gt;
+&lt;p&gt;One of the oldest programming languages around - created in 1958 and still relevant today. Important for its unique code is data approach, advanced code generation facilities(macros) and the ability to develop software in incremental and interactive fashion.&lt;/p&gt;
 
-&lt;p&gt;You cannot start with a better introduction to Lisp that Peter Seibel&amp;#8217;s &lt;a href='http://www.gigamonkeys.com/book/'&gt;&amp;#8220;Practical Common Lisp&amp;#8221;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Although many of the features that originally made it truly unique(like garbage collection, if expression, function objects) are now found in many modern languages, Lisp still offers some compelling alternatives for those interested to explore it.&lt;/p&gt;
+
+&lt;p&gt;These days Common Lisp is considered the canonical Lisp dialect - a multi-paradigm language with excellent support for imperative, functional and object-oriented programming. Another popular dialect is Scheme which is a simpler language focused mainly on functional programming and until recently was a popular choice for teaching introductory programming classes in many major US universities(recently it&amp;#8217;s being displaced by Python).&lt;/p&gt;
+
+&lt;p&gt;You cannot start with a better introduction to Common Lisp than Peter Seibel&amp;#8217;s &lt;a href='http://www.gigamonkeys.com/book/'&gt;&amp;#8220;Practical Common Lisp&amp;#8221;&lt;/a&gt;. If you fancy Scheme more take a look at the classic text &lt;a href='http://mitpress.mit.edu/sicp/full-text/book/book.html'&gt;&amp;#8220;Structure and Interpretation of Computer Programs&amp;#8221;&lt;/a&gt;. A good source of exercises for aspiring Lisp programmers are the &lt;a href='http://batsov.com/lisp-problems.html'&gt;&amp;#8220;Lisp Problems&amp;#8221;&lt;/a&gt;(a work in progress based on the original &amp;#8220;Prolog Problems&amp;#8221;).&lt;/p&gt;
 
 &lt;h1 id='java'&gt;Java&lt;/h1&gt;
 &lt;hr /&gt;
-&lt;p&gt;Let&amp;#8217;s face it - if you&amp;#8217;re in the market for jobs a third of them are about Java EE or Android development. The language is not quite elegant, but the platform is truly magnificent. Although there are many other languages targeting the JVM(Scala, Groovy, Clojure, JRuby, Jython - just to name a few) Java is still predominant by a wide margin and this is unlikely to change soon.&lt;/p&gt;
+&lt;p&gt;Let&amp;#8217;s face it - if you&amp;#8217;re in the market for jobs a third of them are about Java EE or Android development(the other two thirds are probably related to PHP and .NET). The language is not quite elegant, but the platform is truly magnificent. Although there are many other languages targeting the JVM(Scala, Groovy, Clojure, JRuby, Jython - just to name a few) Java is still predominant by a wide margin and this is unlikely to change soon. It&amp;#8217;s actually &lt;a href='http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html'&gt;the most popular programming language in the world&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;I&amp;#8217;ve taught a couple of introductory Java programming courses(in Bulgarian), but I&amp;#8217;d recommend the &lt;a href='http://www.amazon.com/Core-Java-TM-I--Fundamentals-8th/dp/0132354764/ref=sr_1_1?s=books&amp;amp;ie=UTF8&amp;amp;qid=1303901341&amp;amp;sr=1-1'&gt;&amp;#8220;Core Java&amp;#8221;&lt;/a&gt; book over my lectures any day of the week. :-)&lt;/p&gt;
 
 &lt;h1 id='haskell'&gt;Haskell&lt;/h1&gt;
 &lt;hr /&gt;
-&lt;p&gt;Functional programming has been gaining popularity in recent years with the rise of parallel computers and of the pure functional programming languages Haskell is probably the closest to the mainstream. It features great ideas like type inference, lazy evaluation, monads, pattern matching. As with Lisp many of the features of Haskell can be found in more impure packages(like Scala and Clojure), but Haskell is still the top pure functional language in my humble opinion. It also has really great free learning resources on-line like &lt;a href='http://learnyouahaskell.com/'&gt;&amp;#8220;Learn you a Haskell for great good&amp;#8221;&lt;/a&gt; and &lt;a href='http://book.realworldhaskell.org/read/'&gt;&amp;#8220;Real world Haskell&amp;#8221;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Functional programming has been gaining popularity in recent years with the rise of parallel computers, and of the pure functional programming languages Haskell is probably the closest to the mainstream. It features great ideas like type inference, lazy evaluation, monads, pattern matching. As with Lisp many of the features of Haskell can be found in more impure packages(like Scala and Clojure), but Haskell is still the top pure functional language in my humble opinion.&lt;/p&gt;
+
+&lt;p&gt;There are great free Haskell learning resources on-line like &lt;a href='http://learnyouahaskell.com/'&gt;&amp;#8220;Learn you a Haskell for great good&amp;#8221;&lt;/a&gt; and &lt;a href='http://book.realworldhaskell.org/read/'&gt;&amp;#8220;Real world Haskell&amp;#8221;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h1 id='perl'&gt;Perl&lt;/h1&gt;
 &lt;hr /&gt;
-&lt;p&gt;Once the undisputed king of the Internet Perl has recently fallen down from grace in its battle with the newer generation of dynamic languages like PHP, Ruby and Python. While I wouldn&amp;#8217;t advise anyone to start writing Web apps with Perl it&amp;#8217;s still the best language for writing administration and helper scripts with minimum fuss and maximum developer throughput. It also has the greatest support for text processing ever and an extremely flexible(albeit a bit of confusing) syntax.&lt;/p&gt;
+&lt;p&gt;Once the undisputed king of the Internet Perl has recently fallen down from grace in its battle with the newer generation of dynamic languages like PHP, Ruby and Python. While I wouldn&amp;#8217;t advise anyone to start writing Web or Enterprise apps with Perl it&amp;#8217;s still the best language for writing administration and helper scripts with minimum fuss and maximum developer throughput. It features the greatest support for text processing ever and an extremely flexible(albeit a bit of confusing) syntax.&lt;/p&gt;
+
+&lt;p&gt;Perl &lt;a href='http://www.cpan.org/'&gt;CPAN&lt;/a&gt; is probably the largest collection of third party libraries for a single language ever assembled.&lt;/p&gt;
 
 &lt;p&gt;Pick up a copy of &lt;a href='http://oreilly.com/catalog/9780596520113'&gt;&amp;#8220;Learning Perl&amp;#8221;&lt;/a&gt; or just browse the excellent &lt;em&gt;perldoc&lt;/em&gt; and start coding in Perl right away.&lt;/p&gt;
 
 &lt;h1 id='clojure'&gt;Clojure&lt;/h1&gt;
 &lt;hr /&gt;
-&lt;p&gt;Clojure is a Lisp dialect with an unique support for parallel and concurrent programming and runs on top of the venerable JVM. If you&amp;#8217;re looking to do some serious parallel programming look no further.&lt;/p&gt;
+&lt;p&gt;Clojure is a Lisp dialect with an unique support for parallel and concurrent programming and runs on top of the venerable JVM. If you&amp;#8217;re looking to do some serious parallel programming look no further. Other than that you&amp;#8217;ll find in Clojure a superb collection of functional data structures, pervasive use of laziness, higher order functions and tail-call optimizations, and some rather novel ideas on the topics of state and identity. Clojure also cleans up a bit the traditional Lisp syntax(read this is Clojure has fewer parentheses than say Common Lisp).&lt;/p&gt;
 
 &lt;p&gt;To get started I recommend you to watch the free Clojure screencasts on &lt;a href='http://clojure.blip.tv/'&gt;blip.tv&lt;/a&gt;.&lt;/p&gt;
 
@@ -614,15 +931,31 @@ compinit
 &lt;hr /&gt;
 &lt;p&gt;The most famous language from the logic programming family. Solving a problem like a sudoku puzzle in Prolog will be an eye opening experience for any developer. While it&amp;#8217;s unlikely that you&amp;#8217;ll ever use it practice the ideas found in Prolog will truly expand your thinking horizons.&lt;/p&gt;
 
+&lt;p&gt;A good starting point in your journey to Prolog will be &lt;a href='http://www.learnprolognow.org/'&gt;&amp;#8220;Learn Prolog Now&amp;#8221;&lt;/a&gt;. You may do a follow up with the collection of programming puzzles &lt;a href='http://sites.google.com/site/prologsite/prolog-problems/'&gt;&amp;#8220;Prolog problems&amp;#8221;&lt;/a&gt;.&lt;/p&gt;
+
 &lt;h1 id='ruby'&gt;Ruby&lt;/h1&gt;
 &lt;hr /&gt;
-&lt;p&gt;A pure object oriented dynamic scripting language with a very nice support for metaprogramming. Has versions written in Java(JRuby) and .Net(IronRuby). The language became popular with the rise of the Ruby on Rails web framework, but it has many applications that don&amp;#8217;t involve RoR or web development.&lt;/p&gt;
+&lt;p&gt;A pure object oriented dynamic scripting language with a very nice support for metaprogramming. Has versions written in Java(JRuby) and .Net(IronRuby) which makes it easy to integrate it with any software for those popular platforms. The language became popular with the rise of the Ruby on Rails web framework, but it has many potential applications that don&amp;#8217;t involve RoR or web development.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href='http://www.amazon.com/Programming-Ruby-1-9-Pragmatic-Programmers/dp/1934356085/ref=sr_1_1?s=books&amp;amp;ie=UTF8&amp;amp;qid=1303901367&amp;amp;sr=1-1'&gt;&amp;#8220;Programming Ruby&amp;#8221;&lt;/a&gt; and &lt;a href='http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177/ref=sr_1_3?s=books&amp;amp;ie=UTF8&amp;amp;qid=1303901367&amp;amp;sr=1-3'&gt;&amp;#8220;The Ruby Programming Language&amp;#8221;&lt;/a&gt; are two of the best introductory Ruby books around.&lt;/p&gt;
 
+&lt;h1 id='python'&gt;Python&lt;/h1&gt;
+&lt;hr /&gt;
+&lt;p&gt;A pure object oriented dynamic scripting language with a focus on simplicity, readability and maintainability. Popular for development of web applications, GUI applications and system administration utilities. Driven by the motto &amp;#8220;There is only one way to do it&amp;#8221; and the philosophy &amp;#8220;It comes with battery included&amp;#8221;. Python is Google&amp;#8217;s darling and is widely used by the IT giant.&lt;/p&gt;
+
+&lt;p&gt;A nice free on-line book about Python is &lt;a href='http://diveintopython3.org/'&gt;&amp;#8220;Dive into Python 3&amp;#8221;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1 id='c'&gt;C&lt;/h1&gt;
+&lt;hr /&gt;
+&lt;p&gt;The flagman language of the .NET platform. Similar in many aspects to Java C# is never-the-less ahead then Java in the innovations department - first to introduce concepts like Generics and Attributes to the mainstream programmers. It features some nice improvements over Java like properties, flexible namespaces and limited type inference.&lt;/p&gt;
+
+&lt;p&gt;There primary reason it&amp;#8217;s included in this list, however, is simply the sheer amount of job openings for C# developers. In my home country(Bulgaria) about a third of all programming positions are C# related.&lt;/p&gt;
+
+&lt;p&gt;My favourite C# book happens to be &lt;a href='http://www.amazon.com/C-Depth-Second-Jon-Skeet/dp/1935182471/ref=sr_1_3?ie=UTF8&amp;amp;qid=1304516334&amp;amp;sr=8-3'&gt;&amp;#8220;C# in Depth&amp;#8221;&lt;/a&gt;. You might happen to enjoy it as well.&lt;/p&gt;
+
 &lt;h1 id='scala'&gt;Scala&lt;/h1&gt;
 &lt;hr /&gt;
-&lt;p&gt;An interesting blend of pure object orientation and functional programming with some concurrency support baked in(actors). Of the current crop of JVM languages next to Clojure Scala looks most promising. It features an advanced static type system(more advanced than Haskell&amp;#8217;s), state of the art Java integration, support for pattern matching, extractors and other functional goodness. If any language has a chance of displacing the Java programming language it must be Scala&amp;#8230;&lt;/p&gt;
+&lt;p&gt;An interesting blend of pure object orientation and functional programming with some concurrency support baked in(actors). Of the current crop of JVM languages, next to Clojure, Scala looks most promising. It features an advanced static type system(more advanced than Haskell&amp;#8217;s), state of the art Java integration, support for pattern matching, extractors and other functional goodness. If any language has a chance of displacing the Java programming language it must be Scala&amp;#8230; Even the father of Java James Gosling acknowledged that if he decided to replace Java with another language it would be Scala.&lt;/p&gt;
 
 &lt;p&gt;Start your journey to Scala mastery with &lt;a href='http://www.artima.com/pins1ed/'&gt;&amp;#8220;Programming in Scala&amp;#8221;&lt;/a&gt;.&lt;/p&gt;
 
@@ -632,7 +965,9 @@ compinit
 
 &lt;h1 id='conclusion'&gt;Conclusion&lt;/h1&gt;
 &lt;hr /&gt;
-&lt;p&gt;We cannot be experts in ten or twenty programming languages - I&amp;#8217;m certain of that. I do, however, believe that all the ideas and techniques that we discover in different programming languages will generally enrich our thinking and make us better software engineers in principle.&lt;/p&gt;</content>
+&lt;p&gt;We cannot be experts in ten or twenty programming languages - I&amp;#8217;m certain of that. I do, however, believe that all the ideas and techniques that we discover in different programming languages will generally enrich our thinking and make us better software engineers in principle.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;P.S. If you&amp;#8217;re wondering why a certain &amp;#8220;great&amp;#8221; language X is not on the list keep in mind that this is my personal(and highly subjective) point of view on the subject. Who knows, in some dark and twisted place there may very well be people who consider BASIC and programming language masterpiece&amp;#8230; :-)&lt;/em&gt;&lt;/p&gt;</content>
   </entry>
   
   <entry>
