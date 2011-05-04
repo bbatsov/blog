@@ -258,33 +258,28 @@ CL-USER> (range 3 10)
 _The selected items shall be put into a result list._
 
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (rnd-select '(1 2 3 4 5 6) 3)
+(6 5 2)
+CL-USER> (rnd-select '(1 2 3 4 5 6) 3)
+(6 6 1)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p123.lisp)
 
-Example:
-?- rnd_select([a,b,c,d,e,f,g,h],3,L).
-L = [e,d,a]
+_Hint: Use the built-in random number generator RANDOM and MY-NTH._
 
-Hint: Use the built-in random number generator random/2 and the result of problem 1.20.
+**1.24 (\*) Lotto: Draw N different random numbers from the set 1..M.**
 
-*1.24 (\*) Lotto: Draw N different random numbers from the set 1..M.*
-The selected numbers shall be put into a result list.
+_The selected numbers shall be put into a result list._
 
 {% highlight cl %}
-CL-USER> (compress '(1 2 3))
-2
+CL-USER> (lotto-select 6 49)
+(8 15 19 5 2 13)
 {% endhighlight %}
 [View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p124.lisp)
 
-Example:
-?- rnd_select(6,49,L).
-L = [23,1,17,33,21,37]
+_Hint: Combine the solutions of problems 1.22 and 1.23._
 
-Hint: Combine the solutions of problems 1.22 and 1.23.
-
-*1.25 (\*) Generate a random permutation of the elements of a list.*
+**1.25 (\*) Generate a random permutation of the elements of a list.**
 
 {% highlight cl %}
 CL-USER> (compress '(1 2 3))
@@ -298,7 +293,7 @@ L = [b,a,d,c,e,f]
 
 Hint: Use the solution of problem 1.23.
 
-*1.26 (\*\*) Generate the combinations of K distinct objects chosen from the N elements of a list*
+**1.26 (\*\*) Generate the combinations of K distinct objects chosen from the N elements of a list**
 In how many ways can a committee of 3 be chosen from a group of 12 people? We all know that there are C(12,3) = 220 possibilities (C(N,K) denotes the well-known binomial coefficients). For pure mathematicians, this result may be great. But we want to really generate all the possibilities (via backtracking).
 
 {% highlight cl %}
@@ -314,7 +309,7 @@ L = [a,b,d] ;
 L = [a,b,e] ;
 ... 
 
-*1.27 (\*\*) Group the elements of a set into disjoint subsets.*
+**1.27 (\*\*) Group the elements of a set into disjoint subsets.**
 a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3 and 4 persons? Write a predicate that generates all the possibilities via backtracking.
 
 {% highlight cl %}
@@ -344,7 +339,7 @@ Note that we do not want permutations of the group members; i.e. [[aldo,beat],..
 
 You may find more about this combinatorial problem in a good book on discrete mathematics under the term "multinomial coefficients". 
 
-*1.28 (\*\*) Sorting a list of lists according to length of sublists*
+**1.28 (\*\*) Sorting a list of lists according to length of sublists**
 a) We suppose that a list (InList) contains elements that are lists themselves. The objective is to sort the elements of InList according to their length. E.g. short lists first, longer lists later, or vice versa.
 
 {% highlight cl %}

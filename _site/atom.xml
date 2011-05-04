@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-04T16:56:10+03:00</updated>
+  <updated>2011-05-04T17:47:48+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -222,26 +222,26 @@
 &lt;p&gt;&lt;strong&gt;1.23 (**) Extract a given number of randomly selected elements from a list.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;The selected items shall be put into a result list.&lt;/em&gt;&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
-&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;rnd-select&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt; &lt;span class='mi'&gt;6&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;6&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;rnd-select&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt; &lt;span class='mi'&gt;4&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt; &lt;span class='mi'&gt;6&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;6&lt;/span&gt; &lt;span class='mi'&gt;6&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p123.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Example: ?- rnd_select(&lt;span&gt;a,b,c,d,e,f,g,h&lt;/span&gt;,3,L). L = &lt;span&gt;e,d,a&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Hint: Use the built-in random number generator RANDOM and MY-NTH.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Hint: Use the built-in random number generator random/2 and the result of problem 1.20.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.24 (*) Lotto: Draw N different random numbers from the set 1..M.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;1.24 (*) Lotto: Draw N different random numbers from the set 1..M.&lt;/em&gt; The selected numbers shall be put into a result list.&lt;/p&gt;
-&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
-&lt;span class='mi'&gt;2&lt;/span&gt;
+&lt;p&gt;&lt;em&gt;The selected numbers shall be put into a result list.&lt;/em&gt;&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;lotto-select&lt;/span&gt; &lt;span class='mi'&gt;6&lt;/span&gt; &lt;span class='mi'&gt;49&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;8&lt;/span&gt; &lt;span class='mi'&gt;15&lt;/span&gt; &lt;span class='mi'&gt;19&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;13&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;a href='https://github.com/bbatsov/cl-99-problems/blob/master/p124.lisp'&gt;View solution&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Example: ?- rnd_select(6,49,L). L = &lt;span&gt;23,1,17,33,21,37&lt;/span&gt;&lt;/p&gt;
-
-&lt;p&gt;Hint: Combine the solutions of problems 1.22 and 1.23.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Hint: Combine the solutions of problems 1.22 and 1.23.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;1.25 (*) Generate a random permutation of the elements of a list.&lt;/em&gt;&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='cl'&gt;&lt;span class='nv'&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='nv'&gt;compress&lt;/span&gt; &lt;span class='o'&gt;&amp;#39;&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
