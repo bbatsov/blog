@@ -3,7 +3,7 @@ layout: post
 title: "Ruby or Python? Well, it depends..."
 ---
 
-** Disclaimer **
+**Disclaimer**
 
 _If you're looking for a flame post - this is not one of them. I love
 both languages and I'll simply compare some of their features and
@@ -25,7 +25,7 @@ delimit blocks of code. Python relies simply on indentation.
 
 {% highlight python %}
 def fact(n):
-    reduce(lambda x, y: x * y, range(1, n + 1))
+    return reduce(lambda x, y: x * y, range(1, n + 1))
 {% endhighlight %}
 
 Same thing in Ruby:
@@ -37,7 +37,17 @@ end
 {% endhighlight %}
 
 I personally prefer the Python approach since it enforces the code
-semantics based on the code structure alone without imposing special syntax.
+semantics based on the code structure alone without imposing special
+syntax.
+
+As a side node you might take under consideration that the Ruby method
+definition doesn't have an explicit return value. The value of the
+last expression in the method's body becomes automatically the
+method's return value. Lisp developers will find this familiar. Java
+and C# developers will probably find it a bit confusing. There is a
+_return_ in Ruby, though, it's just rarely used.
+
+Both languages have support for nested function definitions. 
 
 Both languages have support for "top-level" functions - that live(or
 seem to live) outside classes and modules(something not possible in
@@ -45,7 +55,7 @@ Java for instance). This makes them good for general purpose
 scripting. While I would still prefer to do my system administration
 with shell and Perl scripts - Ruby and Python offer a solid
 alternative. Python has a richer system administration library so I'd
-prefer it over Ruby for such tasks.
+prefer it over Ruby for such tasks. 
 
 Ruby has a lot of crust("heritage") from Perl - like a myriad of special
 variables that are now more or less deprecated. It also has much syntactic
@@ -87,13 +97,27 @@ libraries. I would not go into any details on the subject here, but
 I'll share with you the fact that I like Python's more.
 
 Both languages come with a REPL in which you can do some exploratory
-programming. Ruby's REPL(irb) seems to me more advanced since it allows you
-to do TAB smart completion(amongst other things).
+programming. Ruby's REPL(irb)  allows you
+to do TAB smart completion(amongst other things) by default. To get
+TAB completion in the Python REPL you'd have to execute this bit of
+code first:
 
-Ruby and Python do not have statements - only expressions. This
+{% highlight pycon %}
+>>> import readline, rlcompleter
+>>> readline.parse_and_bind("tab: complete")
+{% endhighlight %}
+
+Alternative you can just stick this code snippet in the
+**~/.pythonrc.py** file(create it if it doesn't exist). If you are using
+Windows adjust accordingly(you will have to figure out where
+pythonrc.py is located there).
+
+Ruby does not have statements - only expressions. This
 basically means that everything(objects, method calls) evaluate to
-some value(though the value might not be helpful always). One thing I
-dislike about the Python REPL is that it doesn't print None
+some value(though the value might not be helpful always). 
+
+In Python there are some statements such as assignment and _if_. One
+thing I dislike about the Python REPL is that it doesn't print None
 values. Compare this bit of Python code:
 
 {% highlight pycon %}
@@ -111,6 +135,31 @@ this is a test
 
 In the Python version we see only the side-effect(the printing), but
 not the return value.
+
+Python also ships with a minimalistic IDE called IDLE. If you don't
+have it by default after a python installation on Linux probably
+you're vendor decided to package IDLE as a separate package. IDLE
+offers basic features like syntax highlighting, code completion and
+integration with a debugger. It's a good tool for exploratory
+programming, but I advise you to pick another tool for serious development.
+
+#Naming conventions
+The naming conventions for both Ruby and Python are mostly the same
+which is good if you're using them both on a daily basis - less room
+for confusion.
+
+* variable and method names consisting of more then one word are
+  written in lowercase with underscores separating the individual
+  words like_this.
+* Class names start with capital letter and follow the camel case
+  naming convention LikeThis. Some of Python's core classes, however,
+  violate this convention.
+* Constants are generally written in all caps with underscores
+  separating the individual words LIKE_THIS.
+  
+As I mentioned earlier it's customary to add ? as a suffix to
+predicate methods and ! to mutator methods in Ruby. This convention is
+not always followed unfortunately, even in Ruby's standard library.
 
 #OOP support
 Both Ruby and Python are famous members of the family of object

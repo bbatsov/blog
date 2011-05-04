@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-03T18:54:41+03:00</updated>
+  <updated>2011-05-04T12:54:48+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -21,7 +21,7 @@
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
     </author>
-    <content type="html">&lt;p&gt;** Disclaimer **&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;strong&gt;Disclaimer&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;If you&amp;#8217;re looking for a flame post - this is not one of them. I love both languages and I&amp;#8217;ll simply compare some of their features and possible uses.&lt;/em&gt;&lt;/p&gt;
 
@@ -31,7 +31,7 @@
 
 &lt;p&gt;Ruby makes heavy use of braces and keywords(like do/then/end) to delimit blocks of code. Python relies simply on indentation.&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='python'&gt;&lt;span class='k'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;fact&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='n'&gt;n&lt;/span&gt;&lt;span class='p'&gt;):&lt;/span&gt;
-    &lt;span class='nb'&gt;reduce&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;lambda&lt;/span&gt; &lt;span class='n'&gt;x&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;y&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='n'&gt;x&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;y&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;range&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
+    &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='nb'&gt;reduce&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='k'&gt;lambda&lt;/span&gt; &lt;span class='n'&gt;x&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;y&lt;/span&gt;&lt;span class='p'&gt;:&lt;/span&gt; &lt;span class='n'&gt;x&lt;/span&gt; &lt;span class='o'&gt;*&lt;/span&gt; &lt;span class='n'&gt;y&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='nb'&gt;range&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;,&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt; &lt;span class='o'&gt;+&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='p'&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;Same thing in Ruby:&lt;/p&gt;
@@ -41,6 +41,10 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;I personally prefer the Python approach since it enforces the code semantics based on the code structure alone without imposing special syntax.&lt;/p&gt;
+
+&lt;p&gt;As a side node you might take under consideration that the Ruby method definition doesn&amp;#8217;t have an explicit return value. The value of the last expression in the method&amp;#8217;s body becomes automatically the method&amp;#8217;s return value. Lisp developers will find this familiar. Java and C# developers will probably find it a bit confusing. There is a &lt;em&gt;return&lt;/em&gt; in Ruby, though, it&amp;#8217;s just rarely used.&lt;/p&gt;
+
+&lt;p&gt;Both languages have support for nested function definitions.&lt;/p&gt;
 
 &lt;p&gt;Both languages have support for &amp;#8220;top-level&amp;#8221; functions - that live(or seem to live) outside classes and modules(something not possible in Java for instance). This makes them good for general purpose scripting. While I would still prefer to do my system administration with shell and Perl scripts - Ruby and Python offer a solid alternative. Python has a richer system administration library so I&amp;#8217;d prefer it over Ruby for such tasks.&lt;/p&gt;
 
@@ -71,9 +75,16 @@
 
 &lt;p&gt;Both languages have powerful features for organising code in libraries. I would not go into any details on the subject here, but I&amp;#8217;ll share with you the fact that I like Python&amp;#8217;s more.&lt;/p&gt;
 
-&lt;p&gt;Both languages come with a REPL in which you can do some exploratory programming. Ruby&amp;#8217;s REPL(irb) seems to me more advanced since it allows you to do TAB smart completion(amongst other things).&lt;/p&gt;
+&lt;p&gt;Both languages come with a REPL in which you can do some exploratory programming. Ruby&amp;#8217;s REPL(irb) allows you to do TAB smart completion(amongst other things) by default. To get TAB completion in the Python REPL you&amp;#8217;d have to execute this bit of code first:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='pycon'&gt;&lt;span class='gp'&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class='kn'&gt;import&lt;/span&gt; &lt;span class='nn'&gt;readline&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='nn'&gt;rlcompleter&lt;/span&gt;
+&lt;span class='gp'&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class='n'&gt;readline&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='n'&gt;parse_and_bind&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;tab: complete&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Alternative you can just stick this code snippet in the &lt;strong&gt;~/.pythonrc.py&lt;/strong&gt; file(create it if it doesn&amp;#8217;t exist). If you are using Windows adjust accordingly(you will have to figure out where pythonrc.py is located there).&lt;/p&gt;
 
-&lt;p&gt;Ruby and Python do not have statements - only expressions. This basically means that everything(objects, method calls) evaluate to some value(though the value might not be helpful always). One thing I dislike about the Python REPL is that it doesn&amp;#8217;t print None values. Compare this bit of Python code:&lt;/p&gt;
+&lt;p&gt;Ruby does not have statements - only expressions. This basically means that everything(objects, method calls) evaluate to some value(though the value might not be helpful always).&lt;/p&gt;
+
+&lt;p&gt;In Python there are some statements such as assignment and &lt;em&gt;if&lt;/em&gt;. One thing I dislike about the Python REPL is that it doesn&amp;#8217;t print None values. Compare this bit of Python code:&lt;/p&gt;
 &lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='pycon'&gt;&lt;span class='gp'&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class='k'&gt;print&lt;/span&gt;&lt;span class='p'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;this is a test&amp;quot;&lt;/span&gt;&lt;span class='p'&gt;)&lt;/span&gt;
 &lt;span class='go'&gt;this is a test&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -85,6 +96,22 @@
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;p&gt;In the Python version we see only the side-effect(the printing), but not the return value.&lt;/p&gt;
+
+&lt;p&gt;Python also ships with a minimalistic IDE called IDLE. If you don&amp;#8217;t have it by default after a python installation on Linux probably you&amp;#8217;re vendor decided to package IDLE as a separate package. IDLE offers basic features like syntax highlighting, code completion and integration with a debugger. It&amp;#8217;s a good tool for exploratory programming, but I advise you to pick another tool for serious development.&lt;/p&gt;
+
+&lt;h1 id='naming_conventions'&gt;Naming conventions&lt;/h1&gt;
+
+&lt;p&gt;The naming conventions for both Ruby and Python are mostly the same which is good if you&amp;#8217;re using them both on a daily basis - less room for confusion.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;variable and method names consisting of more then one word are written in lowercase with underscores separating the individual words like_this.&lt;/li&gt;
+
+&lt;li&gt;Class names start with capital letter and follow the camel case naming convention LikeThis. Some of Python&amp;#8217;s core classes, however, violate this convention.&lt;/li&gt;
+
+&lt;li&gt;Constants are generally written in all caps with underscores separating the individual words LIKE_THIS.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As I mentioned earlier it&amp;#8217;s customary to add ? as a suffix to predicate methods and ! to mutator methods in Ruby. This convention is not always followed unfortunately, even in Ruby&amp;#8217;s standard library.&lt;/p&gt;
 
 &lt;h1 id='oop_support'&gt;OOP support&lt;/h1&gt;
 
