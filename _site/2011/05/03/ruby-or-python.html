@@ -237,9 +237,79 @@
 
 <p><a href='http://peak.telecommunity.com/DevCenter/EasyInstall'>EasyInstall</a> is another popular solution that works with the standard Python distribution. Like PyPM it allows you easily search for and install Python packages from the PyPI that are bundled in Python&#8217;s standard egg format(Jave developers might think of eggs as jars). EasyInstall has splendid documentation so I won&#8217;t go into any details here.</p>
 
+<p><a href='http://www.pip-installer.org/en/latest/index.html'>pip</a> is a replacement for easy_install. It uses mostly the same techniques for finding packages, so packages that were made easy_installable should be pip-installable as well.</p>
+
+<p>pip is meant to improve on EasyInstall. Some of the improvements:</p>
+
+<ul>
+<li>All packages are downloaded before installation. Partially-completed installation doesn’t occur as a result.</li>
+
+<li>Care is taken to present useful output on the console.</li>
+
+<li>The reasons for actions are kept track of. For instance, if a package is being installed, pip keeps track of why that package was required.</li>
+
+<li>Error messages should be useful.</li>
+
+<li>The code is relatively concise and cohesive, making it easier to use programmatically.</li>
+
+<li>Packages don’t have to be installed as egg archives, they can be installed flat (while keeping the egg metadata).</li>
+
+<li>Native support for other version control systems (Git, Mercurial and Bazaar)</li>
+
+<li>Uninstallation of packages.</li>
+
+<li>Simple to define fixed sets of requirements and reliably reproduce a set of packages.</li>
+</ul>
+
+<p>pip doesn’t do everything that easy_install does. Specifically:</p>
+
+<ul>
+<li>It cannot install from eggs. It only installs from source. (In the future it would be good if it could install binaries from Windows .exe or .msi – binary install on other platforms is not a priority.)</li>
+
+<li>It doesn’t understand Setuptools extras (like package<span>test</span>). This should be added eventually.</li>
+
+<li>It is incompatible with some packages that extensively customize distutils or setuptools in their setup.py files.</li>
+</ul>
+
 <p>Linux users will also find a great selection of Python libraries prepackaged for use with the distribution&#8217;s package manager.</p>
 
-<p>Ruby has an application that is more or less equivalent to EasyInstall called <a href='http://rubygems.org/'>RubyGems</a>(gems are the standard way to distribute Ruby libraries). Linux users can of course install Ruby libraries with the distribution&#8217;s package manager as well. However, a lot less ruby libraries are generally prepackaged compared to Python.</p>
+<p>Ruby has an application that is more or less equivalent to EasyInstall called <a href='http://rubygems.org/'>RubyGems</a>(gems are the standard way to distribute Ruby libraries). Linux users can of course install Ruby libraries with the distribution&#8217;s package manager as well.</p>
+
+<p>RubyGems has the following features:</p>
+
+<ul>
+<li>Easy Installation and removal of RubyGems packages and their dependents.</li>
+
+<li>Management and control of local packages</li>
+
+<li>Package dependency management</li>
+
+<li>Query, search and list local and remote packages</li>
+
+<li>Multiple version support for installed packages</li>
+
+<li>Web-based interface to view the documentation for your installed gems</li>
+
+<li>Easy to use interface for building gem packages</li>
+
+<li>Simple server for distributing your own gem packages</li>
+
+<li>Easy to use building and publishing of gem packages</li>
+</ul>
+
+<p>Using RubyGems, you can:</p>
+
+<ul>
+<li>download and install Ruby libraries easily</li>
+
+<li>not worry about libraries A and B depending on different versions of library C</li>
+
+<li>easily remove libraries you no longer use</li>
+
+<li>have power and control over your Ruby platform!</li>
+</ul>
+
+<p>A reader pointed out that about 23000 packages are available for installation through RubyGems and 15000 through PyPI. This, however, cannot be considered as a certain sign that there are more libraries available for Ruby than for Python.</p>
 
 <p>Although tools like EasyInstall and RubyGems are easy to use and quite handy, I as a long-time Linux users dislike them a bit, since they circumvent the distributions native package handling. Unfortunately package maintainers cannot find the time to package every Python and Ruby library available so I guess EasyInstall and RubyGems won&#8217;t be going anywhere soon and of course we have to consider Windows users for whom such applications are of great value given the lack of unified package management on Windows.</p>
 
