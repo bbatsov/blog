@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-05T13:11:18+03:00</updated>
+  <updated>2011-05-05T13:47:28+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -1649,7 +1649,15 @@ compinit
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
     </author>
-    <content type="html">&lt;p&gt;Every professional developer knows how important to the development process the keyboard is, so it is only natural to be on the look for some quality piece of hardware. After a long research in the area of good keyboards I decided to upgrade my current rig to the recently released “Das Keyboard 3″. I have long heard stories about its quality and comfort and I hope I’ll experience them myself soon. So what are waiting for – research the market yourselves and make your pick, your hands deserve a quality keyboard!&lt;/p&gt;</content>
+    <content type="html">&lt;p&gt;Every professional developer knows how important to the development process the keyboard is, so it is only natural to be on the look for some quality piece of hardware. After a long research in the area of good keyboards I decided to upgrade my current rig to the recently released &lt;a href='http://www.daskeyboard.com/'&gt;&amp;#8220;Das Keyboard 3&amp;#8221;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Das Keyboard comes in three flavours - Professional(mechanical keyboard with labelled keys), Ultimate(the original mechanical keyboard with blank keys) and Silent(mechanical keyboard with labelled keys that doesn&amp;#8217;t produce the trademarked clicking sound of the original Das Keyboard).&lt;/p&gt;
+
+&lt;p&gt;I bought the Ultimate model, of course. I&amp;#8217;ve been a touch typist for several years now and I didn&amp;#8217;t really cared about the labelled keys(though I did miss them in games). Two words describe this keyboard perfectly - &lt;strong&gt;Bad Ass&lt;/strong&gt;. It&amp;#8217;s without a doubt the single finest piece of keyboard hardware that I&amp;#8217;ve touched, it&amp;#8217;s very comfortable, very solid and I feel that I&amp;#8217;ve actually improved my typing speed with it. My colleagues don&amp;#8217;t like the noisy work of the keyboard very much, but I have no problems with it. I actually have grown quite fond of it.&lt;/p&gt;
+
+&lt;p&gt;The keyboard also features a two port USB hub, that I didn&amp;#8217;t really consider when I was buying it, but it turned out quite helpful. I&amp;#8217;ve actually stopped using the USB ports of my computer entirely(except for input devices) - I use the keyboard hub to plug-in flash drives and charge devices. When your computer is sitting beneath a desk you learn to appreciate USB hubs very quickly.&lt;/p&gt;
+
+&lt;p&gt;I have long heard stories about Das Keyboard&amp;#8217;s quality and comfort and I it has totally lived up to its hype. They price is admittedly a bit steep(I bought two keyboards for home and for work each costing 130$), but this is our hands and productivity we&amp;#8217;re talking about so we shouldn&amp;#8217;t be cheap. So what are waiting for - research the market yourselves and make your pick, your hands deserve a quality keyboard(the Das Keyboard)!&lt;/p&gt;</content>
   </entry>
   
   <entry>

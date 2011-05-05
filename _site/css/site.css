@@ -63,8 +63,9 @@ h3 {
 #sidebar {
     float: left;
     display: block;
-    width: 100px;
+    width: 80px;
     margin-top: 300px;
+    margin-left: 20px;
 }
 
 #menu
