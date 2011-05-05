@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-04T17:48:39+03:00</updated>
+  <updated>2011-05-05T09:45:45+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -552,7 +552,9 @@
 
 &lt;p&gt;Ruby and Python are two beautifully engineered languages capable of just about everything. If you don&amp;#8217;t know any of them you&amp;#8217;ll do well to learn at least one. If you know only one it might not be a terrible idea to learn the other.&lt;/p&gt;
 
-&lt;p&gt;I haven&amp;#8217;t touched on many language features(like Python generators and Ruby mixins), but to be honest I&amp;#8217;m just tired of typing. One good place to start your journey to Python is &lt;a href='http://diveintopython3.org/'&gt;&amp;#8220;Dive into Python 3&amp;#8221;&lt;/a&gt;. For Ruby beginners I&amp;#8217;d recommend a copy of &lt;a href='http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177'&gt;&amp;#8220;The Ruby Programming Language&amp;#8221;&lt;/a&gt;.&lt;/p&gt;</content>
+&lt;p&gt;I haven&amp;#8217;t touched on many language features(like Python generators and Ruby mixins), but to be honest I&amp;#8217;m just tired of typing. One good place to start your journey to Python is &lt;a href='http://diveintopython3.org/'&gt;&amp;#8220;Dive into Python 3&amp;#8221;&lt;/a&gt;. For Ruby beginners I&amp;#8217;d recommend a copy of &lt;a href='http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177'&gt;&amp;#8220;The Ruby Programming Language&amp;#8221;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;P.S. If you like exploring different programming languages and you&amp;#8217;re currently shopping for ideas on the subject of which language to learn next you might find my recent article &lt;a href='/2011/04/27/programming-languages-worth-learning.html'&gt;&amp;#8220;Programming languages worth learning&amp;#8221;&lt;/a&gt; interesting as well.&lt;/em&gt;&lt;/p&gt;</content>
   </entry>
   
   <entry>

@@ -457,4 +457,11 @@ I haven't touched on many language features(like Python generators and
 Ruby mixins), but to be honest I'm just tired of typing. One good
 place to start your journey to Python is
 ["Dive into Python 3"](http://diveintopython3.org/). For Ruby
-beginners I'd recommend a copy of ["The Ruby Programming Language"](http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177).
+beginners I'd recommend a copy of
+["The Ruby Programming Language"](http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177).
+
+_P.S. If you like exploring different programming languages and you're
+currently shopping for ideas on the subject of which language to learn
+next you might find my recent article
+["Programming languages worth learning"](/2011/04/27/programming-languages-worth-learning.html)
+interesting as well._
