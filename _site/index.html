@@ -39,7 +39,307 @@
                         </ul>
                     </div>
                     <div id="content">
-                        <h2 id='lisp_problems'><a href='/2011/05/04/lisp-problems.html'>Lisp Problems</a></h2>
+                        <h2 id='jvm_languages_week__day_1__the_groovy_programming_language'><a href='/2011/05/05/jvm-langs-groovy.html'>JVM Languages Week - Day 1 - The Groovy Programming Language</a></h2>
+<p>In a series of articles labelled commonly &#8220;JVM Languages Week&#8221; I&#8217;ll discussing modern alternatives to the Java programming language. This is the first instalment of the series - &#8220;The Groovy Programming Language&#8221;.</p><h1 id='overture'>Overture</h1><p>We all know and love the Java <em>platform</em>(note the emphasis on platform) for a couple of obvious reasons. Most notably it features a huge high quality standard library and a legendary execution environment - the Java Virtual Machine(JVM). The JVM is known to posses the following qualities:</p><ul>
+<li>Runs on all major platforms</li>
+
+<li>Enterprise ready</li>
+
+<li>Extremely stable</li>
+
+<li>Extremely fast</li>
+
+<li>Highly customisable - many aspects of its work can easily be adjusted such as GC settings, heap settings, etc.</li>
+</ul><p>There is a terrific community around the Java platform that has contributed an immense amount of high quality software vital to the success of Java. Hibernate, Spring, Eclipse, NetBeans, the myriad of Apache projects are all community efforts.</p><p>So far so good, but it&#8217;s not all rainbows and unicorns in the land of Java. The Java programming language is a common source of gripe amongst many developers for various reasons. I&#8217;ll list here some of the more notable of them:</p><ul>
+<li>It&#8217;s not a pure OOP language(there is a difference between primitive and reference data types)</li>
+
+<li>It uses static typing(highly subjective topic, but commonly brought up)</li>
+
+<li>It doesn&#8217;t have support for closures(which instantly kills half of functional&#8217;s programming ideas such as higher order functions)</li>
+
+<li>It has limited meta programming capabilities(compared to Ruby and Lisp for instance)</li>
+
+<li>There is no concept of top-level procedures(outside of class definitions)(this makes Java unsuitable for creating &#8220;script&#8221; programs)</li>
+
+<li>Its syntax is too verbose</li>
+
+<li>It&#8217;s not suitable for the creation of DSL</li>
+
+<li>Its development is sluggish and restrained by the corporate promise of backward compatibility</li>
+
+<li>It&#8217;s an imperative language</li>
+
+<li>It&#8217;s parallel programming model is revolving mostly around locks and threads</li>
+</ul><p>Naturally there are some languages that alleviate some(most) of Java&#8217;s problems such as:</p><ul>
+<li>Ruby</li>
+
+<li>Python</li>
+
+<li>Lisp</li>
+
+<li>Erlang</li>
+
+<li>Haskell</li>
+</ul><p>They all, however, lack(by default) an execution environment that can match the JVM. They also lack Java&#8217;s immense amount of libraries currently available. When enthusiasts started porting existing languages to the JVM this came as no surprise - it was only logical. For instance some folks ported Ruby to Java which resulted in JRuby, Python also got a Java port called Jython. Though a lot of good has come from such ports they was also a price to pay. In the case of Ruby and Python some libraries are not written in Ruby/Python, but in C for performance reasons, which naturally leads to problems when you factor in a Java implementation of the language. There is also the fact that the JVM(currently) doesn&#8217;t have support for dynamic memory dispatching which is feature vital for dynamically typed languages to get a decent performance. For this reason Jython is notoriously slow. The JRuby team did a much better work, circumvented a lot of the JVM limitations and actually managed to create a Ruby implementation that in some scenarios beats the performance of the standard MRI Ruby 1.9 with it&#8217;s custom YARV virtual machine implemented in C. JRuby will be the object of a further discussion down the road.</p><p>I&#8217;d like to lead this discussion in another direction, however - programming languages that were implemented from scratch with the JVM as their execution environment. While there are many of those three stand out and have gathered a significant momentum in recent years. They will be the subject of this post and the following two. Without further adieu I&#8217;d like you to meet Groovy, Scala and Clojure.</p><p>We&#8217;ll begin our discussion with Groovy&#8230;</p><h1 id='meet_groovy'>Meet Groovy</h1><p><em>&#8220;Groovy is like a super version of Java. It can leverage Java&#8217;s enterprise capabilities but also has cool productivity features like closures, builders and dynamic typing. If you are a developer, tester or script guru, you have to love Groovy.&#8221;</em> - praise for Groovy from <a href='http://groovy.codehaus.org/'>http://groovy.codehaus.org/</a></p><p>Groovy is:</p><ul>
+<li>is one of the two standard languages for the JVM(the other is Java of course)</li>
+
+<li>is an agile and dynamic language for the Java Virtual Machine</li>
+
+<li>builds upon the strengths of Java but has additional power features inspired by languages like Python, Ruby and Smalltalk</li>
+
+<li>makes modern programming features available to Java developers with almost-zero learning curve</li>
+
+<li>supports Domain-Specific Languages and other compact syntax so your code becomes easy to read and maintain</li>
+
+<li>makes writing shell and build scripts easy with its powerful processing primitives, OO abilities and an Ant DSL</li>
+
+<li>increases developer productivity by reducing scaffolding code when developing web, GUI, database or console applications</li>
+
+<li>simplifies testing by supporting unit testing and mocking out-of-the-box</li>
+
+<li>seamlessly integrates with all existing Java classes and libraries</li>
+
+<li>compiles straight to Java bytecode so you can use it anywhere you can use Java</li>
+</ul><p>Some of Groovy&#8217;s most compelling features are:</p><ul>
+<li>Pure OOP language</li>
+
+<li>Mostly Java compatible syntax</li>
+
+<li>Optional typing</li>
+
+<li>No need to wait for Java 7/8/9 * Closures * Attributes</li>
+
+<li>Duck typing</li>
+
+<li>BigInteger based arithmetic</li>
+
+<li>SQL, XML &amp; Swing improvements</li>
+</ul><p>A core idea guiding the design of Groovy is make it easy to use for existing Java developers. Groovy&#8217;s designers have gone for far in that direction that the Groovy compiler will happily compile most Java source files without the need for any modifications. Groovy, however, builds heavily upon the standard Java&#8217;s syntax and you&#8217;ll do well to get a grip of Groovy&#8217;s core idioms. Groovy&#8217;s syntax in a nutshell:</p><div class='highlight'><pre><code class='groovy'><span class='c'>// old school Java code, but also valid Groovy code</span>
+<span class='n'>System</span><span class='o'>.</span><span class='na'>out</span><span class='o'>.</span><span class='na'>println</span><span class='o'>(</span><span class='s'>&quot;Hello, world!&quot;</span><span class='o'>);</span>
+
+<span class='c'>// idiomatic Groovy</span>
+<span class='n'>println</span> <span class='s'>&quot;Hello, world!&quot;</span>
+
+<span class='c'>// dynamic variable definition</span>
+<span class='kt'>def</span> <span class='n'>name</span> <span class='o'>=</span> <span class='s'>&quot;Bozhidar&quot;</span>
+
+<span class='c'>// GString featuring string interpolation</span>
+<span class='n'>println</span> <span class='s'>&quot;Hello, $name&quot;</span>  <span class='c'>// =&gt; &quot;Hello, Bozhidar&quot;</span>
+
+<span class='c'>// statically typed variable</span>
+<span class='n'>String</span> <span class='n'>songName</span> <span class='o'>=</span> <span class='s'>&quot;Coding in the Name of&quot;</span>
+
+<span class='n'>println</span> <span class='s'>&quot;Now playing - $songName&quot;</span>
+
+<span class='n'>String</span> <span class='n'>multiline</span> <span class='o'>=</span> <span class='s'>&quot;&quot;&quot;this is a multiline</span>
+<span class='s'>string. There is not need to embed</span>
+<span class='s'>newline characters in it&quot;&quot;&quot;</span>
+
+<span class='n'>println</span> <span class='n'>multiline</span>
+
+<span class='c'>// method definition</span>
+<span class='kt'>def</span> <span class='nf'>greet</span><span class='o'>(</span><span class='n'>name</span><span class='o'>)</span> <span class='o'>{</span>
+    <span class='n'>println</span> <span class='s'>&quot;Hello, $name!&quot;</span>
+<span class='o'>}</span>
+
+<span class='c'>// method invocation</span>
+<span class='n'>greet</span> <span class='s'>&quot;Bozhidar&quot;</span>
+<span class='n'>greet</span><span class='o'>(</span><span class='s'>&quot;Bozhidar&quot;</span><span class='o'>)</span>
+
+<span class='c'>// safe dereferencing</span>
+<span class='kt'>def</span> <span class='nf'>showSize</span><span class='o'>(</span><span class='n'>list</span><span class='o'>)</span> <span class='o'>{</span>
+    <span class='n'>println</span> <span class='s'>&quot;List size is: ${list?.size}&quot;</span>
+<span class='o'>}</span>
+
+<span class='n'>showSize</span><span class='o'>([</span><span class='mi'>1</span><span class='o'>,</span> <span class='mi'>2</span><span class='o'>,</span> <span class='mi'>3</span><span class='o'>])</span>
+<span class='c'>// this is the important part</span>
+<span class='n'>showSize</span><span class='o'>(</span><span class='kc'>null</span><span class='o'>)</span>
+
+<span class='c'>// a list</span>
+<span class='kt'>def</span> <span class='n'>beers</span> <span class='o'>=</span> <span class='o'>[</span><span class='s'>&quot;Zagorka&quot;</span><span class='o'>,</span> <span class='s'>&quot;Bolyarka&quot;</span><span class='o'>,</span> <span class='s'>&quot;Shumensko&quot;</span><span class='o'>,</span> <span class='s'>&quot;Ariana&quot;</span><span class='o'>]</span>
+
+<span class='n'>beers</span><span class='o'>.</span><span class='na'>each</span> <span class='o'>{</span> <span class='n'>beer</span> <span class='o'>-&gt;</span> <span class='n'>println</span> <span class='n'>beer</span> <span class='o'>}</span>
+
+<span class='c'>// imports can appear anywhere and support the creation of aliases</span>
+<span class='kn'>import</span> <span class='nn'>static</span> <span class='n'>java</span><span class='o'>.</span><span class='na'>util</span><span class='o'>.</span><span class='na'>Calendar</span><span class='o'>.</span><span class='na'>getInstance</span> <span class='n'>as</span> <span class='n'>now</span>
+<span class='kn'>import</span> <span class='nn'>java.sql.Date</span> <span class='n'>as</span> <span class='n'>SDate</span>
+
+<span class='n'>println</span> <span class='nf'>now</span><span class='o'>()</span>
+<span class='c'>// java.util package is automatically imported in Groovy so this is java.util.Date</span>
+<span class='n'>println</span> <span class='k'>new</span> <span class='nf'>Date</span><span class='o'>()</span>
+<span class='n'>println</span> <span class='k'>new</span> <span class='nf'>SDate</span><span class='o'>(</span><span class='mi'>2011</span><span class='o'>,</span> <span class='mi'>5</span><span class='o'>,</span> <span class='mi'>5</span><span class='o'>)</span>
+
+<span class='c'>// language support for regular expressions</span>
+<span class='k'>if</span> <span class='o'>(</span><span class='s'>&quot;Hello, Groovy&quot;</span> <span class='o'>=~</span> <span class='o'>/</span><span class='err'>\</span><span class='n'>w</span><span class='o'>+,</span><span class='err'>\</span><span class='n'>s</span><span class='err'>\</span><span class='n'>w</span><span class='o'>+/)</span> <span class='o'>{</span>
+    <span class='n'>println</span> <span class='s'>&quot;It matches&quot;</span>
+<span class='o'>}</span>
+
+<span class='c'>// range filtering with higher-order functions</span>
+<span class='o'>(</span><span class='mi'>1</span><span class='o'>..</span><span class='mi'>10</span><span class='o'>).</span><span class='na'>findAll</span> <span class='o'>{</span> <span class='n'>n</span> <span class='o'>-&gt;</span> <span class='n'>n</span> <span class='o'>%</span> <span class='mi'>2</span> <span class='o'>==</span> <span class='mi'>0</span><span class='o'>}.</span><span class='na'>each</span> <span class='o'>{</span> <span class='n'>n</span> <span class='o'>-&gt;</span> <span class='n'>println</span> <span class='n'>n</span> <span class='o'>}</span>
+
+<span class='c'>// map</span>
+<span class='kt'>def</span> <span class='n'>capitols</span> <span class='o'>=</span> <span class='o'>[</span><span class='nl'>Bulgaria:</span> <span class='s'>&quot;Sofia&quot;</span><span class='o'>,</span> <span class='nl'>USA:</span> <span class='s'>&quot;Washington&quot;</span><span class='o'>,</span> <span class='nl'>England:</span><span class='s'>&quot;London&quot;</span><span class='o'>,</span> <span class='nl'>France:</span><span class='s'>&quot;Paris&quot;</span><span class='o'>]</span>
+
+<span class='n'>println</span> <span class='n'>capitols</span><span class='o'>[</span><span class='s'>&quot;Bulgaria&quot;</span><span class='o'>]</span> <span class='c'>// =&gt; Sofia</span>
+<span class='n'>println</span> <span class='n'>capitols</span><span class='o'>[</span><span class='s'>&quot;France&quot;</span><span class='o'>]</span>  <span class='c'>// =&gt; Paris</span>
+
+<span class='c'>// class definition</span>
+<span class='kd'>class</span> <span class='nc'>Person</span> <span class='o'>{</span>
+    <span class='kt'>def</span> <span class='n'>name</span>
+    <span class='kt'>def</span> <span class='n'>age</span>
+
+    <span class='nf'>Person</span><span class='o'>(</span><span class='n'>name</span><span class='o'>,</span> <span class='n'>age</span><span class='o'>)</span> <span class='o'>{</span>
+        <span class='k'>this</span><span class='o'>.</span><span class='na'>name</span> <span class='o'>=</span> <span class='n'>name</span>
+        <span class='k'>this</span><span class='o'>.</span><span class='na'>age</span> <span class='o'>=</span> <span class='n'>age</span>
+    <span class='o'>}</span>
+
+    <span class='nd'>@Override</span>
+    <span class='n'>String</span> <span class='nf'>toString</span><span class='o'>()</span> <span class='o'>{</span>
+        <span class='k'>return</span> <span class='s'>&quot;Name {$name}, age {$age}&quot;</span>
+    <span class='o'>}</span>
+<span class='o'>}</span>
+
+<span class='kt'>def</span> <span class='n'>me</span> <span class='o'>=</span> <span class='k'>new</span> <span class='n'>Person</span><span class='o'>(</span><span class='s'>&quot;Bozhidar&quot;</span><span class='o'>,</span> <span class='mi'>26</span><span class='o'>)</span>
+<span class='n'>println</span> <span class='n'>me</span>
+</code></pre>
+</div><p>Like Ruby and Python Groovy has language support for commonly used data structures such as lists, maps, ranges and regular expressions:</p><ul>
+<li>List - def number = <span>1, 2, 3</span></li>
+
+<li>Map - def countries = <span>BG: “Bulgaria”, DE: “Germany</span></li>
+
+<li>Range - def range = 1..1000</li>
+
+<li>Regular expressions - def whitespace = /\s+/</li>
+</ul><p>Groovy comes with its very own standard library(GDK) which builds upon the JDK(for instance the File and String classes are enhanced in Groovy) and offer some new features like the Groovy&#8217;s famous builders.</p><h1 id='oop_in_groovy'>OOP in Groovy</h1><ul>
+<li>
+<p>Similar capabilities to Java Define classes, interfaces, enums, annotations</p>
+</li>
+
+<li>
+<p>Differences to Java Classes (and interfaces etc.) public by default Methods public by default Property support within classes (auto-setters/getters) Duck typing</p>
+</li>
+</ul><h1 id='data_access_handling'>Data access handling</h1><p>Groovy offers some nice improvements over JDBC and JAXP for handling database queries and XML parsing.</p><div class='highlight'><pre><code class='groovy'><span class='kn'>import</span> <span class='nn'>groovy.sql.Sql</span>
+
+<span class='o'>}</span>
+</code></pre>
+</div><span class='nt'>&lt;car</span><span class='nt'>&lt;country&gt;</span><span class='nt'>&lt;record</span><span class='nt'>&lt;/car&gt;</span><span class='nt'>&lt;car</span><span class='nt'>&lt;country&gt;</span><span class='nt'>&lt;record</span><span class='nt'>&lt;/car&gt;</span><span class='nt'>&lt;car</span><span class='nt'>&lt;country&gt;</span><span class='nt'>&lt;record</span><span class='nt'>&lt;/car&gt;</span><span class='nt'>&lt;/records&gt;</span><pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;/code&gt;</pre><pre class='markdown-html-error' style='border: solid 3px red; background-color: pink'>REXML could not parse this XML/HTML: 
+&lt;/div&gt;</pre><span class='n'>records</span>
+<p><span class='n'>println</span> <span class='s'>&quot;year = ${it.@year}&quot;</span> <span class='o'>}</span> &lt;/code&gt;&lt;/pre&gt; &lt;/div&gt; <h1 id='builders'>Builders</h1> <div class='highlight'><pre><code class='groovy'><span class='kn'>import</span> <span class='nn'>groovy.xml.*</span>
+<span class='kt'>def</span> <span class='n'>page</span> <span class='o'>=</span> <span class='k'>new</span> <span class='n'>MarkupBuilder</span><span class='o'>()</span>
+<span class='n'>page</span><span class='o'>.</span><span class='na'>html</span> <span class='o'>{</span>
+<span class='n'>head</span> <span class='o'>{</span> <span class='n'>title</span> <span class='err'>&#39;</span><span class='n'>Hello</span><span class='err'>&#39;</span> <span class='o'>}</span>
+<span class='n'>body</span> <span class='o'>{</span>
+<span class='n'>ul</span> <span class='o'>{</span>
+<span class='k'>for</span> <span class='o'>(</span><span class='n'>count</span> <span class='n'>in</span> <span class='mi'>1</span><span class='o'>..</span><span class='mi'>5</span><span class='o'>)</span> <span class='o'>{</span>
+<span class='n'>li</span> <span class='s'>&quot;world $count&quot;</span>
+<span class='o'>}</span> <span class='o'>}</span> <span class='o'>}</span> <span class='o'>}</span>
+</code></pre>
+</div> <p>Result:</p> <div class='highlight'><pre><code class='html'><span class='nt'>&lt;html&gt;</span>
+<span class='nt'>&lt;head&gt;</span>
+<span class='nt'>&lt;title&gt;</span>Hello<span class='nt'>&lt;/title&gt;</span>
+<span class='nt'>&lt;/head&gt;</span>
+<span class='nt'>&lt;body&gt;</span>
+<span class='nt'>&lt;ul&gt;</span>
+<span class='nt'>&lt;li&gt;</span>world 1<span class='nt'>&lt;/li&gt;</span>
+<span class='nt'>&lt;li&gt;</span>world 2<span class='nt'>&lt;/li&gt;</span>
+<span class='nt'>&lt;li&gt;</span>world 3<span class='nt'>&lt;/li&gt;</span>
+<span class='nt'>&lt;li&gt;</span>world 4<span class='nt'>&lt;/li&gt;</span>
+<span class='nt'>&lt;li&gt;</span>world 5<span class='nt'>&lt;/li&gt;</span>
+<span class='nt'>&lt;/ul&gt;</span>
+<span class='nt'>&lt;/body&gt;</span>
+<span class='nt'>&lt;/html&gt;</span>
+</code></pre>
+</div><div class='highlight'><pre><code class='groovy'><span class='kn'>import</span> <span class='nn'>java.awt.FlowLayout</span>
+<span class='n'>builder</span> <span class='o'>=</span> <span class='k'>new</span> <span class='n'>groovy</span><span class='o'>.</span><span class='na'>swing</span><span class='o'>.</span><span class='na'>SwingBuilder</span><span class='o'>()</span>
+<span class='n'>langs</span> <span class='o'>=</span> <span class='o'>[</span><span class='s'>&quot;Groovy&quot;</span><span class='o'>,</span> <span class='s'>&quot;Ruby&quot;</span><span class='o'>,</span> <span class='s'>&quot;Python&quot;</span><span class='o'>,</span> <span class='s'>&quot;Pnuts&quot;</span><span class='o'>]</span>
+<span class='n'>gui</span> <span class='o'>=</span> <span class='n'>builder</span><span class='o'>.</span><span class='na'>frame</span><span class='o'>(</span><span class='nl'>size:</span> <span class='o'>[</span><span class='mi'>290</span><span class='o'>,</span> <span class='mi'>100</span><span class='o'>],</span>
+<span class='nl'>title:</span> <span class='err'>&#39;</span><span class='n'>Swinging</span> <span class='n'>with</span> <span class='n'>Groovy</span><span class='o'>!</span><span class='err'>&#39;</span><span class='o'>)</span> <span class='o'>{</span>
+<span class='n'>panel</span><span class='o'>(</span><span class='nl'>layout:</span> <span class='k'>new</span> <span class='n'>FlowLayout</span><span class='o'>())</span> <span class='o'>{</span>
+<span class='n'>panel</span><span class='o'>(</span><span class='nl'>layout:</span> <span class='k'>new</span> <span class='n'>FlowLayout</span><span class='o'>())</span> <span class='o'>{</span>
+<span class='k'>for</span> <span class='o'>(</span><span class='n'>lang</span> <span class='n'>in</span> <span class='n'>langs</span><span class='o'>)</span> <span class='o'>{</span>
+<span class='n'>checkBox</span><span class='o'>(</span><span class='nl'>text:</span> <span class='n'>lang</span><span class='o'>)</span>
+<span class='o'>}</span>
+<span class='o'>}</span>
+<span class='n'>button</span><span class='o'>(</span><span class='nl'>text:</span> <span class='err'>&#39;</span><span class='n'>Groovy</span> <span class='n'>Button</span><span class='err'>&#39;</span><span class='o'>,</span> <span class='nl'>actionPerformed:</span> <span class='o'>{</span>
+<span class='n'>builder</span><span class='o'>.</span><span class='na'>optionPane</span><span class='o'>(</span><span class='nl'>message:</span> <span class='err'>&#39;</span><span class='n'>Indubitably</span> <span class='n'>Groovy</span><span class='o'>!</span><span class='err'>&#39;</span><span class='o'>).</span>
+<span class='n'>createDialog</span><span class='o'>(</span><span class='kc'>null</span><span class='o'>,</span> <span class='err'>&#39;</span><span class='n'>Zen</span> <span class='n'>Message</span><span class='err'>&#39;</span><span class='o'>).</span><span class='na'>show</span><span class='o'>()</span>
+<span class='o'>})</span>
+<span class='n'>button</span><span class='o'>(</span><span class='nl'>text:</span> <span class='err'>&#39;</span><span class='n'>Groovy</span> <span class='n'>Quit</span><span class='err'>&#39;</span><span class='o'>,</span>
+<span class='nl'>actionPerformed:</span> <span class='o'>{</span><span class='n'>System</span><span class='o'>.</span><span class='na'>exit</span><span class='o'>(</span><span class='mi'>0</span><span class='o'>)})</span>
+<span class='o'>}</span>
+<span class='o'>}</span>
+<span class='n'>gui</span><span class='o'>.</span><span class='na'>show</span><span class='o'>()</span>
+</code></pre>
+</div> <h1 id='groovy_tooling'>Groovy tooling</h1></p>
+<ul>
+<li>
+<p>IDE * <a href='http://www.jetbrains.com/idea/'>IntelliJ IDEA</a> - the ultimate Groovy IDE. It&#8217;s excellent Groovy support is part of its open source Community Edition. * <a href='http://groovy.codehaus.org/Eclipse+Plugin'>Eclipse</a> - the most popular Java IDE has an actively maintained Groovy plugin * <a href='http://netbeans.org/features/groovy/'>NetBeans</a> - Like IDEA NetBeans features built-in Groovy support</p>
+</li>
+
+<li>
+<p>Groovy distribution</p>
+
+<ul>
+<li>groovysh - A Groovy REPL for exploratory programming</li>
+
+<li>groovyconsole</li>
+
+<li>groovyc - the Groovy compiler</li>
+</ul>
+</li>
+
+<li>
+<p>Build tools</p>
+
+<ul>
+<li><a href='http://maven.apache.org'>Apache Maven</a></li>
+
+<li><a href='http://buildr.apache.org'>Apache Buildr</a></li>
+
+<li><a href='http://gradle.org'>Gradle</a></li>
+</ul>
+
+<h1 id='killer_apps'>Killer apps</h1>
+</li>
+
+<li>
+<p><a href='http://grails.org'>Grails</a></p>
+
+<ul>
+<li>
+<p>Groovy port of Ruby on Rails</p>
+</li>
+
+<li>
+<p>Leverages the best Java technologies</p>
+
+<ul>
+<li>Hibernate</li>
+
+<li>Spring</li>
+
+<li>Tomcat</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>
+<p>Gradle - powerful build tool</p>
+</li>
+
+<li>
+<p><a href='http://griffon.codehaus.org/'>Griffon</a> - a Grails like application framework for developing desktop applications</p>
+</li>
+</ul><h1 id='groovy_resources'>Groovy resources</h1><ul>
+<li>Books</li>
+
+<li>On-line resources</li>
+</ul><h1 id='epilogue'>Epilogue</h1><p>Groovy is a language aiming to bring dynamic productivity to Java developer without introducing them to a steep learning curve. The language is beautifully architectured and integrates seamlessly with the existing Java libraries and infrastructure. My biggest gripe with Groovy is the lack of advanced support for parallel and concurrent programming. Groovy&#8217;s performance is not stellar either, but I guess this will be improved upon in Java 7.</p><p>With its easy to grasp Java-like syntax Groovy is a solid contender for the attention of Java developers. A growing number of Groovy related job offerings is a sign of Groovy&#8217;s acceptance as a industrial strength tool.</p><hr /><p><em>P.S. Coming up next is a discussion of the Scala programming language.</em></p><div style='font-style: italic; color: #7f9f7f;'>Posted on 05 May 2011 by Bozhidar.</div>
+<p><a href='/2011/05/05/jvm-langs-groovy.html#disqus_thread'>Comments</a></p>
+
+<h2 id='lisp_problems'><a href='/2011/05/04/lisp-problems.html'>Lisp Problems</a></h2>
 <p>This is a remake of the P-99: Ninety-Nine Prolog Problems collection that Werner Hett assembled over several years of teaching at the University of Applied Sciences (Berner Fachhochschule) at Biel-Bienne, Switzerland. The collection is structured into seven sections. I have renumbered the problems in order to get more freedom to rearrange things within the sections.</p><p>The purpose of this problem collection is to give you the opportunity to practice your skills in logic programming. Your goal should be to find the most elegant solution of the given problems. Efficiency is important, but logical clarity is even more crucial. Some of the (easy) problems can be trivially solved using built-in functions. However, in these cases, you learn more if you try to find your own solution.</p><p>The problems have different levels of difficulty. Those marked with a single asterisk (*) are easy. If you have successfully solved the preceeding problems you should be able to solve them within a few (say 15) minutes. Problems marked with two asterisks (**) are of intermediate difficulty. If you are a skilled Prolog programmer it shouldn&#8217;t take you more than 30-90 minutes to solve them. Problems marked with three asterisks (***) are more difficult. You may need more time (i.e. a few hours or more) to find a good solution.</p><h2 id='lisp_lists'>Lisp Lists</h2><hr /><p><strong>1.01 (*) Find the last element of a list.</strong></p><p><em>Do not use the built-in LAST function.</em></p><div class='highlight'><pre><code class='cl'><span class='nv'>CL-USER&gt;</span> <span class='p'>(</span><span class='nv'>my-last</span> <span class='o'>&#39;</span><span class='p'>(</span><span class='mi'>1</span> <span class='mi'>2</span> <span class='mi'>3</span><span class='p'>))</span>
 <span class='mi'>3</span>
 </code></pre>
@@ -407,28 +707,6 @@ compinit
 <li><a href='http://www.bash2zsh.com/'>&#8220;From Bash to Z Shell - Conquering the Command Line&#8221;</a></li>
 </ul><div style='font-style: italic; color: #7f9f7f;'>Posted on 29 Apr 2011 by Bozhidar.</div>
 <p><a href='/2011/04/29/one-shell-to-rule-them-all.html#disqus_thread'>Comments</a></p>
-
-<h2 id='career_development__should_i_stay_or_should_i_go'><a href='/2011/04/29/career-development.html'>Career development - Should I stay or should I go?</a></h2>
-<p>I guess nothing describes more appropriately the essence of career development than the famous song by <a href='http://www.youtube.com/watch?v=V1Gn0e7kvTA'>The Clash</a>.</p><p>We generally have two options in front of us when we consider our careers - stay at our current company and hope to advance in it or jump ship to a new hopefully better job in another company. Both have their pros and cons which I&#8217;ll shortly discuss. Mind, though, that I&#8217;m no HR specialist or a pro career adviser so you&#8217;d do well not to rely on my writing a 100%. Also everything I&#8217;ll write comes from my own experience as professional software engineer. I guess some of my advice will not apply to other careers.</p><h1 id='stay_at_my_current_company'>Stay at my current company</h1><p><strong>Disclaimer</strong> - <em>there are some companies that are so great that no one wants to leave them. This section is not about them. This is about the companies we all know and have grown accustomed to tolerate - the ones with the mostly same work, lying bosses and a lot of empty promises.</em></p><p>The idea is basic. You&#8217;ve spent some time in the company, you&#8217;re hoping that in time with hard work and dedication you&#8217;ll rise in the company ranks and you&#8217;ll get a healthy salary increase in the process.</p><p>Unfortunately this doesn&#8217;t happen quite often. Most companies have some internal salary limits and some next to irreplaceable people. This means that there is a cap at your growth there. Sure, if you stay with the company long enough - say 10 years, probably some of the irreplaceable people will be replaced, but is worth the wait?</p><p>When you sit around just doing the same things you tend to get bored and demotivated at times. You become less productive and less interested in your work in general. You just go to work, stay there for 8 hours and go home. The paycheck is the only thing of interest to you and you become duller and duller by the day.</p><p>This is what I call &#8220;flowing down the current&#8221;. One of my former bosses used to say that when you start feeling you&#8217;re flowing down the current you should immediately start looking for another job(that is unless you&#8217;re one of the those people that just like to complain how they hate their job, but actually doesn&#8217;t mind to sit around doing nothing and get paid for it). My boss also used to say that one shouldn&#8217;t spend more than 3 or 4 years in a company he doesn&#8217;t own.</p><p>Of course you shouldn&#8217;t jump between jobs every 6 or so months because this will make you a blacklisted candidate by most HRs - after all they&#8217;re looking most of the time for people ready to commit to their cause for at least a few years.</p><p>Pros of staying:</p><ul>
-<li>you know the game and how to play it</li>
-
-<li>you&#8217;re accustomed to colleagues, the office and you don&#8217;t have to change them</li>
-
-<li>you&#8217;ve got a guaranteed paycheck that is unlikely to evaporate</li>
-
-<li>if the company is bigger(100+) you&#8217;ve got a fair chance to advance in the company hierarchy if you&#8217;re willing to stay long enough</li>
-</ul><p>Cons of staying:</p><ul>
-<li>you limit your professional development</li>
-
-<li>you limit the possibilities for salary improvements</li>
-</ul><p>In the end it seems to me that most people are not too fond of taking chances(me included). This is the reason that a lot of average companies have employees that could do a lot better somewhere else. This is partly caused by our very own society - the people and media around us keep telling us that we&#8217;re mostly the same, that it&#8217;s unlikely we&#8217;ll ever achieve something great, something monumental&#8230; and many of us do believe them.</p><p>Hristo Stoichkov might not be the all time greatest philosopher, but said something extremely important once(or twice) - &#8220;If you don&#8217;t play you can&#8217;t win&#8221;(in Bulgarian - &#8220;Който не играе не печели.&#8221;).</p><h1 id='move_to_another_company'>Move to another company</h1><p>Moving to another company is not a silver bullet. Most of the time it guarantees you a higher salary(the top reason why people switch jobs), but it doesn&#8217;t certainly mean you&#8217;ll have a more interesting and fulfilling work. This is especially true if you go to work for some huge corporation and you&#8217;re not part of its Research&amp;Development department. I generally avoid such job offers. Corporations offer some measure of security, but little if any excitement.</p><p>I think that most people should try to find employment in companies that are start-ups or that regularly start to work on new projects. There one has plenty of opportunities to prove himself and to advance in the company along the way. Of course such companies have the nasty habit of going down under from time to time so you have to think long and hard before joining one if you&#8217;re living under rent or have to pay down-payments on two mortgages. Of course if you&#8217;re good enough at your job - you&#8217;ll find a new one soon enough and that shouldn&#8217;t really be bothering you.</p><p>Pros of moving: * moving to a new company is likely to represent a raise in your salary you&#8217;ll have to wait several years to get with your current employer * there is a strong possibility that your new work will be more exciting than your old one(after all you&#8217;ve tried to pick a more exciting job, right?) * you might get to meet some interesting new people, learn from them and improve your professional skills</p><p>Cons of moving: * you have to prove your worth again(you&#8217;ve already did this in your old job)</p><ul>
-<li>the is the factor of uncertainty every time you start something new</li>
-
-<li>you&#8217;ll have to learn how to work and deal with your new colleagues</li>
-
-<li>you might get more of the same work that made you leave in the first place in case you have not chosen carefully your new employer.</li>
-</ul><h1 id='conclusion'>Conclusion</h1><p>Topics such a career development are highly subjective and depend on a myriad of factors. My musings here are inspired by my 7 year long career as a software engineer that spanned over four employers and will probably soon include a fifth. This is not a lot of data to consider, but I can assure you that the traits that I describe are most real and are here to stay.</p><div style='font-style: italic; color: #7f9f7f;'>Posted on 29 Apr 2011 by Bozhidar.</div>
-<p><a href='/2011/04/29/career-development.html#disqus_thread'>Comments</a></p>
                     </div>
                 </div>
                 <div id="footer">

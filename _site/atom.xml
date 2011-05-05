@@ -4,13 +4,407 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-05T13:47:28+03:00</updated>
+  <updated>2011-05-05T19:04:41+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
     <email>bozhidar.batsov@gmail.com</email>
   </author>
 
+  
+  <entry>
+    <id>http://www.batsov.com/2011/05/05/jvm-langs-groovy</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/05/05/jvm-langs-groovy.html"/>
+    <title>JVM Languages Week - Day 1 - The Groovy Programming Language</title>
+    <updated>2011-05-05T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;In a series of articles labelled commonly &amp;#8220;JVM Languages Week&amp;#8221; I&amp;#8217;ll discussing modern alternatives to the Java programming language. This is the first instalment of the series - &amp;#8220;The Groovy Programming Language&amp;#8221;.&lt;/p&gt;
+
+&lt;h1 id='overture'&gt;Overture&lt;/h1&gt;
+
+&lt;p&gt;We all know and love the Java &lt;em&gt;platform&lt;/em&gt;(note the emphasis on platform) for a couple of obvious reasons. Most notably it features a huge high quality standard library and a legendary execution environment - the Java Virtual Machine(JVM). The JVM is known to posses the following qualities:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Runs on all major platforms&lt;/li&gt;
+
+&lt;li&gt;Enterprise ready&lt;/li&gt;
+
+&lt;li&gt;Extremely stable&lt;/li&gt;
+
+&lt;li&gt;Extremely fast&lt;/li&gt;
+
+&lt;li&gt;Highly customisable - many aspects of its work can easily be adjusted such as GC settings, heap settings, etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There is a terrific community around the Java platform that has contributed an immense amount of high quality software vital to the success of Java. Hibernate, Spring, Eclipse, NetBeans, the myriad of Apache projects are all community efforts.&lt;/p&gt;
+
+&lt;p&gt;So far so good, but it&amp;#8217;s not all rainbows and unicorns in the land of Java. The Java programming language is a common source of gripe amongst many developers for various reasons. I&amp;#8217;ll list here some of the more notable of them:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It&amp;#8217;s not a pure OOP language(there is a difference between primitive and reference data types)&lt;/li&gt;
+
+&lt;li&gt;It uses static typing(highly subjective topic, but commonly brought up)&lt;/li&gt;
+
+&lt;li&gt;It doesn&amp;#8217;t have support for closures(which instantly kills half of functional&amp;#8217;s programming ideas such as higher order functions)&lt;/li&gt;
+
+&lt;li&gt;It has limited meta programming capabilities(compared to Ruby and Lisp for instance)&lt;/li&gt;
+
+&lt;li&gt;There is no concept of top-level procedures(outside of class definitions)(this makes Java unsuitable for creating &amp;#8220;script&amp;#8221; programs)&lt;/li&gt;
+
+&lt;li&gt;Its syntax is too verbose&lt;/li&gt;
+
+&lt;li&gt;It&amp;#8217;s not suitable for the creation of DSL&lt;/li&gt;
+
+&lt;li&gt;Its development is sluggish and restrained by the corporate promise of backward compatibility&lt;/li&gt;
+
+&lt;li&gt;It&amp;#8217;s an imperative language&lt;/li&gt;
+
+&lt;li&gt;It&amp;#8217;s parallel programming model is revolving mostly around locks and threads&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Naturally there are some languages that alleviate some(most) of Java&amp;#8217;s problems such as:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Ruby&lt;/li&gt;
+
+&lt;li&gt;Python&lt;/li&gt;
+
+&lt;li&gt;Lisp&lt;/li&gt;
+
+&lt;li&gt;Erlang&lt;/li&gt;
+
+&lt;li&gt;Haskell&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;They all, however, lack(by default) an execution environment that can match the JVM. They also lack Java&amp;#8217;s immense amount of libraries currently available. When enthusiasts started porting existing languages to the JVM this came as no surprise - it was only logical. For instance some folks ported Ruby to Java which resulted in JRuby, Python also got a Java port called Jython. Though a lot of good has come from such ports they was also a price to pay. In the case of Ruby and Python some libraries are not written in Ruby/Python, but in C for performance reasons, which naturally leads to problems when you factor in a Java implementation of the language. There is also the fact that the JVM(currently) doesn&amp;#8217;t have support for dynamic memory dispatching which is feature vital for dynamically typed languages to get a decent performance. For this reason Jython is notoriously slow. The JRuby team did a much better work, circumvented a lot of the JVM limitations and actually managed to create a Ruby implementation that in some scenarios beats the performance of the standard MRI Ruby 1.9 with it&amp;#8217;s custom YARV virtual machine implemented in C. JRuby will be the object of a further discussion down the road.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#8217;d like to lead this discussion in another direction, however - programming languages that were implemented from scratch with the JVM as their execution environment. While there are many of those three stand out and have gathered a significant momentum in recent years. They will be the subject of this post and the following two. Without further adieu I&amp;#8217;d like you to meet Groovy, Scala and Clojure.&lt;/p&gt;
+
+&lt;p&gt;We&amp;#8217;ll begin our discussion with Groovy&amp;#8230;&lt;/p&gt;
+
+&lt;h1 id='meet_groovy'&gt;Meet Groovy&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;#8220;Groovy is like a super version of Java. It can leverage Java&amp;#8217;s enterprise capabilities but also has cool productivity features like closures, builders and dynamic typing. If you are a developer, tester or script guru, you have to love Groovy.&amp;#8221;&lt;/em&gt; - praise for Groovy from &lt;a href='http://groovy.codehaus.org/'&gt;http://groovy.codehaus.org/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Groovy is:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;is one of the two standard languages for the JVM(the other is Java of course)&lt;/li&gt;
+
+&lt;li&gt;is an agile and dynamic language for the Java Virtual Machine&lt;/li&gt;
+
+&lt;li&gt;builds upon the strengths of Java but has additional power features inspired by languages like Python, Ruby and Smalltalk&lt;/li&gt;
+
+&lt;li&gt;makes modern programming features available to Java developers with almost-zero learning curve&lt;/li&gt;
+
+&lt;li&gt;supports Domain-Specific Languages and other compact syntax so your code becomes easy to read and maintain&lt;/li&gt;
+
+&lt;li&gt;makes writing shell and build scripts easy with its powerful processing primitives, OO abilities and an Ant DSL&lt;/li&gt;
+
+&lt;li&gt;increases developer productivity by reducing scaffolding code when developing web, GUI, database or console applications&lt;/li&gt;
+
+&lt;li&gt;simplifies testing by supporting unit testing and mocking out-of-the-box&lt;/li&gt;
+
+&lt;li&gt;seamlessly integrates with all existing Java classes and libraries&lt;/li&gt;
+
+&lt;li&gt;compiles straight to Java bytecode so you can use it anywhere you can use Java&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Some of Groovy&amp;#8217;s most compelling features are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Pure OOP language&lt;/li&gt;
+
+&lt;li&gt;Mostly Java compatible syntax&lt;/li&gt;
+
+&lt;li&gt;Optional typing&lt;/li&gt;
+
+&lt;li&gt;No need to wait for Java 7/8/9 * Closures * Attributes&lt;/li&gt;
+
+&lt;li&gt;Duck typing&lt;/li&gt;
+
+&lt;li&gt;BigInteger based arithmetic&lt;/li&gt;
+
+&lt;li&gt;SQL, XML &amp;amp; Swing improvements&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A core idea guiding the design of Groovy is make it easy to use for existing Java developers. Groovy&amp;#8217;s designers have gone for far in that direction that the Groovy compiler will happily compile most Java source files without the need for any modifications. Groovy, however, builds heavily upon the standard Java&amp;#8217;s syntax and you&amp;#8217;ll do well to get a grip of Groovy&amp;#8217;s core idioms. Groovy&amp;#8217;s syntax in a nutshell:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='groovy'&gt;&lt;span class='c'&gt;// old school Java code, but also valid Groovy code&lt;/span&gt;
+&lt;span class='n'&gt;System&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;out&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;println&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Hello, world!&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;);&lt;/span&gt;
+
+&lt;span class='c'&gt;// idiomatic Groovy&lt;/span&gt;
+&lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Hello, world!&amp;quot;&lt;/span&gt;
+
+&lt;span class='c'&gt;// dynamic variable definition&lt;/span&gt;
+&lt;span class='kt'&gt;def&lt;/span&gt; &lt;span class='n'&gt;name&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Bozhidar&amp;quot;&lt;/span&gt;
+
+&lt;span class='c'&gt;// GString featuring string interpolation&lt;/span&gt;
+&lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Hello, $name&amp;quot;&lt;/span&gt;  &lt;span class='c'&gt;// =&amp;gt; &amp;quot;Hello, Bozhidar&amp;quot;&lt;/span&gt;
+
+&lt;span class='c'&gt;// statically typed variable&lt;/span&gt;
+&lt;span class='n'&gt;String&lt;/span&gt; &lt;span class='n'&gt;songName&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Coding in the Name of&amp;quot;&lt;/span&gt;
+
+&lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Now playing - $songName&amp;quot;&lt;/span&gt;
+
+&lt;span class='n'&gt;String&lt;/span&gt; &lt;span class='n'&gt;multiline&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;&amp;quot;&amp;quot;this is a multiline&lt;/span&gt;
+&lt;span class='s'&gt;string. There is not need to embed&lt;/span&gt;
+&lt;span class='s'&gt;newline characters in it&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+&lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='n'&gt;multiline&lt;/span&gt;
+
+&lt;span class='c'&gt;// method definition&lt;/span&gt;
+&lt;span class='kt'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;greet&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;name&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Hello, $name!&amp;quot;&lt;/span&gt;
+&lt;span class='o'&gt;}&lt;/span&gt;
+
+&lt;span class='c'&gt;// method invocation&lt;/span&gt;
+&lt;span class='n'&gt;greet&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Bozhidar&amp;quot;&lt;/span&gt;
+&lt;span class='n'&gt;greet&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Bozhidar&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt;
+
+&lt;span class='c'&gt;// safe dereferencing&lt;/span&gt;
+&lt;span class='kt'&gt;def&lt;/span&gt; &lt;span class='nf'&gt;showSize&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;list&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;List size is: ${list?.size}&amp;quot;&lt;/span&gt;
+&lt;span class='o'&gt;}&lt;/span&gt;
+
+&lt;span class='n'&gt;showSize&lt;/span&gt;&lt;span class='o'&gt;([&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;3&lt;/span&gt;&lt;span class='o'&gt;])&lt;/span&gt;
+&lt;span class='c'&gt;// this is the important part&lt;/span&gt;
+&lt;span class='n'&gt;showSize&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='kc'&gt;null&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt;
+
+&lt;span class='c'&gt;// a list&lt;/span&gt;
+&lt;span class='kt'&gt;def&lt;/span&gt; &lt;span class='n'&gt;beers&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Zagorka&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Bolyarka&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Shumensko&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Ariana&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+
+&lt;span class='n'&gt;beers&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;each&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt; &lt;span class='n'&gt;beer&lt;/span&gt; &lt;span class='o'&gt;-&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='n'&gt;beer&lt;/span&gt; &lt;span class='o'&gt;}&lt;/span&gt;
+
+&lt;span class='c'&gt;// imports can appear anywhere and support the creation of aliases&lt;/span&gt;
+&lt;span class='kn'&gt;import&lt;/span&gt; &lt;span class='nn'&gt;static&lt;/span&gt; &lt;span class='n'&gt;java&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;util&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;Calendar&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;getInstance&lt;/span&gt; &lt;span class='n'&gt;as&lt;/span&gt; &lt;span class='n'&gt;now&lt;/span&gt;
+&lt;span class='kn'&gt;import&lt;/span&gt; &lt;span class='nn'&gt;java.sql.Date&lt;/span&gt; &lt;span class='n'&gt;as&lt;/span&gt; &lt;span class='n'&gt;SDate&lt;/span&gt;
+
+&lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='nf'&gt;now&lt;/span&gt;&lt;span class='o'&gt;()&lt;/span&gt;
+&lt;span class='c'&gt;// java.util package is automatically imported in Groovy so this is java.util.Date&lt;/span&gt;
+&lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='nf'&gt;Date&lt;/span&gt;&lt;span class='o'&gt;()&lt;/span&gt;
+&lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='nf'&gt;SDate&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;2011&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;5&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt;
+
+&lt;span class='c'&gt;// language support for regular expressions&lt;/span&gt;
+&lt;span class='k'&gt;if&lt;/span&gt; &lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Hello, Groovy&amp;quot;&lt;/span&gt; &lt;span class='o'&gt;=~&lt;/span&gt; &lt;span class='o'&gt;/&lt;/span&gt;&lt;span class='err'&gt;\&lt;/span&gt;&lt;span class='n'&gt;w&lt;/span&gt;&lt;span class='o'&gt;+,&lt;/span&gt;&lt;span class='err'&gt;\&lt;/span&gt;&lt;span class='n'&gt;s&lt;/span&gt;&lt;span class='err'&gt;\&lt;/span&gt;&lt;span class='n'&gt;w&lt;/span&gt;&lt;span class='o'&gt;+/)&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+    &lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;It matches&amp;quot;&lt;/span&gt;
+&lt;span class='o'&gt;}&lt;/span&gt;
+
+&lt;span class='c'&gt;// range filtering with higher-order functions&lt;/span&gt;
+&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='o'&gt;..&lt;/span&gt;&lt;span class='mi'&gt;10&lt;/span&gt;&lt;span class='o'&gt;).&lt;/span&gt;&lt;span class='na'&gt;findAll&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt; &lt;span class='o'&gt;-&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt; &lt;span class='o'&gt;%&lt;/span&gt; &lt;span class='mi'&gt;2&lt;/span&gt; &lt;span class='o'&gt;==&lt;/span&gt; &lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='o'&gt;}.&lt;/span&gt;&lt;span class='na'&gt;each&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt; &lt;span class='o'&gt;-&amp;gt;&lt;/span&gt; &lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='n'&gt;n&lt;/span&gt; &lt;span class='o'&gt;}&lt;/span&gt;
+
+&lt;span class='c'&gt;// map&lt;/span&gt;
+&lt;span class='kt'&gt;def&lt;/span&gt; &lt;span class='n'&gt;capitols&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='nl'&gt;Bulgaria:&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Sofia&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='nl'&gt;USA:&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Washington&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='nl'&gt;England:&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;London&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='nl'&gt;France:&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Paris&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+
+&lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='n'&gt;capitols&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Bulgaria&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt; &lt;span class='c'&gt;// =&amp;gt; Sofia&lt;/span&gt;
+&lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='n'&gt;capitols&lt;/span&gt;&lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;France&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;  &lt;span class='c'&gt;// =&amp;gt; Paris&lt;/span&gt;
+
+&lt;span class='c'&gt;// class definition&lt;/span&gt;
+&lt;span class='kd'&gt;class&lt;/span&gt; &lt;span class='nc'&gt;Person&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+    &lt;span class='kt'&gt;def&lt;/span&gt; &lt;span class='n'&gt;name&lt;/span&gt;
+    &lt;span class='kt'&gt;def&lt;/span&gt; &lt;span class='n'&gt;age&lt;/span&gt;
+
+    &lt;span class='nf'&gt;Person&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;name&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='n'&gt;age&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+        &lt;span class='k'&gt;this&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;name&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;name&lt;/span&gt;
+        &lt;span class='k'&gt;this&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;age&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;age&lt;/span&gt;
+    &lt;span class='o'&gt;}&lt;/span&gt;
+
+    &lt;span class='nd'&gt;@Override&lt;/span&gt;
+    &lt;span class='n'&gt;String&lt;/span&gt; &lt;span class='nf'&gt;toString&lt;/span&gt;&lt;span class='o'&gt;()&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+        &lt;span class='k'&gt;return&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Name {$name}, age {$age}&amp;quot;&lt;/span&gt;
+    &lt;span class='o'&gt;}&lt;/span&gt;
+&lt;span class='o'&gt;}&lt;/span&gt;
+
+&lt;span class='kt'&gt;def&lt;/span&gt; &lt;span class='n'&gt;me&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;Person&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Bozhidar&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;26&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt;
+&lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='n'&gt;me&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Like Ruby and Python Groovy has language support for commonly used data structures such as lists, maps, ranges and regular expressions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;List - def number = &lt;span&gt;1, 2, 3&lt;/span&gt;&lt;/li&gt;
+
+&lt;li&gt;Map - def countries = &lt;span&gt;BG: “Bulgaria”, DE: “Germany&lt;/span&gt;&lt;/li&gt;
+
+&lt;li&gt;Range - def range = 1..1000&lt;/li&gt;
+
+&lt;li&gt;Regular expressions - def whitespace = /\s+/&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Groovy comes with its very own standard library(GDK) which builds upon the JDK(for instance the File and String classes are enhanced in Groovy) and offer some new features like the Groovy&amp;#8217;s famous builders.&lt;/p&gt;
+
+&lt;h1 id='oop_in_groovy'&gt;OOP in Groovy&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Similar capabilities to Java Define classes, interfaces, enums, annotations&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Differences to Java Classes (and interfaces etc.) public by default Methods public by default Property support within classes (auto-setters/getters) Duck typing&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id='data_access_handling'&gt;Data access handling&lt;/h1&gt;
+
+&lt;p&gt;Groovy offers some nice improvements over JDBC and JAXP for handling database queries and XML parsing.&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='groovy'&gt;&lt;span class='kn'&gt;import&lt;/span&gt; &lt;span class='nn'&gt;groovy.sql.Sql&lt;/span&gt;
+
+&lt;span class='o'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='xml'&gt;&lt;span class='nt'&gt;&amp;lt;records&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;car&lt;/span&gt; &lt;span class='na'&gt;name=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;HSV Maloo&amp;#39;&lt;/span&gt; &lt;span class='na'&gt;make=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;Holden&amp;#39;&lt;/span&gt; &lt;span class='na'&gt;year=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;2006&amp;#39;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;country&amp;gt;&lt;/span&gt;Australia&lt;span class='nt'&gt;&amp;lt;/country&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;record&lt;/span&gt; &lt;span class='na'&gt;type=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;speed&amp;#39;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;Production Pickup Truck with speed of 271kph&lt;span class='nt'&gt;&amp;lt;/record&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;/car&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;car&lt;/span&gt; &lt;span class='na'&gt;name=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;P50&amp;#39;&lt;/span&gt; &lt;span class='na'&gt;make=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;Peel&amp;#39;&lt;/span&gt; &lt;span class='na'&gt;year=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;1962&amp;#39;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;country&amp;gt;&lt;/span&gt;Isle of Man&lt;span class='nt'&gt;&amp;lt;/country&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;record&lt;/span&gt; &lt;span class='na'&gt;type=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;size&amp;#39;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;Smallest Street-Legal Car at 99cm wide and 59 kg weight&lt;span class='nt'&gt;&amp;lt;/record&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;/car&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;car&lt;/span&gt; &lt;span class='na'&gt;name=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;Royale&amp;#39;&lt;/span&gt; &lt;span class='na'&gt;make=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;Bugatti&amp;#39;&lt;/span&gt; &lt;span class='na'&gt;year=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;1931&amp;#39;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;country&amp;gt;&lt;/span&gt;France&lt;span class='nt'&gt;&amp;lt;/country&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;record&lt;/span&gt; &lt;span class='na'&gt;type=&lt;/span&gt;&lt;span class='s'&gt;&amp;#39;price&amp;#39;&lt;/span&gt;&lt;span class='nt'&gt;&amp;gt;&lt;/span&gt;Most Valuable Car at $15 million&lt;span class='nt'&gt;&amp;lt;/record&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;/car&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;/records&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='groovy'&gt;&lt;span class='kt'&gt;def&lt;/span&gt; &lt;span class='n'&gt;records&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;XmlParser&lt;/span&gt;&lt;span class='o'&gt;().&lt;/span&gt;&lt;span class='na'&gt;parse&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;records.xml&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt;
+&lt;span class='n'&gt;records&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;car&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;each&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='n'&gt;println&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;year = ${it.@year}&amp;quot;&lt;/span&gt;
+&lt;span class='o'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id='builders'&gt;Builders&lt;/h1&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='groovy'&gt;&lt;span class='kn'&gt;import&lt;/span&gt; &lt;span class='nn'&gt;groovy.xml.*&lt;/span&gt;
+&lt;span class='kt'&gt;def&lt;/span&gt; &lt;span class='n'&gt;page&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;MarkupBuilder&lt;/span&gt;&lt;span class='o'&gt;()&lt;/span&gt;
+&lt;span class='n'&gt;page&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;html&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='n'&gt;head&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt; &lt;span class='n'&gt;title&lt;/span&gt; &lt;span class='err'&gt;&amp;#39;&lt;/span&gt;&lt;span class='n'&gt;Hello&lt;/span&gt;&lt;span class='err'&gt;&amp;#39;&lt;/span&gt; &lt;span class='o'&gt;}&lt;/span&gt;
+&lt;span class='n'&gt;body&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='n'&gt;ul&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='k'&gt;for&lt;/span&gt; &lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;count&lt;/span&gt; &lt;span class='n'&gt;in&lt;/span&gt; &lt;span class='mi'&gt;1&lt;/span&gt;&lt;span class='o'&gt;..&lt;/span&gt;&lt;span class='mi'&gt;5&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='n'&gt;li&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;world $count&amp;quot;&lt;/span&gt;
+&lt;span class='o'&gt;}&lt;/span&gt; &lt;span class='o'&gt;}&lt;/span&gt; &lt;span class='o'&gt;}&lt;/span&gt; &lt;span class='o'&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Result:&lt;/p&gt;
+&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='html'&gt;&lt;span class='nt'&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;title&amp;gt;&lt;/span&gt;Hello&lt;span class='nt'&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;ul&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;li&amp;gt;&lt;/span&gt;world 1&lt;span class='nt'&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;li&amp;gt;&lt;/span&gt;world 2&lt;span class='nt'&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;li&amp;gt;&lt;/span&gt;world 3&lt;span class='nt'&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;li&amp;gt;&lt;/span&gt;world 4&lt;span class='nt'&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;li&amp;gt;&lt;/span&gt;world 5&lt;span class='nt'&gt;&amp;lt;/li&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class='nt'&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;div class='highlight'&gt;&lt;pre&gt;&lt;code class='groovy'&gt;&lt;span class='kn'&gt;import&lt;/span&gt; &lt;span class='nn'&gt;java.awt.FlowLayout&lt;/span&gt;
+&lt;span class='n'&gt;builder&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;groovy&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;swing&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;SwingBuilder&lt;/span&gt;&lt;span class='o'&gt;()&lt;/span&gt;
+&lt;span class='n'&gt;langs&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='s'&gt;&amp;quot;Groovy&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Ruby&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Python&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='s'&gt;&amp;quot;Pnuts&amp;quot;&lt;/span&gt;&lt;span class='o'&gt;]&lt;/span&gt;
+&lt;span class='n'&gt;gui&lt;/span&gt; &lt;span class='o'&gt;=&lt;/span&gt; &lt;span class='n'&gt;builder&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;frame&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='nl'&gt;size:&lt;/span&gt; &lt;span class='o'&gt;[&lt;/span&gt;&lt;span class='mi'&gt;290&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='mi'&gt;100&lt;/span&gt;&lt;span class='o'&gt;],&lt;/span&gt;
+&lt;span class='nl'&gt;title:&lt;/span&gt; &lt;span class='err'&gt;&amp;#39;&lt;/span&gt;&lt;span class='n'&gt;Swinging&lt;/span&gt; &lt;span class='n'&gt;with&lt;/span&gt; &lt;span class='n'&gt;Groovy&lt;/span&gt;&lt;span class='o'&gt;!&lt;/span&gt;&lt;span class='err'&gt;&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='n'&gt;panel&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='nl'&gt;layout:&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;FlowLayout&lt;/span&gt;&lt;span class='o'&gt;())&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='n'&gt;panel&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='nl'&gt;layout:&lt;/span&gt; &lt;span class='k'&gt;new&lt;/span&gt; &lt;span class='n'&gt;FlowLayout&lt;/span&gt;&lt;span class='o'&gt;())&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='k'&gt;for&lt;/span&gt; &lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='n'&gt;lang&lt;/span&gt; &lt;span class='n'&gt;in&lt;/span&gt; &lt;span class='n'&gt;langs&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='n'&gt;checkBox&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='nl'&gt;text:&lt;/span&gt; &lt;span class='n'&gt;lang&lt;/span&gt;&lt;span class='o'&gt;)&lt;/span&gt;
+&lt;span class='o'&gt;}&lt;/span&gt;
+&lt;span class='o'&gt;}&lt;/span&gt;
+&lt;span class='n'&gt;button&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='nl'&gt;text:&lt;/span&gt; &lt;span class='err'&gt;&amp;#39;&lt;/span&gt;&lt;span class='n'&gt;Groovy&lt;/span&gt; &lt;span class='n'&gt;Button&lt;/span&gt;&lt;span class='err'&gt;&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='nl'&gt;actionPerformed:&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;
+&lt;span class='n'&gt;builder&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;optionPane&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='nl'&gt;message:&lt;/span&gt; &lt;span class='err'&gt;&amp;#39;&lt;/span&gt;&lt;span class='n'&gt;Indubitably&lt;/span&gt; &lt;span class='n'&gt;Groovy&lt;/span&gt;&lt;span class='o'&gt;!&lt;/span&gt;&lt;span class='err'&gt;&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;).&lt;/span&gt;
+&lt;span class='n'&gt;createDialog&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='kc'&gt;null&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt; &lt;span class='err'&gt;&amp;#39;&lt;/span&gt;&lt;span class='n'&gt;Zen&lt;/span&gt; &lt;span class='n'&gt;Message&lt;/span&gt;&lt;span class='err'&gt;&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;).&lt;/span&gt;&lt;span class='na'&gt;show&lt;/span&gt;&lt;span class='o'&gt;()&lt;/span&gt;
+&lt;span class='o'&gt;})&lt;/span&gt;
+&lt;span class='n'&gt;button&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='nl'&gt;text:&lt;/span&gt; &lt;span class='err'&gt;&amp;#39;&lt;/span&gt;&lt;span class='n'&gt;Groovy&lt;/span&gt; &lt;span class='n'&gt;Quit&lt;/span&gt;&lt;span class='err'&gt;&amp;#39;&lt;/span&gt;&lt;span class='o'&gt;,&lt;/span&gt;
+&lt;span class='nl'&gt;actionPerformed:&lt;/span&gt; &lt;span class='o'&gt;{&lt;/span&gt;&lt;span class='n'&gt;System&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;exit&lt;/span&gt;&lt;span class='o'&gt;(&lt;/span&gt;&lt;span class='mi'&gt;0&lt;/span&gt;&lt;span class='o'&gt;)})&lt;/span&gt;
+&lt;span class='o'&gt;}&lt;/span&gt;
+&lt;span class='o'&gt;}&lt;/span&gt;
+&lt;span class='n'&gt;gui&lt;/span&gt;&lt;span class='o'&gt;.&lt;/span&gt;&lt;span class='na'&gt;show&lt;/span&gt;&lt;span class='o'&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h1 id='groovy_tooling'&gt;Groovy tooling&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;IDE * &lt;a href='http://www.jetbrains.com/idea/'&gt;IntelliJ IDEA&lt;/a&gt; - the ultimate Groovy IDE. It&amp;#8217;s excellent Groovy support is part of its open source Community Edition. * &lt;a href='http://groovy.codehaus.org/Eclipse+Plugin'&gt;Eclipse&lt;/a&gt; - the most popular Java IDE has an actively maintained Groovy plugin * &lt;a href='http://netbeans.org/features/groovy/'&gt;NetBeans&lt;/a&gt; - Like IDEA NetBeans features built-in Groovy support&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Groovy distribution&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;groovysh - A Groovy REPL for exploratory programming&lt;/li&gt;
+
+&lt;li&gt;groovyconsole&lt;/li&gt;
+
+&lt;li&gt;groovyc - the Groovy compiler&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Build tools&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://maven.apache.org'&gt;Apache Maven&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://buildr.apache.org'&gt;Apache Buildr&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://gradle.org'&gt;Gradle&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id='killer_apps'&gt;Killer apps&lt;/h1&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;&lt;a href='http://grails.org'&gt;Grails&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Groovy port of Ruby on Rails&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Leverages the best Java technologies&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Hibernate&lt;/li&gt;
+
+&lt;li&gt;Spring&lt;/li&gt;
+
+&lt;li&gt;Tomcat&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Gradle - powerful build tool&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;&lt;a href='http://griffon.codehaus.org/'&gt;Griffon&lt;/a&gt; - a Grails like application framework for developing desktop applications&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id='groovy_resources'&gt;Groovy resources&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Books&lt;/li&gt;
+
+&lt;li&gt;On-line resources&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id='epilogue'&gt;Epilogue&lt;/h1&gt;
+
+&lt;p&gt;Groovy is a language aiming to bring dynamic productivity to Java developer without introducing them to a steep learning curve. The language is beautifully architectured and integrates seamlessly with the existing Java libraries and infrastructure. My biggest gripe with Groovy is the lack of advanced support for parallel and concurrent programming. Groovy&amp;#8217;s performance is not stellar either, but I guess this will be improved upon in Java 7.&lt;/p&gt;
+
+&lt;p&gt;With its easy to grasp Java-like syntax Groovy is a solid contender for the attention of Java developers. A growing number of Groovy related job offerings is a sign of Groovy&amp;#8217;s acceptance as a industrial strength tool.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;P.S. Coming up next is a discussion of the Scala programming language.&lt;/em&gt;&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <id>http://www.batsov.com/2011/05/04/lisp-problems</id>
