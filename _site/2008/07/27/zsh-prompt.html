@@ -41,33 +41,47 @@
                     <div id="content">
                         <div id="post">
     <h2 class="title">A nice zsh prompt</h2>
-    <p>Recently I switched to zsh, after being a bash user for almost 5 years. I was in love with everything in zsh from day one, except one thing – the default prompt. Although zsh ships with several prompt themes, I didn’t like any of them so I looked around a little bit and constructed my own humble prompt. Here it goes:</p>
+    <p>Recently I switched to zsh, after being a bash user for almost 5
+years. I was in love with everything in zsh from day one, except one
+thing – the default prompt. Although zsh ships with several prompt
+themes, I didn’t like any of them so I looked around a little bit and
+constructed my own humble prompt. Here it goes:</p>
 
-<p><div class='highlight'><pre><code class='console'><span class='gp'>PROMPT=&#39;[%n@%m %~]$</span> <span class='err'>&#39;</span>
+<div class="highlight"><pre><code class="console"><span class="gp">PROMPT=&#39;[%n@%m %~]$</span> <span class="err">&#39;</span>
 </code></pre>
-</div></p>
+</div>
 
 <p>In case you’re wondering what this gibberish means:</p>
 
 <p>%n stands for your username(e.g. bozhidar)</p>
 
-<p>%m stands for the first part of your machine’s hostname(you can use %M for the fully qualified name)</p>
+<p>%m stands for the first part of your machine’s hostname(you can use %M
+ for the fully qualified name)</p>
 
-<p>%~ stands for the current directory path with your home dir aliased with an ‘~’ (if you want to see the path in its natural form use %d instead)</p>
+<p>%~ stands for the current directory path with your home dir aliased
+ with an ‘~’ (if you want to see the path in its natural form use %d
+ instead)</p>
 
-<p>All of this strange looking character combinations are called “escape sequences” and they have special significance to zsh. The rest of the characters in the prompt definition are represented literally in the resulting prompt. It looks like this(on my machine):</p>
+<p>All of this strange looking character combinations are called “escape
+sequences” and they have special significance to zsh. The rest of the
+characters in the prompt definition are represented literally in the
+resulting prompt. It looks like this(on my machine):</p>
 
-<p><div class='highlight'><pre><code class='console'><span class='go'>[bozhidar@drow ~/store]$</span>
+<div class="highlight"><pre><code class="console"><span class="go">[bozhidar@drow ~/store]$</span>
 </code></pre>
-</div></p>
+</div>
 
-<p>If you like it simply put the prompt definition like in your .zshrc file. You may want to put a little bit different version of the prompt in the root user’s .zshrc(if you use root at all that is):</p>
+<p>If you like it simply put the prompt definition like in your .zshrc
+file. You may want to put a little bit different version of the prompt
+in the root user’s .zshrc(if you use root at all that is):</p>
 
-<p><div class='highlight'><pre><code class='console'><span class='gp'>PROMPT=&#39;[%n@%m %~]#</span> <span class='err'>&#39;</span>
+<div class="highlight"><pre><code class="console"><span class="gp">PROMPT=&#39;[%n@%m %~]#</span> <span class="err">&#39;</span>
 </code></pre>
-</div></p>
+</div>
 
-<p>This follows the well established pattern that a normal shell and a root shell should be easily distinguished visually.</p>
+<p>This follows the well established pattern that a normal shell and a
+root shell should be easily distinguished visually.</p>
+
     <div style="font-style: italic; color: #7f9f7f;">Posted on 27 Jul 2008 by Bozhidar.</div>
     <br/>
         <span  class='st_reddit_large' ></span><span  class='st_linkedin_large' ></span><span  class='st_google_reader_large' ></span><span  class='st_dzone_large' ></span><span  class='st_digg_large' ></span><span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_yahoo_large' ></span><span  class='st_gbuzz_large' ></span><span  class='st_email_large' ></span><span  class='st_sharethis_large' ></span>

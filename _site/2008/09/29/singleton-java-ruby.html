@@ -42,22 +42,27 @@
                         <div id="post">
     <h2 class="title">The best way to implement the Singleton pattern in Java and Ruby</h2>
     <p>I haven’t posted anything lately, but I just received my brand new “Das Keyboard” and now I simply can’t stop typing. Recently I’ve been going through some effective technics to implement popular design patterns and I was surprised to see how few people where aware of them. For example since Java 5 the best way to implement the Singleton pattern is simply to use an enum like this:</p>
-<div class='highlight'><pre><code class='java'><span class='kd'>public</span> <span class='kd'>enum</span> <span class='n'>SomeClass</span> <span class='o'>{</span>
-    <span class='n'>INSTANCE</span><span class='o'>;</span>
-<span class='o'>}</span>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">SomeClass</span> <span class="o">{</span>
+    <span class="n">INSTANCE</span><span class="o">;</span>
+<span class="o">}</span>
 </code></pre>
 </div>
+
 <p>This is possible due to the fact that in Java(unlike in C++ and C#) enums are full-blown classes(although they do not support features like inheritance for example). You get an added bonus when using an enum class – you do not have to worry about serialization – this is handled for you behind the scenes.</p>
 
 <p>And this is how one should implement the Singleton pattern in Ruby:</p>
-<div class='highlight'><pre><code class='ruby'><span class='nb'>require</span> <span class='s1'>&#39;singleton&#39;</span>
 
-<span class='k'>class</span> <span class='nc'>Some</span>
-  <span class='kp'>include</span> <span class='no'>Singleton</span>
-<span class='k'>end</span>
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">&#39;singleton&#39;</span>
+
+<span class="k">class</span> <span class="nc">Some</span>
+  <span class="kp">include</span> <span class="no">Singleton</span>
+<span class="k">end</span>
 </code></pre>
 </div>
+
 <p>Through the magic of Ruby’s mix-ins you get a private constructor for your class and an ‘instance‘ method with which you can obtain a reference to the single instance of the class. And best of all – because this library has undergone a substantial degree of testing it is pretty much bulletproof. Things hardly get simpler than that.</p>
+
     <div style="font-style: italic; color: #7f9f7f;">Posted on 29 Sep 2008 by Bozhidar.</div>
     <br/>
         <span  class='st_reddit_large' ></span><span  class='st_linkedin_large' ></span><span  class='st_google_reader_large' ></span><span  class='st_dzone_large' ></span><span  class='st_digg_large' ></span><span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_yahoo_large' ></span><span  class='st_gbuzz_large' ></span><span  class='st_email_large' ></span><span  class='st_sharethis_large' ></span>

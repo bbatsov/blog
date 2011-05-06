@@ -42,15 +42,22 @@
                         <div id="post">
     <h2 class="title">How to enable font anti-aliasing in a Java Swing app</h2>
     <p>If you have access to the source, you can do this in the main method:</p>
-<div class='highlight'><pre><code class='java'><span class='c1'>// enable anti-aliasing</span>
-<span class='n'>System</span><span class='o'>.</span><span class='na'>setProperty</span><span class='o'>(</span><span class='s'>&quot;awt.useSystemAAFontSettings&quot;</span><span class='o'>,</span><span class='s'>&quot;on&quot;</span><span class='o'>);</span>
-<span class='n'>System</span><span class='o'>.</span><span class='na'>setProperty</span><span class='o'>(</span><span class='s'>&quot;swing.aatext&quot;</span><span class='o'>,</span> <span class='s'>&quot;true&quot;</span><span class='o'>);</span>
+
+<div class="highlight"><pre><code class="java"><span class="c1">// enable anti-aliasing</span>
+<span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;awt.useSystemAAFontSettings&quot;</span><span class="o">,</span><span class="s">&quot;on&quot;</span><span class="o">);</span>
+<span class="n">System</span><span class="o">.</span><span class="na">setProperty</span><span class="o">(</span><span class="s">&quot;swing.aatext&quot;</span><span class="o">,</span> <span class="s">&quot;true&quot;</span><span class="o">);</span>
 </code></pre>
 </div>
-<p>Alternatively (and if you do not have access to the source, or if you find this easier) you can simply pass the system properties above to the JVM by adding these options to the command line:</p>
-<div class='highlight'><pre><code class='console'><span class='go'>-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true</span>
+
+<p>Alternatively (and if you do not have access to the source, or if you find this
+easier) you can simply pass the system properties above to the JVM by
+adding these options to the command line:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true</span>
 </code></pre>
 </div>
+
+
     <div style="font-style: italic; color: #7f9f7f;">Posted on 26 Feb 2010 by Bozhidar.</div>
     <br/>
         <span  class='st_reddit_large' ></span><span  class='st_linkedin_large' ></span><span  class='st_google_reader_large' ></span><span  class='st_dzone_large' ></span><span  class='st_digg_large' ></span><span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_yahoo_large' ></span><span  class='st_gbuzz_large' ></span><span  class='st_email_large' ></span><span  class='st_sharethis_large' ></span>

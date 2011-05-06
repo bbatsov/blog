@@ -43,27 +43,79 @@
     <h2 class="title">Using Emacs for Rails development: The perfect setup</h2>
     <p><strong>Updated 29/04/2011</strong></p>
 
-<p>Lately, I’ve started digging more and more into Rails, preparing for the start of a Rails powered project. Although there are some IDEs offering decent Rails support(namely RubyMine, NetBeans, Komodo and Aptana Studio) I have always preferred the comfort of Emacs for various reasons. So naturally I embarked on a quest to setup a suitable environment for Rails development in Emacs. After a couple of days of searching and evaluating possible solutions I finally set up a worthy environment. It consists of a couple of components – <a href='http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/misc/ruby-mode.el?view=log'>ruby-mode</a>, <a href='http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/misc/inf-ruby.el?view=log'>inf-ruby</a>, <a href='http://code.google.com/p/autopair/'>autopair-mode</a>, <a href='http://ourcomments.org/Emacs/nXhtml/doc/nxhtml.html'>nxhtml-mode</a>, <a href='http://code.google.com/p/yasnippet/'>yasnippet</a> and <a href='http://rinari.rubyforge.org/'>rinari</a>.</p>
+<p>Lately, I’ve started digging more and more into Rails, preparing for
+the start of a Rails powered project. Although there are some IDEs
+offering decent Rails support(namely RubyMine, NetBeans, Komodo and
+Aptana Studio) I have always preferred the comfort of Emacs for
+various reasons. So naturally I embarked on a quest to setup a
+suitable environment for Rails development in Emacs. After a couple of
+days of searching and evaluating possible solutions I finally set up a
+worthy environment. It consists of a couple of components –
+<a href="http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/misc/ruby-mode.el?view=log">ruby-mode</a>,
+<a href="http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/misc/inf-ruby.el?view=log">inf-ruby</a>,
+<a href="http://code.google.com/p/autopair/">autopair-mode</a>,
+<a href="http://ourcomments.org/Emacs/nXhtml/doc/nxhtml.html">nxhtml-mode</a>,
+<a href="http://code.google.com/p/yasnippet/">yasnippet</a> and
+<a href="http://rinari.rubyforge.org/">rinari</a>.</p>
 
-<p>As you probably have guessed by now <em>ruby-mode</em> provides support for editing ruby source files. The mode is pretty feature complete and under active development, headed by none other than Matz(Ruby&#8217;s creator) himself. I can only assume that Matz is an Emacs user himself. You can get it from the ruby svn repository if you&#8217;re using a version of Emacs older than Emacs 23(it&#8217;s built-in there).</p>
+<p>As you probably have guessed by now <em>ruby-mode</em> provides support for
+editing ruby source files. The mode is pretty feature complete and
+under active development, headed by none other than Matz(Ruby’s
+creator) himself. I can only assume that Matz is an Emacs user
+himself. You can get it from the ruby svn repository if you’re using a
+version of Emacs older than Emacs 23(it’s built-in there).</p>
 
-<p><em>inf-ruby</em> is a mode that spawns and inferior ruby process(irb shell) to which you can directly send code from the ruby buffer you&#8217;re currently editing. For instance - you can define a function and while your cursor is inside it you can press C-M-x - the function definition will be evaluated in irb automatically and you can test it there. This is extremely handy!</p>
+<p><em>inf-ruby</em> is a mode that spawns and inferior ruby process(irb shell)
+to which you can directly send code from the ruby buffer you’re
+currently editing. For instance - you can define a function and while
+your cursor is inside it you can press C-M-x - the function definition
+will be evaluated in irb automatically and you can test it there. This
+is extremely handy!</p>
 
-<p><em>autopair-mode</em> provides auto insertion of closing braces, quotes, ends, etc. . Instructions how to setup both modes can be found here. It&#8217;s a much more generic version of the <em>ruby-electric</em> mode that used to do similar tasks, but just in Ruby buffers.</p>
+<p><em>autopair-mode</em> provides auto insertion of closing braces, quotes,
+ends, etc. . Instructions how to setup both modes can be found
+here. It’s a much more generic version of the <em>ruby-electric</em> mode
+that used to do similar tasks, but just in Ruby buffers.</p>
 
-<p>Although many people recommend adding pabbrev(a mode which provides auto-completion) to the setup, I don’t recommend it – I find the mode mostly annoying and stick to the old school dumb auto-completion with M-/ . If you&#8217;re shopping for autocompletion, however, a much better and smarter choice would be a RSense<span>http://cx4a.org/software/rsense/</span>.</p>
+<p>Although many people recommend adding pabbrev(a mode which
+provides auto-completion) to the setup, I don’t recommend it – I find
+the mode mostly annoying and stick to the old school dumb
+auto-completion with M-/ . If you’re shopping for autocompletion,
+however, a much better and smarter choice would be a
+RSense[http://cx4a.org/software/rsense/].</p>
 
-<p><em>yasnippet</em> is a package that offers dynamically expandable code snippets(template), quite similar to ones in TextMate. It&#8217;s very easy to add your very own snippets if you wish to.</p>
+<p><em>yasnippet</em> is a package that offers dynamically expandable code
+snippets(template), quite similar to ones in TextMate. It’s very easy
+to add your very own snippets if you wish to.</p>
 
-<p><em>nxhtml-mode</em> is a pretty comprehensive package for web development in general. We need it for its excellent support for erb templates(.rhtml, .erb.html) and of course xhtml and css. Lately it&#8217;s not been as actively developed as it used to be, but it&#8217;s still a pretty good mode. Alternatively you can use <a href='https://github.com/nex3/haml'>Haml</a> and <a href='https://github.com/antonj/scss-mode'>SASS</a> and forget about nxhtml. Both have pretty decent Emacs modes available.</p>
+<p><em>nxhtml-mode</em> is a pretty comprehensive package for web development in
+general. We need it for its excellent support for erb
+templates(.rhtml, .erb.html) and of course xhtml and css. Lately it’s
+not been as actively developed as it used to be, but it’s still a
+pretty good mode. Alternatively you can use
+<a href="https://github.com/nex3/haml">Haml</a> and
+<a href="https://github.com/antonj/scss-mode">SASS</a> and forget about
+nxhtml. Both have pretty decent Emacs modes available.</p>
 
-<p><em>rinari</em> is a mode for Rails development – it contains rich functionality such as the ability to easily navigate between models, views and controllers in a Rails apfplication amongst other features. Instructions how to set up rinari together with nxhtml-mode can be found on rinari’s home page.</p>
+<p><em>rinari</em> is a mode for Rails development – it contains rich
+functionality such as the ability to easily navigate between models,
+views and controllers in a Rails apfplication amongst other
+features. Instructions how to set up rinari together with nxhtml-mode
+can be found on rinari’s home page. </p>
 
-<p>It’s always a good idea to add <a href='http://ecb.sourceforge.net/'>ecb</a>(the Emacs code browser) to the mix, though this is entirely optional.</p>
+<p>It’s always a good idea to add <a href="http://ecb.sourceforge.net/">ecb</a>(the Emacs code browser) to the mix,
+though this is entirely optional.</p>
 
-<p>A lot of the stuff I discussed here are part of the <a href='https://github.com/bbatsov/emacs-dev-kit'>Emacs Dev Kit</a> that I develop and maintain. I urge you to use the EDK as a starting point to develop your very own customized version of Emacs. EDK comes with a few ruby-mode customizations, yari(ri integration for Emacs), haml and sass modes, autopair, yaml-mode, yasnippet, css-mode, ecb and a lot of other goodies(find-file-in-project being one of my favourites).</p>
+<p>A lot of the stuff I discussed here are part of the
+<a href="https://github.com/bbatsov/emacs-dev-kit">Emacs Dev Kit</a> that I
+develop and maintain. I urge you to use the EDK as a starting point to
+develop your very own customized version of Emacs. EDK comes with a
+few ruby-mode customizations, yari(ri integration for Emacs), haml and
+sass modes, autopair, yaml-mode, yasnippet, css-mode, ecb and a lot of
+other goodies(find-file-in-project being one of my favourites). </p>
 
 <p>I hope you enjoy this setup and it helps boost your Rails productivity in Emacs.</p>
+
     <div style="font-style: italic; color: #7f9f7f;">Posted on 19 Jun 2008 by Bozhidar.</div>
     <br/>
         <span  class='st_reddit_large' ></span><span  class='st_linkedin_large' ></span><span  class='st_google_reader_large' ></span><span  class='st_dzone_large' ></span><span  class='st_digg_large' ></span><span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_yahoo_large' ></span><span  class='st_gbuzz_large' ></span><span  class='st_email_large' ></span><span  class='st_sharethis_large' ></span>
