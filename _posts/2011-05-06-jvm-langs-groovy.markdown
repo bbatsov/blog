@@ -571,7 +571,47 @@ Groovy. According to some benchmarks around the Internet(like
 [this one](http://stronglytypedblog.blogspot.com/2010/02/java-vs-scala-vs-groovy-vs-groovy.html))
 Groovy is much slower than Java for certain tasks. I, however, haven't
 read any new benchmarks on the subject and have no idea how reliable
-the old ones are and how relevant they are to the current Groovy version.
+the old ones are and how relevant they are to the current Groovy
+version.
+
+# Future prospects
+
+With so many languages being created all the time developers
+naturally ask themselves the same question over and over again -
+should I waste my time learning this language? Related questions seem
+to be:
+
+* Will it endure the test of time?
+* Does it have a vibrant and committed community around it?
+* Can I find professional support?
+* Does it integrate well with out current infrastructure?
+* Does it have good tooling?
+
+After all most of the currently popular languages like Java, C# and
+PHP are nothing spectacular on their own, but have a combination of
+factors that worked in their favour to get them to the top - solid
+companies behind them, many deployment options and just the right
+amount of beefing up/simplifying C/C++ make existing developers transition to the
+new languages a relatively easy and painless experience.
+
+SpringSource(the company responsible for the creation of the popular
+Spring framework, now a division of VMWare) employs most of the core
+Groovy developers and offers both [Groovy and Grails support](http://www.springsource.com/developer/grails). The fact
+that a company such as this one believes in the technology is very
+important whey you're trying to sell using Groovy in your current
+company. And if you're existing infrastructure is built around Java -
+well, you have next to nothing to worry about, except maybe will Java 7
+deliver the promised speed improvement for dynamic languages
+implemented on top of it.
+
+Presently the Groovy community is vast and rapidly growing. The
+language itself - constantly evolving. 
+
+NetBeans and IntelliJ have built-in Groovy support, which is a big
+testament to the language's popularity as well.
+
+In a sentence I don't see Groovy disappearing or dying anytime soon
+even if its original creator has lost faith in it.
 
 # Groovy resources
 
