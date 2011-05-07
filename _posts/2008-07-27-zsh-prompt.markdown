@@ -9,7 +9,7 @@ thing – the default prompt. Although zsh ships with several prompt
 themes, I didn’t like any of them so I looked around a little bit and
 constructed my own humble prompt. Here it goes:
 
-{% highlight console %}
+{% highlight bash %}
 PROMPT='[%n@%m %~]$ '
 {% endhighlight %}
 
@@ -37,7 +37,7 @@ If you like it simply put the prompt definition like in your .zshrc
 file. You may want to put a little bit different version of the prompt
 in the root user’s .zshrc(if you use root at all that is):
 
-{% highlight console %}
+{% highlight bash %}
 PROMPT='[%n@%m %~]# '
 {% endhighlight %}
 

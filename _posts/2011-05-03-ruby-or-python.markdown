@@ -56,11 +56,11 @@ $ apt-get install ruby19
 $ apt-get install python3
 {% endhighlight %}
 
-or:
+or on a Red Hat system:
 
 {% highlight console %}
-$ apt-get install ruby19
-$ apt-get install python3
+$ yum install ruby19
+$ yum install python3
 {% endhighlight %}
 
 Using the distribution package management system is a simple solution,
