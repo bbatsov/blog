@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-06T21:26:34+03:00</updated>
+  <updated>2011-05-07T09:11:03+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -600,9 +600,39 @@ that is handy for the development and testing of small Groovy scripts&lt;/li&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Gradle - powerful build tool&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://griffon.codehaus.org/&quot;&gt;Griffon&lt;/a&gt; - a Grails like application framework for developing desktop applications&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://gradle.org&quot;&gt;Gradle&lt;/a&gt; - powerful build tool, considered by many vastly superior to
+Maven. Several high profile projects(such as Hibernate) already
+migrated their builds to Gradle.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://griffon.codehaus.org/&quot;&gt;Griffon&lt;/a&gt; - a Grails like application
+framework for developing desktop applications&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h1 id=&quot;common-use-cases&quot;&gt;Common use cases&lt;/h1&gt;
+
+&lt;p&gt;Groovy is a general purpose language, but it’s used for some tasks
+more often than for others. It’s extremely suitable for:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;web application development(usually with Grails)&lt;/li&gt;
+  &lt;li&gt;scripting(although you have to factor in the cold startup time of
+the JVM before you start writing all your scripts in Groovy)&lt;/li&gt;
+  &lt;li&gt;tests development - it’s a common practice in many Java projects to
+have the tests written in Groovy&lt;/li&gt;
+  &lt;li&gt;GUI development(usually with Griffon)&lt;/li&gt;
+  &lt;li&gt;Rapid prototyping - you’d do a quick app prototype in Groovy as a
+proof on concept and then you’d create a Java application based on
+it&lt;/li&gt;
+  &lt;li&gt;Exploratory programming - the groovysh is a great way to test class
+capabilities, methods and ideas with almost zero overhead - no
+annoying compile/run cycles to slow you down&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;When performance is critical you’d probably want to avoid
+Groovy. According to some benchmarks around the Internet(like
+&lt;a href=&quot;http://stronglytypedblog.blogspot.com/2010/02/java-vs-scala-vs-groovy-vs-groovy.html&quot;&gt;this one&lt;/a&gt;)
+Groovy is much slower than Java for certain tasks. I, however, haven’t
+read any new benchmarks on the subject and have no idea how reliable
+the old ones are and how relevant they are to the current Groovy version.&lt;/p&gt;
 
 &lt;h1 id=&quot;groovy-resources&quot;&gt;Groovy resources&lt;/h1&gt;
 

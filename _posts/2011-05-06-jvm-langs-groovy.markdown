@@ -542,8 +542,36 @@ Run the code to see the resulting GUI!
         * Hibernate
         * Spring
         * Tomcat
-* Gradle - powerful build tool
-* [Griffon](http://griffon.codehaus.org/) - a Grails like application framework for developing desktop applications
+* [Gradle](http://gradle.org) - powerful build tool, considered by many vastly superior to
+  Maven. Several high profile projects(such as Hibernate) already
+  migrated their builds to Gradle.
+* [Griffon](http://griffon.codehaus.org/) - a Grails like application
+  framework for developing desktop applications
+  
+# Common use cases
+
+Groovy is a general purpose language, but it's used for some tasks
+more often than for others. It's extremely suitable for:
+
+* web application development(usually with Grails)
+* scripting(although you have to factor in the cold startup time of
+  the JVM before you start writing all your scripts in Groovy)
+* tests development - it's a common practice in many Java projects to
+  have the tests written in Groovy
+* GUI development(usually with Griffon)
+* Rapid prototyping - you'd do a quick app prototype in Groovy as a
+  proof on concept and then you'd create a Java application based on
+  it
+* Exploratory programming - the groovysh is a great way to test class
+  capabilities, methods and ideas with almost zero overhead - no
+  annoying compile/run cycles to slow you down
+
+When performance is critical you'd probably want to avoid
+Groovy. According to some benchmarks around the Internet(like
+[this one](http://stronglytypedblog.blogspot.com/2010/02/java-vs-scala-vs-groovy-vs-groovy.html))
+Groovy is much slower than Java for certain tasks. I, however, haven't
+read any new benchmarks on the subject and have no idea how reliable
+the old ones are and how relevant they are to the current Groovy version.
 
 # Groovy resources
 
