@@ -234,6 +234,10 @@ can install it like this:</p>
 since some distribution package Groovy in a non-standard manner which
 confuses IDEs for instance.</p>
 
+<p><strong>Windows installation</strong></p>
+
+<p>Groovy features a native <a href="http://dist.codehaus.org/groovy/distributions/installers/windows/nsis/groovy-1.8.0-installer.exe">Windows installer</a>.</p>
+
 <h1 id="meet-groovy">Meet Groovy</h1>
 
 <p><em>“Groovy is like a super version of Java. It can leverage Java’s
@@ -274,8 +278,17 @@ can use Java</li>
     </ul>
   </li>
   <li>Duck typing</li>
-  <li>BigInteger based arithmetic(integer calculations in Groovy are
-automatically promoted to BigInteger when necessary)</li>
+  <li>BigInteger based arithmetic
+    <ul>
+      <li>This deserves some special explanation because of a rather
+strange design decision in Groovy. Groovy will create a
+BigIntiger out of a large enough number literal, but it won’t
+promote the result of an integer operation into BigInteger - 
+the result will actually overflow, in contrast to the semantics of most
+other dynamically typed languages. Multiply 1000 * 1000000000
+and you will end up with -727379968 in Groovy.</li>
+    </ul>
+  </li>
   <li>SQL, XML &amp; Swing improvements</li>
   <li>Unified data access API</li>
 </ul>

@@ -187,6 +187,10 @@ Personally I'd prefer the platform-independent installation method,
 since some distribution package Groovy in a non-standard manner which
 confuses IDEs for instance.
 
+**Windows installation**
+
+Groovy features a native [Windows installer](http://dist.codehaus.org/groovy/distributions/installers/windows/nsis/groovy-1.8.0-installer.exe).
+
 # Meet Groovy
 
 _"Groovy is like a super version of Java. It can leverage Java's
@@ -221,8 +225,14 @@ Some of Groovy's most compelling features are:
     * Attributes
     * Smart switch
 * Duck typing
-* BigInteger based arithmetic(integer calculations in Groovy are
-  automatically promoted to BigInteger when necessary)
+* BigInteger based arithmetic
+    * This deserves some special explanation because of a rather
+      strange design decision in Groovy. Groovy will create a
+      BigIntiger out of a large enough number literal, but it won't
+      promote the result of an integer operation into BigInteger - 
+      the result will actually overflow, in contrast to the semantics of most
+      other dynamically typed languages. Multiply 1000 * 1000000000
+      and you will end up with -727379968 in Groovy.
 * SQL, XML & Swing improvements
 * Unified data access API
 
