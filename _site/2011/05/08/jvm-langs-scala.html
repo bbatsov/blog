@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+        <link href="/css/site.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+        <link rel="alternate" type="application/atom+xml" href="atom.xml" title="Atom feed">
+        <title>(think) - Java.next() - Scala: The Revenge of the Static Typing</title>
+
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-22917580-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </head>
+
+    <body>
+        <div id="page">
+            <div id="content">
+                <div id="header">
+                    <h1>(think)</h1>
+                    <p class="comment">/** An online novel about the Source, the Force, the real life and everything
+                    in between...**/</p>
+                </div>
+                <div id="middle">
+                    <div id="menu">
+                        <ul id="list-nav">
+                            <li><a href="/index.html">Home</a></li>
+                            <li><a href="/archive.html">Archive</a></li>
+                            <li><a href="/projects.html">Projects</a></li>
+                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/contacts.html">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div id="content">
+                        <div id="post">
+    <h2 class="title">Java.next() - Scala: The Revenge of the Static Typing</h2>
+    <h1 id="overture">Overture</h1>
+
+<p>This is the second post from my series dedicated to modern programming
+languages for the Java platform. Last time we’ve discussed the
+<a href="/2011/05/06/jvm-langs-groovy.html">Groovy programming language</a> which
+is a member of the ever expanding family of dynamic programming
+languages. The Scala programming language that is the object of
+today’s discussion is another beast entirely - not only it uses static
+typing(like Java &amp; C#), but it also puts a heavy emphasis on the type
+system, functional and parallel programming.</p>
+
+<p>In theory Scala runs both on the JVM and on the CLR(the .NET VM). The
+Java port, however, receive a lot more attention by Scala’s developer
+and it probably accounts for close of to all of Scala’s
+deployments(especially in production).</p>
+
+<h1 id="a-brief-history-of-scala">A brief history of Scala</h1>
+
+<p>After having written hundreds of thousands lines of Java himself,
+Martin Odersky, Professor at EPFL, was well aware of the frustrations
+faced by Java programmers. He formed the vision of applying the best
+knowledge of the academic research community to the problem of making
+the Java programming experience better, even fun. His first pragmatic
+step was Java Generics, seen as a major success by the Java
+community. But for the full vision of scalable concurrent programming
+to be achieved he saw that the basic Java syntax would need to
+change. You simply couldn’t get there from here. But a deceptively
+simple shift in syntax gained better uniformity to the object-oriented
+aspects of Java, and this in turn enabled a natural fusion with
+functional programming concepts which are critical for tackling
+concurrency. In 2001 Scala was born.</p>
+
+<p>Scala stands for a SCAlable LAnguage. What does this mean? Scala is
+designed to tackle solutions of wildly varying sizes - from small
+scripts (programming in the small) to massive distributed enterprise
+applications (generally programming in the large). Scala also means
+<em>steps</em> in Italian and this is the reason why most Scala books have
+some form of steps on their covers (arguably this is the reason while
+Scala is very popular in Italy and particularly in Milan). </p>
+
+<p>The current production version of Scala is 2.8.1 with 2.9.0 being in
+the release candidate stages.</p>
+
+<h1 id="installing-scala">Installing Scala</h1>
+
+<p><strong>Universal installer</strong></p>
+
+<p>Scala has an <a href="http://www.scala-lang.org/downloads/distrib/files/scala-2.8.1.final-installer.jar">universal installer</a> that could be ran on every platform
+with Java installed. You can run it from the console like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> java -jar scala-2.8.1.final-installer.jar
+</code></pre>
+</div>
+
+<p>Alternatively, on most systems simply double clicking the installer
+jar will run it(assuming you have a GUI environment and assuming that
+the java command is associated with jar files - something that is
+usually so by default).</p>
+
+<p><strong>Installing from binary archive</strong></p>
+
+<p>Just download the Scala distribution for <a href="http://www.scala-lang.org/downloads/distrib/files/scala-2.8.1.final.tgz">Unix, OS X and Cygwin</a> or
+the one for
+<a href="http://www.scala-lang.org/downloads/distrib/files/scala-2.8.1.final.zip">Windows</a>
+and extract it somewhere. I’m a GNU/Linux user and I tend to extract
+all third party apps in the /opt folder:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo tar xf scala-2.8.1.final.tgz -C /opt
+</code></pre>
+</div>
+
+<p>You’d also want to add the folder containing the Scala binaries
+(compiler, REPL, etc) to your PATH environmental variable. Unix users
+might add something like this to their shell startup script (like
+.bashrc):</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java/latest
+<span class="nb">export </span><span class="nv">SCALA_HOME</span><span class="o">=</span>/opt/scala-2.8.1
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$SCALA_HOME</span>/bin:<span class="nv">$PATH</span>
+</code></pre>
+</div>
+
+<p>You should now have Scala installed properly. You can test this by
+typing the following in a command shell:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> scala
+</code></pre>
+</div>
+
+<p>Which should create an interactive Scala shell where you can type
+Scala expressions. </p>
+
+<p>To run a specific Scala script type:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> scala SomeScript.scala
+</code></pre>
+</div>
+
+<p><strong>Linux installation</strong></p>
+
+<p>Most Linux distributions provide Scala through their integrated
+package management system. On Debian(and derivatives like Ubuntu) you
+can install it like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo apt-get install scala
+</code></pre>
+</div>
+
+<p>On Red Hat systems the magic incantation looks like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install scala
+</code></pre>
+</div>
+
+<p>Personally I’d prefer the platform-independent installation method,
+since some distribution package Scala in a non-standard manner which
+confuses IDEs for instance.</p>
+
+<h1 id="playing-around">Playing around</h1>
+
+<p>A good way to start exploring Scala is the REPL. Fire it up and type along:</p>
+
+<h1 id="object-orientation-purification">Object orientation purification</h1>
+
+<h1 id="functional-programming">Functional programming</h1>
+
+<p>Functional programming has many aspects, but to get the bulk of it you
+need just two magical ingredients - support for functions as objects
+and a nice array of immutable data structures. Scala, naturally, has
+both. </p>
+
+<h1 id="parallel-programming">Parallel programming</h1>
+
+<h1 id="tools">Tools</h1>
+
+<h1 id="killer-apps">Killer apps</h1>
+
+<h1 id="success-stories">Success stories</h1>
+
+<h1 id="future-prospects">Future prospects</h1>
+
+<h1 id="epilogue">Epilogue</h1>
+
+    <div style="font-style: italic; color: #7f9f7f;">Posted on 08 May 2011 by Bozhidar.</div>
+    <br/>
+        <span  class='st_reddit_large' ></span><span  class='st_linkedin_large' ></span><span  class='st_google_reader_large' ></span><span  class='st_dzone_large' ></span><span  class='st_digg_large' ></span><span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_yahoo_large' ></span><span  class='st_gbuzz_large' ></span><span  class='st_email_large' ></span><span  class='st_sharethis_large' ></span>
+    <hr />
+    <div id="disqus">
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'batsov'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = document.location.href;
+    var disqus_url = document.location.href;
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'e857ac4f-d3f6-4aa1-9e1f-06210ab5480e'});</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+</div>
+
+                    </div>
+                </div>
+                <div id="footer">
+                    Copyright &copy; 2010-2011 <a href="mailto:bozhidar.batsov@gmail.com">Bozhidar Batsov</a>. All Rights Reserved.
+                    <br/>
+                    Powered by <a href="http://jekyllrb.com/">Jekyll</a>.
+                </div>
+            </div>
+            <div id="sidebar">
+                <div id="twitter">
+                    <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        new TWTR.Widget({
+                        version: 2,
+                        type: 'profile',
+                        rpp: 4,
+                        interval: 6000,
+                        width: 250,
+                        height: 300,
+                        theme: {
+                        shell: {
+                        background: '#333333',
+                        color: '#ffffff'
+                        },
+                        tweets: {
+                        background: '#000000',
+                        color: '#ffffff',
+                        links: '#4aed05'
+                        }
+                        },
+                        features: {
+                        scrollbar: false,
+                        loop: false,
+                        live: false,
+                        hashtags: true,
+                        timestamp: true,
+                        avatars: false,
+                        behavior: 'all'
+                        }
+                        }).render().setUser('bbatsov').start();
+                    </script>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+    var disqus_shortname = 'batsov'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    </body>
+</html>

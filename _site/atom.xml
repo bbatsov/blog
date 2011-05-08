@@ -4,13 +4,167 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-07T23:30:57+03:00</updated>
+  <updated>2011-05-08T21:21:39+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
     <email>bozhidar.batsov@gmail.com</email>
   </author>
 
+  
+  <entry>
+    <id>http://www.batsov.com/2011/05/08/jvm-langs-scala</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/05/08/jvm-langs-scala.html"/>
+    <title>Java.next() - Scala: The Revenge of the Static Typing</title>
+    <updated>2011-05-08T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;h1 id=&quot;overture&quot;&gt;Overture&lt;/h1&gt;
+
+&lt;p&gt;This is the second post from my series dedicated to modern programming
+languages for the Java platform. Last time we’ve discussed the
+&lt;a href=&quot;/2011/05/06/jvm-langs-groovy.html&quot;&gt;Groovy programming language&lt;/a&gt; which
+is a member of the ever expanding family of dynamic programming
+languages. The Scala programming language that is the object of
+today’s discussion is another beast entirely - not only it uses static
+typing(like Java &amp;amp; C#), but it also puts a heavy emphasis on the type
+system, functional and parallel programming.&lt;/p&gt;
+
+&lt;p&gt;In theory Scala runs both on the JVM and on the CLR(the .NET VM). The
+Java port, however, receive a lot more attention by Scala’s developer
+and it probably accounts for close of to all of Scala’s
+deployments(especially in production).&lt;/p&gt;
+
+&lt;h1 id=&quot;a-brief-history-of-scala&quot;&gt;A brief history of Scala&lt;/h1&gt;
+
+&lt;p&gt;After having written hundreds of thousands lines of Java himself,
+Martin Odersky, Professor at EPFL, was well aware of the frustrations
+faced by Java programmers. He formed the vision of applying the best
+knowledge of the academic research community to the problem of making
+the Java programming experience better, even fun. His first pragmatic
+step was Java Generics, seen as a major success by the Java
+community. But for the full vision of scalable concurrent programming
+to be achieved he saw that the basic Java syntax would need to
+change. You simply couldn’t get there from here. But a deceptively
+simple shift in syntax gained better uniformity to the object-oriented
+aspects of Java, and this in turn enabled a natural fusion with
+functional programming concepts which are critical for tackling
+concurrency. In 2001 Scala was born.&lt;/p&gt;
+
+&lt;p&gt;Scala stands for a SCAlable LAnguage. What does this mean? Scala is
+designed to tackle solutions of wildly varying sizes - from small
+scripts (programming in the small) to massive distributed enterprise
+applications (generally programming in the large). Scala also means
+&lt;em&gt;steps&lt;/em&gt; in Italian and this is the reason why most Scala books have
+some form of steps on their covers (arguably this is the reason while
+Scala is very popular in Italy and particularly in Milan). &lt;/p&gt;
+
+&lt;p&gt;The current production version of Scala is 2.8.1 with 2.9.0 being in
+the release candidate stages.&lt;/p&gt;
+
+&lt;h1 id=&quot;installing-scala&quot;&gt;Installing Scala&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Universal installer&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Scala has an &lt;a href=&quot;http://www.scala-lang.org/downloads/distrib/files/scala-2.8.1.final-installer.jar&quot;&gt;universal installer&lt;/a&gt; that could be ran on every platform
+with Java installed. You can run it from the console like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; java -jar scala-2.8.1.final-installer.jar
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Alternatively, on most systems simply double clicking the installer
+jar will run it(assuming you have a GUI environment and assuming that
+the java command is associated with jar files - something that is
+usually so by default).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Installing from binary archive&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Just download the Scala distribution for &lt;a href=&quot;http://www.scala-lang.org/downloads/distrib/files/scala-2.8.1.final.tgz&quot;&gt;Unix, OS X and Cygwin&lt;/a&gt; or
+the one for
+&lt;a href=&quot;http://www.scala-lang.org/downloads/distrib/files/scala-2.8.1.final.zip&quot;&gt;Windows&lt;/a&gt;
+and extract it somewhere. I’m a GNU/Linux user and I tend to extract
+all third party apps in the /opt folder:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo tar xf scala-2.8.1.final.tgz -C /opt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You’d also want to add the folder containing the Scala binaries
+(compiler, REPL, etc) to your PATH environmental variable. Unix users
+might add something like this to their shell startup script (like
+.bashrc):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/java/latest
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;SCALA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/opt/scala-2.8.1
+&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$SCALA_HOME&lt;/span&gt;/bin:&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You should now have Scala installed properly. You can test this by
+typing the following in a command shell:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; scala
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Which should create an interactive Scala shell where you can type
+Scala expressions. &lt;/p&gt;
+
+&lt;p&gt;To run a specific Scala script type:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; scala SomeScript.scala
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Linux installation&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Most Linux distributions provide Scala through their integrated
+package management system. On Debian(and derivatives like Ubuntu) you
+can install it like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo apt-get install scala
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;On Red Hat systems the magic incantation looks like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install scala
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Personally I’d prefer the platform-independent installation method,
+since some distribution package Scala in a non-standard manner which
+confuses IDEs for instance.&lt;/p&gt;
+
+&lt;h1 id=&quot;playing-around&quot;&gt;Playing around&lt;/h1&gt;
+
+&lt;p&gt;A good way to start exploring Scala is the REPL. Fire it up and type along:&lt;/p&gt;
+
+&lt;h1 id=&quot;object-orientation-purification&quot;&gt;Object orientation purification&lt;/h1&gt;
+
+&lt;h1 id=&quot;functional-programming&quot;&gt;Functional programming&lt;/h1&gt;
+
+&lt;p&gt;Functional programming has many aspects, but to get the bulk of it you
+need just two magical ingredients - support for functions as objects
+and a nice array of immutable data structures. Scala, naturally, has
+both. &lt;/p&gt;
+
+&lt;h1 id=&quot;parallel-programming&quot;&gt;Parallel programming&lt;/h1&gt;
+
+&lt;h1 id=&quot;tools&quot;&gt;Tools&lt;/h1&gt;
+
+&lt;h1 id=&quot;killer-apps&quot;&gt;Killer apps&lt;/h1&gt;
+
+&lt;h1 id=&quot;success-stories&quot;&gt;Success stories&lt;/h1&gt;
+
+&lt;h1 id=&quot;future-prospects&quot;&gt;Future prospects&lt;/h1&gt;
+
+&lt;h1 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h1&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://www.batsov.com/2011/05/06/jvm-langs-groovy</id>
@@ -213,6 +367,10 @@ can install it like this:&lt;/p&gt;
 since some distribution package Groovy in a non-standard manner which
 confuses IDEs for instance.&lt;/p&gt;
 
+&lt;p&gt;&lt;strong&gt;Windows installation&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Groovy features a native &lt;a href=&quot;http://dist.codehaus.org/groovy/distributions/installers/windows/nsis/groovy-1.8.0-installer.exe&quot;&gt;Windows installer&lt;/a&gt;.&lt;/p&gt;
+
 &lt;h1 id=&quot;meet-groovy&quot;&gt;Meet Groovy&lt;/h1&gt;
 
 &lt;p&gt;&lt;em&gt;“Groovy is like a super version of Java. It can leverage Java’s
@@ -253,8 +411,17 @@ can use Java&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Duck typing&lt;/li&gt;
-  &lt;li&gt;BigInteger based arithmetic(integer calculations in Groovy are
-automatically promoted to BigInteger when necessary)&lt;/li&gt;
+  &lt;li&gt;BigInteger based arithmetic
+    &lt;ul&gt;
+      &lt;li&gt;This deserves some special explanation because of a rather
+strange design decision in Groovy. Groovy will create a
+BigIntiger out of a large enough number literal, but it won’t
+promote the result of an integer operation into BigInteger - 
+the result will actually overflow, in contrast to the semantics of most
+other dynamically typed languages. Multiply 1000 * 1000000000
+and you will end up with -727379968 in Groovy.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;SQL, XML &amp;amp; Swing improvements&lt;/li&gt;
   &lt;li&gt;Unified data access API&lt;/li&gt;
 &lt;/ul&gt;
@@ -2138,19 +2305,19 @@ most real and are here to stay.&lt;/p&gt;
       <uri>http://www.batsov.com/</uri>
     </author>
     <content type="html">&lt;p&gt;Programming languages have always been a passion of mine and through
-the years I’ve learnt quite a few of them. The first one was Pascal
-some 13 years ago and the last was Scala just a couple of months ago.&lt;/p&gt;
+the years I’ve learnt quite a few of them. The first one was Pascal,
+some 13 years ago, and the last was Scala, just a couple of months ago.&lt;/p&gt;
 
 &lt;p&gt;Although the authors of many languages claim that the language they
 created is the greatest thing after hot water, this is rarely the
-case. Most of the “unique” features are not quite unique and the truly
+case. Most of the “unique” features are not quite unique, and the truly
 unique stuff is often just useless. I don’t believe that there is a
 single greatest and unparallelled language, but I do believe that some
 languages are more valuable them others in term of both theory(the
 concepts around which they revolve) and practice(the chances of you
 landing a job with them or simply getting a task done).&lt;/p&gt;
 
-&lt;p&gt;In this blog post I’ve review the ten or so languages that I’ve found to
+&lt;p&gt;In this blog post I’ll review the ten or so languages that I’ve found to
 be most enlightening/helpful for me over the years. I think that every
 professional software engineer should have at least a passing
 knowledge of them.&lt;/p&gt;
@@ -2158,13 +2325,13 @@ knowledge of them.&lt;/p&gt;
 &lt;h1 id=&quot;c&quot;&gt;C&lt;/h1&gt;
 &lt;hr /&gt;
 &lt;p&gt;The C programming language has been around for about forty
-years now(it appeared in 1973). While it’s often viewed as a higher
+years now (it appeared in 1973). While it’s often viewed as a higher
 level assembly language today in the era of Java, .Net and Python, C
 remains the sole choice for doing serious system programming - writing
 drivers, all kinds of servers and virtual machines.&lt;/p&gt;
 
 &lt;p&gt;Learning C also give you an insight to the inner working of the
-computer like memory management and native data types(based on a CPU’s
+computer, like memory management and native data types (based on a CPU’s
 registries).&lt;/p&gt;
 
 &lt;p&gt;The best way to get started with C
@@ -2180,11 +2347,11 @@ never actually use Lisp itself a lot.”&lt;/em&gt; - Eric Raymond&lt;/p&gt;
 
 &lt;p&gt;One of the oldest programming languages around - created in 1958 and
 still relevant today. Important for its unique code is data approach,
-advanced code generation facilities(macros) and the ability to develop
+advanced code generation facilities (macros) and the ability to develop
 software in incremental and interactive fashion. &lt;/p&gt;
 
 &lt;p&gt;Although many of the features that originally made it truly
-unique(like garbage collection, if expression, function objects) are
+unique (like garbage collection, if expression, function objects) are
 now found in many modern languages, Lisp still offers some compelling
 alternatives for those interested to explore it.&lt;/p&gt;
 
@@ -2194,7 +2361,7 @@ functional and object-oriented programming. Another popular dialect is
 Scheme which is a simpler language focused mainly on functional
 programming and until recently was a popular choice for teaching
 introductory programming classes in many major US
-universities(recently it’s being displaced by Python). &lt;/p&gt;
+universities (recently it’s being displaced by Python). &lt;/p&gt;
 
 &lt;p&gt;You cannot start with a better introduction to Common Lisp than Peter
 Seibel’s
@@ -2207,15 +2374,15 @@ good source of exercises for aspiring Lisp programmers are the
 &lt;h1 id=&quot;java&quot;&gt;Java&lt;/h1&gt;
 &lt;hr /&gt;
 &lt;p&gt;Let’s face it - if you’re in the market for jobs a third of them are
-about Java EE or Android development(the other two thirds are probably
+about Java EE or Android development (the other two thirds are probably
 related to PHP and .NET). The language is not quite
 elegant, but the platform is truly magnificent. Although there are
-many other languages targeting the JVM(Scala, Groovy, Clojure, JRuby,
+many other languages targeting the JVM (Scala, Groovy, Clojure, JRuby,
 Jython - just to name a few) Java is still predominant by a wide
 margin and this is unlikely to change soon. It’s actually &lt;a href=&quot;http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html&quot;&gt;the most
 popular programming language in the world&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;I’ve taught a couple of introductory Java programming courses(in
+&lt;p&gt;I’ve taught a couple of introductory Java programming courses (in
 Bulgarian), but I’d recommend the
 &lt;a href=&quot;http://www.amazon.com/Core-Java-TM-I--Fundamentals-8th/dp/0132354764/ref=sr_1_1?s=books&amp;amp;ie=UTF8&amp;amp;qid=1303901341&amp;amp;sr=1-1&quot;&gt;“Core Java”&lt;/a&gt;
 book over my lectures any day of
@@ -2244,7 +2411,7 @@ languages like PHP, Ruby and Python. While I wouldn’t advise anyone to
 start writing Web or Enterprise apps with Perl it’s still the best language for
 writing administration and helper scripts with minimum fuss and maximum
 developer throughput. It features the greatest support for text
-processing ever and an extremely flexible(albeit a bit of confusing)
+processing ever and an extremely flexible (albeit a bit of confusing)
 syntax. &lt;/p&gt;
 
 &lt;p&gt;Perl &lt;a href=&quot;http://www.cpan.org/&quot;&gt;CPAN&lt;/a&gt; is probably the largest collection of third party
@@ -2263,7 +2430,7 @@ data structures, pervasive use of laziness, higher order functions and
 tail-call optimizations,
 and some rather novel ideas on the topics of state and
 identity. Clojure also cleans up a bit the traditional Lisp
-syntax(read this is Clojure has fewer parentheses than say Common Lisp).&lt;/p&gt;
+syntax (read this as Clojure has fewer parentheses than say Common Lisp).&lt;/p&gt;
 
 &lt;p&gt;To get started I recommend you to watch the free Clojure screencasts
 on &lt;a href=&quot;http://clojure.blip.tv/&quot;&gt;blip.tv&lt;/a&gt;.&lt;/p&gt;
@@ -2273,7 +2440,7 @@ on &lt;a href=&quot;http://clojure.blip.tv/&quot;&gt;blip.tv&lt;/a&gt;.&lt;/p&gt
 &lt;p&gt;The most famous language from the logic programming family. Solving a
 problem like a sudoku puzzle in Prolog will be an eye opening
 experience for any developer. While it’s unlikely that you’ll ever use
-it practice the ideas found in Prolog will truly expand your thinking
+it practice the ideas found in it, Prolog will truly expand your thinking
 horizons.&lt;/p&gt;
 
 &lt;p&gt;A good starting point in your journey to Prolog will be
@@ -2283,8 +2450,8 @@ follow up with the collection of programming puzzles &lt;a href=&quot;http://sit
 &lt;h1 id=&quot;ruby&quot;&gt;Ruby&lt;/h1&gt;
 &lt;hr /&gt;
 &lt;p&gt;A pure object oriented dynamic scripting language with a very nice support for
-metaprogramming. Has versions written in Java(JRuby) and
-.Net(IronRuby) which makes it easy to integrate it with any software
+metaprogramming. It has versions written in Java (JRuby) and
+.Net (IronRuby) which makes it easy to integrate it with any software
 for those popular platforms. The language became popular with the rise of the Ruby
 on Rails web framework, but it has many potential applications that don’t
 involve RoR or web development. &lt;/p&gt;
@@ -2311,9 +2478,9 @@ department - first to introduce concepts like Generics and Attributes
 to the mainstream programmers. It features some nice improvements over
 Java like properties, flexible namespaces and limited type inference. &lt;/p&gt;
 
-&lt;p&gt;There primary reason it’s included in this list, however, is simply
+&lt;p&gt;The primary reason it’s included in this list, however, is simply
 the sheer amount of job openings for C# developers. In my home
-country(Bulgaria) about a third of all programming positions are C#
+country (Bulgaria) about a third of all programming positions are C#
 related.&lt;/p&gt;
 
 &lt;p&gt;My favourite C# book happens to be
@@ -2323,9 +2490,9 @@ might happen to enjoy it as well.&lt;/p&gt;
 &lt;h1 id=&quot;scala&quot;&gt;Scala&lt;/h1&gt;
 &lt;hr /&gt;
 &lt;p&gt;An interesting blend of pure object orientation and functional
-programming with some concurrency support baked in(actors). Of the
+programming with some concurrency support baked in (actors). Of the
 current crop of JVM languages, next to Clojure, Scala looks most
-promising. It features an advanced static type system(more advanced
+promising. It features an advanced static type system (more advanced
 than Haskell’s), state of the art Java integration, support for
 pattern matching, extractors and other functional goodness. If any
 language has a chance of displacing the Java programming language it
@@ -2340,9 +2507,10 @@ that if he decided to replace Java with another language it would be Scala.&lt;/
 &lt;p&gt;We cannot conclude this whirlwind tour of notable programming
 languages without mentioning the King of the Web, the language that
 drove the Web 2.0 revolution - JavaScript. Although it has a terrible
-name(JavaScript shares nothing with Java), a questionable programming
-model built around mutating global variables and prototype instead of
-class inheritance it is supported virtually everywhere and any web
+name (JavaScript shares nothing with Java), a questionable programming
+model built around mutating global variables, and prototype instead of
+class inheritance, it is supported virtually everywhere (most web
+browsers have built-in JavaScript interpreters) and any web
 developer will do well to learn some JavaScript.&lt;/p&gt;
 
 &lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h1&gt;

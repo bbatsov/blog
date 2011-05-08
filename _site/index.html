@@ -41,6 +41,154 @@
                     </div>
                     <div id="content">
                         
+<h2 id="javanext---scala-the-revenge-of-the-static-typing20110508jvm-langs-scalahtml"><a href="/2011/05/08/jvm-langs-scala.html">Java.next() - Scala: The Revenge of the Static Typing</a></h2>
+<h1 id="overture">Overture</h1>
+
+<p>This is the second post from my series dedicated to modern programming
+languages for the Java platform. Last time we’ve discussed the
+<a href="/2011/05/06/jvm-langs-groovy.html">Groovy programming language</a> which
+is a member of the ever expanding family of dynamic programming
+languages. The Scala programming language that is the object of
+today’s discussion is another beast entirely - not only it uses static
+typing(like Java &amp; C#), but it also puts a heavy emphasis on the type
+system, functional and parallel programming.</p>
+
+<p>In theory Scala runs both on the JVM and on the CLR(the .NET VM). The
+Java port, however, receive a lot more attention by Scala’s developer
+and it probably accounts for close of to all of Scala’s
+deployments(especially in production).</p>
+
+<h1 id="a-brief-history-of-scala">A brief history of Scala</h1>
+
+<p>After having written hundreds of thousands lines of Java himself,
+Martin Odersky, Professor at EPFL, was well aware of the frustrations
+faced by Java programmers. He formed the vision of applying the best
+knowledge of the academic research community to the problem of making
+the Java programming experience better, even fun. His first pragmatic
+step was Java Generics, seen as a major success by the Java
+community. But for the full vision of scalable concurrent programming
+to be achieved he saw that the basic Java syntax would need to
+change. You simply couldn’t get there from here. But a deceptively
+simple shift in syntax gained better uniformity to the object-oriented
+aspects of Java, and this in turn enabled a natural fusion with
+functional programming concepts which are critical for tackling
+concurrency. In 2001 Scala was born.</p>
+
+<p>Scala stands for a SCAlable LAnguage. What does this mean? Scala is
+designed to tackle solutions of wildly varying sizes - from small
+scripts (programming in the small) to massive distributed enterprise
+applications (generally programming in the large). Scala also means
+<em>steps</em> in Italian and this is the reason why most Scala books have
+some form of steps on their covers (arguably this is the reason while
+Scala is very popular in Italy and particularly in Milan). </p>
+
+<p>The current production version of Scala is 2.8.1 with 2.9.0 being in
+the release candidate stages.</p>
+
+<h1 id="installing-scala">Installing Scala</h1>
+
+<p><strong>Universal installer</strong></p>
+
+<p>Scala has an <a href="http://www.scala-lang.org/downloads/distrib/files/scala-2.8.1.final-installer.jar">universal installer</a> that could be ran on every platform
+with Java installed. You can run it from the console like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> java -jar scala-2.8.1.final-installer.jar
+</code></pre>
+</div>
+
+<p>Alternatively, on most systems simply double clicking the installer
+jar will run it(assuming you have a GUI environment and assuming that
+the java command is associated with jar files - something that is
+usually so by default).</p>
+
+<p><strong>Installing from binary archive</strong></p>
+
+<p>Just download the Scala distribution for <a href="http://www.scala-lang.org/downloads/distrib/files/scala-2.8.1.final.tgz">Unix, OS X and Cygwin</a> or
+the one for
+<a href="http://www.scala-lang.org/downloads/distrib/files/scala-2.8.1.final.zip">Windows</a>
+and extract it somewhere. I’m a GNU/Linux user and I tend to extract
+all third party apps in the /opt folder:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo tar xf scala-2.8.1.final.tgz -C /opt
+</code></pre>
+</div>
+
+<p>You’d also want to add the folder containing the Scala binaries
+(compiler, REPL, etc) to your PATH environmental variable. Unix users
+might add something like this to their shell startup script (like
+.bashrc):</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java/latest
+<span class="nb">export </span><span class="nv">SCALA_HOME</span><span class="o">=</span>/opt/scala-2.8.1
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$SCALA_HOME</span>/bin:<span class="nv">$PATH</span>
+</code></pre>
+</div>
+
+<p>You should now have Scala installed properly. You can test this by
+typing the following in a command shell:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> scala
+</code></pre>
+</div>
+
+<p>Which should create an interactive Scala shell where you can type
+Scala expressions. </p>
+
+<p>To run a specific Scala script type:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> scala SomeScript.scala
+</code></pre>
+</div>
+
+<p><strong>Linux installation</strong></p>
+
+<p>Most Linux distributions provide Scala through their integrated
+package management system. On Debian(and derivatives like Ubuntu) you
+can install it like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo apt-get install scala
+</code></pre>
+</div>
+
+<p>On Red Hat systems the magic incantation looks like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install scala
+</code></pre>
+</div>
+
+<p>Personally I’d prefer the platform-independent installation method,
+since some distribution package Scala in a non-standard manner which
+confuses IDEs for instance.</p>
+
+<h1 id="playing-around">Playing around</h1>
+
+<p>A good way to start exploring Scala is the REPL. Fire it up and type along:</p>
+
+<h1 id="object-orientation-purification">Object orientation purification</h1>
+
+<h1 id="functional-programming">Functional programming</h1>
+
+<p>Functional programming has many aspects, but to get the bulk of it you
+need just two magical ingredients - support for functions as objects
+and a nice array of immutable data structures. Scala, naturally, has
+both. </p>
+
+<h1 id="parallel-programming">Parallel programming</h1>
+
+<h1 id="tools">Tools</h1>
+
+<h1 id="killer-apps">Killer apps</h1>
+
+<h1 id="success-stories">Success stories</h1>
+
+<h1 id="future-prospects">Future prospects</h1>
+
+<h1 id="epilogue">Epilogue</h1>
+
+<div style="font-style: italic; color: #7f9f7f;">Posted on 08 May 2011 by Bozhidar.</div>
+
+<p><a href="/2011/05/08/jvm-langs-scala.html#disqus_thread">Comments</a></p>
+
 <h2 id="javanext---the-groovy-programming-language20110506jvm-langs-groovyhtml"><a href="/2011/05/06/jvm-langs-groovy.html">Java.next() - The Groovy Programming Language</a></h2>
 <p>In a series of articles labeled “Java.next()” I’ll be discussing
 modern alternatives to the Java programming language for use with the
@@ -234,6 +382,10 @@ can install it like this:</p>
 since some distribution package Groovy in a non-standard manner which
 confuses IDEs for instance.</p>
 
+<p><strong>Windows installation</strong></p>
+
+<p>Groovy features a native <a href="http://dist.codehaus.org/groovy/distributions/installers/windows/nsis/groovy-1.8.0-installer.exe">Windows installer</a>.</p>
+
 <h1 id="meet-groovy">Meet Groovy</h1>
 
 <p><em>“Groovy is like a super version of Java. It can leverage Java’s
@@ -274,8 +426,17 @@ can use Java</li>
     </ul>
   </li>
   <li>Duck typing</li>
-  <li>BigInteger based arithmetic(integer calculations in Groovy are
-automatically promoted to BigInteger when necessary)</li>
+  <li>BigInteger based arithmetic
+    <ul>
+      <li>This deserves some special explanation because of a rather
+strange design decision in Groovy. Groovy will create a
+BigIntiger out of a large enough number literal, but it won’t
+promote the result of an integer operation into BigInteger - 
+the result will actually overflow, in contrast to the semantics of most
+other dynamically typed languages. Multiply 1000 * 1000000000
+and you will end up with -727379968 in Groovy.</li>
+    </ul>
+  </li>
   <li>SQL, XML &amp; Swing improvements</li>
   <li>Unified data access API</li>
 </ul>
@@ -1748,256 +1909,6 @@ as data.</p>
 <div style="font-style: italic; color: #7f9f7f;">Posted on 30 Apr 2011 by Bozhidar.</div>
 
 <p><a href="/2011/04/30/parsing-numbers-from-string-in-lisp.html#disqus_thread">Comments</a></p>
-
-<h2 id="one-shell-to-rule-them-all20110429one-shell-to-rule-them-allhtml"><a href="/2011/04/29/one-shell-to-rule-them-all.html">One shell to rule them all…</a></h2>
-<p>I’ve been using zsh for about three years now and continue to be
-impressed the its immense power and flexibility. Switching from bash
-to zsh was a decision as good as switching from Windows to GNU/Linux,
-from vim to Emacs, from Eclipse to IntelliJ IDEA. In other words - it
-was an extremely good decision. :-)</p>
-
-<p>So I want to finally get the word out, showcase some nice zsh features
-and probably persuade a couple of bash users to try it. Be warned,
-however - after you try it there is no going back…</p>
-
-<h2 id="getting-started">Getting started</h2>
-
-<p>Most distros come with bash by default so you’ll probably need to
-install zsh first and configure it as your user’s shell. On Fedora
-you’d do:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">[bozhidar@bozhidar ~]$ sudo yum install zsh</span>
-</code></pre>
-</div>
-
-<p>The edit /etc/password and set there zsh as your shell:</p>
-
-<p>bozhidar:x:500:500:Bozhidar Batsov:/home/bozhidar:/bin/zsh</p>
-
-<p>The next time you login a terminal wizard with start up asking you
-about some basic zsh options that you might want to enable. I suggest
-you to enable them all except the beep option. In the end the wizard
-will save the new configuration to the file .zshrc in your user’s home
-folder.</p>
-
-<p>Alternatively you may just use a preconfigured .zshrc, like this one:</p>
-
-<div class="highlight"><pre><code class="bash"><span class="c"># Lines configured by zsh-newuser-install</span>
-<span class="nv">HISTFILE</span><span class="o">=</span>~/.histfile
-<span class="nv">HISTSIZE</span><span class="o">=</span>1000
-<span class="nv">SAVEHIST</span><span class="o">=</span>1000
-setopt appendhistory autocd extendedglob nomatch notify correct_all
-unsetopt beep
-bindkey -e
-<span class="c"># End of lines configured by zsh-newuser-install</span>
-<span class="c"># The following lines were added by compinstall</span>
-zstyle :compinstall filename <span class="s1">&#39;/home/bozhidar/.zshrc&#39;</span>
-
-autoload -Uz compinit
-compinit
-<span class="c"># End of lines added by compinstall</span>
-</code></pre>
-</div>
-
-<p>I don’t like very much the default zsh prompt and I generally change
-it right away. Have a look at my other
-<a href="/2008/07/27/zsh-prompt.html">short article</a> on the topic.</p>
-
-<p>There a couple of configuration files related to zsh that you should
-know about:</p>
-
-<ul>
-  <li>.zshrc - runs for each new shell(roughly equivalent to .bashrc)</li>
-  <li>.zprofile - runs only for login shells(like .bash_profile)</li>
-  <li>.zlogout - runs on logout</li>
-  <li>.zshenv - holds environmental variables</li>
-</ul>
-
-<p>Here’s an example .zshenv file:</p>
-
-<div class="highlight"><pre><code class="bash"><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java/latest
-
-<span class="nb">export </span><span class="nv">SCALA_HOME</span><span class="o">=</span>/opt/scala-2.8.1.final
-
-<span class="nb">export </span><span class="nv">M2_HOME</span><span class="o">=</span>/opt/apache-maven-3.0.2
-
-<span class="nb">export </span><span class="nv">EDITOR</span><span class="o">=</span><span class="s2">&quot;emacsclient -t&quot;</span>
-<span class="nb">export </span><span class="nv">ALTERNATE_EDITOR</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-
-<span class="c">#needed to properly display complex color-themes in Emacs and vim</span>
-<span class="nb">export </span><span class="nv">TERM</span><span class="o">=</span>xterm-256color
-
-<span class="nb">typeset</span> -U path
-<span class="nv">path</span><span class="o">=(</span><span class="nv">$M2_HOME</span>/bin <span class="nv">$SCALA_HOME</span>/bin ~/bin ~/Projects/work/bin <span class="nv">$path</span><span class="o">)</span>
-</code></pre>
-</div>
-
-<p>Please note the way in which the PATH variable is set in zsh, which
-differs substantially from bash(it’s just exported there as any other variable).</p>
-
-<h2 id="playing-around">Playing around</h2>
-
-<p>At this point you have the legendary zsh autocompletion configured and
-you have enabled many of the zsh core features.</p>
-
-<p><strong>autocd</strong> allows you to navigate to folders only with their name
-without the cd command. One of my favourite features. Now you can do
-things like:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">  </span>
-<span class="go">[bozhidar@bozhidar ~]$ Downloads   </span>
-<span class="go">[bozhidar@bozhidar ~/Downloads]$</span>
-</code></pre>
-</div>
-
-<p>Instead of:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">[bozhidar@bozhidar ~]$ cd Downloads   </span>
-<span class="go">[bozhidar@bozhidar ~/Downloads]$</span>
-</code></pre>
-</div>
-
-<p>By the way autocd was added in bash 4.0 as well. You can enable it there with:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">[bozhidar@bozhidar ~]$ shopt -s autocd</span>
-</code></pre>
-</div>
-
-<p><strong>appendhistory</strong> all your open shells share the same history which is
-handy if you want to refer commands from one shell in another with
-say Ctrl+R(reverse-history-search)</p>
-
-<p><strong>extendedglob</strong> allows you to recursive look for files in folders:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">[bozhidar@bozhidar ~]$ ls somedir/**/Makefile</span>
-</code></pre>
-</div>
-
-<p>is equivalent to:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">[bozhidar@bozhidar ~]$ find somedir -name Makefile</span>
-</code></pre>
-</div>
-
-<p>Most zsh users never use find for simple file look up. This feature
-was also added to bash 4.0 but it works in a slightly different
-manner.</p>
-
-<div class="highlight"><pre><code class="console"><span class="gp">$</span> <span class="nb">shopt</span> -s extglob
-</code></pre>
-</div>
-
-<p><strong>correct</strong> - autocorrects mistyped commands</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">[bozhidar@bozhidar]$ cta ~/.zshrc </span>
-<span class="go">zsh: correct &#39;cta&#39; to &#39;cat&#39; [nyae]?</span>
-</code></pre>
-</div>
-
-<h1 id="keybindings">Keybindings</h1>
-
-<p>By default zsh uses Emacs keybindings which is perfect for a long time
-Emacs user like me. zsh doesn’t use readline, instead it has its own
-line editing library called zle, which is much more powerful. vi users
-are not forgotten and can switch zsh to vi keybindings with the
-command:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">bindkey -v</span>
-</code></pre>
-</div>
-
-<p>Mind that by default you’ll be in “insert” mode and have to press ESC
-to go into command mode.</p>
-
-<p>You can also create custom keybindings like this:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">bindkey &#39;^[[H&#39; beginning-of-line</span>
-<span class="go">bindkey &#39;^[[F&#39; end-of-line</span>
-</code></pre>
-</div>
-
-<p>This will bind the Home and End keys to the commands beginning-of-line and end-of-line.
-# Aliases</p>
-
-<p>Zsh has three different kinds of shell aliases.</p>
-
-<p><strong>Regular</strong> - same as in bash:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">alias ll=&#39;ls -l&#39;</span>
-</code></pre>
-</div>
-
-<p><strong>Suffix</strong> - suffix aliases are supported in zsh since version
-4.2.0. Some examples:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">alias -s tex=emacs</span>
-<span class="go">alias -s html=google-chrome</span>
-</code></pre>
-</div>
-
-<p>Now when you type in the console</p>
-
-<div class="highlight"><pre><code class="console"><span class="gp">$</span> somefile.tex
-</code></pre>
-</div>
-
-<p>it will be opened automatically with Emacs. Similarly somefile.html
-would be opened by google-chrome. As you might imagine this feature is
-quite handy.</p>
-
-<p><strong>Global</strong> - global aliases can be used anywhere in the command line(as
-opposed to regular aliases that can used only in the beginning). Example:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">alias -g ...=&#39;../..&#39;</span>
-<span class="go">cd ...  </span>
-</code></pre>
-</div>
-
-<h1 id="some-tips-and-tricks">Some tips and tricks</h1>
-
-<ul>
-  <li>
-    <p>press Alt+q in the middle of a command you’re typing. This will clear 
-the console prompt and allow you execute another command(like a man lookup). Afterwards 
-the things you’ve typed before the Alt+q will magically reappear.</p>
-  </li>
-  <li>
-    <p>Imagine you’re in the folder <strong>project/4.0/module</strong>. Typing:</p>
-  </li>
-</ul>
-
-<div class="highlight"><pre><code class="console"><span class="go">cd 4.0 5.0 </span>
-</code></pre>
-</div>
-
-<p>Will take you to a folder named project/5.0/module(assuming that it exists of course). In general
-the command has the format <code>cd old new</code>.</p>
-
-<ul>
-  <li>zsh comes with a built-in pager(similar to less). To try it just type &lt;somefilename. This is 
-more or less equivalent to typing <code>less somefilename</code>.</li>
-</ul>
-
-<h1 id="conclusion">Conclusion</h1>
-
-<p>There is no easy way to sum up everything that makes zsh great in a single blog post. I’ll try to
-expand and improve it in time. I hope I’ve whetted your appetite to try out zsh. If you like it
-well enough(of which I’m most certain you should have a look at the resources in the end as well).</p>
-
-<h1 id="useful-resources">Useful resources</h1>
-<ul>
-  <li><a href="http://www.bash2zsh.com/zsh_refcard/refcard.pdf">zsh reference card</a></li>
-  <li><a href="http://zsh.sourceforge.net/Doc/zsh_a4.pdf">zsh manual</a></li>
-  <li><a href="http://zsh.sourceforge.net/Guide/zshguide.html">“A User’s Guide to Z-Shell”</a></li>
-  <li><a href="http://zshwiki.org/home/">zsh wiki</a>  </li>
-  <li><a href="http://grml.org/zsh/zsh-lovers.html">zsh lovers</a> - collection of
-tips and tricks</li>
-  <li><a href="http://www.bash2zsh.com/">“From Bash to Z Shell - Conquering the Command Line”</a></li>
-</ul>
-
-<div style="font-style: italic; color: #7f9f7f;">Posted on 29 Apr 2011 by Bozhidar.</div>
-
-<p><a href="/2011/04/29/one-shell-to-rule-them-all.html#disqus_thread">Comments</a></p>
 
 
                     </div>
