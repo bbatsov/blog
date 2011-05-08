@@ -4,19 +4,19 @@ title: "Programming languages worth learning"
 ---
 
 Programming languages have always been a passion of mine and through
-the years I've learnt quite a few of them. The first one was Pascal
-some 13 years ago and the last was Scala just a couple of months ago.
+the years I've learnt quite a few of them. The first one was Pascal,
+some 13 years ago, and the last was Scala, just a couple of months ago.
 
 Although the authors of many languages claim that the language they
 created is the greatest thing after hot water, this is rarely the
-case. Most of the "unique" features are not quite unique and the truly
+case. Most of the "unique" features are not quite unique, and the truly
 unique stuff is often just useless. I don't believe that there is a
 single greatest and unparallelled language, but I do believe that some
 languages are more valuable them others in term of both theory(the
 concepts around which they revolve) and practice(the chances of you
 landing a job with them or simply getting a task done).
 
-In this blog post I've review the ten or so languages that I've found to
+In this blog post I'll review the ten or so languages that I've found to
 be most enlightening/helpful for me over the years. I think that every
 professional software engineer should have at least a passing
 knowledge of them.
@@ -24,13 +24,13 @@ knowledge of them.
 #C 
 --- 
 The C programming language has been around for about forty
-years now(it appeared in 1973). While it's often viewed as a higher
+years now (it appeared in 1973). While it's often viewed as a higher
 level assembly language today in the era of Java, .Net and Python, C
 remains the sole choice for doing serious system programming - writing
 drivers, all kinds of servers and virtual machines.
 
 Learning C also give you an insight to the inner working of the
-computer like memory management and native data types(based on a CPU's
+computer, like memory management and native data types (based on a CPU's
 registries).
 
 The best way to get started with C
@@ -46,11 +46,11 @@ never actually use Lisp itself a lot."_ - Eric Raymond
 
 One of the oldest programming languages around - created in 1958 and
 still relevant today. Important for its unique code is data approach,
-advanced code generation facilities(macros) and the ability to develop
+advanced code generation facilities (macros) and the ability to develop
 software in incremental and interactive fashion. 
 
 Although many of the features that originally made it truly
-unique(like garbage collection, if expression, function objects) are
+unique (like garbage collection, if expression, function objects) are
 now found in many modern languages, Lisp still offers some compelling
 alternatives for those interested to explore it.
 
@@ -60,7 +60,7 @@ functional and object-oriented programming. Another popular dialect is
 Scheme which is a simpler language focused mainly on functional
 programming and until recently was a popular choice for teaching
 introductory programming classes in many major US
-universities(recently it's being displaced by Python). 
+universities (recently it's being displaced by Python). 
 
 You cannot start with a better introduction to Common Lisp than Peter
 Seibel's
@@ -73,15 +73,15 @@ good source of exercises for aspiring Lisp programmers are the
 #Java
 ---
 Let's face it - if you're in the market for jobs a third of them are
-about Java EE or Android development(the other two thirds are probably
+about Java EE or Android development (the other two thirds are probably
 related to PHP and .NET). The language is not quite
 elegant, but the platform is truly magnificent. Although there are
-many other languages targeting the JVM(Scala, Groovy, Clojure, JRuby,
+many other languages targeting the JVM (Scala, Groovy, Clojure, JRuby,
 Jython - just to name a few) Java is still predominant by a wide
 margin and this is unlikely to change soon. It's actually [the most
 popular programming language in the world](http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html).
 
-I've taught a couple of introductory Java programming courses(in
+I've taught a couple of introductory Java programming courses (in
 Bulgarian), but I'd recommend the
 ["Core Java"](http://www.amazon.com/Core-Java-TM-I--Fundamentals-8th/dp/0132354764/ref=sr_1_1?s=books&ie=UTF8&qid=1303901341&sr=1-1)
 book over my lectures any day of
@@ -110,7 +110,7 @@ languages like PHP, Ruby and Python. While I wouldn't advise anyone to
 start writing Web or Enterprise apps with Perl it's still the best language for
 writing administration and helper scripts with minimum fuss and maximum
 developer throughput. It features the greatest support for text
-processing ever and an extremely flexible(albeit a bit of confusing)
+processing ever and an extremely flexible (albeit a bit of confusing)
 syntax. 
 
 Perl [CPAN](http://www.cpan.org/) is probably the largest collection of third party
@@ -129,7 +129,7 @@ data structures, pervasive use of laziness, higher order functions and
 tail-call optimizations,
 and some rather novel ideas on the topics of state and
 identity. Clojure also cleans up a bit the traditional Lisp
-syntax(read this is Clojure has fewer parentheses than say Common Lisp).
+syntax (read this as Clojure has fewer parentheses than say Common Lisp).
 
 To get started I recommend you to watch the free Clojure screencasts
 on [blip.tv](http://clojure.blip.tv/).
@@ -139,7 +139,7 @@ on [blip.tv](http://clojure.blip.tv/).
 The most famous language from the logic programming family. Solving a
 problem like a sudoku puzzle in Prolog will be an eye opening
 experience for any developer. While it's unlikely that you'll ever use
-it practice the ideas found in Prolog will truly expand your thinking
+it practice the ideas found in it, Prolog will truly expand your thinking
 horizons.
 
 A good starting point in your journey to Prolog will be
@@ -149,8 +149,8 @@ follow up with the collection of programming puzzles ["Prolog problems"](http://
 #Ruby
 ---
 A pure object oriented dynamic scripting language with a very nice support for
-metaprogramming. Has versions written in Java(JRuby) and
-.Net(IronRuby) which makes it easy to integrate it with any software
+metaprogramming. It has versions written in Java (JRuby) and
+.Net (IronRuby) which makes it easy to integrate it with any software
 for those popular platforms. The language became popular with the rise of the Ruby
 on Rails web framework, but it has many potential applications that don't
 involve RoR or web development. 
@@ -177,9 +177,9 @@ department - first to introduce concepts like Generics and Attributes
 to the mainstream programmers. It features some nice improvements over
 Java like properties, flexible namespaces and limited type inference. 
 
-There primary reason it's included in this list, however, is simply
+The primary reason it's included in this list, however, is simply
 the sheer amount of job openings for C# developers. In my home
-country(Bulgaria) about a third of all programming positions are C#
+country (Bulgaria) about a third of all programming positions are C#
 related.
 
 My favourite C# book happens to be
@@ -189,9 +189,9 @@ might happen to enjoy it as well.
 #Scala
 ---
 An interesting blend of pure object orientation and functional
-programming with some concurrency support baked in(actors). Of the
+programming with some concurrency support baked in (actors). Of the
 current crop of JVM languages, next to Clojure, Scala looks most
-promising. It features an advanced static type system(more advanced
+promising. It features an advanced static type system (more advanced
 than Haskell's), state of the art Java integration, support for
 pattern matching, extractors and other functional goodness. If any
 language has a chance of displacing the Java programming language it
@@ -206,9 +206,10 @@ Start your journey to Scala mastery with
 We cannot conclude this whirlwind tour of notable programming
 languages without mentioning the King of the Web, the language that
 drove the Web 2.0 revolution - JavaScript. Although it has a terrible
-name(JavaScript shares nothing with Java), a questionable programming
-model built around mutating global variables and prototype instead of
-class inheritance it is supported virtually everywhere and any web
+name (JavaScript shares nothing with Java), a questionable programming
+model built around mutating global variables, and prototype instead of
+class inheritance, it is supported virtually everywhere (most web
+browsers have built-in JavaScript interpreters) and any web
 developer will do well to learn some JavaScript.
 
 #Conclusion
