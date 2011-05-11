@@ -243,10 +243,11 @@ here's my take on their pros and cons:
      mostly because the code is full of type annotations (languages
      like Scala and Haskell, however, have found the cure for this
      ailment - [type inference](http://www.codecommit.com/blog/scala/what-is-hindley-milner-and-why-is-it-cool))
-   * No support for duck typing causes you to often link classes in
-     hierarchies that you'd rather avoid if you had the chance
-     to. Type classes in Haskell and implicit conversions in Scala,
-     however, tend to alleviate this problem.
+   * No support (in most statically typed languages) for duck typing
+     causes you to often link classes in hierarchies that you'd rather
+     avoid if you had the chance to. I should point out that languages
+     supporting structural types are not suffering from these
+     problems. Scala happens to support them from version 2.6.0.
 
 # A whirlwind tour of Scala
 
@@ -372,6 +373,103 @@ mathService !? Sub(5, 2) // returns 3
 
 Case classes are out of the scope of this post, but I guess you get
 the basic idea.
+
+* Scala is duck friendly
+
+Duck typing is nothing new for developers familiar with dynamic
+languages. Its the concept that an objects type is defined not by the
+objects class, but by the objects interface. This allows us to write
+very flexible code that works on unrelated types (in the inheritance
+hierarchy) that happen to share common methods. For instance in Ruby
+we could write this code:
+
+{% highlight ruby %}
+class Duck 
+  def walk
+    puts "The duck walks"
+  end
+
+  def quack
+    puts "The duck quacks"
+  end
+end
+
+class Dog 
+  def walk
+    puts "The dog walks"
+  end
+
+  def quack
+    puts "The dog quacks"
+  end
+end
+
+def test_animal(animal)
+  animal.walk
+  animal.quack
+end
+
+test_animal(Duck.new)
+test_animal(Dog.new)
+{% endhighlight %}
+
+It will work just fine - trust me. Few statically typed languages can
+boast something similar... and Scala happens to be one of them:
+
+{% highlight scala %}
+class Duck {
+  def quack = println("The duck quacks")
+  def walk = println("The duck walks")
+}
+ 
+class Dog {
+  def quack = println("The dog quacks (barks)")
+  def walk = println("The dog walks")
+}
+ 
+def testDuckTyping(animal: { def quack; def walk }) = {
+  animal.quack
+  animal.walk
+}
+
+scala> testDuckTyping(new Duck)
+The duck quacks
+The duck walks
+
+scala> testDuckTyping(new Dog)
+The dog quacks (barks)
+The dog walks
+{% endhighlight %}
+
+This is point in the article when Ruby and Python are starting to get
+impressed. :-) (I should know - I've learnt about this feature after
+I've written the first draft and got some negative feedback due to my
+oversight).
+
+* Pimp my library
+
+Want to make the compiler convert between types from time to time to
+get access to some richer functionality? Nothing is easier in Scala:
+
+{% highlight scala %}
+scala> implicit def intarray2sum(x: Array[Int]) = x.reduceLeft(_ + _)
+intarray2sum: (x: Array[Int])Int
+
+scala> val x = Array(1, 2, 3)
+x: Array[Int] = Array(1, 2, 3)
+
+scala> val y = Array(4, 5, 6)
+y: Array[Int] = Array(4, 5, 6)
+
+scala> val z = x + y     
+z: Int = 21
+{% endhighlight %}
+
+Scala arrays don't have a + method, but Scala Ints do. When the
+compiler sees that the + method is invoked on an object that doesn't
+have it, it starts search for an implicit conversion to a type that
+has it - like Int. Both arrays are converted to their sums and the
+sums are added together in the end.
 
 # Playing around 
 
@@ -838,6 +936,11 @@ prominent:
     * Designer friendly templates
     * Wizard
     * Security
+    
+* [Play framework](http://www.playframework.org/) - Play focuses on
+  developer productivity and targets RESTful architectures. It has
+  both a Java and a Scala API. It's considered by many to be the first
+  Java web framework that was actually made by web developers.
     
 * [Akka](http://akka.io/) - A powerful library for writing concurrent applications
   using Actors, STM & Transactors. It has both Scala and Java API.

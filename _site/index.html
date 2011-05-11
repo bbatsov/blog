@@ -336,10 +336,11 @@ to be one such language, Haskell - another.</li>
 mostly because the code is full of type annotations (languages
 like Scala and Haskell, however, have found the cure for this
 ailment - <a href="http://www.codecommit.com/blog/scala/what-is-hindley-milner-and-why-is-it-cool">type inference</a>)</li>
-      <li>No support for duck typing causes you to often link classes in
-hierarchies that you’d rather avoid if you had the chance
-to. Type classes in Haskell and implicit conversions in Scala,
-however, tend to alleviate this problem.</li>
+      <li>No support (in most statically typed languages) for duck typing
+causes you to often link classes in hierarchies that you’d rather
+avoid if you had the chance to. I should point out that languages
+supporting structural types are not suffering from these
+problems. Scala happens to support them from version 2.6.0.</li>
     </ul>
   </li>
 </ul>
@@ -479,6 +480,107 @@ as if), there are no static field and methods </p>
 
 <p>Case classes are out of the scope of this post, but I guess you get
 the basic idea.</p>
+
+<ul>
+  <li>Scala is duck friendly</li>
+</ul>
+
+<p>Duck typing is nothing new for developers familiar with dynamic
+languages. Its the concept that an objects type is defined not by the
+objects class, but by the objects interface. This allows us to write
+very flexible code that works on unrelated types (in the inheritance
+hierarchy) that happen to share common methods. For instance in Ruby
+we could write this code:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Duck</span> 
+  <span class="k">def</span> <span class="nf">walk</span>
+    <span class="nb">puts</span> <span class="s2">&quot;The duck walks&quot;</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">quack</span>
+    <span class="nb">puts</span> <span class="s2">&quot;The duck quacks&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Dog</span> 
+  <span class="k">def</span> <span class="nf">walk</span>
+    <span class="nb">puts</span> <span class="s2">&quot;The dog walks&quot;</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">quack</span>
+    <span class="nb">puts</span> <span class="s2">&quot;The dog quacks&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">test_animal</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span>
+  <span class="n">animal</span><span class="o">.</span><span class="n">walk</span>
+  <span class="n">animal</span><span class="o">.</span><span class="n">quack</span>
+<span class="k">end</span>
+
+<span class="n">test_animal</span><span class="p">(</span><span class="no">Duck</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+<span class="n">test_animal</span><span class="p">(</span><span class="no">Dog</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>It will work just fine - trust me. Few statically typed languages can
+boast something similar… and Scala happens to be one of them:</p>
+
+<div class="highlight"><pre><code class="scala"><span class="k">class</span> <span class="nc">Duck</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">quack</span> <span class="k">=</span> <span class="n">println</span><span class="o">(</span><span class="s">&quot;The duck quacks&quot;</span><span class="o">)</span>
+  <span class="k">def</span> <span class="n">walk</span> <span class="k">=</span> <span class="n">println</span><span class="o">(</span><span class="s">&quot;The duck walks&quot;</span><span class="o">)</span>
+<span class="o">}</span>
+ 
+<span class="k">class</span> <span class="nc">Dog</span> <span class="o">{</span>
+  <span class="k">def</span> <span class="n">quack</span> <span class="k">=</span> <span class="n">println</span><span class="o">(</span><span class="s">&quot;The dog quacks (barks)&quot;</span><span class="o">)</span>
+  <span class="k">def</span> <span class="n">walk</span> <span class="k">=</span> <span class="n">println</span><span class="o">(</span><span class="s">&quot;The dog walks&quot;</span><span class="o">)</span>
+<span class="o">}</span>
+ 
+<span class="k">def</span> <span class="n">testDuckTyping</span><span class="o">(</span><span class="n">animal</span><span class="k">:</span> <span class="o">{</span> <span class="kt">def</span> <span class="kt">quack</span><span class="o">;</span> <span class="kt">def</span> <span class="kt">walk</span> <span class="o">})</span> <span class="k">=</span> <span class="o">{</span>
+  <span class="n">animal</span><span class="o">.</span><span class="n">quack</span>
+  <span class="n">animal</span><span class="o">.</span><span class="n">walk</span>
+<span class="o">}</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">testDuckTyping</span><span class="o">(</span><span class="k">new</span> <span class="nc">Duck</span><span class="o">)</span>
+<span class="nc">The</span> <span class="n">duck</span> <span class="n">quacks</span>
+<span class="nc">The</span> <span class="n">duck</span> <span class="n">walks</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="n">testDuckTyping</span><span class="o">(</span><span class="k">new</span> <span class="nc">Dog</span><span class="o">)</span>
+<span class="nc">The</span> <span class="n">dog</span> <span class="n">quacks</span> <span class="o">(</span><span class="n">barks</span><span class="o">)</span>
+<span class="nc">The</span> <span class="n">dog</span> <span class="n">walks</span>
+</code></pre>
+</div>
+
+<p>This is point in the article when Ruby and Python are starting to get
+impressed. :-) (I should know - I’ve learnt about this feature after
+I’ve written the first draft and got some negative feedback due to my
+oversight).</p>
+
+<ul>
+  <li>Pimp my library</li>
+</ul>
+
+<p>Want to make the compiler convert between types from time to time to
+get access to some richer functionality? Nothing is easier in Scala:</p>
+
+<div class="highlight"><pre><code class="scala"><span class="n">scala</span><span class="o">&gt;</span> <span class="k">implicit</span> <span class="k">def</span> <span class="n">intarray2sum</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span> <span class="k">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reduceLeft</span><span class="o">(</span><span class="k">_</span> <span class="o">+</span> <span class="n">_</span><span class="o">)</span>
+<span class="n">intarray2sum</span><span class="k">:</span> <span class="o">(</span><span class="kt">x:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Int</span><span class="o">])</span><span class="nc">Int</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">x</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+<span class="n">x</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">y</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">)</span>
+<span class="n">y</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">Int</span><span class="o">]</span> <span class="k">=</span> <span class="nc">Array</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">6</span><span class="o">)</span>
+
+<span class="n">scala</span><span class="o">&gt;</span> <span class="k">val</span> <span class="n">z</span> <span class="k">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>     
+<span class="n">z</span><span class="k">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">21</span>
+</code></pre>
+</div>
+
+<p>Scala arrays don’t have a + method, but Scala Ints do. When the
+compiler sees that the + method is invoked on an object that doesn’t
+have it, it starts search for an implicit conversion to a type that
+has it - like Int. Both arrays are converted to their sums and the
+sums are added together in the end.</p>
 
 <h1 id="playing-around">Playing around</h1>
 
@@ -998,6 +1100,12 @@ Scala programming language.
       <li>Wizard</li>
       <li>Security</li>
     </ul>
+  </li>
+  <li>
+    <p><a href="http://www.playframework.org/">Play framework</a> - Play focuses on
+developer productivity and targets RESTful architectures. It has
+both a Java and a Scala API. It’s considered by many to be the first
+Java web framework that was actually made by web developers.</p>
   </li>
   <li>
     <p><a href="http://akka.io/">Akka</a> - A powerful library for writing concurrent applications
