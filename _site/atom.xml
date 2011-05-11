@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-11T16:00:06+03:00</updated>
+  <updated>2011-05-11T16:26:09+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -917,7 +917,10 @@ other sbaz users.&lt;/p&gt;
 prominent: &lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Lift web framework
+  &lt;li&gt;&lt;a href=&quot;http://liftweb.net/&quot;&gt;Lift web framework&lt;/a&gt; - Lift is a web framework
+that has cherry-picked some of the best from existing frameworks and
+added some novelties of its own to harness the capabilities of the
+Scala programming language.
     &lt;ul&gt;
       &lt;li&gt;Lazy page loading&lt;/li&gt;
       &lt;li&gt;Parallel rendering&lt;/li&gt;
@@ -984,7 +987,36 @@ Scala version are not backward compatible with the old ones
 (unlike in Java).&lt;/li&gt;
       &lt;li&gt;Scala’s community (albeit very friendly and helpful) is current
 tiny compared to Java’s. You might not get an assistance from
-the community as quickly as you’d get it for Java related problems.&lt;/li&gt;
+the community as quickly as you’d get it for Java related
+problems.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;resources&quot;&gt;Resources&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Books 
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://programming-scala.labs.oreilly.com/&quot;&gt;Programming Scala&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;great free on-line book&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.artima.com/pins1ed/&quot;&gt;Programming in Scala&lt;/a&gt; - the holy
+bible of Scala. The first edition is available for free on-line.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Blogs &amp;amp; Websites
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.scala-lang.org&quot;&gt;Official web site&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.codecommit.com/blog/&quot;&gt;Daniel Spiewak’s blog&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://daily-scala.blogspot.com/&quot;&gt;Daily Scala&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Exercises
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://aperiodic.net/phil/scala/s-99/&quot;&gt;99 Scala problems&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;

@@ -819,7 +819,10 @@ some form of Scala support and most Java build tools as well.
 Scala presently doesn't have that many killer apps. Here are the most
 prominent: 
 
-* Lift web framework
+* [Lift web framework](http://liftweb.net/) - Lift is a web framework
+  that has cherry-picked some of the best from existing frameworks and
+  added some novelties of its own to harness the capabilities of the
+  Scala programming language.
     * Lazy page loading
     * Parallel rendering
     * Comet & Ajax
@@ -875,7 +878,22 @@ stacks up to Java:
       (unlike in Java).
     * Scala's community (albeit very friendly and helpful) is current
       tiny compared to Java's. You might not get an assistance from
-      the community as quickly as you'd get it for Java related problems.
+      the community as quickly as you'd get it for Java related
+      problems.
+      
+# Resources
+
+* Books 
+    * [Programming Scala](http://programming-scala.labs.oreilly.com/)
+      - great free on-line book
+    * [Programming in Scala](http://www.artima.com/pins1ed/) - the holy
+      bible of Scala. The first edition is available for free on-line.
+* Blogs & Websites
+    * [Official web site](http://www.scala-lang.org)
+    * [Daniel Spiewak's blog](http://www.codecommit.com/blog/)
+    * [Daily Scala](http://daily-scala.blogspot.com/)
+* Exercises
+    * [99 Scala problems](http://aperiodic.net/phil/scala/s-99/)
 
 # Epilogue
 
