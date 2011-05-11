@@ -7,17 +7,23 @@ title: "Java.next() - Scala: The Revenge of the Static Typing"
 
 This is the second post from my series dedicated to modern programming
 languages for the Java platform. Last time we've discussed the
-[Groovy programming language](/2011/05/06/jvm-langs-groovy.html) which
+[Groovy programming language](/2011/05/06/jvm-langs-groovy.html), which
 is a member of the ever expanding family of dynamic programming
-languages. The Scala programming language that is the object of
-today's discussion is another beast entirely - not only it uses static
-typing(like Java & C#), but it also puts a heavy emphasis on the type
+languages. The Scala programming language, that is the object of
+today's discussion, is different beast entirely - not only it uses static
+typing(like Java & C# amongst others), but it also puts a heavy emphasis on the type
 system, functional and parallel programming.
 
 In theory Scala runs both on the JVM and on the CLR(the .NET VM). The
-Java port, however, receive a lot more attention by Scala's developer
+Java port, however, receives a lot more attention by Scala's developers
 and it probably accounts for close of to all of Scala's
 deployments(especially in production).
+
+This article is extremely hard to write for me. Unlike Groovy, I'm
+deeply familiar with the language and would like to share quite a lot
+with you. For obvious reasons I cannot go into much detail (otherwise
+I'd have written an on-line book). You're encourage to follow up this
+article by reading some of the excellent resources, mentioned near its end.
 
 # A brief history of Scala
 
@@ -27,20 +33,23 @@ faced by Java programmers. He formed the vision of applying the best
 knowledge of the academic research community to the problem of making
 the Java programming experience better, even fun. His first pragmatic
 step was Java Generics, seen as a major success by the Java
-community. But for the full vision of scalable concurrent programming
+community (though we should mention that it was C# that first brought
+generic programming to the masses). But for the full vision of scalable concurrent programming
 to be achieved he saw that the basic Java syntax would need to
 change. You simply couldn't get there from here. But a deceptively
 simple shift in syntax gained better uniformity to the object-oriented
 aspects of Java, and this in turn enabled a natural fusion with
 functional programming concepts which are critical for tackling
-concurrency. In 2001 Scala was born.
+concurrency. In 2001 Scala was born. The first official version was
+released in late 2003. This year it celebrates its first
+anniversary in a way (depending on what do you consider the birthday).
 
 Scala stands for a SCAlable LAnguage. What does this mean? Scala is
 designed to tackle solutions of wildly varying sizes - from small
 scripts (programming in the small) to massive distributed enterprise
 applications (generally programming in the large). Scala also means
 _steps_ in Italian and this is the reason why most Scala books have
-some form of steps on their covers (arguably this is the reason while
+some form of steps on their covers (arguably this is the reason why
 Scala is very popular in Italy and particularly in Milan). 
 
 The current production version of Scala is 2.8.1 with 2.9.0 being in
@@ -118,7 +127,7 @@ $ sudo yum install scala
 {% endhighlight %}
 
 Personally I'd prefer the platform-independent installation method,
-since some distribution package Scala in a non-standard manner which
+since some distribution package Scala in a non-standard manner, which
 confuses IDEs for instance.
 
 # Scala at a glance
@@ -133,7 +142,7 @@ of "Effective Java" and many of Java's core libraries
 
 Scala basically is:
 
-* SCAlable Language
+* SCAlable LAnguage
 * Pure OO language
 * Functional language
 * Statically typed language
@@ -149,8 +158,90 @@ Scala's more prominent features are:
 * Simplified visibility rules
 * Suitable for scripting, GUI, enterprise
 * Relies on immutable data structures by default
+* Great support for building parallel applications
+* Pimps (improves) a lot of standard Java classes using a technique
+  called [implicit conversion](http://www.codecommit.com/blog/ruby/implicit-conversions-more-powerful-than-dynamic-typing).
 
 # Static vs Dynamic typing
+
+This is one of the oldest debates in computing and everyone with a
+little bit of common sense knows that there is no definitive answer to this
+so fundamental question. Both approaches have merits and drawbacks. In
+recent years we saw a rapid explosion in the rate of growth of
+dynamic languages which lead many people to believe that static typing
+is something of the past and is headed down on the road to oblivion. I ,
+however, very much doubt such a possibility. So, without further ado
+here's my take on their pros and cons:
+
+**Dynamic typing**
+
+* Pros
+    * Less verbose 
+    * Better metaprogramming capabilities - it's very easy in a
+      language like to Ruby to modify a class at runtime for
+      instance. Java developers, on the other side, can only dream for
+      such things...
+    * Duck typing allows to reduce immensely the coupling between your
+      classes
+    * Reduced development and deployment cycles - most dynamic
+      languages are implemented as interpreters and this way you're
+      spared the tedious compilation/redeployment cycles
+      
+* Cons
+    * Some might argue that type declarations serve as an additional
+      documentation and their lack (arguably) make the code harder to
+      read. Of course, when you're following a decent naming
+      convention (and by that I mean that you're using sensible
+      identifiers) that hardly matters.
+    * Slower performance - knowing all the types in advance,
+      naturally, allows the compilers to generate faster code for
+      static languages than for dynamic ones. Some Lisp compilers,
+      however, offer performance that rivals that of statically typed
+      programs, so it's reasonable to expect that the situation in
+      this department will improve over time.
+    * It's hard to create IDEs for dynamic languages that offer the
+      same level of assistance as those for static languages. The
+      problem stems from the simple fact that in a dynamic language
+      the type of an object is known only at runtime and an IDE will have
+      a pretty hard type guessing the types because of this fact. In
+      my humble opinion the lack of all the fancy IDE features like
+      reliable code completion and refactorings is one of the central
+      reasons why statically type languages like Java, C# and C++ are
+      still enjoying higher popularity than dynamic languages.
+    * You need to write more unit tests, because many of the simple
+      errors that the compiler of statically typed language will detect
+      will manifest themselves only at runtime.
+      
+**Static typing**
+
+* Pros
+   * Mighty development environments, capable of compensating for a
+     lot of the languages deficiencies. You always get correct
+     completion suggestions (in a decent IDE that is), all type errors
+     are caught as you type (except the runtime errors that is). 
+   * Reliable refactoring - you make some changes, you recompile the
+     project, you instantly see whether everything is OK after the
+     refactoring. One of the key reasons why enterprise projects are
+     often implemented in Java and C#.
+   * Maximum performance - when you know all the types in advance it's
+     not particularly hard to generate the optimal bytecode/binary
+     code.
+   * You don't need to write unit tests for errors that will be caught
+     by compiler.
+   * The type declarations arguably serve as an up-to-date
+     documentation on which you can always rely.
+     
+* Cons
+   * Poor metaprogramming support - statically typed system limit very
+     much the magic you can do in you programs. Metaprogramming is
+     actually considered a black art in many statically type
+     languages.
+   * Generally statically type languages are a bit more verbose -
+     mostly because the code is full of type annotations (languages
+     like Scala and Haskell, however, have found the cure for this
+     ailment - [type inference](http://www.codecommit.com/blog/scala/what-is-hindley-milner-and-why-is-it-cool))
+   * No support for duck typing causes you to often link classes in
+     hierarchies that you'd rather avoid if you had the chance to.
 
 # A whirlwind tour of Scala
 
@@ -201,6 +292,11 @@ def hasUppercase(word: String): Boolean = {
 def hasUppercase(word: String) = if (word != null) word.exists(_.isUpperCase) else false
 {% endhighlight %}
 
+Scala's code actually reads a lot like English language that makes
+sense to humans - check if in _word_
+there exists an uppercase character. Notice that is Scala _if_ is an
+expression yielding a return value, unlike in many other languages.
+
 * Scala is concise
 
 Consider this simple JavaBean (well, not exactly JavaBean to be
@@ -248,6 +344,8 @@ This is what I call a good signal-to-noise ratio.
   
 * Scala is power overwhelming
 
+Want to implement a thread-safe mathematical service in Scala? No problem!
+
 {% highlight scala %}
 import scala.actors.Actor._
 
@@ -267,6 +365,9 @@ mathService !? Add(1, 3) // returns 4
 mathService !? Sub(5, 2) // returns 3
 {% endhighlight %}
 
+Case classes are out of the scope of this post, but I guess you get
+the basic idea.
+
 # Playing around 
 
 A good way to start exploring Scala is the REPL. Fire it up and type
@@ -275,16 +376,80 @@ along:
 {% highlight scala %}
 scala> println("Hello, Scala")
 Hello, Scala
+
+scala> val name = "Bozhidar"
+name: java.lang.String = Bozhidar
+
+scala> Predef.println("My name is "+name)
+My name is Bozhidar
+
+scala> var someNumber: Int = 5
+someNumber: Int = 5
+
+scala> var names = Array("Superman", "Batman", "The Flash", "Bozhidar")
+names: Array[java.lang.String] = Array(Superman, Batman, The Flash, Bozhidar)
+
+scala> names.filter(name => name.startsWith("B")) 
+res6: Array[java.lang.String] = Array(Batman, Bozhidar)
+
+scala> names.length 
+res7: Int = 4
+
+scala> name.length()
+res8: Int = 8
+
+scala> import java.util.Date
+import java.util.Date
+
+scala> var currentDate = new Date
+currentDate: java.util.Date = Wed May 11 15:03:20 EEST 2011
+
+scala> println("Now is " + currentDate)
+Now is Wed May 11 15:03:20 EEST 2011
+
+scala> currentDate.toString
+res10: java.lang.String = Wed May 11 15:03:20 EEST 2011
+
+scala> currentDate.toString()
+res11: java.lang.String = Wed May 11 15:03:20 EEST 2011
+
+scala> currentDate toString
+res12: java.lang.String = Wed May 11 15:03:20 EEST 2011
 {% endhighlight %}
+
+The REPL has an excellent TAB completion - I used it ofter. You'll
+note from these examples the flexibility and the brevity of Scala's
+syntax - no **;** to terminate statements (though you'll have to use ; to
+separate more than one expression on a single line). The types of the
+variables are inferred by the context, without the need to
+specifically specify them - if you assign a string literal to some
+variable the compiler will figure out on its own that the variable
+must of type String (also note that Scala strings are Java strings -
+at least on the JVM). You've got a lot of flexibility when you're
+calling methods - you can omit the braces and the dot in some
+scenarios - this makes it easy to create Domain Specific Languages in Scala.
+
+The REPL outputs both the result of the expression you've evaluated
+and the output from the evaluation (if any). The result from the
+evaluation is assigned to automatically generated variables named resX
+(res0, res1, res3) and you can refer to them later on.
 
 # Object orientation purification
 
-* Everything is an object
+* Everything is an object - there are no primitive types in Scala,
+  though the compiler will map some Scala types to primitive Java
+  types for performance whenever possible
 * No operators, just methods
     * 1 + 2 === 1.+(2)
-* No static fields & methods - replaced by companion objects
+* No static fields & methods - replaced by companion objects (a
+  singleton object named the same way as the class). What would be a
+  static field of a static method in Java will be a companion object
+  field/method in Scala. This makes the Scala OO model purer than that
+  of some other languages (of course in languages like Ruby where
+  classes are objects class variables and methods have more or less
+  the same meaning and the model is just a pure if not purer). 
 
-* Traits - the evolution of interfaces
+* [Traits](http://www.scala-lang.org/node/126) - the evolution of interfaces
     * Traits are interfaces on steroids
     * They can contain state as well as behaviour
     * Think of them more as Ruby's mixins than Java's interfaces 
@@ -299,8 +464,8 @@ and a nice array of immutable data structures. Scala, naturally, has
 both. Traditionally OOP languages have rarely had much support for
 functional programming, which makes it awkward to express some
 problems in them. Steve Yegge wrote an excellent article on the
-subject some time ago - "Execution in the kingdom of the
-nouns"(http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html).
+subject some time ago - ["Execution in the kingdom of the
+nouns"](http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html).
 
 **Return of the verbs**
 
@@ -317,7 +482,7 @@ nouns"(http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.htm
     
 **Closures**
 
-Closures are basically functions that have captured variable from an
+Closures are basically functions that have captured variables from an
 external scope (variables that were not parameters of the
 functions). Closures are often used as the parameters of higher-order
 functions (functions that take functions as parameters):
@@ -372,9 +537,20 @@ data structures are those imported by default to promote a more
 functional programming style, but you can easily switch to the mutable
 versions and program in an imperative manner.
 
+{% highlight scala %}
+scala> import scala.collection.mutable.Map 
+import scala.collection.mutable.Map
+
+scala> val phoneBook = Map("Bozhidar" -> 123, "Ivan" -> 456)
+phoneBook: scala.collection.mutable.Map[java.lang.String,Int] = Map((Ivan,456), (Bozhidar,123))
+
+scala> phoneBook += "Maya" -> 53434
+res13: phoneBook.type = Map((Maya,53434), (Ivan,456), (Bozhidar,123))
+{% endhighlight %}
+
 **List almighty**
 
-The list is a core data structure in functional programming because it
+The list is a core data structure in functional programming because it is
 recursively defined and therefore it's very suitable for use in
 recursive algorithms. A list is composed of cons cells, each having
 two components - the value it holds and a reference to a next cons
@@ -382,6 +558,8 @@ cell. The last cell points to a special value - Nil (which happens to
 represent an empty list).
 
 1 | -> 2 | -> 3 | -> Nil
+
+Here's some things you can do with Scala's lists:
 
 {% highlight scala %}
 scala> 1 :: 2 :: 3 :: 4 :: 5 :: Nil
@@ -471,6 +649,55 @@ scala> testMatching(3.9)
 res24: Any = something else entirely
 {% endhighlight %}
 
+Pattern matching gives you a new way to implement common programming
+task. For instance consider the following trivial problem - computing
+the length of a list:
+
+{% highlight scala %}
+def length(list: List[Any]): Int = list match {
+  case head :: tail => 1 + length(tail)
+  case Nil => 0
+}
+{% endhighlight %}
+
+Sure, it's not tail-recursive, but it's pretty neat. Now that I
+mentioned tail-recursion I should probably say a bit more about
+it. Recursive solutions generally look very nice in source form, but
+performance-wise are not that great because each recursive call
+creates a new stack frame and what's even worse is that stack frames
+are limited - create too many of them and your program will blow
+up. This doesn't mean that we should start coding everything
+imperatively, of course. Some compilers have the ability to optimize
+away recursive calls if the last thing that happens in the recursive
+function is a call to the function itself. In the case of our function _length_,
+unfortunately, the last call happens to be of the method **+** of the
+object **1** (of class Int). We can improve the solution this way:
+
+{% highlight scala %}
+def length(list: List[Any]): Int = {
+  def lengthrec(list: List[Any], result: Int): Int = list match {
+    case head :: tail => lengthrec(tail, result + 1)
+    case Nil => result
+  }
+
+  lengthrec(list, 0)
+}
+{% endhighlight %}
+
+Notice that we now have a nested helper method with a second parameter,
+an accumulator value. This pattern often recurs when dealing with tail
+recursion - we take the original recursive definition and introduce a
+helper method using accumulator that is tail recursive. The outer
+method just calls the helper method and waits for the result. The
+Scala compiler will translate internally this recursive function into
+a something like a loop and the performance will be greatly improved,
+while preserving the clarity of the recursive approach.
+  
+Some languages (like Scheme) will always optimize tail calls. Because
+of limitations in the JVM not all tail calls can be optimized in Scala
+(for now), but
+some tails recursion is better than none.
+
 # Parallel programming
 
 With the advent of multi-core processors concurrent programming is
@@ -488,20 +715,44 @@ asynchronous messages). Moreover, actors may communicate using futures
 where requests are handled asynchronously, but return a representation
 (the future) that allows to await the reply.
 
-Our first example consists of two actors that exchange a bunch of
-messages and then terminate. The first actor sends "ping" messages to
-the second actor, which in turn sends "pong" messages back (for each
-received "ping" message one "pong" message).
+All actors execute in parallel by their nature. Each actor acts as if
+it contains its own dedicated thread of execution.
 
-We start off by defining the messages that are sent and received by
-our actors. In this case, we can use singleton objects (in more
-advanced programs, messages are usually parameterized). Since we want
-to use pattern matching, each message is a case object:
+Here's a very simple actor example. The echoActor runs forever and
+waits for messages:
 
-The ping actor starts the message exchange by sending a Ping message
-to the pong actor. The Pong message is the response from the pong
-actor. When the ping actor has sent a certain number of Ping messages,
-it sends a Stop message to the pong actor.
+{% highlight scala %}
+import scala.actors.Actor._ 
+val echoActor = actor {
+    while (true) {
+        receive {
+            case msg => println("received: "+msg)
+        }
+    }
+}
+
+echoActor ! "Chuck Norris is the only real actor!" 
+echoActor ! "You don't find Chuck Norris - Chuck Norris finds you!" 
+{% endhighlight %}
+
+Here the actor just waits for messages and responds to them by
+printing them to the console. Since the article's size is already
+quite impressive I won't go into any further details about the actors.
+
+I want you to know that actors are not the only way to write parallel
+programs in Scala. You still have access to the native Java (or .Net)
+primitive like threads, locks, executors, etc. Another option is the
+Scala implementation of Software Transactional Memory(STM) - a
+parallel programming model made recently popular by the Clojure
+programming language. Scala's implementation is a work in progress and
+you can have a look a it
+[here](http://nbronson.github.com/scala-stm/). STM is basically a
+programming technique that lets you model concurrent operations in a
+way similar to db transactions - you combine the critical code in a
+transaction and if possible execute it and commit the transaction,
+otherwise just rollback it and maybe try again after a while. Note that this is a
+_great_ oversimplification of what's actually happening - for all the
+gory details you should read the exhaustive documentation.
 
 # Tools
 
@@ -526,12 +777,21 @@ some form of Scala support and most Java build tools as well.
       until recently was mostly useless, but currently is being
       totally reworked and the next stable version will bring usable
       Scala support to the Eclipse users. The development of the new
-      Scala plug-in is headed by none other than Martin Odersky himself.
+      Scala plug-in is headed by none other than Martin Odersky
+      himself. Don't bother using the older version at all - just grab
+      the latest beta.
 
     * [NetBeans](http://wiki.netbeans.org/Scala69) - Presently the
       Scala support in NetBeans is a bit basic, but it's usable.
 
-    * Emacs ENSIME
+    * [Emacs ENSIME](https://github.com/aemoncannon/ensime) - Ok, I admit - Emacs is not actually an IDE
+      per se, but it's still much more powerful than most IDEs. Emacs
+      happens to have an excellent Scala mode, called ENSIME that
+      gives you code completion, instant feedback, an integrated REPL,
+      SBT integration, refactorings and other goodies in an Emacs
+      package. The project attempts to be the equivalent of the legendary SLIME (
+      an Emacs mode for Common Lisp) for Scala. ENSIME is integrated
+      into the [Emacs Dev Kit](https://github.com/bbatsov/emacs-dev-kit)(maintained by yours truly).
     
 * Scala distribution
     * scala - A Scala REPL for exploratory programming; it's also the
@@ -568,18 +828,20 @@ prominent:
     * Wizard
     * Security
     
-* Akka
+* [Akka](http://akka.io/) - A powerful library for writing concurrent applications
+  using Actors, STM & Transactors. It has both Scala and Java API.
 
-* SBT
+* [SBT](http://code.google.com/p/simple-build-tool/) - a powerful
+  build tool
 
 # Success stories
 
-* Twitter
+* Twitter - you remember how often Twitter used to go down because of
+  overloads and suddenly the problems stopped - this was the moment in
+  which Twitter's backend was rewritten in Scala...
 * Four square
 * LinkedIn
 * SAP
-
-# Future prospects
 
 # Comparison to Java
 
@@ -616,3 +878,21 @@ stacks up to Java:
       the community as quickly as you'd get it for Java related problems.
 
 # Epilogue
+
+Scala's future is nothing but bright. It uses static typing, which is
+familiar to so many Java and C# developers, and is also the
+prerequisite for creating very helpful IDEs. Scala runs on the
+venerable Java platform and easily leverages all of its power while
+adding a lot of magic of its own - implicits, type inference, pattern
+matching, functional programming support, actors and others.
+
+It's my personal opinion that if any language has the chance to
+displace Java as the king of the world - that might be Scala. In all
+likelihood this will never happen - rarely has the greatest solutions
+enjoyed the greatest popularity (remember the Betamax vs VHS?). I do
+believe, however, that Scala will capture a significant market share
+in the coming years - mainly due to it excellent support for building
+distributed systems.
+
+Until next time and the next chapter of the story, dedicated to the
+rising star of the JVM world - Clojure.

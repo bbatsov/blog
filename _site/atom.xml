@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-09T16:39:14+03:00</updated>
+  <updated>2011-05-11T16:00:06+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -25,17 +25,23 @@
 
 &lt;p&gt;This is the second post from my series dedicated to modern programming
 languages for the Java platform. Last time we’ve discussed the
-&lt;a href=&quot;/2011/05/06/jvm-langs-groovy.html&quot;&gt;Groovy programming language&lt;/a&gt; which
+&lt;a href=&quot;/2011/05/06/jvm-langs-groovy.html&quot;&gt;Groovy programming language&lt;/a&gt;, which
 is a member of the ever expanding family of dynamic programming
-languages. The Scala programming language that is the object of
-today’s discussion is another beast entirely - not only it uses static
-typing(like Java &amp;amp; C#), but it also puts a heavy emphasis on the type
+languages. The Scala programming language, that is the object of
+today’s discussion, is different beast entirely - not only it uses static
+typing(like Java &amp;amp; C# amongst others), but it also puts a heavy emphasis on the type
 system, functional and parallel programming.&lt;/p&gt;
 
 &lt;p&gt;In theory Scala runs both on the JVM and on the CLR(the .NET VM). The
-Java port, however, receive a lot more attention by Scala’s developer
+Java port, however, receives a lot more attention by Scala’s developers
 and it probably accounts for close of to all of Scala’s
 deployments(especially in production).&lt;/p&gt;
+
+&lt;p&gt;This article is extremely hard to write for me. Unlike Groovy, I’m
+deeply familiar with the language and would like to share quite a lot
+with you. For obvious reasons I cannot go into much detail (otherwise
+I’d have written an on-line book). You’re encourage to follow up this
+article by reading some of the excellent resources, mentioned near its end.&lt;/p&gt;
 
 &lt;h1 id=&quot;a-brief-history-of-scala&quot;&gt;A brief history of Scala&lt;/h1&gt;
 
@@ -45,20 +51,23 @@ faced by Java programmers. He formed the vision of applying the best
 knowledge of the academic research community to the problem of making
 the Java programming experience better, even fun. His first pragmatic
 step was Java Generics, seen as a major success by the Java
-community. But for the full vision of scalable concurrent programming
+community (though we should mention that it was C# that first brought
+generic programming to the masses). But for the full vision of scalable concurrent programming
 to be achieved he saw that the basic Java syntax would need to
 change. You simply couldn’t get there from here. But a deceptively
 simple shift in syntax gained better uniformity to the object-oriented
 aspects of Java, and this in turn enabled a natural fusion with
 functional programming concepts which are critical for tackling
-concurrency. In 2001 Scala was born.&lt;/p&gt;
+concurrency. In 2001 Scala was born. The first official version was
+released in late 2003. This year it celebrates its first
+anniversary in a way (depending on what do you consider the birthday).&lt;/p&gt;
 
 &lt;p&gt;Scala stands for a SCAlable LAnguage. What does this mean? Scala is
 designed to tackle solutions of wildly varying sizes - from small
 scripts (programming in the small) to massive distributed enterprise
 applications (generally programming in the large). Scala also means
 &lt;em&gt;steps&lt;/em&gt; in Italian and this is the reason why most Scala books have
-some form of steps on their covers (arguably this is the reason while
+some form of steps on their covers (arguably this is the reason why
 Scala is very popular in Italy and particularly in Milan). &lt;/p&gt;
 
 &lt;p&gt;The current production version of Scala is 2.8.1 with 2.9.0 being in
@@ -136,7 +145,7 @@ can install it like this:&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Personally I’d prefer the platform-independent installation method,
-since some distribution package Scala in a non-standard manner which
+since some distribution package Scala in a non-standard manner, which
 confuses IDEs for instance.&lt;/p&gt;
 
 &lt;h1 id=&quot;scala-at-a-glance&quot;&gt;Scala at a glance&lt;/h1&gt;
@@ -152,7 +161,7 @@ of “Effective Java” and many of Java’s core libraries&lt;/p&gt;
 &lt;p&gt;Scala basically is:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;SCAlable Language&lt;/li&gt;
+  &lt;li&gt;SCAlable LAnguage&lt;/li&gt;
   &lt;li&gt;Pure OO language&lt;/li&gt;
   &lt;li&gt;Functional language&lt;/li&gt;
   &lt;li&gt;Statically typed language&lt;/li&gt;
@@ -170,9 +179,105 @@ of “Effective Java” and many of Java’s core libraries&lt;/p&gt;
   &lt;li&gt;Simplified visibility rules&lt;/li&gt;
   &lt;li&gt;Suitable for scripting, GUI, enterprise&lt;/li&gt;
   &lt;li&gt;Relies on immutable data structures by default&lt;/li&gt;
+  &lt;li&gt;Great support for building parallel applications&lt;/li&gt;
+  &lt;li&gt;Pimps (improves) a lot of standard Java classes using a technique
+called &lt;a href=&quot;http://www.codecommit.com/blog/ruby/implicit-conversions-more-powerful-than-dynamic-typing&quot;&gt;implicit conversion&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;static-vs-dynamic-typing&quot;&gt;Static vs Dynamic typing&lt;/h1&gt;
+
+&lt;p&gt;This is one of the oldest debates in computing and everyone with a
+little bit of common sense knows that there is no definitive answer to this
+so fundamental question. Both approaches have merits and drawbacks. In
+recent years we saw a rapid explosion in the rate of growth of
+dynamic languages which lead many people to believe that static typing
+is something of the past and is headed down on the road to oblivion. I ,
+however, very much doubt such a possibility. So, without further ado
+here’s my take on their pros and cons:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Dynamic typing&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Pros
+    &lt;ul&gt;
+      &lt;li&gt;Less verbose &lt;/li&gt;
+      &lt;li&gt;Better metaprogramming capabilities - it’s very easy in a
+language like to Ruby to modify a class at runtime for
+instance. Java developers, on the other side, can only dream for
+such things…&lt;/li&gt;
+      &lt;li&gt;Duck typing allows to reduce immensely the coupling between your
+classes&lt;/li&gt;
+      &lt;li&gt;Reduced development and deployment cycles - most dynamic
+languages are implemented as interpreters and this way you’re
+spared the tedious compilation/redeployment cycles&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Cons
+    &lt;ul&gt;
+      &lt;li&gt;Some might argue that type declarations serve as an additional
+documentation and their lack (arguably) make the code harder to
+read. Of course, when you’re following a decent naming
+convention (and by that I mean that you’re using sensible
+identifiers) that hardly matters.&lt;/li&gt;
+      &lt;li&gt;Slower performance - knowing all the types in advance,
+naturally, allows the compilers to generate faster code for
+static languages than for dynamic ones. Some Lisp compilers,
+however, offer performance that rivals that of statically typed
+programs, so it’s reasonable to expect that the situation in
+this department will improve over time.&lt;/li&gt;
+      &lt;li&gt;It’s hard to create IDEs for dynamic languages that offer the
+same level of assistance as those for static languages. The
+problem stems from the simple fact that in a dynamic language
+the type of an object is known only at runtime and an IDE will have
+a pretty hard type guessing the types because of this fact. In
+my humble opinion the lack of all the fancy IDE features like
+reliable code completion and refactorings is one of the central
+reasons why statically type languages like Java, C# and C++ are
+still enjoying higher popularity than dynamic languages.&lt;/li&gt;
+      &lt;li&gt;You need to write more unit tests, because many of the simple
+errors that the compiler of statically typed language will detect
+will manifest themselves only at runtime.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Static typing&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Pros
+    &lt;ul&gt;
+      &lt;li&gt;Mighty development environments, capable of compensating for a
+lot of the languages deficiencies. You always get correct
+completion suggestions (in a decent IDE that is), all type errors
+are caught as you type (except the runtime errors that is). &lt;/li&gt;
+      &lt;li&gt;Reliable refactoring - you make some changes, you recompile the
+project, you instantly see whether everything is OK after the
+refactoring. One of the key reasons why enterprise projects are
+often implemented in Java and C#.&lt;/li&gt;
+      &lt;li&gt;Maximum performance - when you know all the types in advance it’s
+not particularly hard to generate the optimal bytecode/binary
+code.&lt;/li&gt;
+      &lt;li&gt;You don’t need to write unit tests for errors that will be caught
+by compiler.&lt;/li&gt;
+      &lt;li&gt;The type declarations arguably serve as an up-to-date
+documentation on which you can always rely.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Cons
+    &lt;ul&gt;
+      &lt;li&gt;Poor metaprogramming support - statically typed system limit very
+much the magic you can do in you programs. Metaprogramming is
+actually considered a black art in many statically type
+languages.&lt;/li&gt;
+      &lt;li&gt;Generally statically type languages are a bit more verbose -
+mostly because the code is full of type annotations (languages
+like Scala and Haskell, however, have found the cure for this
+ailment - &lt;a href=&quot;http://www.codecommit.com/blog/scala/what-is-hindley-milner-and-why-is-it-cool&quot;&gt;type inference&lt;/a&gt;)&lt;/li&gt;
+      &lt;li&gt;No support for duck typing causes you to often link classes in
+hierarchies that you’d rather avoid if you had the chance to.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&quot;a-whirlwind-tour-of-scala&quot;&gt;A whirlwind tour of Scala&lt;/h1&gt;
 
@@ -226,6 +331,11 @@ Scala you’d simply write:&lt;/p&gt;
 &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hasUppercase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isUpperCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;p&gt;Scala’s code actually reads a lot like English language that makes
+sense to humans - check if in &lt;em&gt;word&lt;/em&gt;
+there exists an uppercase character. Notice that is Scala &lt;em&gt;if&lt;/em&gt; is an
+expression yielding a return value, unlike in many other languages.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Scala is concise&lt;/li&gt;
@@ -281,6 +391,8 @@ as if), there are no static field and methods &lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;Want to implement a thread-safe mathematical service in Scala? No problem!&lt;/p&gt;
+
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scala&quot;&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scala.actors.Actor._&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -300,6 +412,9 @@ as if), there are no static field and methods &lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
+&lt;p&gt;Case classes are out of the scope of this post, but I guess you get
+the basic idea.&lt;/p&gt;
+
 &lt;h1 id=&quot;playing-around&quot;&gt;Playing around&lt;/h1&gt;
 
 &lt;p&gt;A good way to start exploring Scala is the REPL. Fire it up and type
@@ -307,22 +422,86 @@ along:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scala&quot;&gt;&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Hello, Scala&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;nc&quot;&gt;Hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Scala&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Bozhidar&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;java.lang.String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bozhidar&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Predef&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;My name is &amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;My&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bozhidar&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;someNumber&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;someNumber&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;names&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Superman&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Batman&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;The Flash&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Bozhidar&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;names&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;java.lang.String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Superman&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Batman&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;The&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Flash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bozhidar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;names&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;startsWith&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;B&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; 
+&lt;span class=&quot;n&quot;&gt;res6&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;java.lang.String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Batman&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Bozhidar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;names&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt; 
+&lt;span class=&quot;n&quot;&gt;res7&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;res8&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.util.Date&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;java.util.Date&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;currentDate&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;currentDate&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;java.util.Date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Wed&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;May&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;03&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;EEST&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;2011&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;scala&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Now&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;currentDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;Now&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Wed&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;May&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;03&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;EEST&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;2011&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;scala&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;currentDate.toString&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;res10&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;java.lang.String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Wed&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;May&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;03&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;EEST&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;2011&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;scala&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;currentDate.toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;res11:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;java.lang.String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Wed&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;May&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;03&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;EEST&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;2011&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;scala&amp;gt;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;currentDate&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;toString&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;res12&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;java.lang.String&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Wed&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;May&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;03&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;EEST&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;2011&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;p&gt;The REPL has an excellent TAB completion - I used it ofter. You’ll
+note from these examples the flexibility and the brevity of Scala’s
+syntax - no &lt;strong&gt;;&lt;/strong&gt; to terminate statements (though you’ll have to use ; to
+separate more than one expression on a single line). The types of the
+variables are inferred by the context, without the need to
+specifically specify them - if you assign a string literal to some
+variable the compiler will figure out on its own that the variable
+must of type String (also note that Scala strings are Java strings -
+at least on the JVM). You’ve got a lot of flexibility when you’re
+calling methods - you can omit the braces and the dot in some
+scenarios - this makes it easy to create Domain Specific Languages in Scala.&lt;/p&gt;
+
+&lt;p&gt;The REPL outputs both the result of the expression you’ve evaluated
+and the output from the evaluation (if any). The result from the
+evaluation is assigned to automatically generated variables named resX
+(res0, res1, res3) and you can refer to them later on.&lt;/p&gt;
 
 &lt;h1 id=&quot;object-orientation-purification&quot;&gt;Object orientation purification&lt;/h1&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Everything is an object&lt;/li&gt;
+  &lt;li&gt;Everything is an object - there are no primitive types in Scala,
+though the compiler will map some Scala types to primitive Java
+types for performance whenever possible&lt;/li&gt;
   &lt;li&gt;No operators, just methods
     &lt;ul&gt;
       &lt;li&gt;1 + 2 === 1.+(2)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;No static fields &amp;amp; methods - replaced by companion objects&lt;/p&gt;
+    &lt;p&gt;No static fields &amp;amp; methods - replaced by companion objects (a
+singleton object named the same way as the class). What would be a
+static field of a static method in Java will be a companion object
+field/method in Scala. This makes the Scala OO model purer than that
+of some other languages (of course in languages like Ruby where
+classes are objects class variables and methods have more or less
+the same meaning and the model is just a pure if not purer). &lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;Traits - the evolution of interfaces
+  &lt;li&gt;&lt;a href=&quot;http://www.scala-lang.org/node/126&quot;&gt;Traits&lt;/a&gt; - the evolution of interfaces
     &lt;ul&gt;
       &lt;li&gt;Traits are interfaces on steroids&lt;/li&gt;
       &lt;li&gt;They can contain state as well as behaviour&lt;/li&gt;
@@ -341,8 +520,8 @@ and a nice array of immutable data structures. Scala, naturally, has
 both. Traditionally OOP languages have rarely had much support for
 functional programming, which makes it awkward to express some
 problems in them. Steve Yegge wrote an excellent article on the
-subject some time ago - “Execution in the kingdom of the
-nouns”(http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html).&lt;/p&gt;
+subject some time ago - &lt;a href=&quot;http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html&quot;&gt;“Execution in the kingdom of the
+nouns”&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Return of the verbs&lt;/strong&gt;&lt;/p&gt;
 
@@ -368,7 +547,7 @@ nouns”(http://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.h
 
 &lt;p&gt;&lt;strong&gt;Closures&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Closures are basically functions that have captured variable from an
+&lt;p&gt;Closures are basically functions that have captured variables from an
 external scope (variables that were not parameters of the
 functions). Closures are often used as the parameters of higher-order
 functions (functions that take functions as parameters):&lt;/p&gt;
@@ -427,9 +606,20 @@ data structures are those imported by default to promote a more
 functional programming style, but you can easily switch to the mutable
 versions and program in an imperative manner.&lt;/p&gt;
 
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scala&quot;&gt;&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scala.collection.mutable.Map&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scala.collection.mutable.Map&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;phoneBook&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Bozhidar&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Ivan&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;456&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;phoneBook&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;scala.collection.mutable.Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;java.lang.String&lt;/span&gt;,&lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Ivan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;456&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Bozhidar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;phoneBook&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Maya&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;53434&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;res13&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;phoneBook.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Maya&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;53434&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Ivan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;456&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Bozhidar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;&lt;strong&gt;List almighty&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;The list is a core data structure in functional programming because it
+&lt;p&gt;The list is a core data structure in functional programming because it is
 recursively defined and therefore it’s very suitable for use in
 recursive algorithms. A list is composed of cons cells, each having
 two components - the value it holds and a reference to a next cons
@@ -446,6 +636,8 @@ represent an empty list).&lt;/p&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
+
+&lt;p&gt;Here’s some things you can do with Scala’s lists:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scala&quot;&gt;&lt;span class=&quot;n&quot;&gt;scala&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Nil&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;res3&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -535,6 +727,55 @@ destructuring that matched objects. Here’s a simple example:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
+&lt;p&gt;Pattern matching gives you a new way to implement common programming
+task. For instance consider the following trivial problem - computing
+the length of a list:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scala&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tail&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tail&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Nil&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Sure, it’s not tail-recursive, but it’s pretty neat. Now that I
+mentioned tail-recursion I should probably say a bit more about
+it. Recursive solutions generally look very nice in source form, but
+performance-wise are not that great because each recursive call
+creates a new stack frame and what’s even worse is that stack frames
+are limited - create too many of them and your program will blow
+up. This doesn’t mean that we should start coding everything
+imperatively, of course. Some compilers have the ability to optimize
+away recursive calls if the last thing that happens in the recursive
+function is a call to the function itself. In the case of our function &lt;em&gt;length&lt;/em&gt;,
+unfortunately, the last call happens to be of the method &lt;strong&gt;+&lt;/strong&gt; of the
+object &lt;strong&gt;1&lt;/strong&gt; (of class Int). We can improve the solution this way:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scala&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lengthrec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;Any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;Int&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;head&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tail&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lengthrec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tail&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Nil&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;result&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;lengthrec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Notice that we now have a nested helper method with a second parameter,
+an accumulator value. This pattern often recurs when dealing with tail
+recursion - we take the original recursive definition and introduce a
+helper method using accumulator that is tail recursive. The outer
+method just calls the helper method and waits for the result. The
+Scala compiler will translate internally this recursive function into
+a something like a loop and the performance will be greatly improved,
+while preserving the clarity of the recursive approach.&lt;/p&gt;
+
+&lt;p&gt;Some languages (like Scheme) will always optimize tail calls. Because
+of limitations in the JVM not all tail calls can be optimized in Scala
+(for now), but
+some tails recursion is better than none.&lt;/p&gt;
+
 &lt;h1 id=&quot;parallel-programming&quot;&gt;Parallel programming&lt;/h1&gt;
 
 &lt;p&gt;With the advent of multi-core processors concurrent programming is
@@ -552,20 +793,44 @@ asynchronous messages). Moreover, actors may communicate using futures
 where requests are handled asynchronously, but return a representation
 (the future) that allows to await the reply.&lt;/p&gt;
 
-&lt;p&gt;Our first example consists of two actors that exchange a bunch of
-messages and then terminate. The first actor sends “ping” messages to
-the second actor, which in turn sends “pong” messages back (for each
-received “ping” message one “pong” message).&lt;/p&gt;
+&lt;p&gt;All actors execute in parallel by their nature. Each actor acts as if
+it contains its own dedicated thread of execution.&lt;/p&gt;
 
-&lt;p&gt;We start off by defining the messages that are sent and received by
-our actors. In this case, we can use singleton objects (in more
-advanced programs, messages are usually parameterized). Since we want
-to use pattern matching, each message is a case object:&lt;/p&gt;
+&lt;p&gt;Here’s a very simple actor example. The echoActor runs forever and
+waits for messages:&lt;/p&gt;
 
-&lt;p&gt;The ping actor starts the message exchange by sending a Ping message
-to the pong actor. The Pong message is the response from the pong
-actor. When the ping actor has sent a certain number of Ping messages,
-it sends a Stop message to the pong actor.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scala&quot;&gt;&lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;scala.actors.Actor._&lt;/span&gt; 
+&lt;span class=&quot;k&quot;&gt;val&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;echoActor&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;actor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;receive&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;received: &amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;echoActor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Chuck Norris is the only real actor!&amp;quot;&lt;/span&gt; 
+&lt;span class=&quot;n&quot;&gt;echoActor&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;You don&amp;#39;t find Chuck Norris - Chuck Norris finds you!&amp;quot;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here the actor just waits for messages and responds to them by
+printing them to the console. Since the article’s size is already
+quite impressive I won’t go into any further details about the actors.&lt;/p&gt;
+
+&lt;p&gt;I want you to know that actors are not the only way to write parallel
+programs in Scala. You still have access to the native Java (or .Net)
+primitive like threads, locks, executors, etc. Another option is the
+Scala implementation of Software Transactional Memory(STM) - a
+parallel programming model made recently popular by the Clojure
+programming language. Scala’s implementation is a work in progress and
+you can have a look a it
+&lt;a href=&quot;http://nbronson.github.com/scala-stm/&quot;&gt;here&lt;/a&gt;. STM is basically a
+programming technique that lets you model concurrent operations in a
+way similar to db transactions - you combine the critical code in a
+transaction and if possible execute it and commit the transaction,
+otherwise just rollback it and maybe try again after a while. Note that this is a
+&lt;em&gt;great&lt;/em&gt; oversimplification of what’s actually happening - for all the
+gory details you should read the exhaustive documentation.&lt;/p&gt;
 
 &lt;h1 id=&quot;tools&quot;&gt;Tools&lt;/h1&gt;
 
@@ -594,14 +859,23 @@ popular Java IDE has a Scala plug-in that
 until recently was mostly useless, but currently is being
 totally reworked and the next stable version will bring usable
 Scala support to the Eclipse users. The development of the new
-Scala plug-in is headed by none other than Martin Odersky himself.&lt;/p&gt;
+Scala plug-in is headed by none other than Martin Odersky
+himself. Don’t bother using the older version at all - just grab
+the latest beta.&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
         &lt;p&gt;&lt;a href=&quot;http://wiki.netbeans.org/Scala69&quot;&gt;NetBeans&lt;/a&gt; - Presently the
 Scala support in NetBeans is a bit basic, but it’s usable.&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;Emacs ENSIME&lt;/p&gt;
+        &lt;p&gt;&lt;a href=&quot;https://github.com/aemoncannon/ensime&quot;&gt;Emacs ENSIME&lt;/a&gt; - Ok, I admit - Emacs is not actually an IDE
+per se, but it’s still much more powerful than most IDEs. Emacs
+happens to have an excellent Scala mode, called ENSIME that
+gives you code completion, instant feedback, an integrated REPL,
+SBT integration, refactorings and other goodies in an Emacs
+package. The project attempts to be the equivalent of the legendary SLIME (
+an Emacs mode for Common Lisp) for Scala. ENSIME is integrated
+into the &lt;a href=&quot;https://github.com/bbatsov/emacs-dev-kit&quot;&gt;Emacs Dev Kit&lt;/a&gt;(maintained by yours truly).&lt;/p&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
@@ -655,21 +929,23 @@ prominent: &lt;/p&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Akka&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://akka.io/&quot;&gt;Akka&lt;/a&gt; - A powerful library for writing concurrent applications
+using Actors, STM &amp;amp; Transactors. It has both Scala and Java API.&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;SBT&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://code.google.com/p/simple-build-tool/&quot;&gt;SBT&lt;/a&gt; - a powerful
+build tool&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;success-stories&quot;&gt;Success stories&lt;/h1&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Twitter&lt;/li&gt;
+  &lt;li&gt;Twitter - you remember how often Twitter used to go down because of
+overloads and suddenly the problems stopped - this was the moment in
+which Twitter’s backend was rewritten in Scala…&lt;/li&gt;
   &lt;li&gt;Four square&lt;/li&gt;
   &lt;li&gt;LinkedIn&lt;/li&gt;
   &lt;li&gt;SAP&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h1 id=&quot;future-prospects&quot;&gt;Future prospects&lt;/h1&gt;
 
 &lt;h1 id=&quot;comparison-to-java&quot;&gt;Comparison to Java&lt;/h1&gt;
 
@@ -714,6 +990,24 @@ the community as quickly as you’d get it for Java related problems.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h1&gt;
+
+&lt;p&gt;Scala’s future is nothing but bright. It uses static typing, which is
+familiar to so many Java and C# developers, and is also the
+prerequisite for creating very helpful IDEs. Scala runs on the
+venerable Java platform and easily leverages all of its power while
+adding a lot of magic of its own - implicits, type inference, pattern
+matching, functional programming support, actors and others.&lt;/p&gt;
+
+&lt;p&gt;It’s my personal opinion that if any language has the chance to
+displace Java as the king of the world - that might be Scala. In all
+likelihood this will never happen - rarely has the greatest solutions
+enjoyed the greatest popularity (remember the Betamax vs VHS?). I do
+believe, however, that Scala will capture a significant market share
+in the coming years - mainly due to it excellent support for building
+distributed systems.&lt;/p&gt;
+
+&lt;p&gt;Until next time and the next chapter of the story, dedicated to the
+rising star of the JVM world - Clojure.&lt;/p&gt;
 </content>
   </entry>
   
