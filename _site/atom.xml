@@ -4,13 +4,58 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-11T16:26:09+03:00</updated>
+  <updated>2011-05-11T18:34:59+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
     <email>bozhidar.batsov@gmail.com</email>
   </author>
 
+  
+  <entry>
+    <id>http://www.batsov.com/2011/05/11/zenburn-emacs</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/05/11/zenburn-emacs.html"/>
+    <title>A new Zenburn theme for Emacs</title>
+    <updated>2011-05-11T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://slinky.imukuppi.org/zenburnpage/&quot;&gt;Zenburn&lt;/a&gt; is a popular colour theme for
+vim, developed by Jani Nurminen. It’s my personal
+belief (and probably that of many of its users I presume) that it’s one of the
+best low contrast themes out there and that Zenburn is exceptionally
+easy on the eyes. Btw, I love Zenburn so much that I’ve even created a
+&lt;a href=&quot;https://github.com/bbatsov/blog/blob/master/css/syntax.css&quot;&gt;Zenburn theme for Jekyll&lt;/a&gt; to be able to use for my blog.&lt;/p&gt;
+
+&lt;p&gt;The project was originally
+&lt;a href=&quot;https://github.com/dbrock/zenburn-el&quot;&gt;ported to Emacs&lt;/a&gt; by Daniel
+Brockman, but it seems that he has lost interest in it recently - very
+few updates has been published by him in the past few years. This is
+the reason why I gathered all improvements that I could find laying
+around the Internet and applied them to the last official Zenburn
+version, effectively starting
+a &lt;a href=&quot;https://github.com/bbatsov/zenburn-emacs/blob/master/zenburn-legacy.el&quot;&gt;fork of the project&lt;/a&gt;. So far, so good…&lt;/p&gt;
+
+&lt;p&gt;Daniel’s version of Zenburn, however, had reached a state in which it took me
+too much to make improvements to it - since a lot of users had direct access
+to modify it everything in it was in complete disarray - it’s full of
+uses of colours that were not defined by the original zenburn,
+questionable coding practices and inconsistent theming of
+faces. Yesterday I decided to take a closer look at the code of the
+theme and clean it up a little - 20 minutes later I was writing &lt;a href=&quot;https://github.com/bbatsov/zenburn-emacs/blob/master/zenburn.el&quot;&gt;a new
+zenburn theme from scratch&lt;/a&gt;. I decided that making everything from
+the start will probably be less effort anyways. &lt;/p&gt;
+
+&lt;p&gt;I’ve added enough faces in the new theme to make it usable for most
+users and I’ll (hopefully) continue to improve the theme and expand
+the supported modes constantly. If you’re interested - give it a try!
+If you’re unhappy with something - create an issue in GitHub (or even
+better send me a pull request with your suggested improvements).&lt;/p&gt;
+
+&lt;p&gt;It’s my desire to make the new &lt;a href=&quot;https://github.com/bbatsov/zenburn-emacs&quot;&gt;Zenburn for Emacs&lt;/a&gt; just as good as the original.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://www.batsov.com/2011/05/08/jvm-langs-scala</id>
@@ -886,10 +931,13 @@ into the &lt;a href=&quot;https://github.com/bbatsov/emacs-dev-kit&quot;&gt;Emac
 Scala “interpreter” and the Scala class runner&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;scalac - the Groovy compiler&lt;/p&gt;
+        &lt;p&gt;scalac - the Scala compiler&lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
-        &lt;p&gt;fsc - fast Scala compiler&lt;/p&gt;
+        &lt;p&gt;fsc - fast Scala compiler. The Scala compiler is notoriously
+slow to start and fsc is a partial solution to this problem. The fsc runs
+as a daemon and waits to receive files to compile. Maven’s
+scala:cc and sbt’s ~compile continuous compilation task use fsc internally.  &lt;/p&gt;
       &lt;/li&gt;
       &lt;li&gt;
         &lt;p&gt;sbaz - The Scala Bazaar System, sbaz for short, is a packaging
