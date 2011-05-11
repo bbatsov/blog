@@ -797,9 +797,12 @@ some form of Scala support and most Java build tools as well.
     * scala - A Scala REPL for exploratory programming; it's also the
       Scala "interpreter" and the Scala class runner
 
-    * scalac - the Groovy compiler
+    * scalac - the Scala compiler
 
-    * fsc - fast Scala compiler
+    * fsc - fast Scala compiler. The Scala compiler is notoriously
+      slow to start and fsc is a partial solution to this problem. The fsc runs
+      as a daemon and waits to receive files to compile. Maven's
+      scala:cc and sbt's ~compile continuous compilation task use fsc internally.  
 
     * sbaz - The Scala Bazaar System, sbaz for short, is a packaging
       system developed to automate the task of mainaining a Scala

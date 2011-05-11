@@ -907,10 +907,13 @@ into the <a href="https://github.com/bbatsov/emacs-dev-kit">Emacs Dev Kit</a>(ma
 Scala “interpreter” and the Scala class runner</p>
       </li>
       <li>
-        <p>scalac - the Groovy compiler</p>
+        <p>scalac - the Scala compiler</p>
       </li>
       <li>
-        <p>fsc - fast Scala compiler</p>
+        <p>fsc - fast Scala compiler. The Scala compiler is notoriously
+slow to start and fsc is a partial solution to this problem. The fsc runs
+as a daemon and waits to receive files to compile. Maven’s
+scala:cc and sbt’s ~compile continuous compilation task use fsc internally.  </p>
       </li>
       <li>
         <p>sbaz - The Scala Bazaar System, sbaz for short, is a packaging
