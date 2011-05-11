@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-11T18:34:59+03:00</updated>
+  <updated>2011-05-11T19:04:27+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -300,7 +300,8 @@ project, you instantly see whether everything is OK after the
 refactoring. One of the key reasons why enterprise projects are
 often implemented in Java and C#.&lt;/li&gt;
       &lt;li&gt;Maximum performance - when you know all the types in advance it’s
-not particularly hard to generate the optimal bytecode/binary
+not particularly hard to generate the most efficient in terms of
+performance bytecode/binary
 code.&lt;/li&gt;
       &lt;li&gt;You don’t need to write unit tests for errors that will be caught
 by compiler.&lt;/li&gt;
@@ -313,13 +314,17 @@ documentation on which you can always rely.&lt;/li&gt;
       &lt;li&gt;Poor metaprogramming support - statically typed system limit very
 much the magic you can do in you programs. Metaprogramming is
 actually considered a black art in many statically type
-languages.&lt;/li&gt;
+languages. In a functional statically typed language higher-order
+functions can compensate a lot in that department. Scala happens
+to be one such language, Haskell - another.&lt;/li&gt;
       &lt;li&gt;Generally statically type languages are a bit more verbose -
 mostly because the code is full of type annotations (languages
 like Scala and Haskell, however, have found the cure for this
 ailment - &lt;a href=&quot;http://www.codecommit.com/blog/scala/what-is-hindley-milner-and-why-is-it-cool&quot;&gt;type inference&lt;/a&gt;)&lt;/li&gt;
       &lt;li&gt;No support for duck typing causes you to often link classes in
-hierarchies that you’d rather avoid if you had the chance to.&lt;/li&gt;
+hierarchies that you’d rather avoid if you had the chance
+to. Type classes in Haskell and implicit conversions in Scala,
+however, tend to alleviate this problem.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;

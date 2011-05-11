@@ -224,7 +224,8 @@ here's my take on their pros and cons:
      refactoring. One of the key reasons why enterprise projects are
      often implemented in Java and C#.
    * Maximum performance - when you know all the types in advance it's
-     not particularly hard to generate the optimal bytecode/binary
+     not particularly hard to generate the most efficient in terms of
+     performance bytecode/binary
      code.
    * You don't need to write unit tests for errors that will be caught
      by compiler.
@@ -235,13 +236,17 @@ here's my take on their pros and cons:
    * Poor metaprogramming support - statically typed system limit very
      much the magic you can do in you programs. Metaprogramming is
      actually considered a black art in many statically type
-     languages.
+     languages. In a functional statically typed language higher-order
+     functions can compensate a lot in that department. Scala happens
+     to be one such language, Haskell - another.
    * Generally statically type languages are a bit more verbose -
      mostly because the code is full of type annotations (languages
      like Scala and Haskell, however, have found the cure for this
      ailment - [type inference](http://www.codecommit.com/blog/scala/what-is-hindley-milner-and-why-is-it-cool))
    * No support for duck typing causes you to often link classes in
-     hierarchies that you'd rather avoid if you had the chance to.
+     hierarchies that you'd rather avoid if you had the chance
+     to. Type classes in Haskell and implicit conversions in Scala,
+     however, tend to alleviate this problem.
 
 # A whirlwind tour of Scala
 

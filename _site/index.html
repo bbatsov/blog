@@ -315,7 +315,8 @@ project, you instantly see whether everything is OK after the
 refactoring. One of the key reasons why enterprise projects are
 often implemented in Java and C#.</li>
       <li>Maximum performance - when you know all the types in advance it’s
-not particularly hard to generate the optimal bytecode/binary
+not particularly hard to generate the most efficient in terms of
+performance bytecode/binary
 code.</li>
       <li>You don’t need to write unit tests for errors that will be caught
 by compiler.</li>
@@ -328,13 +329,17 @@ documentation on which you can always rely.</li>
       <li>Poor metaprogramming support - statically typed system limit very
 much the magic you can do in you programs. Metaprogramming is
 actually considered a black art in many statically type
-languages.</li>
+languages. In a functional statically typed language higher-order
+functions can compensate a lot in that department. Scala happens
+to be one such language, Haskell - another.</li>
       <li>Generally statically type languages are a bit more verbose -
 mostly because the code is full of type annotations (languages
 like Scala and Haskell, however, have found the cure for this
 ailment - <a href="http://www.codecommit.com/blog/scala/what-is-hindley-milner-and-why-is-it-cool">type inference</a>)</li>
       <li>No support for duck typing causes you to often link classes in
-hierarchies that you’d rather avoid if you had the chance to.</li>
+hierarchies that you’d rather avoid if you had the chance
+to. Type classes in Haskell and implicit conversions in Scala,
+however, tend to alleviate this problem.</li>
     </ul>
   </li>
 </ul>
