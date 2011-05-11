@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-11T20:32:36+03:00</updated>
+  <updated>2011-05-11T20:38:14+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -563,7 +563,7 @@ get access to some richer functionality? Nothing is easier in Scala:&lt;/p&gt;
 
 &lt;p&gt;Scala arrays don’t have a + method, but Scala Ints do. When the
 compiler sees that the + method is invoked on an object that doesn’t
-have it, it starts search for an implicit conversion to a type that
+have it, it starts searching for an implicit conversion to a type that
 has it - like Int. Both arrays are converted to their sums and the
 sums are added together in the end.&lt;/p&gt;
 
