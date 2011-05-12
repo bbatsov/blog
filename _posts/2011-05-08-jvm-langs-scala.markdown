@@ -926,7 +926,7 @@ Scala presently doesn't have that many killer apps. Here are the most
 prominent: 
 
 * [Lift web framework](http://liftweb.net/) - Lift is a web framework
-  that has cherry-picked some of the best from existing frameworks and
+  that has cherry-picked some of the best ideas from existing frameworks and
   added some novelties of its own to harness the capabilities of the
   Scala programming language.
     * Lazy page loading
@@ -950,12 +950,20 @@ prominent:
 
 # Success stories
 
-* Twitter - you remember how often Twitter used to go down because of
-  overloads and suddenly the problems stopped - this was the moment in
-  which Twitter's backend was rewritten in Scala...
-* Four square
-* LinkedIn
+* [Twitter](http://www.artima.com/scalazine/articles/twitter_on_scala.html)  - you remember how often Twitter used to go down because of
+  overloads and suddenly the problems stopped - no, this was the
+  moment in which Twitter's backend was rewritten in Scala (that
+  moment never actually came)... I have it on good authority that the
+  problem was actually resolved by great improvements in their Ruby
+  code base. But they use Scala there - Twitter had a Ruby-based
+  queueing system that we used for communicating between the Rails
+  front ends and the daemons that often crashed under heavy loads, and
+  they ended up replacing that with one written in Scala.
+* [Four square](http://www.scala-lang.org/node/5130) - Four square
+  uses Lift as well
+* [LinkedIn](http://www.scala-lang.org/node/6436)
 * SAP
+* [Guardian.co.uk](http://www.infoq.com/articles/guardian_scala)
 
 # Comparison to Java
 
