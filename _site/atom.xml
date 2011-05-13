@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-13T15:29:37+03:00</updated>
+  <updated>2011-05-13T15:38:21+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -4803,9 +4803,9 @@ same manner(with the same icon). There is no visual distinction between abstract
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2009/05/19/emacs-shift-return</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/05/19/emacs-shift-return.html"/>
-    <title>Emacs Shift Return</title>
+    <id>http://www.batsov.com/Emacs/IntelliJ/2009/05/19/emacs-shift-return</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Emacs/IntelliJ/2009/05/19/emacs-shift-return.html"/>
+    <title>Emulate the behaviour of Return+Shift(insert new line) from popular IDEs(IDEA, Eclipse) in Emacs</title>
     <updated>2009-05-19T00:00:00+03:00</updated>
     <author>
       <name>Bozhidar Batsov</name>

@@ -1,7 +1,6 @@
 ---
 layout: post
-title: Emulate the behaviour of Return+Shift(insert new line) from
-popular IDEs(IDEA, Eclipse) in Emacs
+title: Emulate the behaviour of Return+Shift(insert new line) from popular IDEs(IDEA, Eclipse) in Emacs
 categories:
 - Emacs
 - IntelliJ
@@ -16,7 +15,7 @@ create one, combining several well known functions in the process and
 bind that new function to the desired key combination. Here’s the
 snippet one might have in his .emacs(or other) “configuration” file:
 
-{% highlight cl linos %}
+{% highlight cl %}
 ;; insert an empty line after the current line and position the cursor on its beginning
 (defun insert-empty-line ()
  (interactive)
