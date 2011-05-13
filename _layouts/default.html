@@ -95,7 +95,8 @@
                     <div style="font-size: 18px; text-weight: bold; text-decoration: underline; margin-top: 20px;">Categories:</div>
                     <ul>
                         {% for cat in site.categories %}
-                        <li><a href="/{{ cat | first}}.html">{{ cat | first}}({{cat | size}})</a></li>
+                        {% assign tag = cat[0] %}
+                        <li><a href="/categories/{{tag}}/index.html">{{tag}}({{site.categories[tag] | size}})</a></li>
                         {% endfor %}
                     </ul>
                 </div>
