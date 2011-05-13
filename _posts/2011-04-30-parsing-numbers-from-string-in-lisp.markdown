@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Parsing numbers from string in Common Lisp"
+categories:
+- Programming
+- Common Lisp
 ---
 
 One task that often recurs in programming is the need to parse a

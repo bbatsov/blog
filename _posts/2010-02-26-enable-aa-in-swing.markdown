@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "How to enable font anti-aliasing in a Java Swing app"
+categories:
+- Java
+- Swing
 ---
 
 If you have access to the source, you can do this in the main method:

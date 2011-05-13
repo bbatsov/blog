@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Using Emacs for Rails development: The perfect setup"
+categories:
+- Ruby
+- Emacs
+- Rails
 ---
 
 **Updated 29/04/2011**

@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Java.next() - The Groovy Programming Language"
+categories:
+- Java
+- Groovy
 ---
 
 In a series of articles labeled "Java.next()" I'll be discussing

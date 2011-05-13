@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Enabling 3D support for Nouveau in Fedora 13"
+categories:
+- Fedora
+- Linux
+- Hardware
 ---
 
 Most of you probably have heard that Fedora 13 will feature

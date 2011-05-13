@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Changing the look & feel in NetBeans 6.8"
+categories:
+- Java
+- NetBeans
 ---
 
 Recently I’ve been trying to switch my work environment theme to

@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Every blog has its first post..."
+categories:
+- Misc
 ---
 
 Hello, everyone! Welcome to my blog! 

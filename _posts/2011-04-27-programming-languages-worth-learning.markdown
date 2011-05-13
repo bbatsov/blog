@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Programming languages worth learning"
+categories:
+- Programming
 ---
 
 Programming languages have always been a passion of mine and through

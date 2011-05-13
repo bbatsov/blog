@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Add Atom feed to Jekyll powered blog"
+categories:
+- Jekyll
 ---
 
 As you know I've recently migrated my blog from WordPress to

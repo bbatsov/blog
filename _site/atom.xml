@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-11T20:38:14+03:00</updated>
+  <updated>2011-05-13T15:29:37+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -13,8 +13,517 @@
 
   
   <entry>
-    <id>http://www.batsov.com/2011/05/11/zenburn-emacs</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/05/11/zenburn-emacs.html"/>
+    <id>http://www.batsov.com/Clojure/Java/2011/05/12/jvm-langs-clojure</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Clojure/Java/2011/05/12/jvm-langs-clojure.html"/>
+    <title>Java.next() - Clojure: The Return of the Lispers</title>
+    <updated>2011-05-12T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;h1 id=&quot;overture&quot;&gt;Overture&lt;/h1&gt;
+
+&lt;p&gt;This is the third part of the series of &lt;strong&gt;Java.next()&lt;/strong&gt;. Last time
+we’ve discussed the merits of &lt;a href=&quot;http://batsov.com/2011/05/08/jvm-langs-scala.html&quot;&gt;Scala&lt;/a&gt; - an OO language with a strong
+emphasis on functional and parallel programming. Today we’ll be
+discussing Clojure - a language that pushes the envelop a lot further
+than Scala as far as functional and parallel programming are
+concerned. You’ll see that Clojure is radically different from Scala
+and Groovy in many aspects - it’s not an OO language, it doesn’t have
+Algol-derived syntax and it introduces a few rather radical ideas on
+subjects such as identity and state.&lt;/p&gt;
+
+&lt;p&gt;Clojure’s approach to concurrency is characterized by the concept of
+identities, which represent a series of immutable states over
+time. Since states are immutable values, any number of workers can
+operate on them in parallel, and concurrency becomes a question of
+managing changes from one state to another. For this purpose, Clojure
+provides several mutable reference types, each having well-defined
+semantics for the transition between states.&lt;/p&gt;
+
+&lt;p&gt;Clojure was initially conceived as targeting both the JVM and the
+CLR. For various reason currently the core development team is targeting mainly
+the JVM and the &lt;a href=&quot;https://github.com/richhickey/clojure-clr&quot;&gt;CLR port&lt;/a&gt;
+is receiving less attention (though it’s not abandoned and it’s
+regularly being updated).&lt;/p&gt;
+
+&lt;h1 id=&quot;a-brief-history-of-clojure&quot;&gt;A brief history of Clojure&lt;/h1&gt;
+
+&lt;p&gt;Clojure is very very young project (compared to most popular
+programming languages). It was created in 2007 by Rich
+Hickey (project leader and benevolent dictator for life). He developed
+Clojure because he wanted a modern Lisp for functional programming,
+symbiotic with the established Java platform, and designed for
+concurrency. What started as a hobby project turned into some much
+bigger with Rich getting some excited about the project that left his
+job to work full-time on the project, effectively burning his life’s
+savings in the process. This was quite the gamble, but it turned out
+to be a lucky gamble since Clojure’s popularity rapidly spiked and
+loyal and energetic community quickly formed around the project. &lt;/p&gt;
+
+&lt;p&gt;Clojure became the new language of choice for many well respected
+hackers from different communities. I’ve noticed something of a trend
+in that department - most Clojure hackers used to be Ruby hackers. I
+guess some of the Ruby hackers were not satisfied by partial subset of
+Lisp features, available in Ruby, and wanted to gain access to all of
+Lisp’s power.&lt;/p&gt;
+
+&lt;p&gt;The current Clojure version is 1.2 with 1.3 being just around the
+corner.&lt;/p&gt;
+
+&lt;h1 id=&quot;installing-clojure&quot;&gt;Installing Clojure&lt;/h1&gt;
+
+&lt;p&gt;Installing Clojure is just a matter of downloading and extracting a
+single archive -
+&lt;a href=&quot;http://github.com/downloads/clojure/clojure/clojure-1.2.0.zip&quot;&gt;clojure.zip&lt;/a&gt;. Many
+high quality Clojure libraries come prepackaged in another archived
+named
+&lt;a href=&quot;http://github.com/downloads/clojure/clojure-contrib/clojure-contrib-1.2.0.zip&quot;&gt;Clojure Contrib&lt;/a&gt;. Clojure
+Contrib is kind of a staging area for Clojure development - it’s a
+common practice to move some of the best parts of contrib into core.&lt;/p&gt;
+
+&lt;p&gt;In the directory in which you expanded clojure.zip, run:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; java -cp clojure.jar clojure.main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This will bring up a simple read-eval-print loop (REPL) a.k.a. an
+interactive console. Much of
+Clojure is defined in Clojure itself (in the &lt;strong&gt;core.clj&lt;/strong&gt; file included in
+the src directory of distribution), which is automatically loaded from
+the .jar file when Clojure starts. The file &lt;strong&gt;user.clj&lt;/strong&gt;, if found in the
+classpath, will be auto-loaded as well. You can leverage this to cause
+code to run when Clojure starts.&lt;/p&gt;
+
+&lt;p&gt;When core.clj is loaded you will have the language as described herein fully available.
+Try:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&lt;span class=&quot;nv&quot;&gt;user=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;+ &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;println &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Hello, Clojure!&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;Hello,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;Clojure!&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;nil&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;javax&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;swing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JOptionPane&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;showMessageDialog&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Hello&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;World&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The REPL has very rudimentary editing. For a better experience, try running it via the &lt;a href=&quot;http://jline.sourceforge.net/&quot;&gt;JLine&lt;/a&gt; ConsoleRunner:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;java -cp jline-0_9_5.jar:clojure.jar jline.ConsoleRunner clojure.main&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This will give you left/right arrow key navigation and up/down arrow
+command history.&lt;/p&gt;
+
+&lt;p&gt;Later on we’ll see how to setup a real Clojure development environment
+in which you’ll be able to leverage the full power of the Clojure REPL
+and interactive programming.&lt;/p&gt;
+
+&lt;h1 id=&quot;did-you-say-clojure-was-a-lisp&quot;&gt;Did you say Clojure was a Lisp???&lt;/h1&gt;
+
+&lt;p&gt;Most developers tend to have a very negative attitude towards the word
+Lisp in general. I guess it spawns all kinds of nasty associations in
+their brains - like prefix syntax notation, tons of parentheses and a
+lot of crap their heard about Lisp from their 70 year-old professor
+teaching introduction to functional programming in college, whose
+notion of functional programming is that in Lisp everything is a
+function (believe me when I tell you this - such professors do exist).&lt;/p&gt;
+
+&lt;p&gt;You know, I wasn’t born coding in Lisp myself. When I was initially
+exposed to Lisp when I tried to learn the Emacs text editor I was
+baffled by many things - the strange syntax, the talk about atoms and
+lists, code as data, macros, continuation, tail-call optimizations,
+what to quote and that to evaluate. To put it shortly - I was like
+Alice down the rabbit whole or like Neo when he found out what the
+Matrix is…&lt;/p&gt;
+
+&lt;p&gt;The interesting thing is that I felt similarly when I learnt my first
+programming language Pascal in the 8th grade. It’s not that Lisp is
+any harder than the other programming languages - it’s just that it’s
+different and you’re usually approaching it from a position in which
+you know one or several programming languages using the much more
+widespread Algol syntax. I advise to simply keep an open mind while
+you read this article and don’t just dismiss Clojure because of its
+Lisp heritage.&lt;/p&gt;
+
+&lt;p&gt;You’ve likely know at least one person who constantly keeps telling
+you how Lisp is the one true programming language, how nothing
+compares to it and how Lisp is the actual answer to that fundamental
+question about the life, the universe and everything else (not
+42). These people might very well be telling the truth, but their
+zealous rants tend to create a negative attitude towards the Lisp
+community as well. Please, ignore them. &lt;/p&gt;
+
+&lt;h1 id=&quot;clojure-at-a-glance&quot;&gt;Clojure at a glance&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;Mutable state is the new spaghetti code!&lt;/em&gt; - Rich Hickey, creator of Clojure&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Time is the new memory!&lt;/em&gt; - Rich Hickey&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Clojure feels like a general-purpose language beamed back from the
+near future. Its support for functional programming and software
+transactional memory is well beyond current practice and is well
+suited for multicore hardware. At the same time, Clojure is well
+grounded in the past and the present. It brings together Lisp and the
+Java Virtual Machine. Lisp brings wisdom spanning most of the history
+of programming, and Java brings the robustness, extensive libraries,
+and tooling of the dominant platform available today.&lt;/em&gt; - Stuart
+Halloway, author of &lt;a href=&quot;http://www.pragprog.com/titles/shcloj/programming-clojure&quot;&gt;“Programming Clojure”&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Dynamic language for the JVM
+    &lt;ul&gt;
+      &lt;li&gt;Clojure uses dynamic typing like languages such Ruby and Python
+and a very smart compiler that will generally generate very
+efficient bytecode. If you want to push the envelope even
+further you can add some explicit type hints in your Clojure
+code to ensure the generation of even faster bytecode.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Lisp reloaded
+    &lt;ul&gt;
+      &lt;li&gt;Clojure is Lisp down to its core - it has all the features that
+are known and loved and in the same it improves upon them in
+several ways - for instance we have a literal syntax for most
+common collection types. Sure - with Common Lisp’s reader macros
+one can do this as well, but nobody bothers to…&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Elegant
+    &lt;ul&gt;
+      &lt;li&gt;Clojure code tends to be very concise, but very readable non the
+less. A core idea in Clojure is to strip the incidental
+complexity of problems solving and to be able to just solve the
+problems straight away without much ceremony.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Functional
+    &lt;ul&gt;
+      &lt;li&gt;Clojure puts heavy emphasis on functional programming, but it’s
+a practical functional programming language - not a pure one
+like Haskell. Clojure acknowledges that some stuff simply change
+and operations have to generally produce some effects and make
+those thing easy to model. Clojure has a library full of
+rock-solid immutable data structures, relies heavily on lazy
+evaluation and higher-order functions.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Designed with concurrency in mind
+    &lt;ul&gt;
+      &lt;li&gt;Clojure has extensive built-in high-level facilities to deal
+with concurrent access to data and parallel programming in general.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Fast&lt;/li&gt;
+  &lt;li&gt;Capable of easily leveraging existing Java code
+    &lt;ul&gt;
+      &lt;li&gt;Using Java code from Clojure is direct, easy and
+idiomatic. There are no intermediate layers or the need to
+write wrapper for everything.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’ll discuss in greater detail some of those features as I moving along.&lt;/p&gt;
+
+&lt;h1 id=&quot;a-whirlwind-tour-of-clojure&quot;&gt;A whirlwind tour of Clojure&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Clojure is elengant&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Removes a lot of accidental complexity&lt;/li&gt;
+  &lt;li&gt;Clojure programs are generally expressive and concise&lt;/li&gt;
+  &lt;li&gt;Concise programs are naturally easier to understand and maintain&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Consider this Java example from our Scala discussion:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasUpperCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Character&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;isUpperCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;charAt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As a reader pointed out using the third party Guava library the code
+can be reduced to:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasUpperCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;any&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;charactersOf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;word&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Predicate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Character&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isUpperCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It still looks quite ugly to me. For the sake of comparison here’s the
+Clojure version:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;defn &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;has-uppercase?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;some &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Character/isUpperCase&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The definition of the problems is “A string has an uppercase character if
+some of the characters in it is uppercase” (doesn’t sound good, but
+will do). The Clojure code reads more or less like the definition of
+the problem. A finer point is that it will work correctly even if you
+pass &lt;strong&gt;nil&lt;/strong&gt; to the has-uppercase? function.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Clojure is concise&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We already saw in the previous example the conciseness of Clojure
+code, but here we’ll add another example. This is Java:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getAge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setAge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In Clojure you’d probably model this class like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;defrecord&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;person&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;person&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Bozhidar&amp;quot;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;:user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;person&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;:name&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Bozhidar&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;:age&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;me&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Bozhidar&amp;quot;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;&amp;#39;user/me&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;:name&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;s&quot;&gt;&amp;quot;Bozhidar&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;:age&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;me&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Clojure’s version of the type is a one liner and remain shorter even
+with a few examples of its usage. It’s not equivalent to Java
+definition, however - the Clojure version of the structure is
+immutable.&lt;/p&gt;
+
+&lt;h1 id=&quot;clojure-is-a-lisp&quot;&gt;Clojure is a Lisp&lt;/h1&gt;
+
+&lt;p&gt;For better or for worse Clojure is a Lisp dialect and we should accept
+this. I have always viewed Lisp as weapon from a more elegant era when
+people were more concerned with elements of style and empowering the
+developers to easily translate their thought into programs. For one
+reason or another every Lisp dialect has failed to capture the
+attention of a critical mass of developers that may propel it into the
+mainstream. This, of course, doesn’t mean that existing Lisp dialects
+should be considered a failure. Scheme (the dialect that has probably
+had the greatest impact on Clojure’s design) was designed to be as
+simple as possible so it could be appropriate as a teaching tool - in
+that area Scheme certainly excelled. Common Lisp was created to bring
+together the various Lisp dialects under a common denominator and it
+also excelled in that endeavour. I guess that its creators hoped that
+it would capture a significant market share at some point, but alas -
+that never happened. &lt;/p&gt;
+
+&lt;p&gt;The syntax and programming model of Lisp so far have been too much for a
+typical developer to absorb. Yet, there’s something special about
+Lisp that’s worth revisiting, so the new dialects continue to
+emerge. Some of the best programming universities lead with the Lisp
+language to form young minds while they are still open. I have
+witnessed something of a cycle - every 5 or so years the interest in
+Lisp spikes because of something. In the beginning of the nineties the
+work on Common Lisp excited a lot of developers. Five years later Paul
+Graham took the stage - he showed the world how Lisp can empower small
+teams and make real money. Five years ago Peter Seibel published the
+“Practical Common Lisp” book that appeared on Amazon’s bestseller list
+and got a lot of new developers excited about Lisp. A now… well I
+guess you can figure that out on your own. &lt;/p&gt;
+
+&lt;p&gt;Lisp just won’t let go and die. There is something magical about
+it. And there is this inexplicable smugness on the face of Lisp
+developers…&lt;/p&gt;
+
+&lt;p&gt;So let’s review the typical Lisp features that are present in Clojure:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Lisp-1 dialect
+    &lt;ul&gt;
+      &lt;li&gt;This means that functions and variables share the same
+namespace, unlike in dialects like Common Lisp. Both approaches
+have their merits and drawbacks as usual. In Clojure you cannot
+have a variable named the say way as a function, but you can
+pass function names around without any special syntax. In Common
+Lisp you can have function and variables sharing the same name,
+but you have to mark functions explicitly when you’re passing
+them around.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Dynamic - both in term of dynamic typing and dynamic
+development. Lisp is the language that made popular the technique of
+incremental interactive development (we’ll talk about it more in a bit)&lt;/li&gt;
+  &lt;li&gt;Code is data
+    &lt;ul&gt;
+      &lt;li&gt;List code is defined in term of Lisp data structures. When the
+reader read the source code of the application it converts it to
+standard Lisp objects and they represent the program. No special
+transformations, no AST. This is the heart of Lisp macros and a
+centerpiece in Lisp philosophy.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Reader
+    &lt;ul&gt;
+      &lt;li&gt;The reader can read valid Clojure forms and translate them into
+Clojure objects - object, function call, everything that has a
+readable representation&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Small core, next to none syntax
+    &lt;ul&gt;
+      &lt;li&gt;In terms of compact syntax and uniformity of the syntax it has
+always been hard to beat Lisp&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Sequences
+    &lt;ul&gt;
+      &lt;li&gt;Clojure abstracts common collection traits into an abstraction
+called seq which allows you to use a similar API for many tasks&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Macros
+    &lt;ul&gt;
+      &lt;li&gt;Forget about C marcos, Word macros, editor macros. Lisp macros
+are the most powerful metaprogramming technique out there - they
+enable you generate new syntax abstractions unlike anything else&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Syntactic abstractions&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;persistent-data-structures&quot;&gt;Persistent data structures&lt;/h1&gt;
+
+&lt;p&gt;Data structures in Clojure are immutable. Operations executed on them
+return a new data structure of the same type instead of modifying the
+structure in place. Understandably most people are immediately
+concerned about the performance implications of such a technique -
+this seems like quite a lot of overhead. They needn’t worry, though.&lt;/p&gt;
+
+&lt;p&gt;Data structures in Clojure are persistent. A persistent data
+structure is a data structure which always preserves the previous
+version of itself when it is modified; such data structures are
+effectively immutable, as their operations do not (visibly) update the
+structure in-place, but instead always yield a new updated
+structure. A persistent data structure is not a data structure
+committed to persistent storage, such as a disk; this is a different
+and unrelated sense of the word “persistent.”.&lt;/p&gt;
+
+&lt;p&gt;Persistent data structures save a lot of copying around and improve
+greatly the performance. &lt;/p&gt;
+
+&lt;p&gt;The core data structures are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;List&lt;/li&gt;
+  &lt;li&gt;Set&lt;/li&gt;
+  &lt;li&gt;Map&lt;/li&gt;
+  &lt;li&gt;Vector&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let’s see them in action:&lt;/p&gt;
+
+&lt;h1 id=&quot;functional-programing-with-clojure&quot;&gt;Functional programing with Clojure&lt;/h1&gt;
+
+&lt;h1 id=&quot;parallel-programming&quot;&gt;Parallel programming&lt;/h1&gt;
+
+&lt;h1 id=&quot;interactive-development&quot;&gt;Interactive development&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;REPL&lt;/li&gt;
+  &lt;li&gt;Functions can be defined in real time&lt;/li&gt;
+  &lt;li&gt;Loading &amp;amp; compilation of code at runtime&lt;/li&gt;
+  &lt;li&gt;Powerful introspection features&lt;/li&gt;
+  &lt;li&gt;Interactive development&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;the-tools-of-the-trade&quot;&gt;The tools of the trade&lt;/h1&gt;
+
+&lt;p&gt;The single biggest problem with Clojure in the moment (at least in my
+opinion) has nothing to do with the language itself. The problem is
+the lack of decent tooling and infrastructure around it. Lisp hackers
+have traditionally favoured the SLIME development environment for
+Emacs. Unfortunately the maintainers are not especially interested in
+having Clojure support(since SLIME targets Common Lisp) and nobody in
+Clojure community seems to be capable of writing an adequate swank
+component for Clojure. The existing one is quite rudimentary and
+doesn’t work with stock SLIME distributions. But this is not the worst
+part - the worst part is that even this crippled SLIME is still the
+best development tool for Clojure. IntelliJ’s plug-in is almost
+unusable, Eclipse’s is barely usable and NetBeans’s cannot be
+installed half the time…&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;IDEs
+    &lt;ul&gt;
+      &lt;li&gt;IntelliJ IDEA&lt;/li&gt;
+      &lt;li&gt;Eclipse&lt;/li&gt;
+      &lt;li&gt;NetBeans&lt;/li&gt;
+      &lt;li&gt;SLIME&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Luckily there’s no lack of good build tools that one can use with Clojure.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Build tools
+    &lt;ul&gt;
+      &lt;li&gt;Apache Maven&lt;/li&gt;
+      &lt;li&gt;Leiningen&lt;/li&gt;
+      &lt;li&gt;Cake&lt;/li&gt;
+      &lt;li&gt;Gradle&lt;/li&gt;
+      &lt;li&gt;Apache Builder&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h1&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/Emacs/2011/05/11/zenburn-emacs</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Emacs/2011/05/11/zenburn-emacs.html"/>
     <title>A new Zenburn theme for Emacs</title>
     <updated>2011-05-11T00:00:00+03:00</updated>
     <author>
@@ -58,8 +567,8 @@ better send me a pull request with your suggested improvements).&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/05/08/jvm-langs-scala</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/05/08/jvm-langs-scala.html"/>
+    <id>http://www.batsov.com/Java/Scala/2011/05/08/jvm-langs-scala</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Java/Scala/2011/05/08/jvm-langs-scala.html"/>
     <title>Java.next() - Scala: The Revenge of the Static Typing</title>
     <updated>2011-05-08T00:00:00+03:00</updated>
     <author>
@@ -1073,7 +1582,7 @@ prominent: &lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://liftweb.net/&quot;&gt;Lift web framework&lt;/a&gt; - Lift is a web framework
-that has cherry-picked some of the best from existing frameworks and
+that has cherry-picked some of the best ideas from existing frameworks and
 added some novelties of its own to harness the capabilities of the
 Scala programming language.
     &lt;ul&gt;
@@ -1103,12 +1612,20 @@ build tool&lt;/li&gt;
 &lt;h1 id=&quot;success-stories&quot;&gt;Success stories&lt;/h1&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Twitter - you remember how often Twitter used to go down because of
-overloads and suddenly the problems stopped - this was the moment in
-which Twitter’s backend was rewritten in Scala…&lt;/li&gt;
-  &lt;li&gt;Four square&lt;/li&gt;
-  &lt;li&gt;LinkedIn&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.artima.com/scalazine/articles/twitter_on_scala.html&quot;&gt;Twitter&lt;/a&gt;  - you remember how often Twitter used to go down because of
+overloads and suddenly the problems stopped - no, this was the
+moment in which Twitter’s backend was rewritten in Scala (that
+moment never actually came)… I have it on good authority that the
+problem was actually resolved by great improvements in their Ruby
+code base. But they use Scala there - Twitter had a Ruby-based
+queueing system that we used for communicating between the Rails
+front ends and the daemons that often crashed under heavy loads, and
+they ended up replacing that with one written in Scala.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.scala-lang.org/node/5130&quot;&gt;Four square&lt;/a&gt; - Four square
+uses Lift as well&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.scala-lang.org/node/6436&quot;&gt;LinkedIn&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;SAP&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.infoq.com/articles/guardian_scala&quot;&gt;Guardian.co.uk&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;comparison-to-java&quot;&gt;Comparison to Java&lt;/h1&gt;
@@ -1205,8 +1722,8 @@ rising star of the JVM world - Clojure.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/05/06/jvm-langs-groovy</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/05/06/jvm-langs-groovy.html"/>
+    <id>http://www.batsov.com/Java/Groovy/2011/05/06/jvm-langs-groovy</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Java/Groovy/2011/05/06/jvm-langs-groovy.html"/>
     <title>Java.next() - The Groovy Programming Language</title>
     <updated>2011-05-06T00:00:00+03:00</updated>
     <author>
@@ -1929,8 +2446,8 @@ language.&lt;/em&gt;&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/05/04/lisp-problems</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/05/04/lisp-problems.html"/>
+    <id>http://www.batsov.com/Misc/Common Lisp/2011/05/04/lisp-problems</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Misc/Common Lisp/2011/05/04/lisp-problems.html"/>
     <title>Lisp Problems</title>
     <updated>2011-05-04T00:00:00+03:00</updated>
     <author>
@@ -2356,8 +2873,8 @@ L = [[i, j, k, l], [o], [a, b, c], [f, g, h], [d, e], [d, e], [m, n]]&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/05/03/ruby-or-python</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/05/03/ruby-or-python.html"/>
+    <id>http://www.batsov.com/Ruby/Python/Programming/2011/05/03/ruby-or-python</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Ruby/Python/Programming/2011/05/03/ruby-or-python.html"/>
     <title>Ruby or Python? Well, it depends...</title>
     <updated>2011-05-03T00:00:00+03:00</updated>
     <author>
@@ -2886,8 +3403,8 @@ interesting as well.&lt;/em&gt;&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/04/30/parsing-numbers-from-string-in-lisp</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/30/parsing-numbers-from-string-in-lisp.html"/>
+    <id>http://www.batsov.com/Programming/Common Lisp/2011/04/30/parsing-numbers-from-string-in-lisp</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Programming/Common Lisp/2011/04/30/parsing-numbers-from-string-in-lisp.html"/>
     <title>Parsing numbers from string in Common Lisp</title>
     <updated>2011-04-30T00:00:00+03:00</updated>
     <author>
@@ -2949,8 +3466,8 @@ as data.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/04/29/one-shell-to-rule-them-all</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/29/one-shell-to-rule-them-all.html"/>
+    <id>http://www.batsov.com/Z Shell/2011/04/29/one-shell-to-rule-them-all</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Z Shell/2011/04/29/one-shell-to-rule-them-all.html"/>
     <title>One shell to rule them all...</title>
     <updated>2011-04-29T00:00:00+03:00</updated>
     <author>
@@ -3205,8 +3722,8 @@ tips and tricks&lt;/li&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/04/29/career-development</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/29/career-development.html"/>
+    <id>http://www.batsov.com/Misc/2011/04/29/career-development</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Misc/2011/04/29/career-development.html"/>
     <title>Career development - Should I stay or should I go?</title>
     <updated>2011-04-29T00:00:00+03:00</updated>
     <author>
@@ -3334,8 +3851,8 @@ most real and are here to stay.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/04/27/programming-languages-worth-learning</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/27/programming-languages-worth-learning.html"/>
+    <id>http://www.batsov.com/Programming/2011/04/27/programming-languages-worth-learning</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Programming/2011/04/27/programming-languages-worth-learning.html"/>
     <title>Programming languages worth learning</title>
     <updated>2011-04-27T00:00:00+03:00</updated>
     <author>
@@ -3568,8 +4085,8 @@ language masterpiece… :-)&lt;/em&gt;&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/04/26/thoughts-on-the-kindle</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/26/thoughts-on-the-kindle.html"/>
+    <id>http://www.batsov.com/Misc/2011/04/26/thoughts-on-the-kindle</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Misc/2011/04/26/thoughts-on-the-kindle.html"/>
     <title>Thoughts on the Amazon Kindle</title>
     <updated>2011-04-26T00:00:00+03:00</updated>
     <author>
@@ -3725,8 +4242,8 @@ a tablet.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/04/26/jrebel-with-scala</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/26/jrebel-with-scala.html"/>
+    <id>http://www.batsov.com/Java/Scala/Programming/2011/04/26/jrebel-with-scala</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Java/Scala/Programming/2011/04/26/jrebel-with-scala.html"/>
     <title>Incremental development with Scala and JRebel</title>
     <updated>2011-04-26T00:00:00+03:00</updated>
     <author>
@@ -3825,8 +4342,8 @@ development process.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/04/24/emacs-dev-kit</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/24/emacs-dev-kit.html"/>
+    <id>http://www.batsov.com/Programming/Emacs/2011/04/24/emacs-dev-kit</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Programming/Emacs/2011/04/24/emacs-dev-kit.html"/>
     <title>Emacs Dev Kit</title>
     <updated>2011-04-24T00:00:00+03:00</updated>
     <author>
@@ -3886,8 +4403,8 @@ for feedback, bug reports and suggestions.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/04/24/add-atom-feed-to-jekyll</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/24/add-atom-feed-to-jekyll.html"/>
+    <id>http://www.batsov.com/Jekyll/2011/04/24/add-atom-feed-to-jekyll</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Jekyll/2011/04/24/add-atom-feed-to-jekyll.html"/>
     <title>Add Atom feed to Jekyll powered blog</title>
     <updated>2011-04-24T00:00:00+03:00</updated>
     <author>
@@ -3914,8 +4431,8 @@ the same).&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2011/04/23/moving-to-jekyll</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/04/23/moving-to-jekyll.html"/>
+    <id>http://www.batsov.com/Misc/Jekyll/2011/04/23/moving-to-jekyll</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Misc/Jekyll/2011/04/23/moving-to-jekyll.html"/>
     <title>Moving from WordPress to Jekyll</title>
     <updated>2011-04-23T00:00:00+03:00</updated>
     <author>
@@ -3958,8 +4475,8 @@ interesting and hopefully useful information.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2010/09/07/cv-in-latex</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2010/09/07/cv-in-latex.html"/>
+    <id>http://www.batsov.com/Misc/LaTeX/2010/09/07/cv-in-latex</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Misc/LaTeX/2010/09/07/cv-in-latex.html"/>
     <title>My professional CV in LaTeX</title>
     <updated>2010-09-07T00:00:00+03:00</updated>
     <author>
@@ -3977,8 +4494,8 @@ with &lt;strong&gt;pdflatex&lt;/strong&gt; to get a nicely formatted pdf version
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2010/05/26/3d-support-nouveau-fedora-13</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2010/05/26/3d-support-nouveau-fedora-13.html"/>
+    <id>http://www.batsov.com/Fedora/Linux/Hardware/2010/05/26/3d-support-nouveau-fedora-13</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Fedora/Linux/Hardware/2010/05/26/3d-support-nouveau-fedora-13.html"/>
     <title>Enabling 3D support for Nouveau in Fedora 13</title>
     <updated>2010-05-26T00:00:00+03:00</updated>
     <author>
@@ -4001,8 +4518,8 @@ have to perform this as root):&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2010/04/19/changing-laf-in-netbeans</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2010/04/19/changing-laf-in-netbeans.html"/>
+    <id>http://www.batsov.com/Java/NetBeans/2010/04/19/changing-laf-in-netbeans</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Java/NetBeans/2010/04/19/changing-laf-in-netbeans.html"/>
     <title>Changing the look & feel in NetBeans 6.8</title>
     <updated>2010-04-19T00:00:00+03:00</updated>
     <author>
@@ -4032,8 +4549,8 @@ information about look &amp;amp; feels in NetBeans can be found here.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2010/02/26/enable-aa-in-swing</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2010/02/26/enable-aa-in-swing.html"/>
+    <id>http://www.batsov.com/Java/Swing/2010/02/26/enable-aa-in-swing</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Java/Swing/2010/02/26/enable-aa-in-swing.html"/>
     <title>How to enable font anti-aliasing in a Java Swing app</title>
     <updated>2010-02-26T00:00:00+02:00</updated>
     <author>
@@ -4060,8 +4577,8 @@ adding these options to the command line:&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2009/12/18/center-jdialog-over-jframe</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/12/18/center-jdialog-over-jframe.html"/>
+    <id>http://www.batsov.com/Java/Swing/2009/12/18/center-jdialog-over-jframe</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Java/Swing/2009/12/18/center-jdialog-over-jframe.html"/>
     <title>How to center a JDialog over a JFrame in Swing</title>
     <updated>2009-12-18T00:00:00+02:00</updated>
     <author>
@@ -4092,8 +4609,8 @@ center of the frame.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2009/12/05/menubar-emacs</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/12/05/menubar-emacs.html"/>
+    <id>http://www.batsov.com/Emacs/Linux/2009/12/05/menubar-emacs</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Emacs/Linux/2009/12/05/menubar-emacs.html"/>
     <title>Accessing the menu bar in Emacs</title>
     <updated>2009-12-05T00:00:00+02:00</updated>
     <author>
@@ -4101,72 +4618,101 @@ center of the frame.&lt;/p&gt;
       <uri>http://www.batsov.com/</uri>
     </author>
     <content type="html">&lt;p&gt;Have you ever been wondering how to access the Emacs menu bar, when
-using Emacs in console mode? The answer is easy – press F10 or type
-“M-x menu-bar-open”(both methods work in X as well, of course).&lt;/p&gt;
+using Emacs in console mode? The answer is easy - press &lt;strong&gt;F10&lt;/strong&gt; or type
+&lt;strong&gt;M-x menu-bar-open&lt;/strong&gt;(both methods work in X as well, of course).&lt;/p&gt;
 
-&lt;p&gt;Although the menu bar is rarely used by seasoned Emacs veterans, exploring it is a great way to get started with the capabilities of the new modes, so being able to use it is generally a good thing.&lt;/p&gt;
+&lt;p&gt;Although the menu bar is rarely used by seasoned Emacs veterans,
+exploring it is a great way to get started with the capabilities of
+the new modes, so being able to access it is generally a good thing.&lt;/p&gt;
 </content>
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2009/12/05/execute-stuff-after-zsh-login</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/12/05/execute-stuff-after-zsh-login.html"/>
+    <id>http://www.batsov.com/Z Shell/Linux/2009/12/05/execute-stuff-after-zsh-login</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Z Shell/Linux/2009/12/05/execute-stuff-after-zsh-login.html"/>
     <title>Automatically execute programs after zsh login</title>
     <updated>2009-12-05T00:00:00+02:00</updated>
     <author>
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
     </author>
-    <content type="html">&lt;p&gt;Sometimes you may want to start a couple of programs just after an interactive login to your favourite shell, which in my case would be zsh. For example – I use Emacs as daemon process. I cannot use an init script to start it since the daemon is usable on a per user basis. The solution in this case is really simple – just create a .zlogin file in your home folder and put in it all the commands you want executed after you’ve logged into the shell.
-In my case I put “emacs –daemon” there and I soon as I’m logged in, the Emacs daemon is up waiting for incoming connections.&lt;/p&gt;
+    <content type="html">&lt;p&gt;Sometimes you may want to start a couple of programs just after an
+interactive login to your favourite shell, which in my case would be
+zsh. &lt;/p&gt;
+
+&lt;p&gt;For example - I use Emacs as daemon process(emacs –daemon). I cannot use an init
+script to start it since the daemon is usable on a per user basis. The
+solution in this case is really simple - just create a &lt;strong&gt;.zlogin&lt;/strong&gt; file in
+your home folder and put in it all the commands you want executed
+after you’ve logged into the shell. In my case I put:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;emacs --daemon
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;there and as soon as I’m logged in, the Emacs daemon is up waiting for
+incoming connections.&lt;/p&gt;
 </content>
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2009/09/25/xerox-phaser-3117-fedora</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/09/25/xerox-phaser-3117-fedora.html"/>
+    <id>http://www.batsov.com/Hardware/Fedora/Linux/2009/09/25/xerox-phaser-3117-fedora</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Hardware/Fedora/Linux/2009/09/25/xerox-phaser-3117-fedora.html"/>
     <title>Using Xerox Phaser 3117 on Fedora</title>
     <updated>2009-09-25T00:00:00+03:00</updated>
     <author>
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
     </author>
-    <content type="html">&lt;p&gt;The driver selected by default by Fedora 11 is not appropriate for Xerox Phaser 3117 – it will not print with it. However there is a very easy solution to the problem.&lt;/p&gt;
+    <content type="html">&lt;p&gt;The driver selected by default by Fedora 11 is not appropriate for
+Xerox Phaser 3117 - it will not print with it. However there is a very
+easy solution to the problem.&lt;/p&gt;
 
-&lt;p&gt;Go to System -&amp;gt; Administration -&amp;gt; Printing (In GNOME at least, in KDE it’s probably something similar). Right click the Xerox Phaser 3117 printer icon there and select “Properties” from the menu. Then in the “Make and model” section choose change and then select Samsung ML-1710.&lt;/p&gt;
+&lt;p&gt;Go to &lt;strong&gt;System -&amp;gt; Administration -&amp;gt; Printing&lt;/strong&gt; (In GNOME at least, in KDE
+it’s probably something similar). Right click the Xerox Phaser 3117
+printer icon there and select “Properties” from the menu. Then in the
+“Make and model” section choose change and then select Samsung
+ML-1710.&lt;/p&gt;
 
-&lt;p&gt;After you apply the change you’ve just made, you can start printing with your Phaser.&lt;/p&gt;
+&lt;p&gt;After you apply the change you’ve just made, you can start printing
+with your Phaser.&lt;/p&gt;
 </content>
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2009/09/03/jboss-jvm-params</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/09/03/jboss-jvm-params.html"/>
+    <id>http://www.batsov.com/Java/JBoss/2009/09/03/jboss-jvm-params</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Java/JBoss/2009/09/03/jboss-jvm-params.html"/>
     <title>Mofidy JVM parameters for JBoss AS</title>
     <updated>2009-09-03T00:00:00+03:00</updated>
     <author>
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
     </author>
-    <content type="html">&lt;p&gt;Most people have been in a situation requiring them to change one or more of the parameters passed to the JVM on top of which JBoss AS is running. For instance – you may need a bigger heap, bigger perm gen size or something else. The best place to put these parameters is probably the following file:&lt;/p&gt;
+    <content type="html">&lt;p&gt;Most people have been in a situation requiring them to change one or
+more of the parameters passed to the JVM on top of which JBoss AS is
+running. For instance - you may need a bigger heap, bigger perm gen
+size or something else. The best place to put these parameters is
+probably the following file:&lt;/p&gt;
 
-&lt;p&gt;$JBOSS_HOME/bin/run.conf&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;$JBOSS_HOME/bin/run.conf&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;where $JBOSS_HOME refers to the directory in which you’ve unpacked the JBoss AS distribution.&lt;/p&gt;
+&lt;p&gt;where &lt;strong&gt;$JBOSS_HOME&lt;/strong&gt; refers to the directory in which you’ve unpacked the JBoss AS distribution.&lt;/p&gt;
 
 &lt;p&gt;Look for this section:&lt;/p&gt;
 
-&lt;p&gt;if [ “x$JAVA_OPTS” = “x” ]; then
-JAVA_OPTS=”…”
-fi&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;if [ &amp;quot;x$JAVA_OPTS&amp;quot; = &amp;quot;x&amp;quot; ]; then&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;    JAVA_OPTS=&amp;quot;...&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;All you have to do now is adapt it to your needs.&lt;/p&gt;
 </content>
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2009/07/19/dotemacs-github</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/07/19/dotemacs-github.html"/>
+    <id>http://www.batsov.com/Emacs/Git/2009/07/19/dotemacs-github</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Emacs/Git/2009/07/19/dotemacs-github.html"/>
     <title>Emacs configuration in github</title>
     <updated>2009-07-19T00:00:00+03:00</updated>
     <author>
@@ -4177,57 +4723,65 @@ fi&lt;/p&gt;
 of Emacs it’s always a good idea to store that configuration under
 version control so you can easily share it between multiple
 computers. You can always set up some version control system yourself,
-but it’s a lot more convenient(and much more reliable) to use an
+but it’s a lot more convenient (and much more reliable) to use an
 already existing code hosting solution such a GitHub. I have created a
 small repo there housing my humble Emacs configuration(.emacs, some
-custom stuff) and share it on all the computers that I work. You may
-have a look at my Emacs repo here.&lt;/p&gt;
+custom stuff) and this way I can easily access it on all the computers
+that I happen to be working on.&lt;/p&gt;
 
-&lt;p&gt;In case you’re wondering why there is no file named .emacs in there – my .emacs actually consists of only one line:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;(load “~/emacs/dot-emacs.el”)&lt;/p&gt;
+&lt;p&gt;At some point my custom configuration grew into what is known today as
+the &lt;a href=&quot;https://github.com/bbatsov/emacs-dev-kit&quot;&gt;Emacs Dev Kit&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2009/07/14/yum-provides</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/07/14/yum-provides.html"/>
+    <id>http://www.batsov.com/Fedora/Linux/2009/07/14/yum-provides</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Fedora/Linux/2009/07/14/yum-provides.html"/>
     <title>Find out quickly which package provides a certain library with YUM</title>
     <updated>2009-07-14T00:00:00+03:00</updated>
     <author>
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
     </author>
-    <content type="html">&lt;p&gt;One of the most dreaded things that you can see while trying to run some application or trying to install an rpm package is a message saying that some required library is missing.&lt;/p&gt;
+    <content type="html">&lt;p&gt;One of the most dreaded things that you can see while trying to run
+some application or trying to install an rpm package is a message
+saying that some required library is missing.&lt;/p&gt;
 
-&lt;p&gt;Generally this is not a big problem, because most often the library that you miss is packaged in a package named similarly to the library. Sometime however this is not the case… Suppose for example&lt;/p&gt;
+&lt;p&gt;Generally this is not a big problem, because most often the library
+that you miss is packaged in a package named similarly to the
+library. Sometime however this is not the case… Suppose for example
+that you’re trying to install IBM JDK 5.0 on a Fedora 11 box. You’ll
+most likely get the following error message:&lt;/p&gt;
 
-&lt;p&gt;that you’re trying to install IBM JDK 5.0 on a Fedora 11 box. You’ll most likely get the following error message:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;error: Failed dependencies:&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;libstdc++.so.5 is needed by ibm-java2-i386-sdk-5.0-9.0.i386&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;error: Failed dependencies:
-libstdc++.so.5 is needed by ibm-java2-i386-sdk-5.0-9.0.i386&lt;/p&gt;
-
-&lt;p&gt;and there is no package named libstdc++ that you can install, so how can you find out which package do you need?&lt;/p&gt;
+&lt;p&gt;and there is no package named libstdc++ that you can install, so how
+can you find out which package do you need?&lt;/p&gt;
 
 &lt;p&gt;The answer is simple:&lt;/p&gt;
 
-&lt;p&gt;yum provides libstdc++.so.5&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; yum provides libstdc++.so.5
 
-&lt;p&gt;And you get:&lt;/p&gt;
-
-&lt;p&gt;Loaded plugins: fastestmirror, presto, refresh-packagekit
-compat-libstdc++-33-3.2.3-66.i586 : Compatibility standard C++ libraries
-Repo        : fedora
-Matched from:
-Other       : libstdc++.so.5&lt;/p&gt;
+&lt;span class=&quot;go&quot;&gt;Loaded plugins: fastestmirror, presto, refresh-packagekit&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;compat-libstdc++-33-3.2.3-66.i586 : Compatibility standard C++ libraries&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;Repo        : fedora&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;Matched from:&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;Other       : libstdc++.so.5&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;Pretty neat, eh? &lt;/p&gt;
 </content>
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2009/07/13/java-type-indicators-eclipse</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/07/13/java-type-indicators-eclipse.html"/>
+    <id>http://www.batsov.com/Java/Eclipse/2009/07/13/java-type-indicators-eclipse</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Java/Eclipse/2009/07/13/java-type-indicators-eclipse.html"/>
     <title>Java type indicators in Eclipse</title>
     <updated>2009-07-13T00:00:00+03:00</updated>
     <author>
@@ -4251,7 +4805,7 @@ same manner(with the same icon). There is no visual distinction between abstract
   <entry>
     <id>http://www.batsov.com/2009/05/19/emacs-shift-return</id>
     <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/05/19/emacs-shift-return.html"/>
-    <title>Emulate the behaviour of Return+Shift(insert new line) from popular IDEs(IDEA, Eclipse) in Emacs</title>
+    <title>Emacs Shift Return</title>
     <updated>2009-05-19T00:00:00+03:00</updated>
     <author>
       <name>Bozhidar Batsov</name>
@@ -4281,8 +4835,8 @@ snippet one might have in his .emacs(or other) “configuration” file:&lt;/p&g
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2009/05/04/switch-string-idiom-java</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2009/05/04/switch-string-idiom-java.html"/>
+    <id>http://www.batsov.com/Java/2009/05/04/switch-string-idiom-java</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Java/2009/05/04/switch-string-idiom-java.html"/>
     <title>A switch on String idiom for Java</title>
     <updated>2009-05-04T00:00:00+03:00</updated>
     <author>
@@ -4297,15 +4851,20 @@ diminishes the issue. Read this excellent
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2008/09/29/singleton-java-ruby</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2008/09/29/singleton-java-ruby.html"/>
+    <id>http://www.batsov.com/Java/Ruby/Design Patterns/2008/09/29/singleton-java-ruby</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Java/Ruby/Design Patterns/2008/09/29/singleton-java-ruby.html"/>
     <title>The best way to implement the Singleton pattern in Java and Ruby</title>
     <updated>2008-09-29T00:00:00+03:00</updated>
     <author>
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
     </author>
-    <content type="html">&lt;p&gt;I haven’t posted anything lately, but I just received my brand new “Das Keyboard” and now I simply can’t stop typing. Recently I’ve been going through some effective technics to implement popular design patterns and I was surprised to see how few people where aware of them. For example since Java 5 the best way to implement the Singleton pattern is simply to use an enum like this:&lt;/p&gt;
+    <content type="html">&lt;p&gt;I haven’t posted anything lately, but I just received my brand new
+&lt;strong&gt;Das Keyboard&lt;/strong&gt; and now I simply can’t stop typing. Recently I’ve been
+going through some effective technics to implement popular design
+patterns and I was surprised to see how few people where aware of
+them. For example since Java 5 the best way to implement the Singleton
+pattern is simply to use an enum like this:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;enum&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SomeClass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;INSTANCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -4313,7 +4872,11 @@ diminishes the issue. Read this excellent
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;This is possible due to the fact that in Java(unlike in C++ and C#) enums are full-blown classes(although they do not support features like inheritance for example). You get an added bonus when using an enum class – you do not have to worry about serialization – this is handled for you behind the scenes.&lt;/p&gt;
+&lt;p&gt;This is possible due to the fact that in Java(unlike in C++ and C#)
+enums are full-blown classes(although they do not support features
+like inheritance for example). You get an added bonus when using an
+enum class – you do not have to worry about serialization – this is
+handled for you behind the scenes.&lt;/p&gt;
 
 &lt;p&gt;And this is how one should implement the Singleton pattern in Ruby:&lt;/p&gt;
 
@@ -4325,13 +4888,17 @@ diminishes the issue. Read this excellent
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Through the magic of Ruby’s mix-ins you get a private constructor for your class and an ‘instance‘ method with which you can obtain a reference to the single instance of the class. And best of all – because this library has undergone a substantial degree of testing it is pretty much bulletproof. Things hardly get simpler than that.&lt;/p&gt;
+&lt;p&gt;Through the magic of Ruby’s mix-ins you get a private constructor for
+your class and an instance method with which you can obtain a
+reference to the single instance of the class. And best of all –
+because this library has undergone a substantial degree of testing it
+is pretty much bulletproof. Things hardly get simpler than that.&lt;/p&gt;
 </content>
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2008/07/27/zsh-prompt</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2008/07/27/zsh-prompt.html"/>
+    <id>http://www.batsov.com/Z Shell/Linux/2008/07/27/zsh-prompt</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Z Shell/Linux/2008/07/27/zsh-prompt.html"/>
     <title>A nice zsh prompt</title>
     <updated>2008-07-27T00:00:00+03:00</updated>
     <author>
@@ -4382,8 +4949,8 @@ root shell should be easily distinguished visually.&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2008/06/19/emacs-rails</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2008/06/19/emacs-rails.html"/>
+    <id>http://www.batsov.com/Ruby/Emacs/Rails/2008/06/19/emacs-rails</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Ruby/Emacs/Rails/2008/06/19/emacs-rails.html"/>
     <title>Using Emacs for Rails development: The perfect setup</title>
     <updated>2008-06-19T00:00:00+03:00</updated>
     <author>
@@ -4468,8 +5035,8 @@ other goodies(find-file-in-project being one of my favourites). &lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2008/06/16/das-keyboard</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2008/06/16/das-keyboard.html"/>
+    <id>http://www.batsov.com/Hardware/2008/06/16/das-keyboard</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Hardware/2008/06/16/das-keyboard.html"/>
     <title>Das Keyboard</title>
     <updated>2008-06-16T00:00:00+03:00</updated>
     <author>
@@ -4516,8 +5083,8 @@ hands deserve a quality keyboard(the Das Keyboard)!&lt;/p&gt;
   </entry>
   
   <entry>
-    <id>http://www.batsov.com/2008/05/05/first-post</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2008/05/05/first-post.html"/>
+    <id>http://www.batsov.com/Misc/2008/05/05/first-post</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Misc/2008/05/05/first-post.html"/>
     <title>Every blog has its first post...</title>
     <updated>2008-05-05T00:00:00+03:00</updated>
     <author>

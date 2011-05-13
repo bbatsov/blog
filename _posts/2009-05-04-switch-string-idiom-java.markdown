@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "A switch on String idiom for Java"
+categories:
+- Java
 ---
 
 I’ve always been frustrated with the inability to write a switch on

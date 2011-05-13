@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Das Keyboard"
+categories:
+- Hardware
 ---
 
 Every professional developer knows how important to the development

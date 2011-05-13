@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Emacs Dev Kit"
+categories:
+- Programming
+- Emacs
 ---
 
 During the past few months I've been working on a project to convert

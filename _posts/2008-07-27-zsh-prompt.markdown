@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "A nice zsh prompt"
+categories:
+- Z Shell
+- Linux
 ---
 
 Recently I switched to zsh, after being a bash user for almost 5

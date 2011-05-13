@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Thoughts on the Amazon Kindle"
+categories:
+- Misc
 ---
 
 I love reading - I love fiction, I love technical literature, I love

@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Incremental development with Scala and JRebel"
+categories:
+- Java
+- Scala
+- Programming
 ---
 
 One of the things I love most about Lisp development is the ability to

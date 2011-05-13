@@ -1,6 +1,9 @@
 ---
 layout: post
 title: Java type indicators in Eclipse
+categories:
+- Java
+- Eclipse
 ---
 
 One of the things that I don’t like about the default Eclipse settings for Java

@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+        <link href="/css/site.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+        <link rel="alternate" type="application/atom+xml" href="atom.xml" title="Atom feed">
+        <title>(think) - Java.next() - Clojure: The Return of the Lispers</title>
+
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-22917580-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </head>
+
+    <body>
+        <div id="page">
+            <div id="content">
+                <div id="header">
+                    <h1>(think)</h1>
+                    <p class="comment">/** An online novel about the Source, the Force, the real life and everything
+                    in between...**/</p>
+                </div>
+                <div id="middle">
+                    <div id="menu">
+                        <ul id="list-nav">
+                            <li><a href="/index.html">Home</a></li>
+                            <li><a href="/archive.html">Archive</a></li>
+                            <li><a href="/projects.html">Projects</a></li>
+                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/contacts.html">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div id="content">
+                        <div id="post">
+    <h2 class="title">Java.next() - Clojure: The Return of the Lispers</h2>
+    <h1 id="overture">Overture</h1>
+
+<p>This is the third part of the series of <strong>Java.next()</strong>. Last time
+we’ve discussed the merits of <a href="http://batsov.com/2011/05/08/jvm-langs-scala.html">Scala</a> - an OO language with a strong
+emphasis on functional and parallel programming. Today we’ll be
+discussing Clojure - a language that pushes the envelop a lot further
+than Scala as far as functional and parallel programming are
+concerned. You’ll see that Clojure is radically different from Scala
+and Groovy in many aspects - it’s not an OO language, it doesn’t have
+Algol-derived syntax and it introduces a few rather radical ideas on
+subjects such as identity and state.</p>
+
+<p>Clojure’s approach to concurrency is characterized by the concept of
+identities, which represent a series of immutable states over
+time. Since states are immutable values, any number of workers can
+operate on them in parallel, and concurrency becomes a question of
+managing changes from one state to another. For this purpose, Clojure
+provides several mutable reference types, each having well-defined
+semantics for the transition between states.</p>
+
+<p>Clojure was initially conceived as targeting both the JVM and the
+CLR. For various reason currently the core development team is targeting mainly
+the JVM and the <a href="https://github.com/richhickey/clojure-clr">CLR port</a>
+is receiving less attention (though it’s not abandoned and it’s
+regularly being updated).</p>
+
+<h1 id="a-brief-history-of-clojure">A brief history of Clojure</h1>
+
+<p>Clojure is very very young project (compared to most popular
+programming languages). It was created in 2007 by Rich
+Hickey (project leader and benevolent dictator for life). He developed
+Clojure because he wanted a modern Lisp for functional programming,
+symbiotic with the established Java platform, and designed for
+concurrency. What started as a hobby project turned into some much
+bigger with Rich getting some excited about the project that left his
+job to work full-time on the project, effectively burning his life’s
+savings in the process. This was quite the gamble, but it turned out
+to be a lucky gamble since Clojure’s popularity rapidly spiked and
+loyal and energetic community quickly formed around the project. </p>
+
+<p>Clojure became the new language of choice for many well respected
+hackers from different communities. I’ve noticed something of a trend
+in that department - most Clojure hackers used to be Ruby hackers. I
+guess some of the Ruby hackers were not satisfied by partial subset of
+Lisp features, available in Ruby, and wanted to gain access to all of
+Lisp’s power.</p>
+
+<p>The current Clojure version is 1.2 with 1.3 being just around the
+corner.</p>
+
+<h1 id="installing-clojure">Installing Clojure</h1>
+
+<p>Installing Clojure is just a matter of downloading and extracting a
+single archive -
+<a href="http://github.com/downloads/clojure/clojure/clojure-1.2.0.zip">clojure.zip</a>. Many
+high quality Clojure libraries come prepackaged in another archived
+named
+<a href="http://github.com/downloads/clojure/clojure-contrib/clojure-contrib-1.2.0.zip">Clojure Contrib</a>. Clojure
+Contrib is kind of a staging area for Clojure development - it’s a
+common practice to move some of the best parts of contrib into core.</p>
+
+<p>In the directory in which you expanded clojure.zip, run:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> java -cp clojure.jar clojure.main
+</code></pre>
+</div>
+
+<p>This will bring up a simple read-eval-print loop (REPL) a.k.a. an
+interactive console. Much of
+Clojure is defined in Clojure itself (in the <strong>core.clj</strong> file included in
+the src directory of distribution), which is automatically loaded from
+the .jar file when Clojure starts. The file <strong>user.clj</strong>, if found in the
+classpath, will be auto-loaded as well. You can leverage this to cause
+code to run when Clojure starts.</p>
+
+<p>When core.clj is loaded you will have the language as described herein fully available.
+Try:</p>
+
+<div class="highlight"><pre><code class="clojure"><span class="nv">user=&gt;</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">6</span>
+<span class="nv">user=&gt;</span> <span class="p">(</span><span class="nb">println </span><span class="s">&quot;Hello, Clojure!&quot;</span><span class="p">)</span>
+<span class="nv">Hello,</span> <span class="nv">Clojure!</span>
+<span class="nv">nil</span>
+<span class="nv">user=&gt;</span> <span class="p">(</span><span class="o">.</span> <span class="nv">javax</span><span class="o">.</span><span class="nv">swing</span><span class="o">.</span><span class="nv">JOptionPane</span> <span class="p">(</span><span class="nf">showMessageDialog</span> <span class="nv">nil</span> <span class="s">&quot;Hello</span>
+<span class="s">World&quot;</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<p>The REPL has very rudimentary editing. For a better experience, try running it via the <a href="http://jline.sourceforge.net/">JLine</a> ConsoleRunner:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">java -cp jline-0_9_5.jar:clojure.jar jline.ConsoleRunner clojure.main</span>
+</code></pre>
+</div>
+
+<p>This will give you left/right arrow key navigation and up/down arrow
+command history.</p>
+
+<p>Later on we’ll see how to setup a real Clojure development environment
+in which you’ll be able to leverage the full power of the Clojure REPL
+and interactive programming.</p>
+
+<h1 id="did-you-say-clojure-was-a-lisp">Did you say Clojure was a Lisp???</h1>
+
+<p>Most developers tend to have a very negative attitude towards the word
+Lisp in general. I guess it spawns all kinds of nasty associations in
+their brains - like prefix syntax notation, tons of parentheses and a
+lot of crap their heard about Lisp from their 70 year-old professor
+teaching introduction to functional programming in college, whose
+notion of functional programming is that in Lisp everything is a
+function (believe me when I tell you this - such professors do exist).</p>
+
+<p>You know, I wasn’t born coding in Lisp myself. When I was initially
+exposed to Lisp when I tried to learn the Emacs text editor I was
+baffled by many things - the strange syntax, the talk about atoms and
+lists, code as data, macros, continuation, tail-call optimizations,
+what to quote and that to evaluate. To put it shortly - I was like
+Alice down the rabbit whole or like Neo when he found out what the
+Matrix is…</p>
+
+<p>The interesting thing is that I felt similarly when I learnt my first
+programming language Pascal in the 8th grade. It’s not that Lisp is
+any harder than the other programming languages - it’s just that it’s
+different and you’re usually approaching it from a position in which
+you know one or several programming languages using the much more
+widespread Algol syntax. I advise to simply keep an open mind while
+you read this article and don’t just dismiss Clojure because of its
+Lisp heritage.</p>
+
+<p>You’ve likely know at least one person who constantly keeps telling
+you how Lisp is the one true programming language, how nothing
+compares to it and how Lisp is the actual answer to that fundamental
+question about the life, the universe and everything else (not
+42). These people might very well be telling the truth, but their
+zealous rants tend to create a negative attitude towards the Lisp
+community as well. Please, ignore them. </p>
+
+<h1 id="clojure-at-a-glance">Clojure at a glance</h1>
+
+<p><em>Mutable state is the new spaghetti code!</em> - Rich Hickey, creator of Clojure</p>
+
+<p><em>Time is the new memory!</em> - Rich Hickey</p>
+
+<p><em>Clojure feels like a general-purpose language beamed back from the
+near future. Its support for functional programming and software
+transactional memory is well beyond current practice and is well
+suited for multicore hardware. At the same time, Clojure is well
+grounded in the past and the present. It brings together Lisp and the
+Java Virtual Machine. Lisp brings wisdom spanning most of the history
+of programming, and Java brings the robustness, extensive libraries,
+and tooling of the dominant platform available today.</em> - Stuart
+Halloway, author of <a href="http://www.pragprog.com/titles/shcloj/programming-clojure">“Programming Clojure”</a></p>
+
+<ul>
+  <li>Dynamic language for the JVM
+    <ul>
+      <li>Clojure uses dynamic typing like languages such Ruby and Python
+and a very smart compiler that will generally generate very
+efficient bytecode. If you want to push the envelope even
+further you can add some explicit type hints in your Clojure
+code to ensure the generation of even faster bytecode.</li>
+    </ul>
+  </li>
+  <li>Lisp reloaded
+    <ul>
+      <li>Clojure is Lisp down to its core - it has all the features that
+are known and loved and in the same it improves upon them in
+several ways - for instance we have a literal syntax for most
+common collection types. Sure - with Common Lisp’s reader macros
+one can do this as well, but nobody bothers to…</li>
+    </ul>
+  </li>
+  <li>Elegant
+    <ul>
+      <li>Clojure code tends to be very concise, but very readable non the
+less. A core idea in Clojure is to strip the incidental
+complexity of problems solving and to be able to just solve the
+problems straight away without much ceremony.</li>
+    </ul>
+  </li>
+  <li>Functional
+    <ul>
+      <li>Clojure puts heavy emphasis on functional programming, but it’s
+a practical functional programming language - not a pure one
+like Haskell. Clojure acknowledges that some stuff simply change
+and operations have to generally produce some effects and make
+those thing easy to model. Clojure has a library full of
+rock-solid immutable data structures, relies heavily on lazy
+evaluation and higher-order functions.</li>
+    </ul>
+  </li>
+  <li>Designed with concurrency in mind
+    <ul>
+      <li>Clojure has extensive built-in high-level facilities to deal
+with concurrent access to data and parallel programming in general.</li>
+    </ul>
+  </li>
+  <li>Fast</li>
+  <li>Capable of easily leveraging existing Java code
+    <ul>
+      <li>Using Java code from Clojure is direct, easy and
+idiomatic. There are no intermediate layers or the need to
+write wrapper for everything.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>I’ll discuss in greater detail some of those features as I moving along.</p>
+
+<h1 id="a-whirlwind-tour-of-clojure">A whirlwind tour of Clojure</h1>
+
+<p><strong>Clojure is elengant</strong></p>
+
+<ul>
+  <li>Removes a lot of accidental complexity</li>
+  <li>Clojure programs are generally expressive and concise</li>
+  <li>Concise programs are naturally easier to understand and maintain</li>
+</ul>
+
+<p>Consider this Java example from our Scala discussion:</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasUpperCase</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">word</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">isUpperCase</span><span class="o">(</span><span class="n">word</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>As a reader pointed out using the third party Guava library the code
+can be reduced to:</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasUpperCase</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">!=</span> <span class="n">word</span><span class="o">)</span>
+        <span class="k">return</span> <span class="nf">any</span><span class="o">(</span><span class="n">charactersOf</span><span class="o">(</span><span class="n">word</span><span class="o">),</span> <span class="k">new</span> <span class="n">Predicate</span><span class="o">()</span> <span class="o">{</span>
+                <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Character</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="nf">isUpperCase</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">})</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>It still looks quite ugly to me. For the sake of comparison here’s the
+Clojure version:</p>
+
+<div class="highlight"><pre><code class="clojure"><span class="p">(</span><span class="k">defn </span><span class="nv">has-uppercase?</span> <span class="p">[</span><span class="nv">string</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">some </span><span class="o">#</span><span class="p">(</span><span class="nv">Character/isUpperCase</span> <span class="nv">%</span><span class="p">)</span> <span class="nv">string</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<p>The definition of the problems is “A string has an uppercase character if
+some of the characters in it is uppercase” (doesn’t sound good, but
+will do). The Clojure code reads more or less like the definition of
+the problem. A finer point is that it will work correctly even if you
+pass <strong>nil</strong> to the has-uppercase? function.</p>
+
+<p><strong>Clojure is concise</strong></p>
+
+<p>We already saw in the previous example the conciseness of Clojure
+code, but here we’ll add another example. This is Java:</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="n">Person</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>In Clojure you’d probably model this class like this:</p>
+
+<div class="highlight"><pre><code class="clojure"><span class="nv">user&gt;</span> <span class="p">(</span><span class="nf">defrecord</span> <span class="nv">person</span> <span class="p">[</span><span class="nv">name</span> <span class="nv">age</span><span class="p">])</span>
+<span class="nv">user</span><span class="o">.</span><span class="nv">person</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nf">person</span><span class="o">.</span> <span class="s">&quot;Bozhidar&quot;</span> <span class="mi">26</span><span class="p">)</span>
+<span class="o">#</span><span class="nv">:user</span><span class="o">.</span><span class="nv">person</span><span class="p">{</span><span class="nv">:name</span> <span class="s">&quot;Bozhidar&quot;</span><span class="o">,</span> <span class="nv">:age</span> <span class="mi">26</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">me</span> <span class="p">(</span><span class="nf">person</span><span class="o">.</span> <span class="s">&quot;Bozhidar&quot;</span> <span class="mi">26</span><span class="p">))</span>
+<span class="o">#</span><span class="ss">&#39;user/me</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nf">:name</span> <span class="nv">me</span><span class="p">)</span>
+<span class="s">&quot;Bozhidar&quot;</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nf">:age</span> <span class="nv">me</span><span class="p">)</span>
+<span class="mi">26</span>
+</code></pre>
+</div>
+
+<p>Clojure’s version of the type is a one liner and remain shorter even
+with a few examples of its usage. It’s not equivalent to Java
+definition, however - the Clojure version of the structure is
+immutable.</p>
+
+<h1 id="clojure-is-a-lisp">Clojure is a Lisp</h1>
+
+<p>For better or for worse Clojure is a Lisp dialect and we should accept
+this. I have always viewed Lisp as weapon from a more elegant era when
+people were more concerned with elements of style and empowering the
+developers to easily translate their thought into programs. For one
+reason or another every Lisp dialect has failed to capture the
+attention of a critical mass of developers that may propel it into the
+mainstream. This, of course, doesn’t mean that existing Lisp dialects
+should be considered a failure. Scheme (the dialect that has probably
+had the greatest impact on Clojure’s design) was designed to be as
+simple as possible so it could be appropriate as a teaching tool - in
+that area Scheme certainly excelled. Common Lisp was created to bring
+together the various Lisp dialects under a common denominator and it
+also excelled in that endeavour. I guess that its creators hoped that
+it would capture a significant market share at some point, but alas -
+that never happened. </p>
+
+<p>The syntax and programming model of Lisp so far have been too much for a
+typical developer to absorb. Yet, there’s something special about
+Lisp that’s worth revisiting, so the new dialects continue to
+emerge. Some of the best programming universities lead with the Lisp
+language to form young minds while they are still open. I have
+witnessed something of a cycle - every 5 or so years the interest in
+Lisp spikes because of something. In the beginning of the nineties the
+work on Common Lisp excited a lot of developers. Five years later Paul
+Graham took the stage - he showed the world how Lisp can empower small
+teams and make real money. Five years ago Peter Seibel published the
+“Practical Common Lisp” book that appeared on Amazon’s bestseller list
+and got a lot of new developers excited about Lisp. A now… well I
+guess you can figure that out on your own. </p>
+
+<p>Lisp just won’t let go and die. There is something magical about
+it. And there is this inexplicable smugness on the face of Lisp
+developers…</p>
+
+<p>So let’s review the typical Lisp features that are present in Clojure:</p>
+
+<ul>
+  <li>Lisp-1 dialect
+    <ul>
+      <li>This means that functions and variables share the same
+namespace, unlike in dialects like Common Lisp. Both approaches
+have their merits and drawbacks as usual. In Clojure you cannot
+have a variable named the say way as a function, but you can
+pass function names around without any special syntax. In Common
+Lisp you can have function and variables sharing the same name,
+but you have to mark functions explicitly when you’re passing
+them around.</li>
+    </ul>
+  </li>
+  <li>Dynamic - both in term of dynamic typing and dynamic
+development. Lisp is the language that made popular the technique of
+incremental interactive development (we’ll talk about it more in a bit)</li>
+  <li>Code is data
+    <ul>
+      <li>List code is defined in term of Lisp data structures. When the
+reader read the source code of the application it converts it to
+standard Lisp objects and they represent the program. No special
+transformations, no AST. This is the heart of Lisp macros and a
+centerpiece in Lisp philosophy.</li>
+    </ul>
+  </li>
+  <li>Reader
+    <ul>
+      <li>The reader can read valid Clojure forms and translate them into
+Clojure objects - object, function call, everything that has a
+readable representation</li>
+    </ul>
+  </li>
+  <li>Small core, next to none syntax
+    <ul>
+      <li>In terms of compact syntax and uniformity of the syntax it has
+always been hard to beat Lisp</li>
+    </ul>
+  </li>
+  <li>Sequences
+    <ul>
+      <li>Clojure abstracts common collection traits into an abstraction
+called seq which allows you to use a similar API for many tasks</li>
+    </ul>
+  </li>
+  <li>Macros
+    <ul>
+      <li>Forget about C marcos, Word macros, editor macros. Lisp macros
+are the most powerful metaprogramming technique out there - they
+enable you generate new syntax abstractions unlike anything else</li>
+    </ul>
+  </li>
+  <li>Syntactic abstractions</li>
+</ul>
+
+<h1 id="persistent-data-structures">Persistent data structures</h1>
+
+<p>Data structures in Clojure are immutable. Operations executed on them
+return a new data structure of the same type instead of modifying the
+structure in place. Understandably most people are immediately
+concerned about the performance implications of such a technique -
+this seems like quite a lot of overhead. They needn’t worry, though.</p>
+
+<p>Data structures in Clojure are persistent. A persistent data
+structure is a data structure which always preserves the previous
+version of itself when it is modified; such data structures are
+effectively immutable, as their operations do not (visibly) update the
+structure in-place, but instead always yield a new updated
+structure. A persistent data structure is not a data structure
+committed to persistent storage, such as a disk; this is a different
+and unrelated sense of the word “persistent.”.</p>
+
+<p>Persistent data structures save a lot of copying around and improve
+greatly the performance. </p>
+
+<p>The core data structures are:</p>
+
+<ul>
+  <li>List</li>
+  <li>Set</li>
+  <li>Map</li>
+  <li>Vector</li>
+</ul>
+
+<p>Let’s see them in action:</p>
+
+<h1 id="functional-programing-with-clojure">Functional programing with Clojure</h1>
+
+<h1 id="parallel-programming">Parallel programming</h1>
+
+<h1 id="interactive-development">Interactive development</h1>
+
+<ul>
+  <li>REPL</li>
+  <li>Functions can be defined in real time</li>
+  <li>Loading &amp; compilation of code at runtime</li>
+  <li>Powerful introspection features</li>
+  <li>Interactive development</li>
+</ul>
+
+<h1 id="the-tools-of-the-trade">The tools of the trade</h1>
+
+<p>The single biggest problem with Clojure in the moment (at least in my
+opinion) has nothing to do with the language itself. The problem is
+the lack of decent tooling and infrastructure around it. Lisp hackers
+have traditionally favoured the SLIME development environment for
+Emacs. Unfortunately the maintainers are not especially interested in
+having Clojure support(since SLIME targets Common Lisp) and nobody in
+Clojure community seems to be capable of writing an adequate swank
+component for Clojure. The existing one is quite rudimentary and
+doesn’t work with stock SLIME distributions. But this is not the worst
+part - the worst part is that even this crippled SLIME is still the
+best development tool for Clojure. IntelliJ’s plug-in is almost
+unusable, Eclipse’s is barely usable and NetBeans’s cannot be
+installed half the time…</p>
+
+<ul>
+  <li>IDEs
+    <ul>
+      <li>IntelliJ IDEA</li>
+      <li>Eclipse</li>
+      <li>NetBeans</li>
+      <li>SLIME</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Luckily there’s no lack of good build tools that one can use with Clojure.</p>
+
+<ul>
+  <li>Build tools
+    <ul>
+      <li>Apache Maven</li>
+      <li>Leiningen</li>
+      <li>Cake</li>
+      <li>Gradle</li>
+      <li>Apache Builder</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="epilogue">Epilogue</h1>
+
+    <div style="font-style: italic; color: #7f9f7f;">Posted on 12 May 2011 by Bozhidar.</div>
+    <div style="font-style: italic; color: #7f9f7f;">Filed under Clojure and Java.</div>
+    <br/>
+        <span  class='st_reddit_large' ></span><span  class='st_linkedin_large' ></span><span  class='st_google_reader_large' ></span><span  class='st_dzone_large' ></span><span  class='st_digg_large' ></span><span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_yahoo_large' ></span><span  class='st_gbuzz_large' ></span><span  class='st_email_large' ></span><span  class='st_sharethis_large' ></span>
+    <hr />
+    <div id="disqus">
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'batsov'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = document.location.href;
+    var disqus_url = document.location.href;
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'e857ac4f-d3f6-4aa1-9e1f-06210ab5480e'});</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+</div>
+
+                    </div>
+                </div>
+                <div id="footer">
+                    Copyright &copy; 2010-2011 <a href="mailto:bozhidar.batsov@gmail.com">Bozhidar Batsov</a>. All Rights Reserved.
+                    <br/>
+                    Powered by <a href="http://jekyllrb.com/">Jekyll</a>.
+                </div>
+            </div>
+            <div id="sidebar">
+                <div id="twitter">
+                    <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        new TWTR.Widget({
+                        version: 2,
+                        type: 'profile',
+                        rpp: 4,
+                        interval: 6000,
+                        width: 250,
+                        height: 300,
+                        theme: {
+                        shell: {
+                        background: '#333333',
+                        color: '#ffffff'
+                        },
+                        tweets: {
+                        background: '#000000',
+                        color: '#ffffff',
+                        links: '#4aed05'
+                        }
+                        },
+                        features: {
+                        scrollbar: false,
+                        loop: false,
+                        live: false,
+                        hashtags: true,
+                        timestamp: true,
+                        avatars: false,
+                        behavior: 'all'
+                        }
+                        }).render().setUser('bbatsov').start();
+                    </script>
+                </div>
+                <div id="latest">
+                    <div style="font-size: 18px; text-weight: bold; text-decoration: underline; margin-top: 20px;">Latest posts:</div>
+                    <ul>
+                        
+                        <li><a href="/Clojure/Java/2011/05/12/jvm-langs-clojure.html">Java.next() - Clojure: The Return of the Lispers</a></li>
+                        
+                        <li><a href="/Emacs/2011/05/11/zenburn-emacs.html">A new Zenburn theme for Emacs</a></li>
+                        
+                        <li><a href="/Java/Scala/2011/05/08/jvm-langs-scala.html">Java.next() - Scala: The Revenge of the Static Typing</a></li>
+                        
+                        <li><a href="/Java/Groovy/2011/05/06/jvm-langs-groovy.html">Java.next() - The Groovy Programming Language</a></li>
+                        
+                        <li><a href="/Misc/Common Lisp/2011/05/04/lisp-problems.html">Lisp Problems</a></li>
+                        
+                    </ul>
+                </div>
+                <div id="tags">
+                    <div style="font-size: 18px; text-weight: bold; text-decoration: underline; margin-top: 20px;">Categories:</div>
+                    <ul>
+                        
+                        <li><a href="/Misc.html">Misc(2)</a></li>
+                        
+                        <li><a href="/Hardware.html">Hardware(2)</a></li>
+                        
+                        <li><a href="/Ruby.html">Ruby(2)</a></li>
+                        
+                        <li><a href="/Emacs.html">Emacs(2)</a></li>
+                        
+                        <li><a href="/Rails.html">Rails(2)</a></li>
+                        
+                        <li><a href="/Z Shell.html">Z Shell(2)</a></li>
+                        
+                        <li><a href="/Linux.html">Linux(2)</a></li>
+                        
+                        <li><a href="/Java.html">Java(2)</a></li>
+                        
+                        <li><a href="/Design Patterns.html">Design Patterns(2)</a></li>
+                        
+                        <li><a href="/Eclipse.html">Eclipse(2)</a></li>
+                        
+                        <li><a href="/Fedora.html">Fedora(2)</a></li>
+                        
+                        <li><a href="/Git.html">Git(2)</a></li>
+                        
+                        <li><a href="/JBoss.html">JBoss(2)</a></li>
+                        
+                        <li><a href="/Swing.html">Swing(2)</a></li>
+                        
+                        <li><a href="/NetBeans.html">NetBeans(2)</a></li>
+                        
+                        <li><a href="/LaTeX.html">LaTeX(2)</a></li>
+                        
+                        <li><a href="/Jekyll.html">Jekyll(2)</a></li>
+                        
+                        <li><a href="/Programming.html">Programming(2)</a></li>
+                        
+                        <li><a href="/Scala.html">Scala(2)</a></li>
+                        
+                        <li><a href="/Common Lisp.html">Common Lisp(2)</a></li>
+                        
+                        <li><a href="/Python.html">Python(2)</a></li>
+                        
+                        <li><a href="/Groovy.html">Groovy(2)</a></li>
+                        
+                        <li><a href="/Clojure.html">Clojure(2)</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+    var disqus_shortname = 'batsov'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    </body>
+</html>

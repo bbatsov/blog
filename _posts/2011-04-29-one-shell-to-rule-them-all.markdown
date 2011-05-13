@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "One shell to rule them all..."
+categories:
+- Z Shell
 ---
 
 I've been using zsh for about three years now and continue to be

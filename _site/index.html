@@ -41,7 +41,510 @@
                     </div>
                     <div id="content">
                         
-<h2 id="a-new-zenburn-theme-for-emacs20110511zenburn-emacshtml"><a href="/2011/05/11/zenburn-emacs.html">A new Zenburn theme for Emacs</a></h2>
+<h2 id="javanext---clojure-the-return-of-the-lispersclojurejava20110512jvm-langs-clojurehtml"><a href="/Clojure/Java/2011/05/12/jvm-langs-clojure.html">Java.next() - Clojure: The Return of the Lispers</a></h2>
+<h1 id="overture">Overture</h1>
+
+<p>This is the third part of the series of <strong>Java.next()</strong>. Last time
+we’ve discussed the merits of <a href="http://batsov.com/2011/05/08/jvm-langs-scala.html">Scala</a> - an OO language with a strong
+emphasis on functional and parallel programming. Today we’ll be
+discussing Clojure - a language that pushes the envelop a lot further
+than Scala as far as functional and parallel programming are
+concerned. You’ll see that Clojure is radically different from Scala
+and Groovy in many aspects - it’s not an OO language, it doesn’t have
+Algol-derived syntax and it introduces a few rather radical ideas on
+subjects such as identity and state.</p>
+
+<p>Clojure’s approach to concurrency is characterized by the concept of
+identities, which represent a series of immutable states over
+time. Since states are immutable values, any number of workers can
+operate on them in parallel, and concurrency becomes a question of
+managing changes from one state to another. For this purpose, Clojure
+provides several mutable reference types, each having well-defined
+semantics for the transition between states.</p>
+
+<p>Clojure was initially conceived as targeting both the JVM and the
+CLR. For various reason currently the core development team is targeting mainly
+the JVM and the <a href="https://github.com/richhickey/clojure-clr">CLR port</a>
+is receiving less attention (though it’s not abandoned and it’s
+regularly being updated).</p>
+
+<h1 id="a-brief-history-of-clojure">A brief history of Clojure</h1>
+
+<p>Clojure is very very young project (compared to most popular
+programming languages). It was created in 2007 by Rich
+Hickey (project leader and benevolent dictator for life). He developed
+Clojure because he wanted a modern Lisp for functional programming,
+symbiotic with the established Java platform, and designed for
+concurrency. What started as a hobby project turned into some much
+bigger with Rich getting some excited about the project that left his
+job to work full-time on the project, effectively burning his life’s
+savings in the process. This was quite the gamble, but it turned out
+to be a lucky gamble since Clojure’s popularity rapidly spiked and
+loyal and energetic community quickly formed around the project. </p>
+
+<p>Clojure became the new language of choice for many well respected
+hackers from different communities. I’ve noticed something of a trend
+in that department - most Clojure hackers used to be Ruby hackers. I
+guess some of the Ruby hackers were not satisfied by partial subset of
+Lisp features, available in Ruby, and wanted to gain access to all of
+Lisp’s power.</p>
+
+<p>The current Clojure version is 1.2 with 1.3 being just around the
+corner.</p>
+
+<h1 id="installing-clojure">Installing Clojure</h1>
+
+<p>Installing Clojure is just a matter of downloading and extracting a
+single archive -
+<a href="http://github.com/downloads/clojure/clojure/clojure-1.2.0.zip">clojure.zip</a>. Many
+high quality Clojure libraries come prepackaged in another archived
+named
+<a href="http://github.com/downloads/clojure/clojure-contrib/clojure-contrib-1.2.0.zip">Clojure Contrib</a>. Clojure
+Contrib is kind of a staging area for Clojure development - it’s a
+common practice to move some of the best parts of contrib into core.</p>
+
+<p>In the directory in which you expanded clojure.zip, run:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> java -cp clojure.jar clojure.main
+</code></pre>
+</div>
+
+<p>This will bring up a simple read-eval-print loop (REPL) a.k.a. an
+interactive console. Much of
+Clojure is defined in Clojure itself (in the <strong>core.clj</strong> file included in
+the src directory of distribution), which is automatically loaded from
+the .jar file when Clojure starts. The file <strong>user.clj</strong>, if found in the
+classpath, will be auto-loaded as well. You can leverage this to cause
+code to run when Clojure starts.</p>
+
+<p>When core.clj is loaded you will have the language as described herein fully available.
+Try:</p>
+
+<div class="highlight"><pre><code class="clojure"><span class="nv">user=&gt;</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">6</span>
+<span class="nv">user=&gt;</span> <span class="p">(</span><span class="nb">println </span><span class="s">&quot;Hello, Clojure!&quot;</span><span class="p">)</span>
+<span class="nv">Hello,</span> <span class="nv">Clojure!</span>
+<span class="nv">nil</span>
+<span class="nv">user=&gt;</span> <span class="p">(</span><span class="o">.</span> <span class="nv">javax</span><span class="o">.</span><span class="nv">swing</span><span class="o">.</span><span class="nv">JOptionPane</span> <span class="p">(</span><span class="nf">showMessageDialog</span> <span class="nv">nil</span> <span class="s">&quot;Hello</span>
+<span class="s">World&quot;</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<p>The REPL has very rudimentary editing. For a better experience, try running it via the <a href="http://jline.sourceforge.net/">JLine</a> ConsoleRunner:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">java -cp jline-0_9_5.jar:clojure.jar jline.ConsoleRunner clojure.main</span>
+</code></pre>
+</div>
+
+<p>This will give you left/right arrow key navigation and up/down arrow
+command history.</p>
+
+<p>Later on we’ll see how to setup a real Clojure development environment
+in which you’ll be able to leverage the full power of the Clojure REPL
+and interactive programming.</p>
+
+<h1 id="did-you-say-clojure-was-a-lisp">Did you say Clojure was a Lisp???</h1>
+
+<p>Most developers tend to have a very negative attitude towards the word
+Lisp in general. I guess it spawns all kinds of nasty associations in
+their brains - like prefix syntax notation, tons of parentheses and a
+lot of crap their heard about Lisp from their 70 year-old professor
+teaching introduction to functional programming in college, whose
+notion of functional programming is that in Lisp everything is a
+function (believe me when I tell you this - such professors do exist).</p>
+
+<p>You know, I wasn’t born coding in Lisp myself. When I was initially
+exposed to Lisp when I tried to learn the Emacs text editor I was
+baffled by many things - the strange syntax, the talk about atoms and
+lists, code as data, macros, continuation, tail-call optimizations,
+what to quote and that to evaluate. To put it shortly - I was like
+Alice down the rabbit whole or like Neo when he found out what the
+Matrix is…</p>
+
+<p>The interesting thing is that I felt similarly when I learnt my first
+programming language Pascal in the 8th grade. It’s not that Lisp is
+any harder than the other programming languages - it’s just that it’s
+different and you’re usually approaching it from a position in which
+you know one or several programming languages using the much more
+widespread Algol syntax. I advise to simply keep an open mind while
+you read this article and don’t just dismiss Clojure because of its
+Lisp heritage.</p>
+
+<p>You’ve likely know at least one person who constantly keeps telling
+you how Lisp is the one true programming language, how nothing
+compares to it and how Lisp is the actual answer to that fundamental
+question about the life, the universe and everything else (not
+42). These people might very well be telling the truth, but their
+zealous rants tend to create a negative attitude towards the Lisp
+community as well. Please, ignore them. </p>
+
+<h1 id="clojure-at-a-glance">Clojure at a glance</h1>
+
+<p><em>Mutable state is the new spaghetti code!</em> - Rich Hickey, creator of Clojure</p>
+
+<p><em>Time is the new memory!</em> - Rich Hickey</p>
+
+<p><em>Clojure feels like a general-purpose language beamed back from the
+near future. Its support for functional programming and software
+transactional memory is well beyond current practice and is well
+suited for multicore hardware. At the same time, Clojure is well
+grounded in the past and the present. It brings together Lisp and the
+Java Virtual Machine. Lisp brings wisdom spanning most of the history
+of programming, and Java brings the robustness, extensive libraries,
+and tooling of the dominant platform available today.</em> - Stuart
+Halloway, author of <a href="http://www.pragprog.com/titles/shcloj/programming-clojure">“Programming Clojure”</a></p>
+
+<ul>
+  <li>Dynamic language for the JVM
+    <ul>
+      <li>Clojure uses dynamic typing like languages such Ruby and Python
+and a very smart compiler that will generally generate very
+efficient bytecode. If you want to push the envelope even
+further you can add some explicit type hints in your Clojure
+code to ensure the generation of even faster bytecode.</li>
+    </ul>
+  </li>
+  <li>Lisp reloaded
+    <ul>
+      <li>Clojure is Lisp down to its core - it has all the features that
+are known and loved and in the same it improves upon them in
+several ways - for instance we have a literal syntax for most
+common collection types. Sure - with Common Lisp’s reader macros
+one can do this as well, but nobody bothers to…</li>
+    </ul>
+  </li>
+  <li>Elegant
+    <ul>
+      <li>Clojure code tends to be very concise, but very readable non the
+less. A core idea in Clojure is to strip the incidental
+complexity of problems solving and to be able to just solve the
+problems straight away without much ceremony.</li>
+    </ul>
+  </li>
+  <li>Functional
+    <ul>
+      <li>Clojure puts heavy emphasis on functional programming, but it’s
+a practical functional programming language - not a pure one
+like Haskell. Clojure acknowledges that some stuff simply change
+and operations have to generally produce some effects and make
+those thing easy to model. Clojure has a library full of
+rock-solid immutable data structures, relies heavily on lazy
+evaluation and higher-order functions.</li>
+    </ul>
+  </li>
+  <li>Designed with concurrency in mind
+    <ul>
+      <li>Clojure has extensive built-in high-level facilities to deal
+with concurrent access to data and parallel programming in general.</li>
+    </ul>
+  </li>
+  <li>Fast</li>
+  <li>Capable of easily leveraging existing Java code
+    <ul>
+      <li>Using Java code from Clojure is direct, easy and
+idiomatic. There are no intermediate layers or the need to
+write wrapper for everything.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>I’ll discuss in greater detail some of those features as I moving along.</p>
+
+<h1 id="a-whirlwind-tour-of-clojure">A whirlwind tour of Clojure</h1>
+
+<p><strong>Clojure is elengant</strong></p>
+
+<ul>
+  <li>Removes a lot of accidental complexity</li>
+  <li>Clojure programs are generally expressive and concise</li>
+  <li>Concise programs are naturally easier to understand and maintain</li>
+</ul>
+
+<p>Consider this Java example from our Scala discussion:</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasUpperCase</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">word</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">Character</span><span class="o">.</span><span class="na">isUpperCase</span><span class="o">(</span><span class="n">word</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>As a reader pointed out using the third party Guava library the code
+can be reduced to:</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasUpperCase</span><span class="o">(</span><span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">!=</span> <span class="n">word</span><span class="o">)</span>
+        <span class="k">return</span> <span class="nf">any</span><span class="o">(</span><span class="n">charactersOf</span><span class="o">(</span><span class="n">word</span><span class="o">),</span> <span class="k">new</span> <span class="n">Predicate</span><span class="o">()</span> <span class="o">{</span>
+                <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Character</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="nf">isUpperCase</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">})</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>It still looks quite ugly to me. For the sake of comparison here’s the
+Clojure version:</p>
+
+<div class="highlight"><pre><code class="clojure"><span class="p">(</span><span class="k">defn </span><span class="nv">has-uppercase?</span> <span class="p">[</span><span class="nv">string</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">some </span><span class="o">#</span><span class="p">(</span><span class="nv">Character/isUpperCase</span> <span class="nv">%</span><span class="p">)</span> <span class="nv">string</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<p>The definition of the problems is “A string has an uppercase character if
+some of the characters in it is uppercase” (doesn’t sound good, but
+will do). The Clojure code reads more or less like the definition of
+the problem. A finer point is that it will work correctly even if you
+pass <strong>nil</strong> to the has-uppercase? function.</p>
+
+<p><strong>Clojure is concise</strong></p>
+
+<p>We already saw in the previous example the conciseness of Clojure
+code, but here we’ll add another example. This is Java:</p>
+
+<div class="highlight"><pre><code class="java"><span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+
+    <span class="n">Person</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setAge</span><span class="o">(</span><span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>In Clojure you’d probably model this class like this:</p>
+
+<div class="highlight"><pre><code class="clojure"><span class="nv">user&gt;</span> <span class="p">(</span><span class="nf">defrecord</span> <span class="nv">person</span> <span class="p">[</span><span class="nv">name</span> <span class="nv">age</span><span class="p">])</span>
+<span class="nv">user</span><span class="o">.</span><span class="nv">person</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nf">person</span><span class="o">.</span> <span class="s">&quot;Bozhidar&quot;</span> <span class="mi">26</span><span class="p">)</span>
+<span class="o">#</span><span class="nv">:user</span><span class="o">.</span><span class="nv">person</span><span class="p">{</span><span class="nv">:name</span> <span class="s">&quot;Bozhidar&quot;</span><span class="o">,</span> <span class="nv">:age</span> <span class="mi">26</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">me</span> <span class="p">(</span><span class="nf">person</span><span class="o">.</span> <span class="s">&quot;Bozhidar&quot;</span> <span class="mi">26</span><span class="p">))</span>
+<span class="o">#</span><span class="ss">&#39;user/me</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nf">:name</span> <span class="nv">me</span><span class="p">)</span>
+<span class="s">&quot;Bozhidar&quot;</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nf">:age</span> <span class="nv">me</span><span class="p">)</span>
+<span class="mi">26</span>
+</code></pre>
+</div>
+
+<p>Clojure’s version of the type is a one liner and remain shorter even
+with a few examples of its usage. It’s not equivalent to Java
+definition, however - the Clojure version of the structure is
+immutable.</p>
+
+<h1 id="clojure-is-a-lisp">Clojure is a Lisp</h1>
+
+<p>For better or for worse Clojure is a Lisp dialect and we should accept
+this. I have always viewed Lisp as weapon from a more elegant era when
+people were more concerned with elements of style and empowering the
+developers to easily translate their thought into programs. For one
+reason or another every Lisp dialect has failed to capture the
+attention of a critical mass of developers that may propel it into the
+mainstream. This, of course, doesn’t mean that existing Lisp dialects
+should be considered a failure. Scheme (the dialect that has probably
+had the greatest impact on Clojure’s design) was designed to be as
+simple as possible so it could be appropriate as a teaching tool - in
+that area Scheme certainly excelled. Common Lisp was created to bring
+together the various Lisp dialects under a common denominator and it
+also excelled in that endeavour. I guess that its creators hoped that
+it would capture a significant market share at some point, but alas -
+that never happened. </p>
+
+<p>The syntax and programming model of Lisp so far have been too much for a
+typical developer to absorb. Yet, there’s something special about
+Lisp that’s worth revisiting, so the new dialects continue to
+emerge. Some of the best programming universities lead with the Lisp
+language to form young minds while they are still open. I have
+witnessed something of a cycle - every 5 or so years the interest in
+Lisp spikes because of something. In the beginning of the nineties the
+work on Common Lisp excited a lot of developers. Five years later Paul
+Graham took the stage - he showed the world how Lisp can empower small
+teams and make real money. Five years ago Peter Seibel published the
+“Practical Common Lisp” book that appeared on Amazon’s bestseller list
+and got a lot of new developers excited about Lisp. A now… well I
+guess you can figure that out on your own. </p>
+
+<p>Lisp just won’t let go and die. There is something magical about
+it. And there is this inexplicable smugness on the face of Lisp
+developers…</p>
+
+<p>So let’s review the typical Lisp features that are present in Clojure:</p>
+
+<ul>
+  <li>Lisp-1 dialect
+    <ul>
+      <li>This means that functions and variables share the same
+namespace, unlike in dialects like Common Lisp. Both approaches
+have their merits and drawbacks as usual. In Clojure you cannot
+have a variable named the say way as a function, but you can
+pass function names around without any special syntax. In Common
+Lisp you can have function and variables sharing the same name,
+but you have to mark functions explicitly when you’re passing
+them around.</li>
+    </ul>
+  </li>
+  <li>Dynamic - both in term of dynamic typing and dynamic
+development. Lisp is the language that made popular the technique of
+incremental interactive development (we’ll talk about it more in a bit)</li>
+  <li>Code is data
+    <ul>
+      <li>List code is defined in term of Lisp data structures. When the
+reader read the source code of the application it converts it to
+standard Lisp objects and they represent the program. No special
+transformations, no AST. This is the heart of Lisp macros and a
+centerpiece in Lisp philosophy.</li>
+    </ul>
+  </li>
+  <li>Reader
+    <ul>
+      <li>The reader can read valid Clojure forms and translate them into
+Clojure objects - object, function call, everything that has a
+readable representation</li>
+    </ul>
+  </li>
+  <li>Small core, next to none syntax
+    <ul>
+      <li>In terms of compact syntax and uniformity of the syntax it has
+always been hard to beat Lisp</li>
+    </ul>
+  </li>
+  <li>Sequences
+    <ul>
+      <li>Clojure abstracts common collection traits into an abstraction
+called seq which allows you to use a similar API for many tasks</li>
+    </ul>
+  </li>
+  <li>Macros
+    <ul>
+      <li>Forget about C marcos, Word macros, editor macros. Lisp macros
+are the most powerful metaprogramming technique out there - they
+enable you generate new syntax abstractions unlike anything else</li>
+    </ul>
+  </li>
+  <li>Syntactic abstractions</li>
+</ul>
+
+<h1 id="persistent-data-structures">Persistent data structures</h1>
+
+<p>Data structures in Clojure are immutable. Operations executed on them
+return a new data structure of the same type instead of modifying the
+structure in place. Understandably most people are immediately
+concerned about the performance implications of such a technique -
+this seems like quite a lot of overhead. They needn’t worry, though.</p>
+
+<p>Data structures in Clojure are persistent. A persistent data
+structure is a data structure which always preserves the previous
+version of itself when it is modified; such data structures are
+effectively immutable, as their operations do not (visibly) update the
+structure in-place, but instead always yield a new updated
+structure. A persistent data structure is not a data structure
+committed to persistent storage, such as a disk; this is a different
+and unrelated sense of the word “persistent.”.</p>
+
+<p>Persistent data structures save a lot of copying around and improve
+greatly the performance. </p>
+
+<p>The core data structures are:</p>
+
+<ul>
+  <li>List</li>
+  <li>Set</li>
+  <li>Map</li>
+  <li>Vector</li>
+</ul>
+
+<p>Let’s see them in action:</p>
+
+<h1 id="functional-programing-with-clojure">Functional programing with Clojure</h1>
+
+<h1 id="parallel-programming">Parallel programming</h1>
+
+<h1 id="interactive-development">Interactive development</h1>
+
+<ul>
+  <li>REPL</li>
+  <li>Functions can be defined in real time</li>
+  <li>Loading &amp; compilation of code at runtime</li>
+  <li>Powerful introspection features</li>
+  <li>Interactive development</li>
+</ul>
+
+<h1 id="the-tools-of-the-trade">The tools of the trade</h1>
+
+<p>The single biggest problem with Clojure in the moment (at least in my
+opinion) has nothing to do with the language itself. The problem is
+the lack of decent tooling and infrastructure around it. Lisp hackers
+have traditionally favoured the SLIME development environment for
+Emacs. Unfortunately the maintainers are not especially interested in
+having Clojure support(since SLIME targets Common Lisp) and nobody in
+Clojure community seems to be capable of writing an adequate swank
+component for Clojure. The existing one is quite rudimentary and
+doesn’t work with stock SLIME distributions. But this is not the worst
+part - the worst part is that even this crippled SLIME is still the
+best development tool for Clojure. IntelliJ’s plug-in is almost
+unusable, Eclipse’s is barely usable and NetBeans’s cannot be
+installed half the time…</p>
+
+<ul>
+  <li>IDEs
+    <ul>
+      <li>IntelliJ IDEA</li>
+      <li>Eclipse</li>
+      <li>NetBeans</li>
+      <li>SLIME</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Luckily there’s no lack of good build tools that one can use with Clojure.</p>
+
+<ul>
+  <li>Build tools
+    <ul>
+      <li>Apache Maven</li>
+      <li>Leiningen</li>
+      <li>Cake</li>
+      <li>Gradle</li>
+      <li>Apache Builder</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="epilogue">Epilogue</h1>
+
+<div style="font-style: italic; color: #7f9f7f;">Posted on 12 May 2011 by Bozhidar.</div>
+
+<p><a href="/Clojure/Java/2011/05/12/jvm-langs-clojure.html#disqus_thread">Comments</a></p>
+
+<h2 id="a-new-zenburn-theme-for-emacsemacs20110511zenburn-emacshtml"><a href="/Emacs/2011/05/11/zenburn-emacs.html">A new Zenburn theme for Emacs</a></h2>
 <p><a href="http://slinky.imukuppi.org/zenburnpage/">Zenburn</a> is a popular colour theme for
 vim, developed by Jani Nurminen. It’s my personal
 belief (and probably that of many of its users I presume) that it’s one of the
@@ -78,9 +581,9 @@ better send me a pull request with your suggested improvements).</p>
 
 <div style="font-style: italic; color: #7f9f7f;">Posted on 11 May 2011 by Bozhidar.</div>
 
-<p><a href="/2011/05/11/zenburn-emacs.html#disqus_thread">Comments</a></p>
+<p><a href="/Emacs/2011/05/11/zenburn-emacs.html#disqus_thread">Comments</a></p>
 
-<h2 id="javanext---scala-the-revenge-of-the-static-typing20110508jvm-langs-scalahtml"><a href="/2011/05/08/jvm-langs-scala.html">Java.next() - Scala: The Revenge of the Static Typing</a></h2>
+<h2 id="javanext---scala-the-revenge-of-the-static-typingjavascala20110508jvm-langs-scalahtml"><a href="/Java/Scala/2011/05/08/jvm-langs-scala.html">Java.next() - Scala: The Revenge of the Static Typing</a></h2>
 <h1 id="overture">Overture</h1>
 
 <p>This is the second post from my series dedicated to modern programming
@@ -1088,7 +1591,7 @@ prominent: </p>
 
 <ul>
   <li><a href="http://liftweb.net/">Lift web framework</a> - Lift is a web framework
-that has cherry-picked some of the best from existing frameworks and
+that has cherry-picked some of the best ideas from existing frameworks and
 added some novelties of its own to harness the capabilities of the
 Scala programming language.
     <ul>
@@ -1118,12 +1621,20 @@ build tool</li>
 <h1 id="success-stories">Success stories</h1>
 
 <ul>
-  <li>Twitter - you remember how often Twitter used to go down because of
-overloads and suddenly the problems stopped - this was the moment in
-which Twitter’s backend was rewritten in Scala…</li>
-  <li>Four square</li>
-  <li>LinkedIn</li>
+  <li><a href="http://www.artima.com/scalazine/articles/twitter_on_scala.html">Twitter</a>  - you remember how often Twitter used to go down because of
+overloads and suddenly the problems stopped - no, this was the
+moment in which Twitter’s backend was rewritten in Scala (that
+moment never actually came)… I have it on good authority that the
+problem was actually resolved by great improvements in their Ruby
+code base. But they use Scala there - Twitter had a Ruby-based
+queueing system that we used for communicating between the Rails
+front ends and the daemons that often crashed under heavy loads, and
+they ended up replacing that with one written in Scala.</li>
+  <li><a href="http://www.scala-lang.org/node/5130">Four square</a> - Four square
+uses Lift as well</li>
+  <li><a href="http://www.scala-lang.org/node/6436">LinkedIn</a></li>
   <li>SAP</li>
+  <li><a href="http://www.infoq.com/articles/guardian_scala">Guardian.co.uk</a></li>
 </ul>
 
 <h1 id="comparison-to-java">Comparison to Java</h1>
@@ -1219,9 +1730,9 @@ rising star of the JVM world - Clojure.</p>
 
 <div style="font-style: italic; color: #7f9f7f;">Posted on 08 May 2011 by Bozhidar.</div>
 
-<p><a href="/2011/05/08/jvm-langs-scala.html#disqus_thread">Comments</a></p>
+<p><a href="/Java/Scala/2011/05/08/jvm-langs-scala.html#disqus_thread">Comments</a></p>
 
-<h2 id="javanext---the-groovy-programming-language20110506jvm-langs-groovyhtml"><a href="/2011/05/06/jvm-langs-groovy.html">Java.next() - The Groovy Programming Language</a></h2>
+<h2 id="javanext---the-groovy-programming-languagejavagroovy20110506jvm-langs-groovyhtml"><a href="/Java/Groovy/2011/05/06/jvm-langs-groovy.html">Java.next() - The Groovy Programming Language</a></h2>
 <p>In a series of articles labeled “Java.next()” I’ll be discussing
 modern alternatives to the Java programming language for use with the
 Java Platform. This is the first installment of the series - “The
@@ -1938,9 +2449,9 @@ language.</em></p>
 
 <div style="font-style: italic; color: #7f9f7f;">Posted on 06 May 2011 by Bozhidar.</div>
 
-<p><a href="/2011/05/06/jvm-langs-groovy.html#disqus_thread">Comments</a></p>
+<p><a href="/Java/Groovy/2011/05/06/jvm-langs-groovy.html#disqus_thread">Comments</a></p>
 
-<h2 id="lisp-problems20110504lisp-problemshtml"><a href="/2011/05/04/lisp-problems.html">Lisp Problems</a></h2>
+<h2 id="lisp-problemsmisccommon-lisp20110504lisp-problemshtml"><a href="/Misc/Common Lisp/2011/05/04/lisp-problems.html">Lisp Problems</a></h2>
 <p>This is a remake of the P-99: Ninety-Nine Prolog Problems collection
 that Werner Hett assembled over several years of teaching at the University of
 Applied Sciences (Berner Fachhochschule) at Biel-Bienne,
@@ -2359,531 +2870,7 @@ L = [[i, j, k, l], [o], [a, b, c], [f, g, h], [d, e], [d, e], [m, n]]</p>
 
 <div style="font-style: italic; color: #7f9f7f;">Posted on 04 May 2011 by Bozhidar.</div>
 
-<p><a href="/2011/05/04/lisp-problems.html#disqus_thread">Comments</a></p>
-
-<h2 id="ruby-or-python-well-it-depends20110503ruby-or-pythonhtml"><a href="/2011/05/03/ruby-or-python.html">Ruby or Python? Well, it depends…</a></h2>
-<p><strong>Disclaimer</strong></p>
-
-<p><em>If you’re looking for a flame post - this is not one of them. I love
-both languages and I’ll simply compare some of their features and
-possible uses.</em></p>
-
-<p>Ruby or Python? This is the Question! Well it might not be the
-Question, but it’s a common question for many developers looking to
-break free from the statically typed language they know and learn a
-dynamic language. I personally know them both(though I know a bit more
-Ruby, than Python) and in this article I’ll share my personal opinion
-on their strengths and weaknesses. You’d probably do good to learn
-them both, but my arguments here may lead you to pick only one of the
-languages depending on you preferences.</p>
-
-<h1 id="installation">Installation</h1>
-
-<p><strong>Linux/Unix installation</strong></p>
-
-<p>If you’re using a Linux distribution or some other Unix derivative
-such as *BSD or Solaris you’ll probably be able to install Ruby and
-Python through the operating system’s software management system. For
-instance on Debian Linux systems(Ubuntu is a popular Debian
-derivative) you can use apt to install them. Run the following
-commands as root or with sudo:</p>
-
-<div class="highlight"><pre><code class="console"><span class="gp">$</span> apt-get install ruby
-<span class="gp">$</span> apt-get install python
-</code></pre>
-</div>
-
-<p>On Red Hat based distros like Fedora, CentOS, etc you can use yum
-instead:</p>
-
-<div class="highlight"><pre><code class="console"><span class="gp">$</span> yum install ruby
-<span class="gp">$</span> yum install python
-</code></pre>
-</div>
-
-<p>You should keep in mind the fact that both Ruby and Python have two
-version that are commonly used at the moment. Ruby’s current version
-is <em>1.9.2</em> and Python’s is <em>3.2</em>. For various reasons(like backward
-compatibility for instance), however, the current versions are not
-widely deployed yet(especially Python 3). In most Linux distributions
-the package ruby will actually be Ruby 1.8.x and the package python
-will be Python 2.7.x. If your distribution is one of those - look for
-packages named ruby19(or similar) and python3:</p>
-
-<div class="highlight"><pre><code class="console"><span class="gp">$</span> apt-get install ruby19
-<span class="gp">$</span> apt-get install python3
-</code></pre>
-</div>
-
-<p>or on a Red Hat system:</p>
-
-<div class="highlight"><pre><code class="console"><span class="gp">$</span> yum install ruby19
-<span class="gp">$</span> yum install python3
-</code></pre>
-</div>
-
-<p>Using the distribution package management system is a simple solution,
-but in the case of Ruby it might not be best one. Most Ruby hackers
-favour a powerful bash script called RVM(Ruby Version Manager) that
-allows you to install several different version(or flavours of Ruby)
-and switch easily between them. Please refer to the official
-<a href="https://rvm.beginrescueend.com/">RVM documentation</a> for installation
-and usage instructions.</p>
-
-<p><strong>Windows installation</strong></p>
-
-<p>Installing Ruby on Windows used to be a pretty hard task, but this is
-no longer the case now thanks to
-<a href="http://rubyinstaller.org/">the RubyInstaller for Windows</a>. This is a
-self-contained Windows-based installer that includes the Ruby
-language, an execution environment, important documentation, and
-more. It has two editions one for the older 1.8.x Ruby branch and one
-for the current 1.9.x.</p>
-
-<p>Python has several installation options for Windows - the most obvious
-being the
-<a href="http://python.org/ftp/python/3.2/python-3.2.msi">official Python installer for Windows</a>. <a href="http://www.activestate.com/activepython">ActiveState’s ActivePython</a>
-is another popular option packed with more features, but you should
-keep in mind that although the Community Edition is free ActivePython
-is not an open-source project. Personally I prefer ActivePython. Other
-prebuilt Python binaries for Windows are also available, but are not
-commonly used.</p>
-
-<p><strong>OS X installation</strong></p>
-
-<p>Ruby is generally preinstalled on OSX, but OSX users can also install
-it via <a href="http://mxcl.github.com/homebrew/">homebrew</a> or RVM(as mentioned in the Linux section).</p>
-
-<p>The is an official <a href="http://python.org/ftp/python/3.2/python-3.2-macosx10.6.dmg">Python package for OSX</a> available. Most users
-will probably prefer using homebrew, however.</p>
-
-<h1 id="syntax--code-structure">Syntax &amp; code structure</h1>
-
-<p>Ruby makes heavy use of braces and keywords(like do/then/end) to
-delimit blocks of code. Python relies simply on indentation. </p>
-
-<div class="highlight"><pre><code class="python"><span class="k">def</span> <span class="nf">fact</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
-</code></pre>
-</div>
-
-<p>Same thing in Ruby:</p>
-
-<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">fact</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-  <span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.n</span><span class="p">)</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="ss">:*</span><span class="p">)</span>
-<span class="k">end</span>
-</code></pre>
-</div>
-
-<p>I personally prefer the Python approach since it enforces the code
-semantics based on the code structure alone without imposing special
-syntax.</p>
-
-<p>As a side node you might take under consideration that the Ruby method
-definition doesn’t have an explicit return value. The value of the
-last expression in the method’s body becomes automatically the
-method’s return value. Lisp developers will find this familiar. Java
-and C# developers will probably find it a bit confusing. There is a
-<em>return</em> in Ruby, though, it’s just rarely used.</p>
-
-<p>Both languages have support for nested function definitions. </p>
-
-<p>Both languages have support for “top-level” functions - that live(or
-seem to live) outside classes and modules(something not possible in
-Java for instance). This makes them good for general purpose
-scripting. While I would still prefer to do my system administration
-with shell and Perl scripts - Ruby and Python offer a solid
-alternative. Python has a richer system administration library so I’d
-prefer it over Ruby for such tasks. </p>
-
-<p>Ruby has a lot of crust(“heritage”) from Perl - like a myriad of
-special variables that are now more or less deprecated. It also has
-much syntactic sugar - for instance do/end is commonly replaced by {}
-for blocks that are only one line long, there is special syntax for
-hashtables, whose keys are symbols, etc. </p>
-
-<p>Since special symbols(non alphanumeric) are allowed in Ruby
-identifiers Ruby uses them to impose some naming conventions to make
-the source code a bit more readable in certain scenarios - for
-instance predicate methods(those that return true or false) have names
-that end with ?(usually) like even?, odd?, prime?, etc. Methods that
-mutate the object on which they were invoked generally have the !
-suffix - sort!, map!, etc. I find this a nice decision. In Ruby you
-generally have many ways to achieve the same result:</p>
-
-<div class="highlight"><pre><code class="irb"><span class="go">ruby-1.9.2-p0 &gt; 1.even?</span>
-<span class="go"> =&gt; false </span>
-<span class="go">ruby-1.9.2-p0 &gt; arr = [1, 2, 3]</span>
-<span class="go"> =&gt; [1, 2, 3] </span>
-<span class="go">ruby-1.9.2-p0 &gt; arr.map { |x| x * 2 }</span>
-<span class="go"> =&gt; [2, 4, 6] </span>
-<span class="go">ruby-1.9.2-p0 &gt; arr</span>
-<span class="go"> =&gt; [1, 2, 3] </span>
-<span class="go">ruby-1.9.2-p0 &gt; arr.map! { |x| x * 2 }</span>
-<span class="go"> =&gt; [2, 4, 6] </span>
-<span class="go">ruby-1.9.2-p0 &gt; arr</span>
-<span class="go"> =&gt; [2, 4, 6] </span>
-<span class="go">ruby-1.9.2-p0 &gt; (1..5).reduce(:*)</span>
-<span class="go"> =&gt; 120 </span>
-<span class="go">ruby-1.9.2-p0 &gt; (1..5).reduce { |x, y| x * y }</span>
-<span class="go"> =&gt; 120 </span>
-<span class="go">ruby-1.9.2-p0 &gt; (1..5).reduce do |x, y|</span>
-<span class="go">ruby-1.9.2-p0 &gt;     x * y</span>
-<span class="go">ruby-1.9.2-p0 ?&gt;  end</span>
-<span class="go"> =&gt; 120 </span>
-</code></pre>
-</div>
-
-<p>No such things in Python, however. Python’s philosophy is one of
-simplicity - no excessive syntax sugar, one true way of doing things.</p>
-
-<p>Both languages have powerful features for organising code in
-libraries. I would not go into any details on the subject here, but
-I’ll share with you the fact that I like Python’s more.</p>
-
-<p>Both languages come with a REPL in which you can do some exploratory
-programming. Ruby’s REPL(irb)  allows you
-to do TAB smart completion(amongst other things) by default. To get
-TAB completion in the Python REPL you’d have to execute this bit of
-code first:</p>
-
-<div class="highlight"><pre><code class="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">readline</span><span class="o">,</span> <span class="nn">rlcompleter</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">readline</span><span class="o">.</span><span class="n">parse_and_bind</span><span class="p">(</span><span class="s">&quot;tab: complete&quot;</span><span class="p">)</span>
-</code></pre>
-</div>
-
-<p>Alternative you can just stick this code snippet in the
-<strong>~/.pythonrc.py</strong> file(create it if it doesn’t exist). If you are using
-Windows adjust accordingly(you will have to figure out where
-pythonrc.py is located there).</p>
-
-<p>Ruby does not have statements - only expressions. This
-basically means that everything(objects, method calls) evaluate to
-some value(though the value might not be helpful always). </p>
-
-<p>In Python there are some statements such as assignment and <em>if</em>. One
-thing I dislike about the Python REPL is that it doesn’t print None
-values. Compare this bit of Python code:</p>
-
-<div class="highlight"><pre><code class="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="s">&quot;this is a test&quot;</span><span class="p">)</span>
-<span class="go">this is a test</span>
-</code></pre>
-</div>
-
-<p>to this Ruby snippet:</p>
-
-<div class="highlight"><pre><code class="irb"><span class="go">ruby-1.9.2-p0 &gt; puts &quot;this is a test&quot;</span>
-<span class="go">this is a test</span>
-<span class="go"> =&gt; nil </span>
-</code></pre>
-</div>
-
-<p>In the Python version we see only the side-effect(the printing), but
-not the return value.</p>
-
-<p>Python also ships with a minimalistic IDE called IDLE. If you don’t
-have it by default after a python installation on Linux probably
-you’re vendor decided to package IDLE as a separate package. IDLE
-offers basic features like syntax highlighting, code completion and
-integration with a debugger. It’s a good tool for exploratory
-programming, but I advise you to pick another tool for serious development.</p>
-
-<h1 id="naming-conventions">Naming conventions</h1>
-<p>The naming conventions for both Ruby and Python are mostly the same
-which is good if you’re using them both on a daily basis - less room
-for confusion.</p>
-
-<ul>
-  <li>variable and method names consisting of more then one word are
-written in lowercase with underscores separating the individual
-words like_this.</li>
-  <li>Class names start with capital letter and follow the camel case
-naming convention LikeThis. Some of Python’s core classes, however,
-violate this convention.</li>
-  <li>Constants are generally written in all caps with underscores
-separating the individual words LIKE_THIS.</li>
-</ul>
-
-<p>As I mentioned earlier it’s customary to add ? as a suffix to
-predicate methods and ! to mutator methods in Ruby. This convention is
-not always followed unfortunately, even in Ruby’s standard library.</p>
-
-<h1 id="oop-support">OOP support</h1>
-<p>Both Ruby and Python are famous members of the family of object
-oriented languages. Unlike languages such as Java and C#, however,
-Ruby and Python are pure OOP languages. There is no distinction
-between primitive types(such as numbers, characters and booleans) and
-reference types(classes). Everything in them is an object and in that
-sense it’s an instance of some class:</p>
-
-<div class="highlight"><pre><code class="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="go">&lt;type &#39;int&#39;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="s">&quot;string&quot;</span><span class="p">)</span>
-<span class="go">&lt;type &#39;str&#39;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="mf">20.07</span><span class="p">)</span>
-<span class="go">&lt;type &#39;float&#39;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="go">&lt;type &#39;list&#39;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-<span class="go">&lt;type &#39;tuple&#39;&gt;</span>
-</code></pre>
-</div>
-
-<p>And in Ruby:</p>
-
-<div class="highlight"><pre><code class="irb"><span class="go">ruby-1.9.2-p0 &gt; 10.class</span>
-<span class="go"> =&gt; Fixnum </span>
-<span class="go">ruby-1.9.2-p0 &gt; &quot;string&quot;.class</span>
-<span class="go"> =&gt; String </span>
-<span class="go">ruby-1.9.2-p0 &gt; [].class</span>
-<span class="go"> =&gt; Array </span>
-</code></pre>
-</div>
-
-<p>As you can see core Ruby classes tend to have a bit more standard and
-descriptive names than their Python counterparts. You can also notice
-that in Python for some task we use built-in functions like type,
-instead of method calls. The built-in function will eventually result
-in a method invocation(like “string”.<strong>class</strong> in the case of
-type(“string”)), but I find this irregularity in the syntax a bit
-irritating.</p>
-
-<p>Method invocation is more flexible in Ruby - you can omit braces in
-some scenarios. This is handy when you’re designing a DSL or you’re
-trying to implement the uniform access patterns(data should be
-accessed through fields and methods in the same manner(read this as
-with no braces in method invocations)). On the other hand Python’s
-uniform syntax makes it easier to spot method invocations. </p>
-
-<p>Both languages don’t have operators - just methods. Ruby’s OO support
-seems to be a bit more mature and polished(at least to me), but
-Python’s has some touches as well. I particularly like the explicit
-self references that are required when you try to access class
-members. I’m not too found of the use of special sigils in Ruby to
-mark instance(@) and class members(@@). Though they make them visually
-distinctive I think we could have lived without them - I’m generally
-not a fan of non-uniform syntax rules(and you guessed it - my
-favourite language is Lisp).</p>
-
-<p>Ruby’s metaprogramming model arguably gives it an edge in the OOP
-department, but I won’t be discussing the metaprogramming issues here
-since they are quite lengthy.</p>
-
-<h1 id="functional-programming-support">Functional programming support</h1>
-
-<p>Functional programming has been on the rise lately and it’s useful to
-examine what kind of support both languages provide for it. Both have
-support for lambda functions and respectively - higher-order
-functions(functions that accept functions as parameters). Ruby has
-code blocks, Python has list comprehensions(generally favoured over
-higher-order functions). Both languages lack in their standard libs
-the immutable data structures that generally are the code of most
-functional programming languages. Here’s a few example related to
-filtering a sequence based on some predicate:</p>
-
-<div class="highlight"><pre><code class="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
-<span class="go">[2, 4, 6, 8, 10]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
-<span class="go">[2, 4, 6, 8, 10]</span>
-</code></pre>
-</div>
-
-<p>Ruby:</p>
-
-<div class="highlight"><pre><code class="irb"><span class="go">ruby-1.9.2-p0 &gt; (1..10).select { |x| x.even? }</span>
-<span class="go"> =&gt; [2, 4, 6, 8, 10] </span>
-<span class="go">ruby-1.9.2-p0 &gt; (1..10).select &amp;:even?</span>
-<span class="go"> =&gt; [2, 4, 6, 8, 10] </span>
-</code></pre>
-</div>
-
-<p>Ruby’s functional programming support seems to be better to me, but
-this is of course subjective.</p>
-
-<h1 id="gui-programming">GUI programming</h1>
-
-<p>Python has tkinker by default - a wrapper around the Tk library(which
-sucks in my humble opinion). Ruby doesn’t have even this much. Both
-have binding for the popular GUI toolkits such wxwidgets, GTK,
-QT. From my experimentation with them I can tell you that you’ll be
-much better off with Python in that department. It’s not wonder that
-many GTK+ applications these days are implemented in Python. Most Ruby
-bindings projects seem to be in a state of disarray, abandonment - I
-guess we have to thank Rails for that. Most people think of Rails as
-the only use of Ruby which is sad…</p>
-
-<p>Ruby devs shouldn’t despair however. JRuby(Ruby’s port to the JVM) has
-an excellent support for the superb Swing GUI framework and MacRuby
-has great support for building Cocoa Apps for OS X. I personally think
-that JRuby is the best Ruby distribution out there, but that’s the
-point of another post entirely.</p>
-
-<h1 id="rd-party-library-availability-and-installation">3rd party library availability and installation</h1>
-
-<p>It’s not secret that part of Python’s philosophy is that it comes with
-batteries included - meaning that it’s standard library is vast and
-covers a lot of common tasks. In case you can’t find what you’re
-looking for in it you’re left with an number of third party libraries
-for Python whose number can only be described by the word epic and
-that cover every task conceivable. <a href="http://pypi.python.org/pypi">PyPi</a>
-maintains an up-to-date list of Python packages.</p>
-
-<p>You have several options in the department of python package
-management. If you’re using ActivePython you can use the excellent
-<a href="http://code.activestate.com/pypm/">PyPM</a> tool, which provides quick
-installation of thousands of packages for many Python versions and
-platforms for ActivePython distributions.</p>
-
-<p><a href="http://peak.telecommunity.com/DevCenter/EasyInstall">EasyInstall</a> is another popular solution that works with the standard
-Python distribution. Like PyPM it allows you easily search for and
-install Python packages from the PyPI that are bundled in Python’s
-standard egg format(Jave developers might think of eggs as
-jars). EasyInstall has splendid documentation so I won’t go into any
-details here.</p>
-
-<p><a href="http://www.pip-installer.org/en/latest/index.html">pip</a> is a
-replacement for easy_install. It uses mostly the same techniques for
-finding packages, so packages that were made easy_installable should
-be pip-installable as well.</p>
-
-<p>pip is meant to improve on EasyInstall. Some of the improvements:</p>
-
-<ul>
-  <li>All packages are downloaded before installation. Partially-completed installation doesn’t occur as a result.</li>
-  <li>Care is taken to present useful output on the console.</li>
-  <li>The reasons for actions are kept track of. For instance, if a package is being installed, pip keeps track of why that package was required.</li>
-  <li>Error messages should be useful.</li>
-  <li>The code is relatively concise and cohesive, making it easier to use programmatically.</li>
-  <li>Packages don’t have to be installed as egg archives, they can be installed flat (while keeping the egg metadata).</li>
-  <li>Native support for other version control systems (Git, Mercurial and Bazaar)</li>
-  <li>Uninstallation of packages.</li>
-  <li>Simple to define fixed sets of requirements and reliably reproduce a set of packages.</li>
-</ul>
-
-<p>pip doesn’t do everything that easy_install does. Specifically:</p>
-
-<ul>
-  <li>It cannot install from eggs. It only installs from source. (In the future it would be good if it could install binaries from Windows .exe or .msi – binary install on other platforms is not a priority.)</li>
-  <li>It doesn’t understand Setuptools extras (like package[test]). This should be added eventually.</li>
-  <li>It is incompatible with some packages that extensively customize distutils or setuptools in their setup.py files.</li>
-</ul>
-
-<p>Linux users will also find a great selection of Python libraries
-prepackaged for use with the distribution’s package manager.</p>
-
-<p>Ruby has an application that is more or less equivalent to EasyInstall
-called <a href="http://rubygems.org/">RubyGems</a>(gems are the standard way to distribute Ruby
-libraries). Linux users can of course install Ruby libraries with the
-distribution’s package manager as well. </p>
-
-<p>RubyGems has the following features:</p>
-
-<ul>
-  <li>Easy Installation and removal of RubyGems packages and their dependents.</li>
-  <li>Management and control of local packages</li>
-  <li>Package dependency management</li>
-  <li>Query, search and list local and remote packages</li>
-  <li>Multiple version support for installed packages</li>
-  <li>Web-based interface to view the documentation for your installed gems</li>
-  <li>Easy to use interface for building gem packages</li>
-  <li>Simple server for distributing your own gem packages</li>
-  <li>Easy to use building and publishing of gem packages</li>
-</ul>
-
-<p>Using RubyGems, you can:</p>
-
-<ul>
-  <li>download and install Ruby libraries easily</li>
-  <li>not worry about libraries A and B depending on different versions of library C</li>
-  <li>easily remove libraries you no longer use</li>
-  <li>have power and control over your Ruby platform! </li>
-</ul>
-
-<p>A reader pointed out that about 23000 packages are available for
-installation through RubyGems and 15000 through PyPI. This, however,
-cannot be considered as a certain sign that there are more libraries
-available for Ruby than for Python.</p>
-
-<p>Although tools like EasyInstall and RubyGems are easy to use and quite
-handy, I as a long-time Linux users dislike them a bit, since they
-circumvent the distributions native package handling. Unfortunately
-package maintainers cannot find the time to package every Python and
-Ruby library available so I guess EasyInstall and RubyGems won’t be
-going anywhere soon and of course we have to consider Windows users
-for whom such applications are of great value given the lack of
-unified package management on Windows.</p>
-
-<p>One thing to keep in mind about installing eggs and gems is that some
-of them are implemented in C(usually for performance reasons) and are
-locally built prior to their installation - an operation bound to fail
-if you don’t have a C compiler installed.</p>
-
-<h1 id="misc">Misc</h1>
-
-<p>In terms of performance of the default interpreters CPython and MRI
-Ruby Python is the clear winner. One should note, however, is that there
-are many how quality implementation of Ruby and Python for different
-platforms where the performance situation differs wildly. For instance
-Jython is much slower that JRuby. With the addition of invoke_dynamic
-in JDK7(basically bytecode level support for dynamic method dispatch)
-the performance of JRuby and Jython could potentially be improved
-greatly.</p>
-
-<p>In terms of overall usage, market share, job offers and sheer size of
-the community and available libraries Python is ahead of Ruby as
-well. One of the main supporters of Python is after all none other
-than the mighty Google. Ruby has also the unfortunate luck to be
-living in the shadow of a single application written in Ruby - Ruby on
-Rails, that is arguably more popular than the language itself.</p>
-
-<p>Tooling for dynamic languages is currently not as advance as the one
-for static languages. People often joke that Python(Ruby) &gt; Java(C#),
-but Python + any python IDE &lt; Java + IntelliJ
-IDEA(Eclipse/NetBeans). Python and Ruby IDEs seem to be mostly on par
-currently. I do all of my Ruby and Python coding in Emacs, but I do
-like RubyMine and PyCharm. </p>
-
-<p>Since they are often used for the creation of webapps one should
-consider the deployment issue. Most web hosting companies provide
-cheap Python hosting, but very few companies provide Ruby hosting.</p>
-
-<h1 id="the-python-3-problem">The Python 3 problem</h1>
-
-<p>Python 3 was a great undertaking that improved on a lot of aspects of
-the language(for example Unicode support) and the standard library. To
-do this it dropped backward compatibility, an act that slowed it’s
-adoption immensely. Three years have passed since it’s release and
-still most hosting providers, Linux distros and Python projects hold
-on to the older 2.7.x Python branch.</p>
-
-<p>This is a bit of tragedy since Python 3 is truly a great improvement
-over Python 2. I mention this because most recent books are written
-with Python 3 in mind, but if you land a Python jobs somewhere chances
-are you’ll have to use Python 2.x.x for the foreseeable future.</p>
-
-<h1 id="conclusion">Conclusion</h1>
-
-<p>Ruby and Python are two beautifully engineered languages capable of
-just about everything. If you don’t know any of them you’ll do well to
-learn at least one. If you know only one it might not be a terrible
-idea to learn the other.</p>
-
-<p>I haven’t touched on many language features(like Python generators and
-Ruby mixins), but to be honest I’m just tired of typing. One good
-place to start your journey to Python is
-<a href="http://diveintopython3.org/">“Dive into Python 3”</a>. For Ruby
-beginners I’d recommend a copy of
-<a href="http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177">“The Ruby Programming Language”</a>.</p>
-
-<p><em>P.S. If you like exploring different programming languages and you’re
-currently shopping for ideas on the subject of which language to learn
-next you might find my recent article
-<a href="/2011/04/27/programming-languages-worth-learning.html">“Programming languages worth learning”</a>
-interesting as well.</em></p>
-
-<div style="font-style: italic; color: #7f9f7f;">Posted on 03 May 2011 by Bozhidar.</div>
-
-<p><a href="/2011/05/03/ruby-or-python.html#disqus_thread">Comments</a></p>
+<p><a href="/Misc/Common Lisp/2011/05/04/lisp-problems.html#disqus_thread">Comments</a></p>
 
 
                     </div>
@@ -2927,6 +2914,74 @@ interesting as well.</em></p>
                         }
                         }).render().setUser('bbatsov').start();
                     </script>
+                </div>
+                <div id="latest">
+                    <div style="font-size: 18px; text-weight: bold; text-decoration: underline; margin-top: 20px;">Latest posts:</div>
+                    <ul>
+                        
+                        <li><a href="/Clojure/Java/2011/05/12/jvm-langs-clojure.html">Java.next() - Clojure: The Return of the Lispers</a></li>
+                        
+                        <li><a href="/Emacs/2011/05/11/zenburn-emacs.html">A new Zenburn theme for Emacs</a></li>
+                        
+                        <li><a href="/Java/Scala/2011/05/08/jvm-langs-scala.html">Java.next() - Scala: The Revenge of the Static Typing</a></li>
+                        
+                        <li><a href="/Java/Groovy/2011/05/06/jvm-langs-groovy.html">Java.next() - The Groovy Programming Language</a></li>
+                        
+                        <li><a href="/Misc/Common Lisp/2011/05/04/lisp-problems.html">Lisp Problems</a></li>
+                        
+                    </ul>
+                </div>
+                <div id="tags">
+                    <div style="font-size: 18px; text-weight: bold; text-decoration: underline; margin-top: 20px;">Categories:</div>
+                    <ul>
+                        
+                        <li><a href="/Misc.html">Misc(2)</a></li>
+                        
+                        <li><a href="/Hardware.html">Hardware(2)</a></li>
+                        
+                        <li><a href="/Ruby.html">Ruby(2)</a></li>
+                        
+                        <li><a href="/Emacs.html">Emacs(2)</a></li>
+                        
+                        <li><a href="/Rails.html">Rails(2)</a></li>
+                        
+                        <li><a href="/Z Shell.html">Z Shell(2)</a></li>
+                        
+                        <li><a href="/Linux.html">Linux(2)</a></li>
+                        
+                        <li><a href="/Java.html">Java(2)</a></li>
+                        
+                        <li><a href="/Design Patterns.html">Design Patterns(2)</a></li>
+                        
+                        <li><a href="/Eclipse.html">Eclipse(2)</a></li>
+                        
+                        <li><a href="/Fedora.html">Fedora(2)</a></li>
+                        
+                        <li><a href="/Git.html">Git(2)</a></li>
+                        
+                        <li><a href="/JBoss.html">JBoss(2)</a></li>
+                        
+                        <li><a href="/Swing.html">Swing(2)</a></li>
+                        
+                        <li><a href="/NetBeans.html">NetBeans(2)</a></li>
+                        
+                        <li><a href="/LaTeX.html">LaTeX(2)</a></li>
+                        
+                        <li><a href="/Jekyll.html">Jekyll(2)</a></li>
+                        
+                        <li><a href="/Programming.html">Programming(2)</a></li>
+                        
+                        <li><a href="/Scala.html">Scala(2)</a></li>
+                        
+                        <li><a href="/Common Lisp.html">Common Lisp(2)</a></li>
+                        
+                        <li><a href="/Python.html">Python(2)</a></li>
+                        
+                        <li><a href="/Groovy.html">Groovy(2)</a></li>
+                        
+                        <li><a href="/Clojure.html">Clojure(2)</a></li>
+                        
+                    </ul>
                 </div>
             </div>
         </div>

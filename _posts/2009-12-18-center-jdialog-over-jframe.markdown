@@ -1,6 +1,9 @@
 ---
 layout: post
 title: How to center a JDialog over a JFrame in Swing
+categories:
+- Java
+- Swing
 ---
 
 I always thought that the fact that JDialogs accepted a parent frame

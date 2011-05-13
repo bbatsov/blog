@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "My professional CV in LaTeX"
+categories:
+- Misc
+- LaTeX
 ---
 
 After a long period of planning I finally migrated my professional CV

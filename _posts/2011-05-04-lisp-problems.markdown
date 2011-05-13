@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Lisp Problems"
+categories: 
+- Misc
+- Common Lisp
 ---
 
 This is a remake of the P-99: Ninety-Nine Prolog Problems collection

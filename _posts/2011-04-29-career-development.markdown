@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Career development - Should I stay or should I go?"
+categories:
+- Misc
 ---
 
 I guess nothing describes more appropriately the essence of career

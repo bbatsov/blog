@@ -1,6 +1,10 @@
 ---
 layout: post
-title: Emulate the behaviour of Return+Shift(insert new line) from popular IDEs(IDEA, Eclipse) in Emacs
+title: Emulate the behaviour of Return+Shift(insert new line) from
+popular IDEs(IDEA, Eclipse) in Emacs
+categories:
+- Emacs
+- IntelliJ
 ---
 
 I’m very fond of the ability to insert a new line below the line I’m

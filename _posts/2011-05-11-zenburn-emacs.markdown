@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "A new Zenburn theme for Emacs"
+categories:
+- Emacs
 ---
 
 [Zenburn](http://slinky.imukuppi.org/zenburnpage/) is a popular colour theme for
