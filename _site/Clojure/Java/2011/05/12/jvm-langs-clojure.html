@@ -483,6 +483,127 @@ greatly the performance. </p>
 
 <p>Let’s see them in action:</p>
 
+<div class="highlight"><pre><code class="clojure"><span class="c1">;;; Lists</span>
+<span class="c1">;; list creation</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">list </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1">;; quoted list creation</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">a-list</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="p">))</span>
+<span class="o">#</span><span class="ss">&#39;user/a-list</span>
+<span class="c1">;; find the size of a list</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">count </span><span class="nv">a-list</span><span class="p">)</span>
+<span class="mi">10</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">first </span><span class="nv">a-list</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">rest </span><span class="nv">a-list</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">last </span><span class="nv">a-list</span><span class="p">)</span>
+<span class="mi">10</span>
+<span class="c1">;; find the elements of the list matching a predicate(boolean function)</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">filter </span><span class="nv">even?</span> <span class="nv">a-list</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">8</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">filter </span><span class="nv">odd?</span> <span class="nv">a-list</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">9</span><span class="p">)</span>
+<span class="c1">;; map an anonymous(lambda) function to all elements of the list</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">map </span><span class="o">#</span><span class="p">(</span><span class="nv">*</span> <span class="nv">%</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">a-list</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">2</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">8</span> <span class="mi">10</span> <span class="mi">12</span> <span class="mi">14</span> <span class="mi">16</span> <span class="mi">18</span> <span class="mi">20</span><span class="p">)</span>
+<span class="c1">;; add an element to the beginning of the list</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">cons </span><span class="mi">0</span> <span class="nv">a-list</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="p">)</span>
+<span class="c1">;; cons in a list specific function, conj is a general purpose one and</span>
+<span class="c1">;; works on all collection (but in a different manner)</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">a-list</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="p">)</span>
+<span class="c1">;; retrieve the first five items in a list</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">take </span><span class="mi">5</span> <span class="nv">a-list</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span>
+<span class="c1">;; retrieve all but the first five items in a list</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">drop </span><span class="mi">5</span> <span class="nv">a-list</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">take-while </span><span class="o">#</span><span class="p">(</span><span class="nv">&lt;</span> <span class="nv">%</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">a-list</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">drop-while </span><span class="o">#</span><span class="p">(</span><span class="nv">&gt;</span> <span class="nv">%</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">a-list</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">drop-while </span><span class="o">#</span><span class="p">(</span><span class="nv">&lt;</span> <span class="nv">%</span> <span class="mi">3</span><span class="p">)</span> <span class="nv">a-list</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1">;;; Sets</span>
+
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">set </span><span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">))</span>
+<span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">a-set</span> <span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">})</span>
+<span class="o">#</span><span class="ss">&#39;user/a-set</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">contains? </span><span class="nv">a-set</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nv">true</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">contains? </span><span class="nv">a-set</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nv">false</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">a-set</span> <span class="mi">5</span><span class="p">)</span>
+<span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">a-set</span> <span class="mi">6</span><span class="p">)</span>
+<span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">disj </span><span class="nv">a-set</span> <span class="mi">1</span><span class="p">)</span>
+<span class="o">#</span><span class="p">{</span><span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">get </span><span class="nv">a-set</span> <span class="mi">1</span><span class="p">)</span>
+<span class="mi">1</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">get </span><span class="nv">a-set</span> <span class="mi">7</span><span class="p">)</span>
+<span class="nv">nil</span>
+<span class="c1">;; most set functions live in the clojure.set namespace</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nf">use</span> <span class="ss">&#39;clojure</span><span class="o">.</span><span class="nv">set</span><span class="p">)</span>
+<span class="nv">nil</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">difference </span><span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">}</span> <span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span><span class="p">})</span>
+<span class="o">#</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">intersection </span><span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">}</span> <span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span><span class="p">})</span>
+<span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">3</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">union </span><span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">}</span> <span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span><span class="p">})</span>
+<span class="o">#</span><span class="p">{</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">5</span><span class="p">}</span>
+
+<span class="c1">;;; Maps</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">hash-map </span><span class="nv">:Bozhidar</span> <span class="nv">:Batsov</span> <span class="nv">:Bruce</span> <span class="nv">:Wayne</span> <span class="nv">:Selina</span> <span class="nv">:Kyle</span><span class="p">)</span>
+<span class="p">{</span><span class="nv">:Selina</span> <span class="nv">:Kyle,</span> <span class="nv">:Bozhidar</span> <span class="nv">:Batsov,</span> <span class="nv">:Bruce</span> <span class="nv">:Wayne</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">a-map</span> <span class="p">{</span><span class="nv">:Bozhidar</span> <span class="nv">:Batsov,</span> <span class="nv">:Bruce</span> <span class="nv">:Wayne,</span> <span class="nv">:Selina</span> <span class="nv">:Kyle</span><span class="p">})</span>
+<span class="o">#</span><span class="ss">&#39;user/a-map</span>
+<span class="nv">user&gt;</span> <span class="nv">a-map</span>
+<span class="p">{</span><span class="nv">:Bozhidar</span> <span class="nv">:Batsov,</span> <span class="nv">:Bruce</span> <span class="nv">:Wayne,</span> <span class="nv">:Selina</span> <span class="nv">:Kyle</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">get </span><span class="nv">a-map</span> <span class="nv">:Bozhidar</span><span class="p">)</span>
+<span class="nv">:Batsov</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">contains? </span><span class="nv">a-map</span> <span class="nv">:Bozhidar</span><span class="p">)</span>
+<span class="nv">true</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">contains? </span><span class="nv">a-map</span> <span class="nv">:Clark</span><span class="p">)</span>
+<span class="nv">false</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nf">:Bozhidar</span> <span class="nv">a-map</span><span class="p">)</span>
+<span class="nv">:Batsov</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">assoc </span><span class="nv">a-map</span> <span class="nv">:Lois</span> <span class="nv">:Lane</span><span class="p">)</span>
+<span class="p">{</span><span class="nv">:Lois</span> <span class="nv">:Lane,</span> <span class="nv">:Bozhidar</span> <span class="nv">:Batsov,</span> <span class="nv">:Bruce</span> <span class="nv">:Wayne,</span> <span class="nv">:Selina</span> <span class="nv">:Kyle</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">keys </span><span class="nv">a-map</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">:Bozhidar</span> <span class="nv">:Bruce</span> <span class="nv">:Selina</span><span class="p">)</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">vals </span><span class="nv">a-map</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">:Batsov</span> <span class="nv">:Wayne</span> <span class="nv">:Kyle</span><span class="p">)</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">dissoc </span><span class="nv">a-map</span> <span class="nv">:Bruce</span><span class="p">)</span>
+<span class="p">{</span><span class="nv">:Bozhidar</span> <span class="nv">:Batsov,</span> <span class="nv">:Selina</span> <span class="nv">:Kyle</span><span class="p">}</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">merge </span><span class="nv">a-map</span> <span class="p">{</span><span class="nv">:Alia</span> <span class="nv">:Atreides,</span> <span class="nv">:Arya</span> <span class="nv">:Stark</span><span class="p">})</span>
+<span class="p">{</span><span class="nv">:Arya</span> <span class="nv">:Stark,</span> <span class="nv">:Alia</span> <span class="nv">:Atreides,</span> <span class="nv">:Bozhidar</span> <span class="nv">:Batsov,</span> <span class="nv">:Bruce</span> <span class="nv">:Wayne,</span> <span class="nv">:Selina</span> <span class="nv">:Kyle</span><span class="p">}</span>
+
+<span class="c1">;;; Vectors</span>
+
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">vector </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+<span class="nv">user&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="k">def </span><span class="nv">a-vector</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">])</span>
+<span class="o">#</span><span class="ss">&#39;user/a-vector</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">count </span><span class="nv">a-vector</span><span class="p">)</span>
+<span class="mi">5</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">conj </span><span class="nv">a-vector</span> <span class="mi">13</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">13</span><span class="p">]</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">nth </span><span class="nv">a-vector</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">4</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">pop </span><span class="nv">a-vector</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">]</span>
+<span class="nv">user&gt;</span> <span class="p">(</span><span class="nb">peek </span><span class="nv">a-vector</span><span class="p">)</span>
+<span class="mi">5</span>
+</code></pre>
+</div>
+
 <h1 id="functional-programing-with-clojure">Functional programing with Clojure</h1>
 
 <h1 id="parallel-programming">Parallel programming</h1>
@@ -516,10 +637,23 @@ installed half the time…</p>
 <ul>
   <li>IDEs
     <ul>
-      <li>IntelliJ IDEA</li>
-      <li>Eclipse</li>
-      <li>NetBeans</li>
-      <li>SLIME</li>
+      <li><a href="http://plugins.intellij.net/plugin/?id=4050">IntelliJ IDEA</a> -
+everyone knows how much I love IntelliJ IDEA. Sadly I cannot say
+a good word about the La Clojure plug-in. Its mostly unmaintained
+(it often broken), has pretty limited features and is generally
+good for… nothing. </li>
+      <li><a href="http://code.google.com/p/counterclockwise/">Eclipse</a> - Eclipse
+certainly boasts the best IDE Clojure plug-in at the moment (Counter
+clock-wise). It has a lot of features found otherwise only in
+SLIME. It even features partial paredit support.</li>
+      <li><a href="http://www.enclojure.org/">NetBeans</a> - The Enclojure plug-in
+seems to be abandoned currently. It has no released a new version
+in over an year and the old one were buggy as hell (when they the
+decency to get themselves installed, that is).</li>
+      <li>SLIME - The Ultimate Clojure programming environment. Even though
+it’s lacking a few features of the Common Lisp counterpart, SLIME
+still is the best option for Clojure development, uniquely
+attuned to the Lisp philosophy of interactive development.</li>
     </ul>
   </li>
 </ul>
@@ -539,6 +673,46 @@ installed half the time…</p>
 </ul>
 
 <h1 id="epilogue">Epilogue</h1>
+
+<p>Clojure is both a radical departure from traditional Algol-derived
+languages and existing Lisp dialects. Its advanced support for
+functional programming, combined with a state of the art concurrency
+support make it attractive language for the development of heavy duty
+enterprise grade systems. Coupled with the seamless Java integration
+the sky seems to be the limit for Clojure…</p>
+
+<p>Unfortunately Clojure has to face several problems if its to
+succeed. First of all it has to attract a critical mass of developers
+that are not afraid of the syntactic difference with common
+languages. Then there is the concept of functional thinking - a way of
+thinking quite foreign to most developers. To be able to properly
+leverage the full power of Clojure developers have to be ready to
+overcome a steep learning curve, but rest assured, the prize at the
+end of the journey is well worth it.</p>
+
+<p>Another gripe with Clojure at this point is the lack of decent
+tooling. Sure, we have the <em>supported</em> SLIME, available in ELPA, but
+even Emacs users are not particularly happy with it. And let’s face
+reality - it’s quite unlikely that many developers will be willing to
+give up the comfort of their beloved IDEs just to be able to code in
+Clojure. Eclipse, IntelliJ &amp; NetBeans are unfortunately nowhere near
+providing a good Clojure experience. Hopefully, this will change
+soon…</p>
+
+<p>I’m a very big fan of Lisp in general, that is no secret. I’ve tried
+to be as objective as possible and abstained myself from over
+extolling some of Clojure’s virtues. I’d like to say, however, that
+I’m very excited that we finally have a Lisp dialect that is modern,
+simple, powerful, elegant and most of all - capable of getting the job
+done. I really hope that Clojure will be instrument of Lisp return on
+the center stage of programming, where it deserves to be.</p>
+
+<p><em>P.S. This is the last of the articles that I’d originally intended to
+write. I’m considering the possibility to write a couple of more
+chapter of the Java.next() series if people are interested to read
+them. JRuby will probably make an appearance, but I’d like to hear
+some reader input as well. So, what JVM language do you think is
+worthy enough to make an appearance in the Java.next() series?</em></p>
 
     <div style="font-style: italic; color: #7f9f7f;">Posted on 12 May 2011 by Bozhidar.</div>
     <div style="font-style: italic; color: #7f9f7f;">Filed under Clojure and Java.</div>

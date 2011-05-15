@@ -403,6 +403,127 @@ The core data structures are:
 
 Let's see them in action:
 
+{% highlight clojure %}
+;;; Lists
+;; list creation
+user> (list 1 2 3)
+(1 2 3)
+;; quoted list creation
+user> (def a-list '(1 2 3 4 5 6 7 8 9 10))
+#'user/a-list
+;; find the size of a list
+user> (count a-list)
+10
+user> (first a-list)
+1
+user> (rest a-list)
+(2 3 4 5 6 7 8 9 10)
+user> (last a-list)
+10
+;; find the elements of the list matching a predicate(boolean function)
+user> (filter even? a-list)
+(2 4 6 8 10)
+user> (filter odd? a-list)
+(1 3 5 7 9)
+;; map an anonymous(lambda) function to all elements of the list
+user> (map #(* % 2) a-list)
+(2 4 6 8 10 12 14 16 18 20)
+;; add an element to the beginning of the list
+user> (cons 0 a-list)
+(0 1 2 3 4 5 6 7 8 9 10)
+;; cons in a list specific function, conj is a general purpose one and
+;; works on all collection (but in a different manner)
+user> (conj a-list 0)
+(0 1 2 3 4 5 6 7 8 9 10)
+;; retrieve the first five items in a list
+user> (take 5 a-list)
+(1 2 3 4 5)
+;; retrieve all but the first five items in a list
+user> (drop 5 a-list)
+(6 7 8 9 10)
+user> (take-while #(< % 3) a-list)
+(1 2)
+user> (drop-while #(> % 3) a-list)
+(1 2 3 4 5 6 7 8 9 10)
+user> (drop-while #(< % 3) a-list)
+(3 4 5 6 7 8 9 10)
+
+;;; Sets
+
+user> (set '(1 2 3 4 5 1 2 3 4))
+#{1 2 3 4 5}
+user> (def a-set #{1 2 3 4 5})
+#'user/a-set
+user> (contains? a-set 3)
+true
+user> (contains? a-set 7)
+false
+user> (conj a-set 5)
+#{1 2 3 4 5}
+user> (conj a-set 6)
+#{1 2 3 4 5 6}
+user> (disj a-set 1)
+#{2 3 4 5}
+user> (get a-set 1)
+1
+user> (get a-set 7)
+nil
+;; most set functions live in the clojure.set namespace
+user> (use 'clojure.set)
+nil
+user> (difference #{1 2 3} #{1 3 5})
+#{2}
+user> (intersection #{1 2 3} #{1 3 5})
+#{1 3}
+user> (union #{1 2 3} #{1 3 5})
+#{1 2 3 5}
+
+;;; Maps
+user> (hash-map :Bozhidar :Batsov :Bruce :Wayne :Selina :Kyle)
+{:Selina :Kyle, :Bozhidar :Batsov, :Bruce :Wayne}
+user> (def a-map {:Bozhidar :Batsov, :Bruce :Wayne, :Selina :Kyle})
+#'user/a-map
+user> a-map
+{:Bozhidar :Batsov, :Bruce :Wayne, :Selina :Kyle}
+user> (get a-map :Bozhidar)
+:Batsov
+user> (contains? a-map :Bozhidar)
+true
+user> (contains? a-map :Clark)
+false
+user> (:Bozhidar a-map)
+:Batsov
+user> (assoc a-map :Lois :Lane)
+{:Lois :Lane, :Bozhidar :Batsov, :Bruce :Wayne, :Selina :Kyle}
+user> (keys a-map)
+(:Bozhidar :Bruce :Selina)
+user> (vals a-map)
+(:Batsov :Wayne :Kyle)
+user> (dissoc a-map :Bruce)
+{:Bozhidar :Batsov, :Selina :Kyle}
+user> (merge a-map {:Alia :Atreides, :Arya :Stark})
+{:Arya :Stark, :Alia :Atreides, :Bozhidar :Batsov, :Bruce :Wayne, :Selina :Kyle}
+
+;;; Vectors
+
+user> (vector 1 2 3 4)
+[1 2 3 4]
+user> [1 2 3 4]
+[1 2 3 4]
+user> (def a-vector [1 2 3 4 5])
+#'user/a-vector
+user> (count a-vector)
+5
+user> (conj a-vector 13)
+[1 2 3 4 5 13]
+user> (nth a-vector 3)
+4
+user> (pop a-vector)
+[1 2 3 4]
+user> (peek a-vector)
+5
+{% endhighlight %}
+
 # Functional programing with Clojure
 
 # Parallel programming
@@ -432,10 +553,23 @@ unusable, Eclipse's is barely usable and NetBeans's cannot be
 installed half the time...
 
 * IDEs
-   * IntelliJ IDEA
-   * Eclipse
-   * NetBeans
-   * SLIME
+   * [IntelliJ IDEA](http://plugins.intellij.net/plugin/?id=4050) -
+     everyone knows how much I love IntelliJ IDEA. Sadly I cannot say
+     a good word about the La Clojure plug-in. Its mostly unmaintained
+     (it often broken), has pretty limited features and is generally
+     good for... nothing. 
+   * [Eclipse](http://code.google.com/p/counterclockwise/) - Eclipse
+     certainly boasts the best IDE Clojure plug-in at the moment (Counter
+     clock-wise). It has a lot of features found otherwise only in
+     SLIME. It even features partial paredit support.
+   * [NetBeans](http://www.enclojure.org/) - The Enclojure plug-in
+     seems to be abandoned currently. It has no released a new version
+     in over an year and the old one were buggy as hell (when they the
+     decency to get themselves installed, that is).
+   * SLIME - The Ultimate Clojure programming environment. Even though
+     it's lacking a few features of the Common Lisp counterpart, SLIME
+     still is the best option for Clojure development, uniquely
+     attuned to the Lisp philosophy of interactive development.
 
 Luckily there's no lack of good build tools that one can use with Clojure.
 
@@ -447,3 +581,43 @@ Luckily there's no lack of good build tools that one can use with Clojure.
    * Apache Builder
    
 # Epilogue
+
+Clojure is both a radical departure from traditional Algol-derived
+languages and existing Lisp dialects. Its advanced support for
+functional programming, combined with a state of the art concurrency
+support make it attractive language for the development of heavy duty
+enterprise grade systems. Coupled with the seamless Java integration
+the sky seems to be the limit for Clojure...
+
+Unfortunately Clojure has to face several problems if its to
+succeed. First of all it has to attract a critical mass of developers
+that are not afraid of the syntactic difference with common
+languages. Then there is the concept of functional thinking - a way of
+thinking quite foreign to most developers. To be able to properly
+leverage the full power of Clojure developers have to be ready to
+overcome a steep learning curve, but rest assured, the prize at the
+end of the journey is well worth it.
+
+Another gripe with Clojure at this point is the lack of decent
+tooling. Sure, we have the *supported* SLIME, available in ELPA, but
+even Emacs users are not particularly happy with it. And let's face
+reality - it's quite unlikely that many developers will be willing to
+give up the comfort of their beloved IDEs just to be able to code in
+Clojure. Eclipse, IntelliJ & NetBeans are unfortunately nowhere near
+providing a good Clojure experience. Hopefully, this will change
+soon...
+
+I'm a very big fan of Lisp in general, that is no secret. I've tried
+to be as objective as possible and abstained myself from over
+extolling some of Clojure's virtues. I'd like to say, however, that
+I'm very excited that we finally have a Lisp dialect that is modern,
+simple, powerful, elegant and most of all - capable of getting the job
+done. I really hope that Clojure will be instrument of Lisp return on
+the center stage of programming, where it deserves to be.
+
+_P.S. This is the last of the articles that I'd originally intended to
+write. I'm considering the possibility to write a couple of more
+chapter of the Java.next() series if people are interested to read
+them. JRuby will probably make an appearance, but I'd like to hear
+some reader input as well. So, what JVM language do you think is
+worthy enough to make an appearance in the Java.next() series?_
