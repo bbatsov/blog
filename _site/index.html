@@ -487,10 +487,28 @@ convincing the guys in Oracle to add it for you. With Lisp
 you’re in charge and you can define any syntax abstractions that
 you wish. As an appetiser consider the <strong>and</strong> boolean
 statement. In most languages it’s built into the language
-itself. In Clojure its just a short macro:</li>
+itself. In Clojure it’s just a short macro:</li>
     </ul>
   </li>
 </ul>
+
+<div class="highlight"><pre><code class="clojure"><span class="p">(</span><span class="k">defmacro </span><span class="nv">and</span>
+  <span class="s">&quot;Evaluates exprs one at a time, from left to right. If a form</span>
+<span class="s">  returns logical false (nil or false), and returns that value and</span>
+<span class="s">  doesn&#39;t evaluate any of the other expressions, otherwise it returns</span>
+<span class="s">  the value of the last expr. (and) returns true.&quot;</span>
+  <span class="p">{</span><span class="nv">:added</span> <span class="s">&quot;1.0&quot;</span><span class="p">}</span>
+  <span class="p">([]</span> <span class="nv">true</span><span class="p">)</span>
+  <span class="p">([</span><span class="nv">x</span><span class="p">]</span> <span class="nv">x</span><span class="p">)</span>
+  <span class="p">([</span><span class="nv">x</span> <span class="nv">&amp;</span> <span class="nv">next</span><span class="p">]</span>
+   <span class="o">`</span><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">and</span><span class="o">#</span> <span class="nv">~x</span><span class="p">]</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">and</span><span class="o">#</span> <span class="p">(</span><span class="nb">and </span><span class="nv">~@next</span><span class="p">)</span> <span class="nv">and</span><span class="o">#</span><span class="p">))))</span>
+</code></pre>
+</div>
+
+<p>I hope this example gives you an idea about the power that Clojure
+offers you - you can be more than just a programmer; you can be the
+language designer.</p>
 
 <h1 id="persistent-data-structures">Persistent data structures</h1>
 

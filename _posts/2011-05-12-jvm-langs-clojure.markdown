@@ -409,9 +409,25 @@ So let's review the typical Lisp features that are present in Clojure:
       you're in charge and you can define any syntax abstractions that
       you wish. As an appetiser consider the **and** boolean
       statement. In most languages it's built into the language
-      itself. In Clojure its just a short macro:
+      itself. In Clojure it's just a short macro:
       
-      
+{% highlight clojure %}
+(defmacro and
+  "Evaluates exprs one at a time, from left to right. If a form
+  returns logical false (nil or false), and returns that value and
+  doesn't evaluate any of the other expressions, otherwise it returns
+  the value of the last expr. (and) returns true."
+  {:added "1.0"}
+  ([] true)
+  ([x] x)
+  ([x & next]
+   `(let [and# ~x]
+      (if and# (and ~@next) and#))))
+{% endhighlight %}
+
+I hope this example gives you an idea about the power that Clojure
+offers you - you can be more than just a programmer; you can be the
+language designer.
 
 # Persistent data structures
 
