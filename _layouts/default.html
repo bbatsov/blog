@@ -84,7 +84,7 @@
                     </script>
                 </div>
                 <div id="latest">
-                    <div style="font-size: 18px; text-weight: bold; text-decoration: underline; margin-top: 20px;">Latest posts:</div>
+                    <div class="sidebar_heading">Latest posts:</div>
                     <ul>
                         {% for post in site.posts limit:5 %}
                         <li><a href="{{ post.url }}">{{ post.title }}</a></li>
@@ -92,7 +92,7 @@
                     </ul>
                 </div>
                 <div id="tags">
-                    <div style="font-size: 18px; text-weight: bold; text-decoration: underline; margin-top: 20px;">Categories:</div>
+                    <div class="sidebar_heading">Categories:</div>
                     <ul>
                         {% for cat in site.categories %}
                         {% assign tag = cat[0] %}

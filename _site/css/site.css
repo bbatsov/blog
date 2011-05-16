@@ -138,3 +138,15 @@ ul#list-nav li a:hover {
     background:#a2b3a1;
     color:#000
 }
+
+div.sidebar_heading {
+    font-size: 18px; 
+    text-weight: bold; 
+    text-decoration: underline; 
+    margin-top: 20px;
+}
+
+div.meta {
+    font-style: italic; 
+    color: #7f9f7f;
+}
