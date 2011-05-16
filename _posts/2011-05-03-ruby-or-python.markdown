@@ -513,5 +513,5 @@ beginners I'd recommend a copy of
 _P.S. If you like exploring different programming languages and you're
 currently shopping for ideas on the subject of which language to learn
 next you might find my recent article
-["Programming languages worth learning"](/2011/04/27/programming-languages-worth-learning.html)
+["Programming languages worth learning"](/Programming/2011/04/27/programming-languages-worth-learning.html)
 interesting as well._

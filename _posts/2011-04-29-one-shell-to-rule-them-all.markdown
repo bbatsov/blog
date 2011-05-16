@@ -56,7 +56,7 @@ compinit
 
 I don't like very much the default zsh prompt and I generally change
 it right away. Have a look at my other
-[short article](/2008/07/27/zsh-prompt.html) on the topic.
+[short article](/Z%20Shell/Linux/2008/07/27/zsh-prompt.html) on the topic.
 
 There a couple of configuration files related to zsh that you should
 know about:

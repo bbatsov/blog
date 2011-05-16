@@ -10,7 +10,7 @@ categories:
 
 This is the second post from my series dedicated to modern programming
 languages for the Java platform. Last time we've discussed the
-[Groovy programming language](/2011/05/06/jvm-langs-groovy.html), which
+[Groovy programming language](/Java/Groovy/2011/05/06/jvm-langs-groovy.html), which
 is a member of the ever expanding family of dynamic programming
 languages. The Scala programming language, that is the object of
 today's discussion, is different beast entirely - not only it uses static

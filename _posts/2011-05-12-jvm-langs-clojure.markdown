@@ -9,7 +9,7 @@ categories:
 # Overture
  
 This is the third part of the series of **Java.next()**. Last time
-we've discussed the merits of [Scala](http://batsov.com/2011/05/08/jvm-langs-scala.html) - an OO language with a strong
+we've discussed the merits of [Scala](/Java/Scala/2011/05/08/jvm-langs-scala.html) - an OO language with a strong
 emphasis on functional and parallel programming. Today we'll be
 discussing Clojure - a language that pushes the envelop a lot further
 than Scala as far as functional and parallel programming are
@@ -912,7 +912,7 @@ Luckily there's no lack of good build tools that one can use with Clojure.
    * [Official website](http://blog.fogus.me/)
    * [Disclojure](http://disclojure.org/) - a clojure news aggregator
 * Exercises
-   * [Lisp problems](/2011/05/04/lisp-problems.html) - a work in progress, I'll add Clojure
+   * [Lisp problems](/Misc/Common%20Lisp/2011/05/04/lisp-problems.html) - a work in progress, I'll add Clojure
      solutions next to the Common Lisp ones when I have some thime
    * [Labrepl](http://foognostic.net/labrepl-summary/)
    * [Project Euler](http://projecteuler.net/)

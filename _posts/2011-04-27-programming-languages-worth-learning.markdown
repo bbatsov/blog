@@ -70,7 +70,7 @@ Seibel's
 fancy Scheme more take a look at the classic text
 ["Structure and Interpretation of Computer Programs"](http://mitpress.mit.edu/sicp/full-text/book/book.html). A
 good source of exercises for aspiring Lisp programmers are the
-["Lisp Problems"](http://batsov.com/lisp-problems.html)(a work in progress based on the original "Prolog Problems").
+["Lisp Problems"](/Misc/Common%20Lisp/2011/05/04/lisp-problems.html)(a work in progress based on the original "Prolog Problems").
 
 #Java
 ---
