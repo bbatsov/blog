@@ -16,7 +16,7 @@ than Scala as far as functional and parallel programming are
 concerned. You'll see that Clojure is radically different from Scala
 and Groovy in many aspects - it's not an OO language, it doesn't have
 Algol-derived syntax and it introduces a few rather radical ideas on
-subjects such as identity and state.
+subjects such as [identity and state](http://clojure.org/state).
 
 Clojure's approach to concurrency is characterized by the concept of
 identities, which represent a series of immutable states over
@@ -24,27 +24,31 @@ time. Since states are immutable values, any number of workers can
 operate on them in parallel, and concurrency becomes a question of
 managing changes from one state to another. For this purpose, Clojure
 provides several mutable reference types, each having well-defined
-semantics for the transition between states.
+semantics for the transition between states. This is a pretty complex
+topic for a language overview so I'll discuss it here only cursory.
 
 Clojure was initially conceived as targeting both the JVM and the
 CLR. For various reason currently the core development team is targeting mainly
 the JVM and the [CLR port](https://github.com/richhickey/clojure-clr)
 is receiving less attention (though it's not abandoned and it's
-regularly being updated).
+regularly being updated). Like Scala it's not technically correct to
+call it a JVM languages, because it's both a JVM and a .Net language,
+but since it's used a lot more often with Java it doesn't make that
+much of a difference.
 
 # A brief history of Clojure
 
-Clojure is very very young project (compared to most popular
-programming languages). It was created in 2007 by Rich
+Clojure is a very young project (compared to most popular
+programming languages at least). It was created in 2007 by Rich
 Hickey (project leader and benevolent dictator for life). He developed
 Clojure because he wanted a modern Lisp for functional programming,
 symbiotic with the established Java platform, and designed for
 concurrency. What started as a hobby project turned into some much
-bigger with Rich getting some excited about the project that left his
-job to work full-time on the project, effectively burning his life's
+bigger with Rich getting so excited about the project that left his
+job to work full-time on the project, effectively through burning his life's
 savings in the process. This was quite the gamble, but it turned out
-to be a lucky gamble since Clojure's popularity rapidly spiked and
-loyal and energetic community quickly formed around the project. 
+to be a lucky one, since Clojure's popularity rapidly spiked and
+loyal and energetic community was quickly formed around the project. 
 
 Clojure became the new language of choice for many well respected
 hackers from different communities. I've noticed something of a trend
@@ -57,6 +61,9 @@ The current Clojure version is 1.2 with 1.3 being just around the
 corner.
 
 # Installing Clojure
+
+_Before installing Clojure make sure you have Java installed. Java 5.0
+SE will do, but Java 6 SE is highly recommended._
 
 Installing Clojure is just a matter of downloading and extracting a
 single archive -
@@ -79,7 +86,9 @@ Clojure is defined in Clojure itself (in the **core.clj** file included in
 the src directory of distribution), which is automatically loaded from
 the .jar file when Clojure starts. The file **user.clj**, if found in the
 classpath, will be auto-loaded as well. You can leverage this to cause
-code to run when Clojure starts.
+code to run when Clojure starts. Reading the code in core.clj is a
+very good way to get started with language and see how real Clojure
+hackers work.
 
 When core.clj is loaded you will have the language as described herein fully available.
 Try:
@@ -110,37 +119,42 @@ and interactive programming.
 # Did you say Clojure was a Lisp???
 
 Most developers tend to have a very negative attitude towards the word
-Lisp in general. I guess it spawns all kinds of nasty associations in
+**Lisp** in general. I guess it spawns all kinds of nasty associations in
 their brains - like prefix syntax notation, tons of parentheses and a
-lot of crap their heard about Lisp from their 70 year-old professor
+lot of crap they heard about Lisp from their 70 year-old professor,
 teaching introduction to functional programming in college, whose
 notion of functional programming is that in Lisp everything is a
 function (believe me when I tell you this - such professors do exist).
 
-You know, I wasn't born coding in Lisp myself. When I was initially
-exposed to Lisp when I tried to learn the Emacs text editor I was
+You know, I wasn't born coding in Lisp myself. I was initially
+exposed to Lisp when I tried to learn the Emacs text editor and I was
 baffled by many things - the strange syntax, the talk about atoms and
 lists, code as data, macros, continuation, tail-call optimizations,
-what to quote and that to evaluate. To put it shortly - I was like
+what to quote and that to evaluate, what is a s-expression and what
+isa form. To put it shortly - I was like
 Alice down the rabbit whole or like Neo when he found out what the
-Matrix is...
+Matrix is... The world of programming that I was familiar with was
+turned upside down.
 
 The interesting thing is that I felt similarly when I learnt my first
 programming language Pascal in the 8th grade. It's not that Lisp is
 any harder than the other programming languages - it's just that it's
 different and you're usually approaching it from a position in which
-you know one or several programming languages using the much more
-widespread Algol syntax. I advise to simply keep an open mind while
+you know one or several programming languages, using the much more
+widespread Algol syntax. I advise you to simply keep an open mind while
 you read this article and don't just dismiss Clojure because of its
 Lisp heritage.
 
-You've likely know at least one person who constantly keeps telling
-you how Lisp is the one true programming language, how nothing
-compares to it and how Lisp is the actual answer to that fundamental
+You likely know at least one person who constantly keeps telling
+you how Lisp is the one true programming language, how everything
+pales next to it and how Lisp is the actual answer to that fundamental
 question about the life, the universe and everything else (not
 42). These people might very well be telling the truth, but their
 zealous rants tend to create a negative attitude towards the Lisp
-community as well. Please, ignore them. 
+community as well. Please, ignore them.
+
+Now it's time to take the red pill... So fasten your seat-belt
+Dorothy, 'cause Kansas is going bye-bye! 
 
 # Clojure at a glance
 
@@ -156,17 +170,21 @@ grounded in the past and the present. It brings together Lisp and the
 Java Virtual Machine. Lisp brings wisdom spanning most of the history
 of programming, and Java brings the robustness, extensive libraries,
 and tooling of the dominant platform available today._ - Stuart
-Halloway, author of ["Programming Clojure"](http://www.pragprog.com/titles/shcloj/programming-clojure)
+Halloway, author of
+["Programming Clojure"](http://www.pragprog.com/titles/shcloj/programming-clojure)
+
+If I had only a few minutes to describe Clojure this would be the gist
+of it:
 
 * Dynamic language for the JVM
     * Clojure uses dynamic typing like languages such Ruby and Python
       and a very smart compiler that will generally generate very
-      efficient bytecode. If you want to push the envelope even
+      efficient bytecode. If you want to push the performance envelope even
       further you can add some explicit type hints in your Clojure
       code to ensure the generation of even faster bytecode.
 * Lisp reloaded
     * Clojure is Lisp down to its core - it has all the features that
-      are known and loved and in the same it improves upon them in
+      are known and loved, and in the same time it improves upon them in
       several ways - for instance we have a literal syntax for most
       common collection types. Sure - with Common Lisp's reader macros
       one can do this as well, but nobody bothers to...
@@ -179,14 +197,22 @@ Halloway, author of ["Programming Clojure"](http://www.pragprog.com/titles/shclo
     * Clojure puts heavy emphasis on functional programming, but it's
       a practical functional programming language - not a pure one
       like Haskell. Clojure acknowledges that some stuff simply change
-      and operations have to generally produce some effects and make
-      those thing easy to model. Clojure has a library full of
+      and operations have to generally produce some effects, and makes
+      those things easy to model. Clojure has a library full of
       rock-solid immutable data structures, relies heavily on lazy
-      evaluation and higher-order functions.
+      evaluation, tail-recursion and higher-order functions.
 * Designed with concurrency in mind
-    * Clojure has extensive built-in high-level facilities to deal
+    * Clojure has an extensive built-in high-level facilities to deal
       with concurrent access to data and parallel programming in general.
 * Fast
+    * Unlike many dynamic languages (even those running on top the
+      JVM) Clojure is quite fast - it some scenarios it's performance
+      can rival that of a statically type language. You can browse a
+      long list of
+      [benchmark comparisons](http://stackoverflow.com/questions/2186709/are-there-any-good-clojure-benchmarks)
+      to verify this statement. Given the fact that performance if
+      often cited as a big drawback of dynamic languages, this is
+      quite the win for Clojure.
 * Capable of easily leveraging existing Java code
     * Using Java code from Clojure is direct, easy and
       idiomatic. There are no intermediate layers or the need to
@@ -196,7 +222,7 @@ I'll discuss in greater detail some of those features as I moving along.
 
 # A whirlwind tour of Clojure
 
-**Clojure is elengant**
+**Clojure is elegant**
 
 * Removes a lot of accidental complexity
 * Clojure programs are generally expressive and concise
@@ -302,12 +328,12 @@ with a few examples of its usage. It's not equivalent to Java
 definition, however - the Clojure version of the structure is
 immutable.
 
-# Clojure is a Lisp
+**Clojure is a Lisp**
 
 For better or for worse Clojure is a Lisp dialect and we should accept
 this. I have always viewed Lisp as weapon from a more elegant era when
 people were more concerned with elements of style and empowering the
-developers to easily translate their thought into programs. For one
+developers to easily translate their thoughts into programs. For one
 reason or another every Lisp dialect has failed to capture the
 attention of a critical mass of developers that may propel it into the
 mainstream. This, of course, doesn't mean that existing Lisp dialects
@@ -317,22 +343,24 @@ simple as possible so it could be appropriate as a teaching tool - in
 that area Scheme certainly excelled. Common Lisp was created to bring
 together the various Lisp dialects under a common denominator and it
 also excelled in that endeavour. I guess that its creators hoped that
-it would capture a significant market share at some point, but alas -
+it would capture a significant market share at some point as well, but alas -
 that never happened. 
 
-The syntax and programming model of Lisp so far have been too much for a
-typical developer to absorb. Yet, there’s something special about
+The syntax and programming model of Lisp so far have been too much for
+a typical developer to absorb. Yet, there’s something special about
 Lisp that’s worth revisiting, so the new dialects continue to
-emerge. Some of the best programming universities lead with the Lisp
-language to form young minds while they are still open. I have
-witnessed something of a cycle - every 5 or so years the interest in
-Lisp spikes because of something. In the beginning of the nineties the
+emerge. Some of the best programming universities start teaching
+programming with the Lisp language to form young minds while they are
+still open. I have witnessed something of a cycle - every 5 or so
+years the interest in Lisp spikes because of something major that
+happened in the land of Lisp. In the beginning of the nineties the
 work on Common Lisp excited a lot of developers. Five years later Paul
 Graham took the stage - he showed the world how Lisp can empower small
-teams and make real money. Five years ago Peter Seibel published the
+teams and make real money (if you haven't heard of Viaweb fire up
+google now). Five years ago Peter Seibel published the
 "Practical Common Lisp" book that appeared on Amazon's bestseller list
 and got a lot of new developers excited about Lisp. A now... well I
-guess you can figure that out on your own. 
+guess you can figure that one out on your own.
 
 Lisp just won't let go and die. There is something magical about
 it. And there is this inexplicable smugness on the face of Lisp
@@ -348,7 +376,7 @@ So let's review the typical Lisp features that are present in Clojure:
       pass function names around without any special syntax. In Common
       Lisp you can have function and variables sharing the same name,
       but you have to mark functions explicitly when you're passing
-      them around.
+      them around (with the #' reader macro or the **function** function).
 * Dynamic - both in term of dynamic typing and dynamic
   development. Lisp is the language that made popular the technique of
   incremental interactive development (we'll talk about it more in a bit)
@@ -357,22 +385,33 @@ So let's review the typical Lisp features that are present in Clojure:
       reader read the source code of the application it converts it to
       standard Lisp objects and they represent the program. No special
       transformations, no AST. This is the heart of Lisp macros and a
-      centerpiece in Lisp philosophy.
+      centrepiece in Lisp philosophy.
 * Reader
     * The reader can read valid Clojure forms and translate them into
       Clojure objects - object, function call, everything that has a
       readable representation
 * Small core, next to none syntax
     * In terms of compact syntax and uniformity of the syntax it has
-      always been hard to beat Lisp
+      always been hard to beat Lisp. Most programming languages are
+      full of special syntax constructs, keywords, etc. In lisp
+      programs are just lists and the low-level plumbing comes in the
+      form of special functions called special forms. Everything else
+      is implemented in terms of those special forms. 
 * Sequences
     * Clojure abstracts common collection traits into an abstraction
       called seq which allows you to use a similar API for many tasks
 * Macros
-    * Forget about C marcos, Word macros, editor macros. Lisp macros
+    * Forget about C macros, Word macros, editor macros. Lisp macros
       are the most powerful metaprogramming technique out there - they
-      enable you generate new syntax abstractions unlike anything else
-* Syntactic abstractions
+      enable you generate new syntax abstractions unlike anything
+      else. If you need a new operator in Java you'd have a hard time
+      convincing the guys in Oracle to add it for you. With Lisp
+      you're in charge and you can define any syntax abstractions that
+      you wish. As an appetiser consider the **and** boolean
+      statement. In most languages it's built into the language
+      itself. In Clojure its just a short macro:
+      
+      
 
 # Persistent data structures
 
@@ -382,24 +421,26 @@ structure in place. Understandably most people are immediately
 concerned about the performance implications of such a technique -
 this seems like quite a lot of overhead. They needn't worry, though.
 
-Data structures in Clojure are persistent. A persistent data
+Data structures in Clojure happen to be persistent as well. A persistent data
 structure is a data structure which always preserves the previous
-version of itself when it is modified; such data structures are
+version of itself when it is modified -  such data structures are
 effectively immutable, as their operations do not (visibly) update the
 structure in-place, but instead always yield a new updated
 structure. A persistent data structure is not a data structure
 committed to persistent storage, such as a disk; this is a different
-and unrelated sense of the word "persistent.".
+and unrelated sense of the word "persistent".
 
 Persistent data structures save a lot of copying around and improve
-greatly the performance. 
+greatly the performance. Knowing this should be enough for most
+developers, those that are more curious can find a lot of interesting
+articles on the subject on-line.
 
-The core data structures are:
+The core data structures in Clojure are:
 
 * List
-* Set
-* Map
-* Vector
+* Set - all the items in it are unique
+* Map - also known as associative array and dictionary in other languages
+* Vector - also know as one dimensional array
 
 Let's see them in action:
 
@@ -516,6 +557,7 @@ user> (count a-vector)
 5
 user> (conj a-vector 13)
 [1 2 3 4 5 13]
+;; random access is a constant time operation in vectors
 user> (nth a-vector 3)
 4
 user> (pop a-vector)
@@ -524,17 +566,270 @@ user> (peek a-vector)
 5
 {% endhighlight %}
 
+Most data structures in Clojure are part of a common Sequence API,
+that we'll briefly discuss shortly.
+
+# The Seq API
+
+Clojure defines many algorithms in terms of sequences (seqs). A seq is
+a logical list, and unlike most Lisps where the list is represented by
+a concrete, 2-slot structure, Clojure uses the ISeq interface to allow
+many data structures to provide access to their elements as
+sequences. The **seq** function yields an implementation of ISeq
+appropriate to the collection. Seqs differ from iterators in that they
+are persistent and immutable, not stateful cursors into a
+collection. As such, they are useful for much more than foreach -
+functions can consume and produce seqs, they are thread safe, they can
+share structure, etc.
+
+Most of the sequence library functions are lazy, i.e. functions that
+return seqs do so incrementally, as they are consumed, and thus
+consume any seq arguments incrementally as well. Functions returning
+lazy seqs can be implemented using the **lazy-seq** macro. The laziness
+allows us to deal with infinite data structures easily (as long as we
+don't try to act on all of their elements that is):
+
+{% highlight clojure %}
+user> (take 10 (filter even? (iterate inc 1)))
+(2 4 6 8 10 12 14 16 18 20)
+{% endhighlight %}
+
+**iterate** returns an infinite lazy sequence. **filter** returns a lazy
+sequence as well. With **take** we can take only the elements we need
+without have to process the entire infinite collection.
+
 # Functional programing with Clojure
+
+Clojure is a functional programming language and as such it offers quite
+the selection of features that make it easy to leverage the functional
+programming techniques. 
+
+* functions are objects
+* all built-in data structures are immutable
+* most functions in the core library are pure (they don't produce any
+  side results and they don't interact with the outside world in any
+  manner other than just receiving their parameters from it)
+* there are no iteration constructs like **for** and **while** in
+  other languages. In place of iteration list comprehensions and
+  recursion are commonly used.
+* everything is an expression that yields some result - even things
+  that are traditionally statements in other languages such as **if** and
+  **print** (although the return value of print is not particularly useful)
 
 # Parallel programming
 
+Functional programming and parallel programming complement each
+other. When most of your code is contained in pure functions it's
+naturally tread safe (not to mention much easier to test). Since you
+don't have any mutable state there, it's absolutely safe to fire those
+pure functions in as many threads as you wish and you'll have
+absolutely nothing to worry about.
+
+Programs, however, eventually produce side effects and often they
+really have to have some mutable state. Clojure makes it easy to model
+such situations in your programs in a way that doesn't compromise the
+ability to parallelize the programs. 
+
+**Refs and transactions**
+
+Transactional references (known as refs in Clojure) ensure safe shared use of mutable
+storage locations via a software transactional memory (STM)
+system. Refs are bound to a single storage location for their
+lifetime, and only allow mutation of that location to occur within a
+transaction.
+
+Clojure transactions should be easy to understand if you've ever used
+database transactions - they ensure that all actions on refs are
+atomic, consistent, and isolated. Atomic means that every change to
+refs made within a transaction occurs or none do. Consistent means
+that each new value can be checked with a validator function before
+allowing the transaction to commit. Isolated means that no transaction
+sees the effects of any other transaction while it is running. Another
+feature common to STMs is that, should a transaction have a conflict
+while running, it is automatically retried.
+
+There are many ways to do STMs (locking/pessimistic,
+lock-free/optimistic and hybrids) and it is still a research
+problem. The Clojure STM uses multiversion concurrency control with
+adaptive history queues for snapshot isolation, and provides a
+distinct commute operation. Here's a short example:
+
+{% highlight clojure %}
+(def picked-nums (ref #{})
+
+(def secret-num (.nextInt (java.util.Random.) 10))
+
+(defn guess-number [n]
+        (print "Enter a guess between 1 and 10: ")
+        (flush)
+        (let [guess (java.lang.Integer/parseInt (read-line)) ]
+             (cond
+               (= guess n) (println "You guessed correctly")
+               (contains? (deref picked-numbers) n) (println "Pick another number! You already tried that one.")
+               :else (dosync
+                      (alter picked-numbers conj guess)))))
+
+user=> (guess-number secret-num)
+Enter a guess between 1 and 10: 1
+#{1}
+user=> (guess-number secret-num)
+Enter a guess between 1 and 10: 3
+#{1 3}
+user=> (guess-number secret-num)    
+Enter a guess between 1 and 10: 5
+#{1 3 5}
+{% endhighlight %}
+
+I hope you got the basic idea from this simple, but mostly useless
+snippet. Generally when we have only one object that we'll be changing
+in this manner an atom is a more appropriate choice as we'll see shortly.
+
+**Agents**
+
+Like _refs_, _agents_ provide shared access to mutable state. Where refs
+support coordinated, synchronous change of multiple locations, agents
+provide independent, asynchronous change of individual
+locations (to put it into simpler term you'd use refs if you had to
+updated several things and wait for the update to happen and agents if
+you need to update only one thing and don't really care when the
+update will happen - only that it will happen). Agents are bound to a single storage location for their
+lifetime, and only allow mutation of that location (to a new state) to
+occur as a result of an action. Actions are functions (with,
+optionally, additional arguments) that are asynchronously applied to
+an agent's state and whose return value becomes the agent's new
+state. Let's see an agent (Smith maybe?) in action:
+
+{% highlight clojure %}
+user> (def some-agent (agent 0))
+#'user/some-agent
+user> (dotimes [i 100]
+               (send some-agent inc))
+nil
+user> some-agent
+#<Agent@15c024c: 100>
+user> @some-agent
+100
+{% endhighlight %}
+
+**Atoms**
+
+Atoms provide a way to manage shared, synchronous, independent
+state. They are a reference type like refs and vars. You create an
+atom with atom, and can access its state with deref (or @). Let's
+rework the refs example to use an atom:
+
+{% highlight clojure %}
+(def picked-nums (atom #{})
+
+(def secret-num (.nextInt (java.util.Random.) 10))
+
+(defn guess-number [n]
+        (print "Enter a guess between 1 and 10: ")
+        (flush)
+        (let [guess (java.lang.Integer/parseInt (read-line)) ]
+             (cond
+               (= guess n) (println "You guessed correctly")
+               (contains? (deref picked-numbers) n) (println "Pick another number! You already tried that one.")
+               :else (swap! picked-nums conj guess))))
+
+user=> (guess-number secret-num)
+Enter a guess between 1 and 10: 1
+#{1}
+user=> (guess-number secret-num)
+Enter a guess between 1 and 10: 3
+#{1 3}
+user=> (guess-number secret-num)    
+Enter a guess between 1 and 10: 5
+#{1 3 5}
+{% endhighlight %}
+
+**Vars**
+
+Bindings created with the **binding** macro cannot be seen by any other
+thread. Bindings created with binding can be assigned to, which
+provides a means for a nested context to communicate with code before
+it on the call stack.
+
+I'll not be discussing them further, because Vars are a vast subject
+deserving its own post.
+
+# OOP, Lisp style
+
+Object oriented programming in most programming languages is based on
+a single dispatch message passing. The object on which we invoke a
+method (poor choice of words, but easier to comprehend) is the
+receiver, the method name and it's arguments are the message. The
+method's invoked solely on the base of the type of the receiver
+object.
+
+Lisps have traditionally implemented OOP with generic methods, that
+don't have a receiver and are dispatched on the basis of the types of
+all of their arguments. In the world of multiple dispatch the more
+traditional single dispatch is just a special case in which only the
+type of the first method argument matters. Here's a taste of
+multimethods in Clojure:
+
+{% highlight clojure %}
+(defmulti my-add (fn [x y] (and (string? x) (string? y))))
+
+(defmethod my-add true [x y]
+    (str x y))
+
+(defmethod my-add false [x y]
+    (+ x y))
+
+user=> (my-add 3 4) ; => 7
+user=> (my-add "3" "4") ; => "34"
+{% endhighlight %}
+
+Here we defined a multi-method that behaves differently for string and
+numeric arguments - strings args are concatenated and numeric args are
+added together.
+
 # Interactive development
 
-* REPL
-* Functions can be defined in real time
+Traditional programming languages have more or less the following work
+flow:
+
+* write the unit tests (power to TDD)
+* write the source file
+* compile the source file (if needed)
+* run the source file with an interpreter or run the binary file that
+  resulted from the compilation step
+* if you need to modify something you edit the code and repeat the
+  other steps
+  
+Those programs naturally have some entry points. Alternative you can
+simple use the test suite you've initially developed.
+
+A Lisp developers generally has a very different work flow:
+
+* start a REPL
+* write some unit tests
+* write a few functions definitions in a source file
+* compile them interactively and load them in a REPL
+* test these functions directly from the REPL
+* if you need to modify a function - just edit it and reload in the
+  REPL
+  
+I've been a C/C++ and Java developer for a long time and I didn't see
+anything wrong with first model. In fact - I had been practising it
+for so very long that it felt quite natural to me. After I've started
+hacking with Lisp, however, my old work flow started to feel very
+unproductive to me (especially with statically typed languages). Here
+are some key aspects of the interactive (and iterative) development
+that is so common in Lisp (not only in Common Lisp ;-) ):
+
+* The REPL is an integral process of the coding process. Ruby and
+  Python developers generally tend to use it only for exploratory
+  programming although many of the techniques common for Lisp could be
+  applied for Ruby and Python as well. 
+* Functions can be defined (and redefined) in real time
 * Loading & compilation of code at runtime
 * Powerful introspection features
 * Interactive development
+* Iterative development - you know the old saying "Lather, rinse,
+  repeat..." (probably one of the oldest examples of recursion).
 
 # The tools of the trade
 
@@ -543,53 +838,80 @@ opinion) has nothing to do with the language itself. The problem is
 the lack of decent tooling and infrastructure around it. Lisp hackers
 have traditionally favoured the SLIME development environment for
 Emacs. Unfortunately the maintainers are not especially interested in
-having Clojure support(since SLIME targets Common Lisp) and nobody in
+having Clojure support (since SLIME targets Common Lisp) and nobody in
 Clojure community seems to be capable of writing an adequate swank
-component for Clojure. The existing one is quite rudimentary and
-doesn't work with stock SLIME distributions. But this is not the worst
-part - the worst part is that even this crippled SLIME is still the
-best development tool for Clojure. IntelliJ's plug-in is almost
-unusable, Eclipse's is barely usable and NetBeans's cannot be
-installed half the time...
+component for Clojure that can be used with an up-to-date version of
+SLIME. The existing one is quite rudimentary and doesn't work with
+stock SLIME distributions. But this is not the worst part - the worst
+part is that even this crippled SLIME is still the best development
+tool for Clojure. IntelliJ's plug-in is almost unusable, Eclipse's is
+barely usable and NetBeans's cannot be installed half the time...
 
 * IDEs
    * [IntelliJ IDEA](http://plugins.intellij.net/plugin/?id=4050) -
      everyone knows how much I love IntelliJ IDEA. Sadly I cannot say
      a good word about the La Clojure plug-in. Its mostly unmaintained
-     (it often broken), has pretty limited features and is generally
-     good for... nothing. 
+     (and often broken), has pretty limited features and is generally
+     good for... nothing. It's sad to see it's so far back in
+     JetBrains's priority list - they are doing wonderful things in
+     their Groovy and Scala plugins. 
    * [Eclipse](http://code.google.com/p/counterclockwise/) - Eclipse
      certainly boasts the best IDE Clojure plug-in at the moment (Counter
      clock-wise). It has a lot of features found otherwise only in
-     SLIME. It even features partial paredit support.
+     SLIME. It even features partial paredit support. Being the best
+     in such a sorry bunch is not quite an achievement, but at least
+     the guys there are trying really hard and I'm sure that within one
+     or two releases they'll have a great product. 
    * [NetBeans](http://www.enclojure.org/) - The Enclojure plug-in
      seems to be abandoned currently. It has no released a new version
      in over an year and the old one were buggy as hell (when they the
      decency to get themselves installed, that is).
-   * SLIME - The Ultimate Clojure programming environment. Even though
+   * [SLIME](https://github.com/technomancy/swank-clojure) - The Ultimate Clojure programming environment. Even though
      it's lacking a few features of the Common Lisp counterpart, SLIME
      still is the best option for Clojure development, uniquely
-     attuned to the Lisp philosophy of interactive development.
+     attuned to the Lisp philosophy of interactive and incremental development.
 
 Luckily there's no lack of good build tools that one can use with Clojure.
 
 * Build tools
-   * Apache Maven
-   * Leiningen
-   * Cake
-   * Gradle
-   * Apache Builder
+   * [Apache Maven](http://maven.Apache.org) - Maven has a nice
+     Clojure plugin
+   * [Leiningen](https://github.com/technomancy/leiningen) - probably
+     the most popular Clojure-specific build tool
+   * [Cake](https://github.com/ninjudd/cake) - a solid alternative to Leiningen
+   * [Gradle](http://www.gradle.org/) - a build system for Java-based
+     applications, written in Groovy, that supports Clojure
+   * [Apache Builder](http://buildr.apache.org/) - a build system for
+     Java-based applications, written in Ruby , that supports Clojure
+     
+# Resources
+
+* Books
+   * ["Programming Clojure"](http://pragprog.com/titles/shcloj/programming-clojure)
+   * ["Practical Clojure"](http://www.apress.com/9781430272311)
+   * ["The Joy of Clojure"](http://joyofclojure.com/)
+* Screencasts & Video lectures
+   * ["Clojure's channel"](http://clojure.blip.tv/)
+* Websites & Blogs
+   * [Official website](http://blog.fogus.me/)
+   * [Disclojure](http://disclojure.org/) - a clojure news aggregator
+* Exercises
+   * [Lisp problems](/2011/05/04/lisp-problems.html) - a work in progress, I'll add Clojure
+     solutions next to the Common Lisp ones when I have some thime
+   * [Labrepl](http://foognostic.net/labrepl-summary/)
+   * [Project Euler](http://projecteuler.net/)
+   * [Clojure Koans](https://github.com/functional-koans/clojure-koans)
    
 # Epilogue
 
-Clojure is both a radical departure from traditional Algol-derived
+Clojure is a radical departure from both traditional Algol-derived
 languages and existing Lisp dialects. Its advanced support for
 functional programming, combined with a state of the art concurrency
 support make it attractive language for the development of heavy duty
 enterprise grade systems. Coupled with the seamless Java integration
 the sky seems to be the limit for Clojure...
 
-Unfortunately Clojure has to face several problems if its to
+Unfortunately Clojure has to face several problems if it's to
 succeed. First of all it has to attract a critical mass of developers
 that are not afraid of the syntactic difference with common
 languages. Then there is the concept of functional thinking - a way of
@@ -613,7 +935,11 @@ extolling some of Clojure's virtues. I'd like to say, however, that
 I'm very excited that we finally have a Lisp dialect that is modern,
 simple, powerful, elegant and most of all - capable of getting the job
 done. I really hope that Clojure will be instrument of Lisp return on
-the center stage of programming, where it deserves to be.
+the centre stage of programming, where it deserves to be.
+
+As usual the article is very shallow overview and doesn't even
+mention some important features of the language. Be sure to check out
+some of the resources mentioned.
 
 _P.S. This is the last of the articles that I'd originally intended to
 write. I'm considering the possibility to write a couple of more

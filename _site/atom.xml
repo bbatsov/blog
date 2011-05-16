@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-14T02:53:54+03:00</updated>
+  <updated>2011-05-16T17:19:23+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -31,7 +31,7 @@ than Scala as far as functional and parallel programming are
 concerned. You’ll see that Clojure is radically different from Scala
 and Groovy in many aspects - it’s not an OO language, it doesn’t have
 Algol-derived syntax and it introduces a few rather radical ideas on
-subjects such as identity and state.&lt;/p&gt;
+subjects such as &lt;a href=&quot;http://clojure.org/state&quot;&gt;identity and state&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Clojure’s approach to concurrency is characterized by the concept of
 identities, which represent a series of immutable states over
@@ -39,27 +39,31 @@ time. Since states are immutable values, any number of workers can
 operate on them in parallel, and concurrency becomes a question of
 managing changes from one state to another. For this purpose, Clojure
 provides several mutable reference types, each having well-defined
-semantics for the transition between states.&lt;/p&gt;
+semantics for the transition between states. This is a pretty complex
+topic for a language overview so I’ll discuss it here only cursory.&lt;/p&gt;
 
 &lt;p&gt;Clojure was initially conceived as targeting both the JVM and the
 CLR. For various reason currently the core development team is targeting mainly
 the JVM and the &lt;a href=&quot;https://github.com/richhickey/clojure-clr&quot;&gt;CLR port&lt;/a&gt;
 is receiving less attention (though it’s not abandoned and it’s
-regularly being updated).&lt;/p&gt;
+regularly being updated). Like Scala it’s not technically correct to
+call it a JVM languages, because it’s both a JVM and a .Net language,
+but since it’s used a lot more often with Java it doesn’t make that
+much of a difference.&lt;/p&gt;
 
 &lt;h1 id=&quot;a-brief-history-of-clojure&quot;&gt;A brief history of Clojure&lt;/h1&gt;
 
-&lt;p&gt;Clojure is very very young project (compared to most popular
-programming languages). It was created in 2007 by Rich
+&lt;p&gt;Clojure is a very young project (compared to most popular
+programming languages at least). It was created in 2007 by Rich
 Hickey (project leader and benevolent dictator for life). He developed
 Clojure because he wanted a modern Lisp for functional programming,
 symbiotic with the established Java platform, and designed for
 concurrency. What started as a hobby project turned into some much
-bigger with Rich getting some excited about the project that left his
-job to work full-time on the project, effectively burning his life’s
+bigger with Rich getting so excited about the project that left his
+job to work full-time on the project, effectively through burning his life’s
 savings in the process. This was quite the gamble, but it turned out
-to be a lucky gamble since Clojure’s popularity rapidly spiked and
-loyal and energetic community quickly formed around the project. &lt;/p&gt;
+to be a lucky one, since Clojure’s popularity rapidly spiked and
+loyal and energetic community was quickly formed around the project. &lt;/p&gt;
 
 &lt;p&gt;Clojure became the new language of choice for many well respected
 hackers from different communities. I’ve noticed something of a trend
@@ -72,6 +76,9 @@ Lisp’s power.&lt;/p&gt;
 corner.&lt;/p&gt;
 
 &lt;h1 id=&quot;installing-clojure&quot;&gt;Installing Clojure&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;Before installing Clojure make sure you have Java installed. Java 5.0
+SE will do, but Java 6 SE is highly recommended.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Installing Clojure is just a matter of downloading and extracting a
 single archive -
@@ -94,7 +101,9 @@ Clojure is defined in Clojure itself (in the &lt;strong&gt;core.clj&lt;/strong&g
 the src directory of distribution), which is automatically loaded from
 the .jar file when Clojure starts. The file &lt;strong&gt;user.clj&lt;/strong&gt;, if found in the
 classpath, will be auto-loaded as well. You can leverage this to cause
-code to run when Clojure starts.&lt;/p&gt;
+code to run when Clojure starts. Reading the code in core.clj is a
+very good way to get started with language and see how real Clojure
+hackers work.&lt;/p&gt;
 
 &lt;p&gt;When core.clj is loaded you will have the language as described herein fully available.
 Try:&lt;/p&gt;
@@ -125,37 +134,42 @@ and interactive programming.&lt;/p&gt;
 &lt;h1 id=&quot;did-you-say-clojure-was-a-lisp&quot;&gt;Did you say Clojure was a Lisp???&lt;/h1&gt;
 
 &lt;p&gt;Most developers tend to have a very negative attitude towards the word
-Lisp in general. I guess it spawns all kinds of nasty associations in
+&lt;strong&gt;Lisp&lt;/strong&gt; in general. I guess it spawns all kinds of nasty associations in
 their brains - like prefix syntax notation, tons of parentheses and a
-lot of crap their heard about Lisp from their 70 year-old professor
+lot of crap they heard about Lisp from their 70 year-old professor,
 teaching introduction to functional programming in college, whose
 notion of functional programming is that in Lisp everything is a
 function (believe me when I tell you this - such professors do exist).&lt;/p&gt;
 
-&lt;p&gt;You know, I wasn’t born coding in Lisp myself. When I was initially
-exposed to Lisp when I tried to learn the Emacs text editor I was
+&lt;p&gt;You know, I wasn’t born coding in Lisp myself. I was initially
+exposed to Lisp when I tried to learn the Emacs text editor and I was
 baffled by many things - the strange syntax, the talk about atoms and
 lists, code as data, macros, continuation, tail-call optimizations,
-what to quote and that to evaluate. To put it shortly - I was like
+what to quote and that to evaluate, what is a s-expression and what
+isa form. To put it shortly - I was like
 Alice down the rabbit whole or like Neo when he found out what the
-Matrix is…&lt;/p&gt;
+Matrix is… The world of programming that I was familiar with was
+turned upside down.&lt;/p&gt;
 
 &lt;p&gt;The interesting thing is that I felt similarly when I learnt my first
 programming language Pascal in the 8th grade. It’s not that Lisp is
 any harder than the other programming languages - it’s just that it’s
 different and you’re usually approaching it from a position in which
-you know one or several programming languages using the much more
-widespread Algol syntax. I advise to simply keep an open mind while
+you know one or several programming languages, using the much more
+widespread Algol syntax. I advise you to simply keep an open mind while
 you read this article and don’t just dismiss Clojure because of its
 Lisp heritage.&lt;/p&gt;
 
-&lt;p&gt;You’ve likely know at least one person who constantly keeps telling
-you how Lisp is the one true programming language, how nothing
-compares to it and how Lisp is the actual answer to that fundamental
+&lt;p&gt;You likely know at least one person who constantly keeps telling
+you how Lisp is the one true programming language, how everything
+pales next to it and how Lisp is the actual answer to that fundamental
 question about the life, the universe and everything else (not
 42). These people might very well be telling the truth, but their
 zealous rants tend to create a negative attitude towards the Lisp
-community as well. Please, ignore them. &lt;/p&gt;
+community as well. Please, ignore them.&lt;/p&gt;
+
+&lt;p&gt;Now it’s time to take the red pill… So fasten your seat-belt
+Dorothy, ‘cause Kansas is going bye-bye! &lt;/p&gt;
 
 &lt;h1 id=&quot;clojure-at-a-glance&quot;&gt;Clojure at a glance&lt;/h1&gt;
 
@@ -171,14 +185,18 @@ grounded in the past and the present. It brings together Lisp and the
 Java Virtual Machine. Lisp brings wisdom spanning most of the history
 of programming, and Java brings the robustness, extensive libraries,
 and tooling of the dominant platform available today.&lt;/em&gt; - Stuart
-Halloway, author of &lt;a href=&quot;http://www.pragprog.com/titles/shcloj/programming-clojure&quot;&gt;“Programming Clojure”&lt;/a&gt;&lt;/p&gt;
+Halloway, author of
+&lt;a href=&quot;http://www.pragprog.com/titles/shcloj/programming-clojure&quot;&gt;“Programming Clojure”&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If I had only a few minutes to describe Clojure this would be the gist
+of it:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Dynamic language for the JVM
     &lt;ul&gt;
       &lt;li&gt;Clojure uses dynamic typing like languages such Ruby and Python
 and a very smart compiler that will generally generate very
-efficient bytecode. If you want to push the envelope even
+efficient bytecode. If you want to push the performance envelope even
 further you can add some explicit type hints in your Clojure
 code to ensure the generation of even faster bytecode.&lt;/li&gt;
     &lt;/ul&gt;
@@ -186,7 +204,7 @@ code to ensure the generation of even faster bytecode.&lt;/li&gt;
   &lt;li&gt;Lisp reloaded
     &lt;ul&gt;
       &lt;li&gt;Clojure is Lisp down to its core - it has all the features that
-are known and loved and in the same it improves upon them in
+are known and loved, and in the same time it improves upon them in
 several ways - for instance we have a literal syntax for most
 common collection types. Sure - with Common Lisp’s reader macros
 one can do this as well, but nobody bothers to…&lt;/li&gt;
@@ -205,19 +223,30 @@ problems straight away without much ceremony.&lt;/li&gt;
       &lt;li&gt;Clojure puts heavy emphasis on functional programming, but it’s
 a practical functional programming language - not a pure one
 like Haskell. Clojure acknowledges that some stuff simply change
-and operations have to generally produce some effects and make
-those thing easy to model. Clojure has a library full of
+and operations have to generally produce some effects, and makes
+those things easy to model. Clojure has a library full of
 rock-solid immutable data structures, relies heavily on lazy
-evaluation and higher-order functions.&lt;/li&gt;
+evaluation, tail-recursion and higher-order functions.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Designed with concurrency in mind
     &lt;ul&gt;
-      &lt;li&gt;Clojure has extensive built-in high-level facilities to deal
+      &lt;li&gt;Clojure has an extensive built-in high-level facilities to deal
 with concurrent access to data and parallel programming in general.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Fast&lt;/li&gt;
+  &lt;li&gt;Fast
+    &lt;ul&gt;
+      &lt;li&gt;Unlike many dynamic languages (even those running on top the
+JVM) Clojure is quite fast - it some scenarios it’s performance
+can rival that of a statically type language. You can browse a
+long list of
+&lt;a href=&quot;http://stackoverflow.com/questions/2186709/are-there-any-good-clojure-benchmarks&quot;&gt;benchmark comparisons&lt;/a&gt;
+to verify this statement. Given the fact that performance if
+often cited as a big drawback of dynamic languages, this is
+quite the win for Clojure.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
   &lt;li&gt;Capable of easily leveraging existing Java code
     &lt;ul&gt;
       &lt;li&gt;Using Java code from Clojure is direct, easy and
@@ -231,7 +260,7 @@ write wrapper for everything.&lt;/li&gt;
 
 &lt;h1 id=&quot;a-whirlwind-tour-of-clojure&quot;&gt;A whirlwind tour of Clojure&lt;/h1&gt;
 
-&lt;p&gt;&lt;strong&gt;Clojure is elengant&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Clojure is elegant&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Removes a lot of accidental complexity&lt;/li&gt;
@@ -339,12 +368,12 @@ with a few examples of its usage. It’s not equivalent to Java
 definition, however - the Clojure version of the structure is
 immutable.&lt;/p&gt;
 
-&lt;h1 id=&quot;clojure-is-a-lisp&quot;&gt;Clojure is a Lisp&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Clojure is a Lisp&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;For better or for worse Clojure is a Lisp dialect and we should accept
 this. I have always viewed Lisp as weapon from a more elegant era when
 people were more concerned with elements of style and empowering the
-developers to easily translate their thought into programs. For one
+developers to easily translate their thoughts into programs. For one
 reason or another every Lisp dialect has failed to capture the
 attention of a critical mass of developers that may propel it into the
 mainstream. This, of course, doesn’t mean that existing Lisp dialects
@@ -354,22 +383,24 @@ simple as possible so it could be appropriate as a teaching tool - in
 that area Scheme certainly excelled. Common Lisp was created to bring
 together the various Lisp dialects under a common denominator and it
 also excelled in that endeavour. I guess that its creators hoped that
-it would capture a significant market share at some point, but alas -
+it would capture a significant market share at some point as well, but alas -
 that never happened. &lt;/p&gt;
 
-&lt;p&gt;The syntax and programming model of Lisp so far have been too much for a
-typical developer to absorb. Yet, there’s something special about
+&lt;p&gt;The syntax and programming model of Lisp so far have been too much for
+a typical developer to absorb. Yet, there’s something special about
 Lisp that’s worth revisiting, so the new dialects continue to
-emerge. Some of the best programming universities lead with the Lisp
-language to form young minds while they are still open. I have
-witnessed something of a cycle - every 5 or so years the interest in
-Lisp spikes because of something. In the beginning of the nineties the
+emerge. Some of the best programming universities start teaching
+programming with the Lisp language to form young minds while they are
+still open. I have witnessed something of a cycle - every 5 or so
+years the interest in Lisp spikes because of something major that
+happened in the land of Lisp. In the beginning of the nineties the
 work on Common Lisp excited a lot of developers. Five years later Paul
 Graham took the stage - he showed the world how Lisp can empower small
-teams and make real money. Five years ago Peter Seibel published the
+teams and make real money (if you haven’t heard of Viaweb fire up
+google now). Five years ago Peter Seibel published the
 “Practical Common Lisp” book that appeared on Amazon’s bestseller list
 and got a lot of new developers excited about Lisp. A now… well I
-guess you can figure that out on your own. &lt;/p&gt;
+guess you can figure that one out on your own.&lt;/p&gt;
 
 &lt;p&gt;Lisp just won’t let go and die. There is something magical about
 it. And there is this inexplicable smugness on the face of Lisp
@@ -387,7 +418,7 @@ have a variable named the say way as a function, but you can
 pass function names around without any special syntax. In Common
 Lisp you can have function and variables sharing the same name,
 but you have to mark functions explicitly when you’re passing
-them around.&lt;/li&gt;
+them around (with the #’ reader macro or the &lt;strong&gt;function&lt;/strong&gt; function).&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Dynamic - both in term of dynamic typing and dynamic
@@ -399,7 +430,7 @@ incremental interactive development (we’ll talk about it more in a bit)&lt;/li
 reader read the source code of the application it converts it to
 standard Lisp objects and they represent the program. No special
 transformations, no AST. This is the heart of Lisp macros and a
-centerpiece in Lisp philosophy.&lt;/li&gt;
+centrepiece in Lisp philosophy.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Reader
@@ -412,7 +443,11 @@ readable representation&lt;/li&gt;
   &lt;li&gt;Small core, next to none syntax
     &lt;ul&gt;
       &lt;li&gt;In terms of compact syntax and uniformity of the syntax it has
-always been hard to beat Lisp&lt;/li&gt;
+always been hard to beat Lisp. Most programming languages are
+full of special syntax constructs, keywords, etc. In lisp
+programs are just lists and the low-level plumbing comes in the
+form of special functions called special forms. Everything else
+is implemented in terms of those special forms. &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Sequences
@@ -423,12 +458,17 @@ called seq which allows you to use a similar API for many tasks&lt;/li&gt;
   &lt;/li&gt;
   &lt;li&gt;Macros
     &lt;ul&gt;
-      &lt;li&gt;Forget about C marcos, Word macros, editor macros. Lisp macros
+      &lt;li&gt;Forget about C macros, Word macros, editor macros. Lisp macros
 are the most powerful metaprogramming technique out there - they
-enable you generate new syntax abstractions unlike anything else&lt;/li&gt;
+enable you generate new syntax abstractions unlike anything
+else. If you need a new operator in Java you’d have a hard time
+convincing the guys in Oracle to add it for you. With Lisp
+you’re in charge and you can define any syntax abstractions that
+you wish. As an appetiser consider the &lt;strong&gt;and&lt;/strong&gt; boolean
+statement. In most languages it’s built into the language
+itself. In Clojure its just a short macro:&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Syntactic abstractions&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;persistent-data-structures&quot;&gt;Persistent data structures&lt;/h1&gt;
@@ -439,25 +479,27 @@ structure in place. Understandably most people are immediately
 concerned about the performance implications of such a technique -
 this seems like quite a lot of overhead. They needn’t worry, though.&lt;/p&gt;
 
-&lt;p&gt;Data structures in Clojure are persistent. A persistent data
+&lt;p&gt;Data structures in Clojure happen to be persistent as well. A persistent data
 structure is a data structure which always preserves the previous
-version of itself when it is modified; such data structures are
+version of itself when it is modified -  such data structures are
 effectively immutable, as their operations do not (visibly) update the
 structure in-place, but instead always yield a new updated
 structure. A persistent data structure is not a data structure
 committed to persistent storage, such as a disk; this is a different
-and unrelated sense of the word “persistent.”.&lt;/p&gt;
+and unrelated sense of the word “persistent”.&lt;/p&gt;
 
 &lt;p&gt;Persistent data structures save a lot of copying around and improve
-greatly the performance. &lt;/p&gt;
+greatly the performance. Knowing this should be enough for most
+developers, those that are more curious can find a lot of interesting
+articles on the subject on-line.&lt;/p&gt;
 
-&lt;p&gt;The core data structures are:&lt;/p&gt;
+&lt;p&gt;The core data structures in Clojure are:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;List&lt;/li&gt;
-  &lt;li&gt;Set&lt;/li&gt;
-  &lt;li&gt;Map&lt;/li&gt;
-  &lt;li&gt;Vector&lt;/li&gt;
+  &lt;li&gt;Set - all the items in it are unique&lt;/li&gt;
+  &lt;li&gt;Map - also known as associative array and dictionary in other languages&lt;/li&gt;
+  &lt;li&gt;Vector - also know as one dimensional array&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Let’s see them in action:&lt;/p&gt;
@@ -574,6 +616,7 @@ greatly the performance. &lt;/p&gt;
 &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;conj &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;a-vector&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; random access is a constant time operation in vectors&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;nth &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;a-vector&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pop &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;a-vector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -583,18 +626,277 @@ greatly the performance. &lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
+&lt;p&gt;Most data structures in Clojure are part of a common Sequence API,
+that we’ll briefly discuss shortly.&lt;/p&gt;
+
+&lt;h1 id=&quot;the-seq-api&quot;&gt;The Seq API&lt;/h1&gt;
+
+&lt;p&gt;Clojure defines many algorithms in terms of sequences (seqs). A seq is
+a logical list, and unlike most Lisps where the list is represented by
+a concrete, 2-slot structure, Clojure uses the ISeq interface to allow
+many data structures to provide access to their elements as
+sequences. The &lt;strong&gt;seq&lt;/strong&gt; function yields an implementation of ISeq
+appropriate to the collection. Seqs differ from iterators in that they
+are persistent and immutable, not stateful cursors into a
+collection. As such, they are useful for much more than foreach -
+functions can consume and produce seqs, they are thread safe, they can
+share structure, etc.&lt;/p&gt;
+
+&lt;p&gt;Most of the sequence library functions are lazy, i.e. functions that
+return seqs do so incrementally, as they are consumed, and thus
+consume any seq arguments incrementally as well. Functions returning
+lazy seqs can be implemented using the &lt;strong&gt;lazy-seq&lt;/strong&gt; macro. The laziness
+allows us to deal with infinite data structures easily (as long as we
+don’t try to act on all of their elements that is):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;take &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;filter &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;even?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;iterate &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;inc&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;14&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;18&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;iterate&lt;/strong&gt; returns an infinite lazy sequence. &lt;strong&gt;filter&lt;/strong&gt; returns a lazy
+sequence as well. With &lt;strong&gt;take&lt;/strong&gt; we can take only the elements we need
+without have to process the entire infinite collection.&lt;/p&gt;
+
 &lt;h1 id=&quot;functional-programing-with-clojure&quot;&gt;Functional programing with Clojure&lt;/h1&gt;
+
+&lt;p&gt;Clojure is a functional programming language and as such it offers quite
+the selection of features that make it easy to leverage the functional
+programming techniques. &lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;functions are objects&lt;/li&gt;
+  &lt;li&gt;all built-in data structures are immutable&lt;/li&gt;
+  &lt;li&gt;most functions in the core library are pure (they don’t produce any
+side results and they don’t interact with the outside world in any
+manner other than just receiving their parameters from it)&lt;/li&gt;
+  &lt;li&gt;there are no iteration constructs like &lt;strong&gt;for&lt;/strong&gt; and &lt;strong&gt;while&lt;/strong&gt; in
+other languages. In place of iteration list comprehensions and
+recursion are commonly used.&lt;/li&gt;
+  &lt;li&gt;everything is an expression that yields some result - even things
+that are traditionally statements in other languages such as &lt;strong&gt;if&lt;/strong&gt; and
+&lt;strong&gt;print&lt;/strong&gt; (although the return value of print is not particularly useful)&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h1 id=&quot;parallel-programming&quot;&gt;Parallel programming&lt;/h1&gt;
 
+&lt;p&gt;Functional programming and parallel programming complement each
+other. When most of your code is contained in pure functions it’s
+naturally tread safe (not to mention much easier to test). Since you
+don’t have any mutable state there, it’s absolutely safe to fire those
+pure functions in as many threads as you wish and you’ll have
+absolutely nothing to worry about.&lt;/p&gt;
+
+&lt;p&gt;Programs, however, eventually produce side effects and often they
+really have to have some mutable state. Clojure makes it easy to model
+such situations in your programs in a way that doesn’t compromise the
+ability to parallelize the programs. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Refs and transactions&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Transactional references (known as refs in Clojure) ensure safe shared use of mutable
+storage locations via a software transactional memory (STM)
+system. Refs are bound to a single storage location for their
+lifetime, and only allow mutation of that location to occur within a
+transaction.&lt;/p&gt;
+
+&lt;p&gt;Clojure transactions should be easy to understand if you’ve ever used
+database transactions - they ensure that all actions on refs are
+atomic, consistent, and isolated. Atomic means that every change to
+refs made within a transaction occurs or none do. Consistent means
+that each new value can be checked with a validator function before
+allowing the transaction to commit. Isolated means that no transaction
+sees the effects of any other transaction while it is running. Another
+feature common to STMs is that, should a transaction have a conflict
+while running, it is automatically retried.&lt;/p&gt;
+
+&lt;p&gt;There are many ways to do STMs (locking/pessimistic,
+lock-free/optimistic and hybrids) and it is still a research
+problem. The Clojure STM uses multiversion concurrency control with
+adaptive history queues for snapshot isolation, and provides a
+distinct commute operation. Here’s a short example:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;picked-nums&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ref &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;secret-num&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;nextInt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;defn &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;guess-number&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;print &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Enter a guess between 1 and 10: &amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;flush&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Integer/parseInt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read-line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+             &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cond&lt;/span&gt;
+               &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;= &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;println &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;You guessed correctly&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+               &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;contains? &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;deref &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;picked-numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;println &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Pick another number! You already tried that one.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+               &lt;span class=&quot;nv&quot;&gt;:else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dosync&lt;/span&gt;
+                      &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;alter &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;picked-numbers&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;conj&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))))&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;user=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;guess-number&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;secret-num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;Enter&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;between&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;guess-number&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;secret-num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;Enter&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;between&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;guess-number&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;secret-num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;    
+&lt;span class=&quot;nv&quot;&gt;Enter&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;between&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I hope you got the basic idea from this simple, but mostly useless
+snippet. Generally when we have only one object that we’ll be changing
+in this manner an atom is a more appropriate choice as we’ll see shortly.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Agents&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Like &lt;em&gt;refs&lt;/em&gt;, &lt;em&gt;agents&lt;/em&gt; provide shared access to mutable state. Where refs
+support coordinated, synchronous change of multiple locations, agents
+provide independent, asynchronous change of individual
+locations (to put it into simpler term you’d use refs if you had to
+updated several things and wait for the update to happen and agents if
+you need to update only one thing and don’t really care when the
+update will happen - only that it will happen). Agents are bound to a single storage location for their
+lifetime, and only allow mutation of that location (to a new state) to
+occur as a result of an action. Actions are functions (with,
+optionally, additional arguments) that are asynchronously applied to
+an agent’s state and whose return value becomes the agent’s new
+state. Let’s see an agent (Smith maybe?) in action:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;some-agent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;agent &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;&amp;#39;user/some-agent&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;dotimes &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+               &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;send &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;some-agent&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;inc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;nil&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;some-agent&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;&amp;lt;Agent@15c024c:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user&amp;gt;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;@some-agent&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Atoms&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Atoms provide a way to manage shared, synchronous, independent
+state. They are a reference type like refs and vars. You create an
+atom with atom, and can access its state with deref (or @). Let’s
+rework the refs example to use an atom:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;picked-nums&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;atom&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;secret-num&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;nextInt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;util&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;defn &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;guess-number&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;print &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Enter a guess between 1 and 10: &amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;flush&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;let &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;java&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;lang&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;Integer/parseInt&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read-line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+             &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;cond&lt;/span&gt;
+               &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;= &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;println &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;You guessed correctly&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+               &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;contains? &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;deref &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;picked-numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;println &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Pick another number! You already tried that one.&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+               &lt;span class=&quot;nv&quot;&gt;:else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;swap!&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;picked-nums&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;conj&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))))&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;user=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;guess-number&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;secret-num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;Enter&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;between&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;guess-number&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;secret-num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;Enter&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;between&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;guess-number&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;secret-num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;    
+&lt;span class=&quot;nv&quot;&gt;Enter&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;guess&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;between&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Vars&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Bindings created with the &lt;strong&gt;binding&lt;/strong&gt; macro cannot be seen by any other
+thread. Bindings created with binding can be assigned to, which
+provides a means for a nested context to communicate with code before
+it on the call stack.&lt;/p&gt;
+
+&lt;p&gt;I’ll not be discussing them further, because Vars are a vast subject
+deserving its own post.&lt;/p&gt;
+
+&lt;h1 id=&quot;oop-lisp-style&quot;&gt;OOP, Lisp style&lt;/h1&gt;
+
+&lt;p&gt;Object oriented programming in most programming languages is based on
+a single dispatch message passing. The object on which we invoke a
+method (poor choice of words, but easier to comprehend) is the
+receiver, the method name and it’s arguments are the message. The
+method’s invoked solely on the base of the type of the receiver
+object.&lt;/p&gt;
+
+&lt;p&gt;Lisps have traditionally implemented OOP with generic methods, that
+don’t have a receiver and are dispatched on the basis of the types of
+all of their arguments. In the world of multiple dispatch the more
+traditional single dispatch is just a special case in which only the
+type of the first method argument matters. Here’s a taste of
+multimethods in Clojure:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;clojure&quot;&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;defmulti &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;my-add&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;fn &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;and &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;string? &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;string? &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))))&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;defmethod &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;my-add&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;defmethod &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;my-add&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;+ &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;user=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;my-add&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;; =&amp;gt; 7&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;user=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;my-add&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;3&amp;quot;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;4&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;; =&amp;gt; &amp;quot;34&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Here we defined a multi-method that behaves differently for string and
+numeric arguments - strings args are concatenated and numeric args are
+added together.&lt;/p&gt;
+
 &lt;h1 id=&quot;interactive-development&quot;&gt;Interactive development&lt;/h1&gt;
 
+&lt;p&gt;Traditional programming languages have more or less the following work
+flow:&lt;/p&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;REPL&lt;/li&gt;
-  &lt;li&gt;Functions can be defined in real time&lt;/li&gt;
+  &lt;li&gt;write the unit tests (power to TDD)&lt;/li&gt;
+  &lt;li&gt;write the source file&lt;/li&gt;
+  &lt;li&gt;compile the source file (if needed)&lt;/li&gt;
+  &lt;li&gt;run the source file with an interpreter or run the binary file that
+resulted from the compilation step&lt;/li&gt;
+  &lt;li&gt;if you need to modify something you edit the code and repeat the
+other steps&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Those programs naturally have some entry points. Alternative you can
+simple use the test suite you’ve initially developed.&lt;/p&gt;
+
+&lt;p&gt;A Lisp developers generally has a very different work flow:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;start a REPL&lt;/li&gt;
+  &lt;li&gt;write some unit tests&lt;/li&gt;
+  &lt;li&gt;write a few functions definitions in a source file&lt;/li&gt;
+  &lt;li&gt;compile them interactively and load them in a REPL&lt;/li&gt;
+  &lt;li&gt;test these functions directly from the REPL&lt;/li&gt;
+  &lt;li&gt;if you need to modify a function - just edit it and reload in the
+REPL&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’ve been a C/C++ and Java developer for a long time and I didn’t see
+anything wrong with first model. In fact - I had been practising it
+for so very long that it felt quite natural to me. After I’ve started
+hacking with Lisp, however, my old work flow started to feel very
+unproductive to me (especially with statically typed languages). Here
+are some key aspects of the interactive (and iterative) development
+that is so common in Lisp (not only in Common Lisp ;-) ):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The REPL is an integral process of the coding process. Ruby and
+Python developers generally tend to use it only for exploratory
+programming although many of the techniques common for Lisp could be
+applied for Ruby and Python as well. &lt;/li&gt;
+  &lt;li&gt;Functions can be defined (and redefined) in real time&lt;/li&gt;
   &lt;li&gt;Loading &amp;amp; compilation of code at runtime&lt;/li&gt;
   &lt;li&gt;Powerful introspection features&lt;/li&gt;
   &lt;li&gt;Interactive development&lt;/li&gt;
+  &lt;li&gt;Iterative development - you know the old saying “Lather, rinse,
+repeat…” (probably one of the oldest examples of recursion).&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;the-tools-of-the-trade&quot;&gt;The tools of the trade&lt;/h1&gt;
@@ -604,14 +906,14 @@ opinion) has nothing to do with the language itself. The problem is
 the lack of decent tooling and infrastructure around it. Lisp hackers
 have traditionally favoured the SLIME development environment for
 Emacs. Unfortunately the maintainers are not especially interested in
-having Clojure support(since SLIME targets Common Lisp) and nobody in
+having Clojure support (since SLIME targets Common Lisp) and nobody in
 Clojure community seems to be capable of writing an adequate swank
-component for Clojure. The existing one is quite rudimentary and
-doesn’t work with stock SLIME distributions. But this is not the worst
-part - the worst part is that even this crippled SLIME is still the
-best development tool for Clojure. IntelliJ’s plug-in is almost
-unusable, Eclipse’s is barely usable and NetBeans’s cannot be
-installed half the time…&lt;/p&gt;
+component for Clojure that can be used with an up-to-date version of
+SLIME. The existing one is quite rudimentary and doesn’t work with
+stock SLIME distributions. But this is not the worst part - the worst
+part is that even this crippled SLIME is still the best development
+tool for Clojure. IntelliJ’s plug-in is almost unusable, Eclipse’s is
+barely usable and NetBeans’s cannot be installed half the time…&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;IDEs
@@ -619,20 +921,25 @@ installed half the time…&lt;/p&gt;
       &lt;li&gt;&lt;a href=&quot;http://plugins.intellij.net/plugin/?id=4050&quot;&gt;IntelliJ IDEA&lt;/a&gt; -
 everyone knows how much I love IntelliJ IDEA. Sadly I cannot say
 a good word about the La Clojure plug-in. Its mostly unmaintained
-(it often broken), has pretty limited features and is generally
-good for… nothing. &lt;/li&gt;
+(and often broken), has pretty limited features and is generally
+good for… nothing. It’s sad to see it’s so far back in
+JetBrains’s priority list - they are doing wonderful things in
+their Groovy and Scala plugins. &lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;http://code.google.com/p/counterclockwise/&quot;&gt;Eclipse&lt;/a&gt; - Eclipse
 certainly boasts the best IDE Clojure plug-in at the moment (Counter
 clock-wise). It has a lot of features found otherwise only in
-SLIME. It even features partial paredit support.&lt;/li&gt;
+SLIME. It even features partial paredit support. Being the best
+in such a sorry bunch is not quite an achievement, but at least
+the guys there are trying really hard and I’m sure that within one
+or two releases they’ll have a great product. &lt;/li&gt;
       &lt;li&gt;&lt;a href=&quot;http://www.enclojure.org/&quot;&gt;NetBeans&lt;/a&gt; - The Enclojure plug-in
 seems to be abandoned currently. It has no released a new version
 in over an year and the old one were buggy as hell (when they the
 decency to get themselves installed, that is).&lt;/li&gt;
-      &lt;li&gt;SLIME - The Ultimate Clojure programming environment. Even though
+      &lt;li&gt;&lt;a href=&quot;https://github.com/technomancy/swank-clojure&quot;&gt;SLIME&lt;/a&gt; - The Ultimate Clojure programming environment. Even though
 it’s lacking a few features of the Common Lisp counterpart, SLIME
 still is the best option for Clojure development, uniquely
-attuned to the Lisp philosophy of interactive development.&lt;/li&gt;
+attuned to the Lisp philosophy of interactive and incremental development.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
@@ -642,25 +949,61 @@ attuned to the Lisp philosophy of interactive development.&lt;/li&gt;
 &lt;ul&gt;
   &lt;li&gt;Build tools
     &lt;ul&gt;
-      &lt;li&gt;Apache Maven&lt;/li&gt;
-      &lt;li&gt;Leiningen&lt;/li&gt;
-      &lt;li&gt;Cake&lt;/li&gt;
-      &lt;li&gt;Gradle&lt;/li&gt;
-      &lt;li&gt;Apache Builder&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://maven.Apache.org&quot;&gt;Apache Maven&lt;/a&gt; - Maven has a nice
+Clojure plugin&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/technomancy/leiningen&quot;&gt;Leiningen&lt;/a&gt; - probably
+the most popular Clojure-specific build tool&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/ninjudd/cake&quot;&gt;Cake&lt;/a&gt; - a solid alternative to Leiningen&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.gradle.org/&quot;&gt;Gradle&lt;/a&gt; - a build system for Java-based
+applications, written in Groovy, that supports Clojure&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://buildr.apache.org/&quot;&gt;Apache Builder&lt;/a&gt; - a build system for
+Java-based applications, written in Ruby , that supports Clojure&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;resources&quot;&gt;Resources&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Books
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://pragprog.com/titles/shcloj/programming-clojure&quot;&gt;“Programming Clojure”&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://www.apress.com/9781430272311&quot;&gt;“Practical Clojure”&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://joyofclojure.com/&quot;&gt;“The Joy of Clojure”&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Screencasts &amp;amp; Video lectures
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://clojure.blip.tv/&quot;&gt;“Clojure’s channel”&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Websites &amp;amp; Blogs
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://blog.fogus.me/&quot;&gt;Official website&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://disclojure.org/&quot;&gt;Disclojure&lt;/a&gt; - a clojure news aggregator&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Exercises
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;/2011/05/04/lisp-problems.html&quot;&gt;Lisp problems&lt;/a&gt; - a work in progress, I’ll add Clojure
+solutions next to the Common Lisp ones when I have some thime&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://foognostic.net/labrepl-summary/&quot;&gt;Labrepl&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://projecteuler.net/&quot;&gt;Project Euler&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;https://github.com/functional-koans/clojure-koans&quot;&gt;Clojure Koans&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h1 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h1&gt;
 
-&lt;p&gt;Clojure is both a radical departure from traditional Algol-derived
+&lt;p&gt;Clojure is a radical departure from both traditional Algol-derived
 languages and existing Lisp dialects. Its advanced support for
 functional programming, combined with a state of the art concurrency
 support make it attractive language for the development of heavy duty
 enterprise grade systems. Coupled with the seamless Java integration
 the sky seems to be the limit for Clojure…&lt;/p&gt;
 
-&lt;p&gt;Unfortunately Clojure has to face several problems if its to
+&lt;p&gt;Unfortunately Clojure has to face several problems if it’s to
 succeed. First of all it has to attract a critical mass of developers
 that are not afraid of the syntactic difference with common
 languages. Then there is the concept of functional thinking - a way of
@@ -684,7 +1027,11 @@ extolling some of Clojure’s virtues. I’d like to say, however, that
 I’m very excited that we finally have a Lisp dialect that is modern,
 simple, powerful, elegant and most of all - capable of getting the job
 done. I really hope that Clojure will be instrument of Lisp return on
-the center stage of programming, where it deserves to be.&lt;/p&gt;
+the centre stage of programming, where it deserves to be.&lt;/p&gt;
+
+&lt;p&gt;As usual the article is very shallow overview and doesn’t even
+mention some important features of the language. Be sure to check out
+some of the resources mentioned.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;P.S. This is the last of the articles that I’d originally intended to
 write. I’m considering the possibility to write a couple of more
