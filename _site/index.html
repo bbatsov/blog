@@ -134,8 +134,7 @@ Try:</p>
 <span class="nv">user=&gt;</span> <span class="p">(</span><span class="nb">println </span><span class="s">&quot;Hello, Clojure!&quot;</span><span class="p">)</span>
 <span class="nv">Hello,</span> <span class="nv">Clojure!</span>
 <span class="nv">nil</span>
-<span class="nv">user=&gt;</span> <span class="p">(</span><span class="o">.</span> <span class="nv">javax</span><span class="o">.</span><span class="nv">swing</span><span class="o">.</span><span class="nv">JOptionPane</span> <span class="p">(</span><span class="nf">showMessageDialog</span> <span class="nv">nil</span> <span class="s">&quot;Hello</span>
-<span class="s">World&quot;</span><span class="p">))</span>
+<span class="nv">user=&gt;</span> <span class="p">(</span><span class="nf">javax</span><span class="o">.</span><span class="nv">swing</span><span class="o">.</span><span class="nv">JOptionPane/showMessageDialog</span> <span class="nv">nil</span> <span class="s">&quot;Hello World&quot;</span><span class="p">)</span>
 </code></pre>
 </div>
 
@@ -755,7 +754,7 @@ problem. The Clojure STM uses multiversion concurrency control with
 adaptive history queues for snapshot isolation, and provides a
 distinct commute operation. Here’s a short example:</p>
 
-<div class="highlight"><pre><code class="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">picked-nums</span> <span class="p">(</span><span class="nb">ref </span><span class="o">#</span><span class="p">{})</span>
+<div class="highlight"><pre><code class="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">picked-numbers</span> <span class="p">(</span><span class="nb">ref </span><span class="o">#</span><span class="p">{})</span>
 
 <span class="p">(</span><span class="k">def </span><span class="nv">secret-num</span> <span class="p">(</span><span class="o">.</span><span class="nv">nextInt</span> <span class="p">(</span><span class="nf">java</span><span class="o">.</span><span class="nv">util</span><span class="o">.</span><span class="nv">Random</span><span class="o">.</span><span class="p">)</span> <span class="mi">10</span><span class="p">))</span>
 
@@ -819,7 +818,7 @@ state. They are a reference type like refs and vars. You create an
 atom with atom, and can access its state with deref (or @). Let’s
 rework the refs example to use an atom:</p>
 
-<div class="highlight"><pre><code class="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">picked-nums</span> <span class="p">(</span><span class="nf">atom</span> <span class="o">#</span><span class="p">{})</span>
+<div class="highlight"><pre><code class="clojure"><span class="p">(</span><span class="k">def </span><span class="nv">picked-numbers</span> <span class="p">(</span><span class="nf">atom</span> <span class="o">#</span><span class="p">{})</span>
 
 <span class="p">(</span><span class="k">def </span><span class="nv">secret-num</span> <span class="p">(</span><span class="o">.</span><span class="nv">nextInt</span> <span class="p">(</span><span class="nf">java</span><span class="o">.</span><span class="nv">util</span><span class="o">.</span><span class="nv">Random</span><span class="o">.</span><span class="p">)</span> <span class="mi">10</span><span class="p">))</span>
 
@@ -830,7 +829,7 @@ rework the refs example to use an atom:</p>
              <span class="p">(</span><span class="nf">cond</span>
                <span class="p">(</span><span class="nb">= </span><span class="nv">guess</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">println </span><span class="s">&quot;You guessed correctly&quot;</span><span class="p">)</span>
                <span class="p">(</span><span class="nb">contains? </span><span class="p">(</span><span class="nb">deref </span><span class="nv">picked-numbers</span><span class="p">)</span> <span class="nv">n</span><span class="p">)</span> <span class="p">(</span><span class="nb">println </span><span class="s">&quot;Pick another number! You already tried that one.&quot;</span><span class="p">)</span>
-               <span class="nv">:else</span> <span class="p">(</span><span class="nf">swap!</span> <span class="nv">picked-nums</span> <span class="nv">conj</span> <span class="nv">guess</span><span class="p">))))</span>
+               <span class="nv">:else</span> <span class="p">(</span><span class="nf">swap!</span> <span class="nv">picked-numbers</span> <span class="nv">conj</span> <span class="nv">guess</span><span class="p">))))</span>
 
 <span class="nv">user=&gt;</span> <span class="p">(</span><span class="nf">guess-number</span> <span class="nv">secret-num</span><span class="p">)</span>
 <span class="nv">Enter</span> <span class="nv">a</span> <span class="nv">guess</span> <span class="nv">between</span> <span class="mi">1</span> <span class="nv">and</span> <span class="mi">10</span><span class="nv">:</span> <span class="mi">1</span>

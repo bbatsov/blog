@@ -99,8 +99,7 @@ user=> (+ 1 2 3)
 user=> (println "Hello, Clojure!")
 Hello, Clojure!
 nil
-user=> (. javax.swing.JOptionPane (showMessageDialog nil "Hello
-World"))
+user=> (javax.swing.JOptionPane/showMessageDialog nil "Hello World")
 {% endhighlight %}
 
 The REPL has very rudimentary editing. For a better experience, try running it via the [JLine](http://jline.sourceforge.net/) ConsoleRunner:
@@ -671,7 +670,7 @@ adaptive history queues for snapshot isolation, and provides a
 distinct commute operation. Here's a short example:
 
 {% highlight clojure %}
-(def picked-nums (ref #{})
+(def picked-numbers (ref #{})
 
 (def secret-num (.nextInt (java.util.Random.) 10))
 
@@ -735,7 +734,7 @@ atom with atom, and can access its state with deref (or @). Let's
 rework the refs example to use an atom:
 
 {% highlight clojure %}
-(def picked-nums (atom #{})
+(def picked-numbers (atom #{})
 
 (def secret-num (.nextInt (java.util.Random.) 10))
 
@@ -746,7 +745,7 @@ rework the refs example to use an atom:
              (cond
                (= guess n) (println "You guessed correctly")
                (contains? (deref picked-numbers) n) (println "Pick another number! You already tried that one.")
-               :else (swap! picked-nums conj guess))))
+               :else (swap! picked-numbers conj guess))))
 
 user=> (guess-number secret-num)
 Enter a guess between 1 and 10: 1
