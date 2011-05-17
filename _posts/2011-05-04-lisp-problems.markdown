@@ -373,6 +373,19 @@ Note that in the above example, the first two lists in the result L have length 
 ##Arithmetic
 ---
 
+**2.01 (\*\*) Determine whether a given integer number is prime.**
+
+{% highlight cl %}
+CL-USER> (prime-p 3)
+T
+CL-USER> (prime-p 9)
+NIL
+{% endhighlight %}
+[View solution](https://github.com/bbatsov/cl-99-problems/blob/master/p201.lisp)
+
+_The Sieve of Eratosthenes is an algorithm for finding prime numbers,
+that you might find helpful._
+
 ##Logic and Codes
 ---
 

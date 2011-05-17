@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-16T22:53:04+03:00</updated>
+  <updated>2011-05-16T23:56:25+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -3392,6 +3392,20 @@ L = [[i, j, k, l], [o], [a, b, c], [f, g, h], [d, e], [d, e], [m, n]]&lt;/p&gt;
 
 &lt;h2 id=&quot;arithmetic&quot;&gt;Arithmetic&lt;/h2&gt;
 &lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;2.01 (**) Determine whether a given integer number is prime.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;cl&quot;&gt;&lt;span class=&quot;nv&quot;&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;prime-p&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;T&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;CL-USER&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;prime-p&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;NIL&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/bbatsov/cl-99-problems/blob/master/p201.lisp&quot;&gt;View solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The Sieve of Eratosthenes is an algorithm for finding prime numbers,
+that you might find helpful.&lt;/em&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;logic-and-codes&quot;&gt;Logic and Codes&lt;/h2&gt;
 &lt;hr /&gt;
