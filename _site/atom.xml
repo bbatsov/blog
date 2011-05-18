@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-18T16:39:17+03:00</updated>
+  <updated>2011-05-18T17:53:38+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -90,6 +90,10 @@ application.&lt;/li&gt;
   &lt;li&gt;Create cross-platform GUIs with Java’s Swing (or SWT)&lt;/li&gt;
   &lt;li&gt;Build your project on solid libraries written in Java, Scala, Clojure,
 or other JVM languages.&lt;/li&gt;
+  &lt;li&gt;Use the solid platform independent JDBC database
+drivers. Platform dependent drivers used with MRI Ruby are a common
+source of gripe for developers trying to migrate an application from
+one platform to another.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Great prospects indeed! Now it’s about time to get that magical piece
@@ -312,6 +316,14 @@ camelCaseNamingConvention. Let’s see the Java integration in action:&lt;/p&gt;
 &lt;p&gt;You shouldn’t, of course, use ArrayList unless you’re using a Java API
 that is requiring you to do so. Hopefully these simple examples gave
 you an idea how easy it is to access Java code from JRuby.&lt;/p&gt;
+
+&lt;p&gt;It might be tempting to think of Java/Ruby integration as nothing more
+than calling from one language to another. That’s not the case. In a
+typical project, you’re really interacting with both platforms.  You
+might construct a Ruby object, pass it to a Java function, and watch
+the Java code call other Ruby methods you’ve defined. All the advanced
+interactions are beyond the scope of this cursory overview, but you’re
+definitely encouraged to explore them on your own.&lt;/p&gt;
 
 &lt;h1 id=&quot;using-jruby-from-java&quot;&gt;Using JRuby from Java&lt;/h1&gt;
 

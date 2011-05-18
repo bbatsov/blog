@@ -74,6 +74,10 @@ service.
 * Create cross-platform GUIs with Java's Swing (or SWT)
 * Build your project on solid libraries written in Java, Scala, Clojure,
 or other JVM languages.
+* Use the solid platform independent JDBC database
+  drivers. Platform dependent drivers used with MRI Ruby are a common
+  source of gripe for developers trying to migrate an application from
+  one platform to another.
  
 Great prospects indeed! Now it's about time to get that magical piece
 of software called JRuby up and running...
@@ -295,6 +299,14 @@ JOptionPane.show_message_dialog(nil, "This is a message from the future of Ruby!
 You shouldn't, of course, use ArrayList unless you're using a Java API
 that is requiring you to do so. Hopefully these simple examples gave
 you an idea how easy it is to access Java code from JRuby.
+
+It might be tempting to think of Java/Ruby integration as nothing more
+than calling from one language to another. That's not the case. In a
+typical project, you're really interacting with both platforms.  You
+might construct a Ruby object, pass it to a Java function, and watch
+the Java code call other Ruby methods you've defined. All the advanced
+interactions are beyond the scope of this cursory overview, but you're
+definitely encouraged to explore them on your own.
 
 # Using JRuby from Java
 
