@@ -124,7 +124,7 @@ and has a very nice companion [blog](http://blog.rubybestpractices.com/).
 The latest (and one of the greatest) Ruby books I've read. The book
 pretty much has the same aim as "Ruby Best Practices", but covers a lot
 more ground and is generally a lighter and more enjoyable read. Russ
-Olson has a very particular writing style that turns even the most
+Olsen has a very particular writing style that turns even the most
 boring subjects into interesting discussions. All chapters feature
 some real world examples of the concepts introduced, and a discussion
 of potential pitfalls.
@@ -133,7 +133,7 @@ Very highly recommended second Ruby book.
 
 **[Design Patterns in Ruby](http://www.amazon.com/Design-Patterns-Ruby-Russ-Olsen/dp/0321490452/ref=pd_sim_b_6)**
 
-A most enjoyable rendition of a generally boring subject by Russ Olson. "Design
+A most enjoyable rendition of a generally boring subject by Russ Olsen. "Design
 Patterns in Ruby" explores 14 of the classical GoF design patterns and
 compares the canonical implementation of the patterns to idiomatic
 Ruby versions of them. Every pattern features a discussion of common
