@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Java.next() - JRuby: The Rubyists Strike Back"
+categories:
+- Ruby
+- Java
 ---
 
 # Overture

@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-18T16:36:05+03:00</updated>
+  <updated>2011-05-18T16:39:17+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -13,8 +13,8 @@
 
   
   <entry>
-    <id>http://www.batsov.com/2011/05/18/jvm-langs-jruby</id>
-    <link type="text/html" rel="alternate" href="http://www.batsov.com/2011/05/18/jvm-langs-jruby.html"/>
+    <id>http://www.batsov.com/Ruby/Java/2011/05/18/jvm-langs-jruby</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Ruby/Java/2011/05/18/jvm-langs-jruby.html"/>
     <title>Java.next() - JRuby: The Rubyists Strike Back</title>
     <updated>2011-05-18T00:00:00+03:00</updated>
     <author>
