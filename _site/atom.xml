@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-18T17:53:38+03:00</updated>
+  <updated>2011-05-20T12:07:46+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -5686,7 +5686,7 @@ have to perform this as root):&lt;/p&gt;
   <entry>
     <id>http://www.batsov.com/Java/NetBeans/2010/04/19/changing-laf-in-netbeans</id>
     <link type="text/html" rel="alternate" href="http://www.batsov.com/Java/NetBeans/2010/04/19/changing-laf-in-netbeans.html"/>
-    <title>Changing the look & feel in NetBeans 6.8</title>
+    <title>Changing the look &amp; feel in NetBeans 6.8</title>
     <updated>2010-04-19T00:00:00+03:00</updated>
     <author>
       <name>Bozhidar Batsov</name>
