@@ -5,7 +5,7 @@
         <link href="/css/site.css" type="text/css" rel="stylesheet"/>
         <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
         <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
-        <title>(think) - A new Zenburn theme for Emacs</title>
+        <title>(think) - Fedora 15 post installation setup & tips</title>
 
         <script type="text/javascript">
             var _gaq = _gaq || [];
@@ -41,42 +41,220 @@
                     </div>
                     <div id="content">
                         <div id="post">
-    <h2 class="title">A new Zenburn theme for Emacs</h2>
-    <p><a href="http://slinky.imukuppi.org/zenburnpage/">Zenburn</a> is a popular colour theme for
-vim, developed by Jani Nurminen. It’s my personal
-belief (and probably that of many of its users I presume) that it’s one of the
-best low contrast themes out there and that Zenburn is exceptionally
-easy on the eyes. Btw, I love Zenburn so much that I’ve even created a
-<a href="https://github.com/bbatsov/blog/blob/master/css/syntax.css">Zenburn theme for Jekyll</a> to be able to use for my blog.</p>
+    <h2 class="title">Fedora 15 post installation setup & tips</h2>
+    <h1 id="overture">Overture</h1>
 
-<p>The project was originally
-<a href="https://github.com/dbrock/zenburn-el">ported to Emacs</a> by Daniel
-Brockman, but it seems that he has lost interest in it recently - very
-few updates has been published by him in the past few years. This is
-the reason why I gathered all improvements that I could find laying
-around the Internet and applied them to the last official Zenburn
-version, effectively starting
-a <a href="https://github.com/bbatsov/zenburn-emacs/blob/master/zenburn-legacy.el">fork of the project</a>. So far, so good…</p>
+<p>I’ve recently upgraded all my systems to Fedora 15. The default
+installation is not very usable for some tasks for several reasons -
+like CD size limitations and software patents for instance. I also
+happen to disagree with some defaults in Fedora like the fact that
+sudo is not enabled by default (like in Ubuntu) and the use of the
+bash shell. In this article I’ll share some of the things I do after a
+fresh Fedora 15 installation to enhance it (at least by my standards).</p>
 
-<p>Daniel’s version of Zenburn, however, had reached a state in which it took me
-too much to make improvements to it - since a lot of users had direct access
-to modify it everything in it was in complete disarray - it’s full of
-uses of colours that were not defined by the original zenburn,
-questionable coding practices and inconsistent theming of
-faces. Yesterday I decided to take a closer look at the code of the
-theme and clean it up a little - 20 minutes later I was writing <a href="https://github.com/bbatsov/zenburn-emacs/blob/master/zenburn.el">a new
-zenburn theme from scratch</a>. I decided that making everything from
-the start will probably be less effort anyways. </p>
+<h1 id="tweak-defaults">Tweak defaults</h1>
 
-<p>I’ve added enough faces in the new theme to make it usable for most
-users and I’ll (hopefully) continue to improve the theme and expand
-the supported modes constantly. If you’re interested - give it a try!
-If you’re unhappy with something - create an issue in GitHub (or even
-better send me a pull request with your suggested improvements).</p>
+<p><strong>Configure sudo</strong></p>
 
-<p>It’s my desire to make the new <a href="https://github.com/bbatsov/zenburn-emacs">Zenburn for Emacs</a> just as good as the original.</p>
+<p>sudo gives you a way to execute single commands as the superuser. You
+can also do this with “su -c”, but you have to quote the commands there,
+which I don’t like very much. To enable sudo for some account first
+run the command:</p>
 
-    <div class="meta">Posted on 11 May 2011 by Bozhidar. Filed under Emacs.</div>
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> su -c <span class="s2">&quot;visudo&quot;</span>
+</code></pre>
+</div>
+
+<p>The file /etc/sudoers will open up in a customized vi editor. Append
+somewhere to the end of the file the following line:</p>
+
+<p><code>username ALL=(ALL) ALL</code></p>
+
+<p>You should replace <em>username</em> with your username.</p>
+
+<p><strong>Configure yum</strong></p>
+
+<p>yum has a lot of plugins, but one of them is particularly useful - the
+fastest mirror plug-in. You can install it like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install yum-plugin-fastestmirror
+</code></pre>
+</div>
+
+<h1 id="install-additional-software">Install additional software</h1>
+
+<p>Fedora’s default installation medium is a 700MB CD. It’s
+understandable that not everything can be fitted in there. Luckily
+adding new software from the vast Fedora on-line repos is child’s play.</p>
+
+<p><strong>Install REAL text editors</strong></p>
+
+<p>gedit is ok for causal text editing, but professionals like software
+engineers and system administrators will definitely need something more:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install emacs vim
+</code></pre>
+</div>
+
+<p>Personally I use Emacs most of the time and use vim only to edit
+config files that require root access. </p>
+
+<p><strong>Install Z Shell</strong></p>
+
+<p>It’s no secret that I love the Z Shell - after all I <a href="/Z%20Shell/2011/04/29/one-shell-to-rule-them-all.html">rave about it</a>
+quite often. It should come as no surprise that I happen to use it
+and probably you should start using it as well:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">sudo yum install zsh</span>
+<span class="go">sudo vim /etc/passwd</span>
+</code></pre>
+</div>
+
+<p>Find the line about your account and change there /bin/bash to
+/bin/zsh. Afterwards start a new login shell and a simple wizard will
+fire up asking you some questions to create a default .zshrc file for you.</p>
+
+<p><strong>Install LibreOffice</strong></p>
+
+<p>LibreOffice is currently the best Linux option for word processing,
+spreadsheet handling and presentation creation. You can install the
+most common components with the following command:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">sudo yum install libreoffice-calc libreoffice-impress libreoffice-draw libreoffice-writer</span>
+</code></pre>
+</div>
+
+<p>LibreOffice uses hunspell to do spellchecking. An English dictionary
+will be installed by default, but you’ll need to install additional
+dictionaries manually:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install hunspell-bg
+</code></pre>
+</div>
+
+<p>This command will install the Bulgarian hunspell dictionary. You
+likely don’t need it so install some more helpful dictionary instead. :-)</p>
+
+<p><strong>Install OpenJDK</strong></p>
+
+<p>If you need to run Java programs/applets:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install java-1.6.0-openjdk java-1.6.0-openjdk-plugin
+</code></pre>
+</div>
+
+<p>If you’re planning to do some Java development:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install java-1.6.0-openjdk-devel java-1.6.0-openjdk-javadoc java-1.6.0-openjdk-src
+</code></pre>
+</div>
+
+<h1 id="install-additional-patent-encumberedproprietary-software">Install additional patent encumbered/proprietary software</h1>
+
+<p><strong>Enable RPMFusion</strong></p>
+
+<p>RPMFusion is the most popular third party repository for Fedora. It’s
+full of goodness like audio/video codecs, proprietary drivers, etc. To
+enable it just run the following command:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">sudo yum localinstall --nogpgcheck</span>
+<span class="go">http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm</span>
+<span class="go">http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm</span>
+</code></pre>
+</div>
+
+<p><strong>Install proprietary codecs</strong></p>
+
+<p>No MP3 support in Fedora by default? And almost no video codecs?
+RPMFusion to the rescue! Type this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install gstreamer-plugins-ugly gstreamer-plugins-bad
+<span class="go">gstreamer-ffmpeg</span>
+</code></pre>
+</div>
+
+<p><strong>Install VLC</strong></p>
+
+<p>With MPlayer’s development in stagnation VLC has established itself as
+the best video player for Linux recently. It’s in RPMFusion, so if you
+enabled it installing it is as easy as typing the following command:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install vlc
+</code></pre>
+</div>
+
+<p><strong>Install Adobe Flash Player</strong></p>
+
+<p>Love it or hate it - you probably need it.</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">sudo rpm -Uvh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm</span>
+<span class="go">sudo yum install flash-plug-in</span>
+</code></pre>
+</div>
+
+<p>You can omit this if you’re planning to use Google Chrome, since it
+comes with Flash Player built-in.</p>
+
+<p><strong>Install Skype</strong></p>
+
+<p>Download Skype from the
+<a href="http://www.skype.com/intl/en/get-skype/on-your-computer/linux/downloading.fedora">official site</a>. Assuming
+you’ve downloaded it to ~/Downloads, you can install it like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum localinstall Downloads/skype-2.2.0.25-fedora.i586.rpm
+</code></pre>
+</div>
+
+<p>Yum will automatically installed any dependencies required by skype.</p>
+
+<p><strong>Install Oracle JDK</strong></p>
+
+<p>OpenJDK is great, but due to licensing problems it’s not quite the
+same as the Oracle JDK. If you start experiencing strange problems
+(mostly in Swing programs) you’d probably do well to try the Oracle
+JDK instead. Download Oracle’s JDK from the
+<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">official site</a>. Select
+“Linux x86 - RPM Installer” or “Linux x64 - RPM Installer” depending
+on your distribution and install the JDK like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo sh jre-6u25-linux-i586-rpm.bin
+</code></pre>
+</div>
+
+<p>Fedora uses OpenJDK by default, so you’ll have to do some more work to
+tell it to start using Oracle JDK. The <strong>alternatives</strong> program allows
+you to select between multiple installed versions of a program:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo alternatives --install /usr/bin/java java /usr/java/default/bin/java 1000
+<span class="gp">$</span> sudo alternatives --install /usr/bin/javac javac /usr/java/default/bin/javac 1000
+<span class="gp">$</span> sudo alternatives --install /usr/bin/javaws javaws /usr/java/default/bin/javaws 1000
+</code></pre>
+</div>
+
+<p>These commands will make alternative aware of the java binaries and
+set high priorities to them which will make them the default Java
+binaries. You can use “alternatives –config binaryname” to select
+active binaries manually.</p>
+
+<p><strong>Install Google Chrome</strong></p>
+
+<p>Firefox is dying, Google Chrome is the new king of the
+browsers. Download it from the <a href="http://www.google.com/chrome">official site</a> and install it:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum localinstall ~/Downloads/google-chrome-stable_current_i386.rpm
+</code></pre>
+</div>
+
+<p>Google Chrome will install a yum repository as well, so you’ll receive
+updates as soon as they arrive.</p>
+
+<h1 id="epilogue">Epilogue</h1>
+
+<p>Hopefully some of my setup has made your setup more enjoyable and more
+productive. I’ll update this article along the way if I stumble upon
+other things that I consider to be generally helpful.</p>
+
+    <div class="meta">Posted on 31 May 2011 by Bozhidar. Filed under Linux and Fedora.</div>
     <br/>
         <span  class='st_reddit_large' ></span><span  class='st_linkedin_large' ></span><span  class='st_google_reader_large' ></span><span  class='st_dzone_large' ></span><span  class='st_digg_large' ></span><span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_yahoo_large' ></span><span  class='st_gbuzz_large' ></span><span  class='st_email_large' ></span><span  class='st_sharethis_large' ></span>
     <hr />

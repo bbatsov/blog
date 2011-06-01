@@ -4,13 +4,236 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-05-20T12:07:46+03:00</updated>
+  <updated>2011-06-01T09:26:07+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
     <email>bozhidar.batsov@gmail.com</email>
   </author>
 
+  
+  <entry>
+    <id>http://www.batsov.com/Linux/Fedora/2011/05/31/fedora-15-tips</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Linux/Fedora/2011/05/31/fedora-15-tips.html"/>
+    <title>Fedora 15 post installation setup &amp; tips</title>
+    <updated>2011-05-31T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;h1 id=&quot;overture&quot;&gt;Overture&lt;/h1&gt;
+
+&lt;p&gt;I’ve recently upgraded all my systems to Fedora 15. The default
+installation is not very usable for some tasks for several reasons -
+like CD size limitations and software patents for instance. I also
+happen to disagree with some defaults in Fedora like the fact that
+sudo is not enabled by default (like in Ubuntu) and the use of the
+bash shell. In this article I’ll share some of the things I do after a
+fresh Fedora 15 installation to enhance it (at least by my standards).&lt;/p&gt;
+
+&lt;h1 id=&quot;tweak-defaults&quot;&gt;Tweak defaults&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Configure sudo&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;sudo gives you a way to execute single commands as the superuser. You
+can also do this with “su -c”, but you have to quote the commands there,
+which I don’t like very much. To enable sudo for some account first
+run the command:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; su -c &lt;span class=&quot;s2&quot;&gt;&amp;quot;visudo&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The file /etc/sudoers will open up in a customized vi editor. Append
+somewhere to the end of the file the following line:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;username ALL=(ALL) ALL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should replace &lt;em&gt;username&lt;/em&gt; with your username.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Configure yum&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;yum has a lot of plugins, but one of them is particularly useful - the
+fastest mirror plug-in. You can install it like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install yum-plugin-fastestmirror
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;install-additional-software&quot;&gt;Install additional software&lt;/h1&gt;
+
+&lt;p&gt;Fedora’s default installation medium is a 700MB CD. It’s
+understandable that not everything can be fitted in there. Luckily
+adding new software from the vast Fedora on-line repos is child’s play.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install REAL text editors&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;gedit is ok for causal text editing, but professionals like software
+engineers and system administrators will definitely need something more:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install emacs vim
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Personally I use Emacs most of the time and use vim only to edit
+config files that require root access. &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Z Shell&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s no secret that I love the Z Shell - after all I &lt;a href=&quot;/Z%20Shell/2011/04/29/one-shell-to-rule-them-all.html&quot;&gt;rave about it&lt;/a&gt;
+quite often. It should come as no surprise that I happen to use it
+and probably you should start using it as well:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo yum install zsh&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;sudo vim /etc/passwd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Find the line about your account and change there /bin/bash to
+/bin/zsh. Afterwards start a new login shell and a simple wizard will
+fire up asking you some questions to create a default .zshrc file for you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install LibreOffice&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;LibreOffice is currently the best Linux option for word processing,
+spreadsheet handling and presentation creation. You can install the
+most common components with the following command:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo yum install libreoffice-calc libreoffice-impress libreoffice-draw libreoffice-writer&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;LibreOffice uses hunspell to do spellchecking. An English dictionary
+will be installed by default, but you’ll need to install additional
+dictionaries manually:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install hunspell-bg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This command will install the Bulgarian hunspell dictionary. You
+likely don’t need it so install some more helpful dictionary instead. :-)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install OpenJDK&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you need to run Java programs/applets:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install java-1.6.0-openjdk java-1.6.0-openjdk-plugin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you’re planning to do some Java development:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install java-1.6.0-openjdk-devel java-1.6.0-openjdk-javadoc java-1.6.0-openjdk-src
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;install-additional-patent-encumberedproprietary-software&quot;&gt;Install additional patent encumbered/proprietary software&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Enable RPMFusion&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;RPMFusion is the most popular third party repository for Fedora. It’s
+full of goodness like audio/video codecs, proprietary drivers, etc. To
+enable it just run the following command:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo yum localinstall --nogpgcheck&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install proprietary codecs&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;No MP3 support in Fedora by default? And almost no video codecs?
+RPMFusion to the rescue! Type this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install gstreamer-plugins-ugly gstreamer-plugins-bad
+&lt;span class=&quot;go&quot;&gt;gstreamer-ffmpeg&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install VLC&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;With MPlayer’s development in stagnation VLC has established itself as
+the best video player for Linux recently. It’s in RPMFusion, so if you
+enabled it installing it is as easy as typing the following command:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install vlc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Adobe Flash Player&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Love it or hate it - you probably need it.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo rpm -Uvh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;sudo yum install flash-plug-in&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can omit this if you’re planning to use Google Chrome, since it
+comes with Flash Player built-in.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Skype&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Download Skype from the
+&lt;a href=&quot;http://www.skype.com/intl/en/get-skype/on-your-computer/linux/downloading.fedora&quot;&gt;official site&lt;/a&gt;. Assuming
+you’ve downloaded it to ~/Downloads, you can install it like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum localinstall Downloads/skype-2.2.0.25-fedora.i586.rpm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Yum will automatically installed any dependencies required by skype.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Oracle JDK&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;OpenJDK is great, but due to licensing problems it’s not quite the
+same as the Oracle JDK. If you start experiencing strange problems
+(mostly in Swing programs) you’d probably do well to try the Oracle
+JDK instead. Download Oracle’s JDK from the
+&lt;a href=&quot;http://www.oracle.com/technetwork/java/javase/downloads/index.html&quot;&gt;official site&lt;/a&gt;. Select
+“Linux x86 - RPM Installer” or “Linux x64 - RPM Installer” depending
+on your distribution and install the JDK like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo sh jre-6u25-linux-i586-rpm.bin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Fedora uses OpenJDK by default, so you’ll have to do some more work to
+tell it to start using Oracle JDK. The &lt;strong&gt;alternatives&lt;/strong&gt; program allows
+you to select between multiple installed versions of a program:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo alternatives --install /usr/bin/java java /usr/java/default/bin/java 1000
+&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo alternatives --install /usr/bin/javac javac /usr/java/default/bin/javac 1000
+&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo alternatives --install /usr/bin/javaws javaws /usr/java/default/bin/javaws 1000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;These commands will make alternative aware of the java binaries and
+set high priorities to them which will make them the default Java
+binaries. You can use “alternatives –config binaryname” to select
+active binaries manually.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Google Chrome&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Firefox is dying, Google Chrome is the new king of the
+browsers. Download it from the &lt;a href=&quot;http://www.google.com/chrome&quot;&gt;official site&lt;/a&gt; and install it:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum localinstall ~/Downloads/google-chrome-stable_current_i386.rpm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Google Chrome will install a yum repository as well, so you’ll receive
+updates as soon as they arrive.&lt;/p&gt;
+
+&lt;h1 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h1&gt;
+
+&lt;p&gt;Hopefully some of my setup has made your setup more enjoyable and more
+productive. I’ll update this article along the way if I stumble upon
+other things that I consider to be generally helpful.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://www.batsov.com/Ruby/Java/2011/05/18/jvm-langs-jruby</id>
