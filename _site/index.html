@@ -81,6 +81,19 @@ fastest mirror plug-in. You can install it like this:</p>
 </code></pre>
 </div>
 
+<p><strong>Disable SELinux</strong></p>
+
+<p>If you’re a desktop Linux user you want to disable SELinux - trust
+me. Open the file /etc/selinux/config and change this line:</p>
+
+<p><code>SELINUX=enforcing</code></p>
+
+<p>to</p>
+
+<p><code>SELINUX=disabled</code></p>
+
+<p>Restart afterwards.</p>
+
 <h1 id="install-additional-software">Install additional software</h1>
 
 <p>Fedora’s default installation medium is a 700MB CD. It’s
@@ -146,6 +159,15 @@ likely don’t need it so install some more helpful dictionary instead. :-)</p>
 <p>If you’re planning to do some Java development:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install java-1.6.0-openjdk-devel java-1.6.0-openjdk-javadoc java-1.6.0-openjdk-src
+</code></pre>
+</div>
+
+<p><strong>Install Deluge torrent client</strong></p>
+
+<p>The default Transmission torrent client is pretty basic. I recommend
+you to replace it with the much more feature-rich deluge:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install deluge
 </code></pre>
 </div>
 

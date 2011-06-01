@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-06-01T09:26:07+03:00</updated>
+  <updated>2011-06-01T11:13:07+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -59,6 +59,19 @@ fastest mirror plug-in. You can install it like this:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install yum-plugin-fastestmirror
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Disable SELinux&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you’re a desktop Linux user you want to disable SELinux - trust
+me. Open the file /etc/selinux/config and change this line:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;SELINUX=enforcing&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;to&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;SELINUX=disabled&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Restart afterwards.&lt;/p&gt;
 
 &lt;h1 id=&quot;install-additional-software&quot;&gt;Install additional software&lt;/h1&gt;
 
@@ -125,6 +138,15 @@ likely don’t need it so install some more helpful dictionary instead. :-)&lt;/
 &lt;p&gt;If you’re planning to do some Java development:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install java-1.6.0-openjdk-devel java-1.6.0-openjdk-javadoc java-1.6.0-openjdk-src
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Deluge torrent client&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The default Transmission torrent client is pretty basic. I recommend
+you to replace it with the much more feature-rich deluge:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install deluge
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
