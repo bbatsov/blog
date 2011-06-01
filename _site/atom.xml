@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-06-01T11:13:07+03:00</updated>
+  <updated>2011-06-01T19:38:04+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -97,8 +97,8 @@ config files that require root access. &lt;/p&gt;
 quite often. It should come as no surprise that I happen to use it
 and probably you should start using it as well:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo yum install zsh&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;sudo vim /etc/passwd&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install zsh
+&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo vim /etc/passwd
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -158,8 +158,8 @@ you to replace it with the much more feature-rich deluge:&lt;/p&gt;
 full of goodness like audio/video codecs, proprietary drivers, etc. To
 enable it just run the following command:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo yum localinstall --nogpgcheck&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum localinstall --nogpgcheck &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm \&lt;/span&gt;
 &lt;span class=&quot;go&quot;&gt;http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -169,8 +169,7 @@ enable it just run the following command:&lt;/p&gt;
 &lt;p&gt;No MP3 support in Fedora by default? And almost no video codecs?
 RPMFusion to the rescue! Type this:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install gstreamer-plugins-ugly gstreamer-plugins-bad
-&lt;span class=&quot;go&quot;&gt;gstreamer-ffmpeg&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -188,8 +187,8 @@ enabled it installing it is as easy as typing the following command:&lt;/p&gt;
 
 &lt;p&gt;Love it or hate it - you probably need it.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo rpm -Uvh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;sudo yum install flash-plug-in&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo rpm -Uvh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
+&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install flash-plug-in
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
@@ -248,6 +247,19 @@ browsers. Download it from the &lt;a href=&quot;http://www.google.com/chrome&quo
 
 &lt;p&gt;Google Chrome will install a yum repository as well, so you’ll receive
 updates as soon as they arrive.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install DropBox&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.dropbox.com&quot;&gt;DropBox&lt;/a&gt; is a great file sharing service
+which allows you to sync files between all of your computers and
+mobile devices(Android, iPhone, iPad, etc). It has a great Linux
+client which I use all the time. Download it from
+&lt;a href=&quot;http://www.dropbox.com/downloading?os=lnx&quot;&gt;here&lt;/a&gt; and install it like
+this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum localinstall --nogpgcheck nautilus-dropbox-0.6.7-1.fedora.i386.rpm
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h1 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h1&gt;
 

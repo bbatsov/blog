@@ -83,8 +83,8 @@ quite often. It should come as no surprise that I happen to use it
 and probably you should start using it as well:
 
 {% highlight console %}
-sudo yum install zsh
-sudo vim /etc/passwd
+$ sudo yum install zsh
+$ sudo vim /etc/passwd
 {% endhighlight %}
 
 Find the line about your account and change there /bin/bash to
@@ -144,8 +144,8 @@ full of goodness like audio/video codecs, proprietary drivers, etc. To
 enable it just run the following command:
 
 {% highlight console %}
-sudo yum localinstall --nogpgcheck
-http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm
+$ sudo yum localinstall --nogpgcheck \
+http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm \
 http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm
 {% endhighlight %}
 
@@ -155,8 +155,7 @@ No MP3 support in Fedora by default? And almost no video codecs?
 RPMFusion to the rescue! Type this:
 
 {% highlight console %}
-$ sudo yum install gstreamer-plugins-ugly gstreamer-plugins-bad
-gstreamer-ffmpeg
+$ sudo yum install gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg
 {% endhighlight %}
 
 **Install VLC**
@@ -174,8 +173,8 @@ $ sudo yum install vlc
 Love it or hate it - you probably need it.
 
 {% highlight console %}
-sudo rpm -Uvh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
-sudo yum install flash-plug-in
+$ sudo rpm -Uvh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
+$ sudo yum install flash-plug-in
 {% endhighlight %}
 
 You can omit this if you're planning to use Google Chrome, since it
@@ -233,6 +232,19 @@ $ sudo yum localinstall ~/Downloads/google-chrome-stable_current_i386.rpm
 
 Google Chrome will install a yum repository as well, so you'll receive
 updates as soon as they arrive.
+
+**Install DropBox**
+
+[DropBox](http://www.dropbox.com) is a great file sharing service
+which allows you to sync files between all of your computers and
+mobile devices(Android, iPhone, iPad, etc). It has a great Linux
+client which I use all the time. Download it from
+[here](http://www.dropbox.com/downloading?os=lnx) and install it like
+this:
+
+{% highlight console %}
+$ sudo yum localinstall --nogpgcheck nautilus-dropbox-0.6.7-1.fedora.i386.rpm
+{% endhighlight %}
 
 # Epilogue
 

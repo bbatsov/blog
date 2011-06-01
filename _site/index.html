@@ -118,8 +118,8 @@ config files that require root access. </p>
 quite often. It should come as no surprise that I happen to use it
 and probably you should start using it as well:</p>
 
-<div class="highlight"><pre><code class="console"><span class="go">sudo yum install zsh</span>
-<span class="go">sudo vim /etc/passwd</span>
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install zsh
+<span class="gp">$</span> sudo vim /etc/passwd
 </code></pre>
 </div>
 
@@ -179,8 +179,8 @@ you to replace it with the much more feature-rich deluge:</p>
 full of goodness like audio/video codecs, proprietary drivers, etc. To
 enable it just run the following command:</p>
 
-<div class="highlight"><pre><code class="console"><span class="go">sudo yum localinstall --nogpgcheck</span>
-<span class="go">http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm</span>
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum localinstall --nogpgcheck <span class="se">\</span>
+<span class="go">http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm \</span>
 <span class="go">http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm</span>
 </code></pre>
 </div>
@@ -190,8 +190,7 @@ enable it just run the following command:</p>
 <p>No MP3 support in Fedora by default? And almost no video codecs?
 RPMFusion to the rescue! Type this:</p>
 
-<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install gstreamer-plugins-ugly gstreamer-plugins-bad
-<span class="go">gstreamer-ffmpeg</span>
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg
 </code></pre>
 </div>
 
@@ -209,8 +208,8 @@ enabled it installing it is as easy as typing the following command:</p>
 
 <p>Love it or hate it - you probably need it.</p>
 
-<div class="highlight"><pre><code class="console"><span class="go">sudo rpm -Uvh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm</span>
-<span class="go">sudo yum install flash-plug-in</span>
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo rpm -Uvh http://linuxdownload.adobe.com/adobe-release/adobe-release-i386-1.0-1.noarch.rpm
+<span class="gp">$</span> sudo yum install flash-plug-in
 </code></pre>
 </div>
 
@@ -269,6 +268,19 @@ browsers. Download it from the <a href="http://www.google.com/chrome">official s
 
 <p>Google Chrome will install a yum repository as well, so you’ll receive
 updates as soon as they arrive.</p>
+
+<p><strong>Install DropBox</strong></p>
+
+<p><a href="http://www.dropbox.com">DropBox</a> is a great file sharing service
+which allows you to sync files between all of your computers and
+mobile devices(Android, iPhone, iPad, etc). It has a great Linux
+client which I use all the time. Download it from
+<a href="http://www.dropbox.com/downloading?os=lnx">here</a> and install it like
+this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum localinstall --nogpgcheck nautilus-dropbox-0.6.7-1.fedora.i386.rpm
+</code></pre>
+</div>
 
 <h1 id="epilogue">Epilogue</h1>
 
