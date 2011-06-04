@@ -4,13 +4,47 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-06-01T19:38:04+03:00</updated>
+  <updated>2011-06-04T16:01:22+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
     <email>bozhidar.batsov@gmail.com</email>
   </author>
 
+  
+  <entry>
+    <id>http://www.batsov.com/Linux/Hardware/Fedora/2011/06/04/phaser-3117-fedora-15</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Linux/Hardware/Fedora/2011/06/04/phaser-3117-fedora-15.html"/>
+    <title>Running Xerox Phaser 3117 under Fedora 15</title>
+    <updated>2011-06-04T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;I’ve been a GNU/Linux user for quite some time now and a Fedora user
+for just as long. The first distribution that I ever used was Fedora 2
+and even though I’ve used extensively other distros I’ve always come
+back to Fedora. Recently Fedora 15 was released and I was
+(naturally) one of the first people to install it. &lt;/p&gt;
+
+&lt;p&gt;Everything is great in the new release (as ever), but my Xerox Phaser
+3117 printer is unsupported (also as ever) out of the box, so it’s
+time for one of those quick articles on how to get it up and running this
+time. First run the following command as root (or with sudo):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;#&lt;/span&gt; yum install gutenprint-foomatic
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now you can run the “Printing” application. It will autodetect your
+printer and suggest you to use the driver for Xerox Phaser 3110. Just
+accept this suggestion and you should be good to go. Happy printing!&lt;/p&gt;
+
+&lt;p&gt;P.S. You might also want to check out my article on
+&lt;a href=&quot;/Linux/Fedora/2011/05/31/fedora-15-tips.html&quot;&gt;Fedora 15 post installation setup&lt;/a&gt;.&lt;/p&gt;
+
+</content>
+  </entry>
   
   <entry>
     <id>http://www.batsov.com/Linux/Fedora/2011/05/31/fedora-15-tips</id>
