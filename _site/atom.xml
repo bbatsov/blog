@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-06-04T16:01:22+03:00</updated>
+  <updated>2011-06-05T00:47:18+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -183,6 +183,20 @@ you to replace it with the much more feature-rich deluge:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install deluge
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Inconsolata font&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I’m a software engineer and I obviously spend a lot of time reading
+and writing source code. I’m very picking about the monospace font
+that I use and currently Inconsolata happens to be my favorite:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install levien-inconsolata-fonts
+&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; gsettings &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;org.gnome.desktop.interface monospace-font-name &lt;span class=&quot;s2&quot;&gt;&amp;quot;Inconsolata 12&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;These two commands will install the font and make it the default
+monospaced font on your Fedora system.&lt;/p&gt;
 
 &lt;h1 id=&quot;install-additional-patent-encumberedproprietary-software&quot;&gt;Install additional patent encumbered/proprietary software&lt;/h1&gt;
 

@@ -135,6 +135,20 @@ you to replace it with the much more feature-rich deluge:
 $ sudo yum install deluge
 {% endhighlight %}
 
+**Install Inconsolata font**
+
+I'm a software engineer and I obviously spend a lot of time reading
+and writing source code. I'm very picking about the monospace font
+that I use and currently Inconsolata happens to be my favorite:
+
+{% highlight console %}
+$ sudo yum install levien-inconsolata-fonts
+$ gsettings set org.gnome.desktop.interface monospace-font-name "Inconsolata 12"
+{% endhighlight %}
+
+These two commands will install the font and make it the default
+monospaced font on your Fedora system.
+
 # Install additional patent encumbered/proprietary software
 
 **Enable RPMFusion**
