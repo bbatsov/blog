@@ -4,13 +4,58 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-06-05T00:47:18+03:00</updated>
+  <updated>2011-06-05T10:53:15+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
     <email>bozhidar.batsov@gmail.com</email>
   </author>
 
+  
+  <entry>
+    <id>http://www.batsov.com/Emacs/Linux/2011/06/05/emacs-default-font</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Emacs/Linux/2011/06/05/emacs-default-font.html"/>
+    <title>Emacs Tip #1: Set the default font in Emacs 23</title>
+    <updated>2011-06-05T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Emacs 23.2 will pick up the default GNOME monospaced font, so if
+you’re a GNOME user - you’re basically covered. If you’re not - don’t
+worry.&lt;/p&gt;
+
+&lt;p&gt;The simplest way to set the Emacs font is just to add the following
+in your .emacs (or init.el):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;cl&quot;&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;set-default-font&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Inconsolata-12&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This code will set the Emacs font to Inconsolata (my favorite
+monospaced font) with font size 12pt. The problem with this approach
+is that it will not work with a X Emacs client (emacsclient -c)
+connecting to an Emacs daemon (emacs –daemon), because the code will
+get run when the server starts and will basically mean nothing to
+it. You can alleviate this problem by using the appropriate hook for X
+clients, but I find this distasteful. A much simpler solution is to
+forget about &lt;em&gt;set-default-font&lt;/em&gt; altogether and simply create a file
+named &lt;strong&gt;.Xdefaults&lt;/strong&gt; in your home folder. Put the following in it:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;Emacs.font: Inconsolata-12&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Afterwards run the following command:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; xrdb -merge ~/.Xdefaults
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;At this point you can start Emacs (in normal or daemon mode) and
+your new font settings should be in effect.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://www.batsov.com/Linux/Hardware/Fedora/2011/06/04/phaser-3117-fedora-15</id>
@@ -197,6 +242,28 @@ that I use and currently Inconsolata happens to be my favorite:&lt;/p&gt;
 
 &lt;p&gt;These two commands will install the font and make it the default
 monospaced font on your Fedora system.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install GIMP&lt;/strong&gt;
+Fedora does not ship with an image editor. GIMP is generally
+considered the best option so you might want to install it:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install gimp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install gnome-tweak-tool to customize fonts, themes, etc in GNOME 3.0&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;GNOME 3.0 has stripped many configuration options, but luckily most of
+them are available by installing gnome-tweak-tool:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo yum install gnome-tweak-tool
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Run it (by pressing Alt+F2 and typing gnome-tweak-tool) and change the
+settings. It does not have OK or Apply buttons, but simply selecting the
+options performs the changes. Some changes may require logging out and
+logging back in.&lt;/p&gt;
 
 &lt;h1 id=&quot;install-additional-patent-encumberedproprietary-software&quot;&gt;Install additional patent encumbered/proprietary software&lt;/h1&gt;
 

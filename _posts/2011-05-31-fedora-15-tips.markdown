@@ -149,6 +149,28 @@ $ gsettings set org.gnome.desktop.interface monospace-font-name "Inconsolata 12"
 These two commands will install the font and make it the default
 monospaced font on your Fedora system.
 
+**Install GIMP**
+Fedora does not ship with an image editor. GIMP is generally
+considered the best option so you might want to install it:
+
+{% highlight console %}
+$ sudo yum install gimp
+{% endhighlight %}
+
+**Install gnome-tweak-tool to customize fonts, themes, etc in GNOME 3.0**
+
+GNOME 3.0 has stripped many configuration options, but luckily most of
+them are available by installing gnome-tweak-tool:
+
+{% highlight console %}
+$ sudo yum install gnome-tweak-tool
+{% endhighlight %}
+
+Run it (by pressing Alt+F2 and typing gnome-tweak-tool) and change the
+settings. It does not have OK or Apply buttons, but simply selecting the
+options performs the changes. Some changes may require logging out and
+logging back in.
+
 # Install additional patent encumbered/proprietary software
 
 **Enable RPMFusion**
