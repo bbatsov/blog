@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-06-11T14:30:37+03:00</updated>
+  <updated>2011-06-11T14:45:02+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -107,6 +107,12 @@ don’t want to waste my time debugging all kind of crap.&lt;/p&gt;
   own is listed as having a “perfect” Linux compatability in
   openprinting.org. If this is perfect I cannot begin to imagine what
   is “poor” compatibility.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Crappiest suspend/resume support&lt;/strong&gt; - laptop goes to sleep, but
+  doesn’t wake up. Wireless dies after wake up. Suspend/resume used to
+  be something mythical to most Linux users. Recently the situation
+  has improved a bit it’s still light years away from what you get
+  with Windows/OSX.&lt;/p&gt;
 
 &lt;p&gt;I’ll stop writing about the driver problems now, because they affect
 so many thing. Even my fairly advanced mouse is missing some functions

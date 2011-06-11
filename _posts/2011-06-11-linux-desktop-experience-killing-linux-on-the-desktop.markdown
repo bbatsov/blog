@@ -93,6 +93,12 @@ don't want to waste my time debugging all kind of crap.
   own is listed as having a "perfect" Linux compatability in
   openprinting.org. If this is perfect I cannot begin to imagine what
   is "poor" compatibility.
+  
+**Crappiest suspend/resume support** - laptop goes to sleep, but
+  doesn't wake up. Wireless dies after wake up. Suspend/resume used to
+  be something mythical to most Linux users. Recently the situation
+  has improved a bit it's still light years away from what you get
+  with Windows/OSX.
 
 I'll stop writing about the driver problems now, because they affect
 so many thing. Even my fairly advanced mouse is missing some functions
