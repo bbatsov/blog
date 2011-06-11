@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+        <link href="/css/site.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+        <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="Atom feed">
+        <title>(think) - The Linux desktop experience is killing Linux on the desktop</title>
+
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-22917580-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </head>
+
+    <body>
+        <div id="page">
+            <div id="content">
+                <div id="header">
+                    <h1>(think)</h1>
+                    <p class="comment">/** An online novel about the Source, the Force, the real life and everything
+                    in between...**/</p>
+                </div>
+                <div id="middle">
+                    <div id="menu">
+                        <ul id="list-nav">
+                            <li><a href="/index.html">Home</a></li>
+                            <li><a href="/archive.html">Archive</a></li>
+                            <li><a href="/projects.html">Projects</a></li>
+                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/contacts.html">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div id="content">
+                        <div id="post">
+    <h2 class="title">The Linux desktop experience is killing Linux on the desktop</h2>
+    <p><strong>Disclaimer</strong></p>
+
+<p><em>This post is a bona fide rant. It tells how a hardcore Linux user
+(me) decided to abandon Linux as a desktop platform and the reasons
+behind this decision. It might provoke some controversy, but
+I frankly don’t care.</em></p>
+
+<h1 id="overture">Overture</h1>
+
+<p>I’m generally known as one of the biggest supporters of GNU/Linux,
+I’ve taught courses on Linux administration, I’ve spoken at Linux
+conferences and I naturally use Linux as my primary desktop on all my
+machines. Well, that last part is not so true anymore. Here the story
+begins…</p>
+
+<h1 id="the-background">The background</h1>
+
+<p>I’ve been using GNU/Linux exclusively for 8 years now. I’ve spent a
+lot of time with Fedora, Gentoo and Arch Linux. I use it at home, I
+use it at work and along the way I’ve converted many Windows users to
+Linux. I’ve lived through a lot of driver and software problems
+with Linux, hoping that the day would come when it will become a
+first-class citizen of the desktop operating systems town. Alas, this
+day never came and probably never will.</p>
+
+<p>My patience ended this week and I’ll be gradually moving all my
+desktop machines back to Windows. What caused me to take such drastic
+course of action? I’ve bought myself a new ThinkPad T520 laptop,
+powered by Nvidia’s Optimus GPU switching technology - when the GPU
+load is low it uses the built-in Sandy Bridge GPU, when it gets higher
+- it switches to the discrete NVS 4200M GPU. Needless to say - this
+  technology is not supported under Linux, but I was prepared to live
+  without it. After all both Intel and Nvidia are known to have decent
+  Linux drivers so I was about to try both GPU and select the one with
+  the better performance. All I had to do was pick a shiny new
+  distribution to power my mobile powerhouse…</p>
+
+<h1 id="the-distribution">The Distribution</h1>
+
+<p>I love Fedora - always have, always will. They constantly deliver to
+the end users the cutting edge in Linux technologies (both desktop and
+server), so it’s naturally my distro of choice (I’m quite fond of
+cutting edge tech). I installed on the new
+laptop the latest Fedora 15 with GNOME 3.0 and here the problems
+started. GNOME 3 requires 3d acceleration to work properly - a
+reasonable requirement these days, at least on an operating system with
+normal video drivers. </p>
+
+<p>The Intel driver sucked so bad that I got constant screen corruption
+and hang-ups. Too bad, because I preferred to use the Intel GPU since
+I mostly work on the laptop. The open source Nvidia driver nouveau
+doesn’t support the NVS 4200, so I was forced to install the
+proprietary driver. It ran OK initially, but after some time my system
+just started to freeze while waiting for Plymouth (probably after some
+kernel update, which I didn’t notice). I could have tried the usual
+tricks and fixed the problem, but at this point I finally realized how
+idiotic it was of me to keep using Linux for a desktop OS after all
+the shit I’ve endured and the time I’ve wasted dealing with stuff that
+should have been “just working”. I just want to get some work done, I
+don’t want to waste my time debugging all kind of crap.</p>
+
+<h1 id="the-shit-i-endured">The Shit I endured</h1>
+
+<p><strong>Non-existing ethernet/wireless drivers</strong> - not so common today, but
+  try remembering the time circa 2005</p>
+
+<p><strong>Non-existing/crappy audio drivers</strong> - got an X-Fi 5 years ago, ALSA
+  driver was released 3-4 years later and was total piece of garbage,
+  OSS driver was barely usable</p>
+
+<p><strong>Lamest video card drivers ever</strong> - most video card drivers for Linux
+  are so bad I cannot even watch tear-free video. Nvidia have the only
+  decent video driver, but it’s far from perfect either - no KMS, poor
+  2D acceleration. AMD’s drivers are a punishment from the Lord and
+  Intel’s constantly “evolving” drivers are barely usable most of the
+  time. The video card drivers made me buy and HD media player and an
+  PS3 (for which I’m thankful), but I have to ask myself - why suffer
+  all this shit instead of getting a normal desktop OS like OS X or
+  Windows? Did I love Linux that much? Did I believe that much it’s
+  desktop day would come? What an idiot I was.</p>
+
+<p><strong>Lack of printer drivers</strong> - that’s a funny one. Often printers
+  listed as having Linux drivers are mostly unusable. The printer that
+  own is listed as having a “perfect” Linux compatability in
+  openprinting.org. If this is perfect I cannot begin to imagine what
+  is “poor” compatibility.</p>
+
+<p>I’ll stop writing about the driver problems now, because they affect
+so many thing. Even my fairly advanced mouse is missing some functions
+in Linux. I’m not even mentioning the things like support for “Turbo
+Memory”, Optimus, etc.</p>
+
+<p><strong>Lack of decent office software</strong> - call it OpenOffice.org and don’t
+  insult it anymore…</p>
+
+<p><strong>Problematic sound architecture</strong> - let me be completely blunt -
+  everything sound related in Linux sucks - OSS, ALSA, PulseAudio (the
+  sucker king). From a technical standpoint OSS never actually sucked,
+  but since it wasn’t picked up by the community the project fell
+  into oblivion. How many of you have enjoy Dolby Digital or DTS sound
+  from their Linux boxes? </p>
+
+<p><strong>Poor flash support</strong> - should I explain? Have you tried it on a 64
+  bit distro? Do I hate it? Sure. Do I hope HTML5 will kill it?
+  Sure. Do I need it? Sure.</p>
+
+<p><strong>Poor skype support</strong> - Same story as with flash. I keep dreaming of
+  a world with more intelligent users where GTalk has a conference
+  mode and everybody’s using it instead of skype.</p>
+
+<p><strong>Poor quality of desktop apps</strong> - Known issues in core applications
+  such as Nautilus don’t get fixed for years. Such things naturally
+  piss me off. Trying to contribute to the solution of a problem is
+  often met with apathy by maintainers. Btw Linux users thing that
+  Mozilla Firefox is very slow and memory hungry - but it turns out
+  that the Windows version is generally performing a lot better (not
+  to mention - supporting hardware video acceleration).</p>
+
+<p>I can keep listing things here forever. When I come to think about it
+for the entire time I’ve been using Linux only one major problem got
+resolved - USB devices support. I still remember the days when I had
+to write auto mounting policies myself or to use <em>mount</em> manually all
+the time. I won’t even mention the quality of most proprietary apps on
+Linux, the huge amount of missing essential application and the
+unavailability of mainstream video games.</p>
+
+<p>So this is it! Asta la vista, Linux! You still remain the best server
+operating system, though. You’ll always have a special place in my
+heart and a VMWare instance on my Windows boxes. </p>
+
+<h1 id="what-ill-miss">What I’ll miss</h1>
+
+<ul>
+  <li>shell</li>
+  <li>transparency</li>
+  <li>package management</li>
+</ul>
+
+<p>Although most common desktop users probably don’t use the shell very
+often, I practically live(d) in it. OS X has zsh and bash, so it’s a
+long term option for me, but due to the need for new hardware I’ll be
+using Windows 7 on the desktop front for now. Hopefully the rumors
+that PowerShell is great will turned out to be true.</p>
+
+<p>The ability to tweak every aspect of the configuration, to build
+custom drivers and kernels will be missed as well, but I don’t tend to
+do this as often as I used to. </p>
+
+<p>Probably the biggest loss for me would be the wonderful distro package
+management systems like YUM and APT.</p>
+
+<h1 id="epilogue">Epilogue</h1>
+
+<p>I remember the first time I used Linux. A friend of mine installed
+Fedora 2 on my personal computer and there was a glitch in GRUB that
+prevented me from booting in Windows. My ethernet card wasn’t
+supported so I was left without Internet. I asked my friend can I at
+least watch a few movies while he brought me a patched version of the
+buggy GRUB. He told me - you need to compile MPlayer from sources with
+several optimization, you need windows video codecs, etc. At the time this
+excited me a lot - adventure, excitement. I learned A LOT by using
+Linux non-stop for so long time. But at some point you stop learning
+exciting things and are just stuck with tedious things you have to
+keep doing over and over again. And as I already mentioned - I don’t
+want my time wasted, I want to get the job done with minimum hassle.</p>
+
+<p>I’ve been hearing each and every year that “year 20xx” will be the
+year of the Linux desktop. It never came and it’s my firm believe that
+it never will. Constantly plagued by hardware and software woes Linux
+is doomed to fail. Without major support from hardware and software
+vendors every OS is ultimately doomed to fail. </p>
+
+<p>It’s no secret that a lot of money are made by Linux server businesses
+and this naturally drives a lot of the development in the area of
+improving server performance. Nobody put it better than
+<a href="http://apcmag.com/why_i_quit_kernel_developer_con_kolivas.htm">Con Colivas</a>
+- “<em>Linux is burdened with enterprise crap that makes it run poorly on
+  desktop PCs, says kernel developer Con Kolivas who recently walked
+  away from years of work on it.</em>”. Linux will remain the king of the
+  server world, but on the desktop front it will always be an OS for
+  enthusiast and hackers only.</p>
+
+<p>Goodbye, my dear old friend. You’ll be missed… but not that much.</p>
+
+<p>P.S. Btw I’m as pro a Linux user as they get - a professional sys
+admin, a former kernel developer so don’t bother me with moronic
+comments from the type “you’re not doing something right/you should
+try another distro”.</p>
+
+    <div class="meta">Posted on 11 Jun 2011 by Bozhidar. Filed under Linux, Windows, and Rant.</div>
+    <br/>
+        <span  class='st_reddit_large' ></span><span  class='st_linkedin_large' ></span><span  class='st_google_reader_large' ></span><span  class='st_dzone_large' ></span><span  class='st_digg_large' ></span><span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_yahoo_large' ></span><span  class='st_gbuzz_large' ></span><span  class='st_email_large' ></span><span  class='st_sharethis_large' ></span>
+    <hr />
+    <div id="disqus">
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'batsov'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = document.location.href;
+    var disqus_url = document.location.href;
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'e857ac4f-d3f6-4aa1-9e1f-06210ab5480e'});</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+</div>
+
+                    </div>
+                </div>
+                <div id="footer">
+                    Copyright &copy; 2010-2011 <a href="mailto:bozhidar.batsov@gmail.com">Bozhidar Batsov</a>. All Rights Reserved.
+                    <br/>
+                    Powered by <a href="http://jekyllrb.com/">Jekyll</a>.
+                </div>
+            </div>
+            <div id="sidebar">
+                <div id="twitter">
+                    <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        new TWTR.Widget({
+                        version: 2,
+                        type: 'profile',
+                        rpp: 4,
+                        interval: 6000,
+                        width: 250,
+                        height: 300,
+                        theme: {
+                        shell: {
+                        background: '#333333',
+                        color: '#ffffff'
+                        },
+                        tweets: {
+                        background: '#000000',
+                        color: '#ffffff',
+                        links: '#4aed05'
+                        }
+                        },
+                        features: {
+                        scrollbar: false,
+                        loop: false,
+                        live: false,
+                        hashtags: true,
+                        timestamp: true,
+                        avatars: false,
+                        behavior: 'all'
+                        }
+                        }).render().setUser('bbatsov').start();
+                    </script>
+                </div>
+                <div id="latest">
+                    <div class="sidebar_heading">Latest posts:</div>
+                    <ul>
+                        
+                        <li><a href="/Linux/Windows/Rant/2011/06/11/linux-desktop-experience-killing-linux-on-the-desktop.html">The Linux desktop experience is killing Linux on the desktop</a></li>
+                        
+                        <li><a href="/Java/2011/06/11/jvm-langs-java-7.html">Java.next() - Java 7: The King is dead, long live the King</a></li>
+                        
+                        <li><a href="/Ruby/Rails/Python/Django/2011/06/11/django-vs-rails.html">Django 1.3 vs Rails 3: A not so final showdown</a></li>
+                        
+                        <li><a href="/Emacs/Linux/2011/06/05/emacs-default-font.html">Emacs Tip #1: Set the default font in Emacs 23</a></li>
+                        
+                        <li><a href="/Linux/Hardware/Fedora/2011/06/04/phaser-3117-fedora-15.html">Running Xerox Phaser 3117 under Fedora 15</a></li>
+                        
+                    </ul>
+                </div>
+                <div id="tags">
+                    <div class="sidebar_heading">Categories:</div>
+                    <ul>
+                        
+                        
+                        <li><a href="/categories/Misc/index.html">Misc(6)</a></li>
+                        
+                        
+                        <li><a href="/categories/Hardware/index.html">Hardware(4)</a></li>
+                        
+                        
+                        <li><a href="/categories/Ruby/index.html">Ruby(6)</a></li>
+                        
+                        
+                        <li><a href="/categories/Emacs/index.html">Emacs(7)</a></li>
+                        
+                        
+                        <li><a href="/categories/Rails/index.html">Rails(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Z Shell/index.html">Z Shell(3)</a></li>
+                        
+                        
+                        <li><a href="/categories/Linux/index.html">Linux(10)</a></li>
+                        
+                        
+                        <li><a href="/categories/Java/index.html">Java(13)</a></li>
+                        
+                        
+                        <li><a href="/categories/Design Patterns/index.html">Design Patterns(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/IntelliJ/index.html">IntelliJ(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Eclipse/index.html">Eclipse(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Fedora/index.html">Fedora(5)</a></li>
+                        
+                        
+                        <li><a href="/categories/Git/index.html">Git(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/JBoss/index.html">JBoss(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Swing/index.html">Swing(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/NetBeans/index.html">NetBeans(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/LaTeX/index.html">LaTeX(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Jekyll/index.html">Jekyll(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Programming/index.html">Programming(5)</a></li>
+                        
+                        
+                        <li><a href="/categories/Scala/index.html">Scala(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Common Lisp/index.html">Common Lisp(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Python/index.html">Python(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Groovy/index.html">Groovy(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Clojure/index.html">Clojure(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Books/index.html">Books(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Django/index.html">Django(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Windows/index.html">Windows(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Rant/index.html">Rant(1)</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+    var disqus_shortname = 'batsov'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    </body>
+</html>
