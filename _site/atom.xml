@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-06-18T12:01:48+03:00</updated>
+  <updated>2011-06-18T16:10:28+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -372,11 +372,11 @@ basically nothing. &lt;/p&gt;
 
 &lt;h1 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h1&gt;
 
-&lt;p&gt;This article (and the one before it) were never about jumping the
+&lt;p&gt;This article (and the one before it) was never about jumping the
 ship, claiming that Windows or OSX are better than Linux or spreading
 “FUD” (if I totally hate a term this is the one). It was always about
 raising the awareness of existing issues in the land of desktop
-Linux. After all just a few day before &lt;a href=&quot;/Linux/Fedora/2011/05/31/fedora-15-tips.html&quot;&gt;I had written a post
+Linux. After all just a few days before &lt;a href=&quot;/Linux/Fedora/2011/05/31/fedora-15-tips.html&quot;&gt;I had written a post
 installation guide for Fedora 15&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;While I was writing the last paragraph I got another GNOME 3 shell corruption (time

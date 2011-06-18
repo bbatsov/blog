@@ -357,11 +357,11 @@ Few good options are worth more than a million half-baked options!
 
 # Epilogue
 
-This article (and the one before it) were never about jumping the
+This article (and the one before it) was never about jumping the
 ship, claiming that Windows or OSX are better than Linux or spreading
 "FUD" (if I totally hate a term this is the one). It was always about
 raising the awareness of existing issues in the land of desktop
-Linux. After all just a few day before [I had written a post
+Linux. After all just a few days before [I had written a post
 installation guide for Fedora 15](/Linux/Fedora/2011/05/31/fedora-15-tips.html).
 
 While I was writing the last paragraph I got another GNOME 3 shell corruption (time
