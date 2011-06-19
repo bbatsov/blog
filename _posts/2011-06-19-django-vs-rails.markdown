@@ -25,7 +25,7 @@ fairly decent knowledge of Ruby. My Python is not as fluent
 (admittedly), but still - I've played a lot with Python
 recently. Django, however, was completely new to me. In this article
 I'll try to compare the frameworks in a totally friendly way; if
-you've expect an epic flame war post you may very well stop reading
+you've expected an epic flame war post you may very well stop reading
 here. I'm obviously no Rails/Django guru, so if I've
 written something that is wrong - please feel free to correct me.
 

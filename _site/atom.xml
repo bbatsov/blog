@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-06-19T14:13:06+03:00</updated>
+  <updated>2011-06-19T14:23:57+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -38,7 +38,7 @@ fairly decent knowledge of Ruby. My Python is not as fluent
 (admittedly), but still - I’ve played a lot with Python
 recently. Django, however, was completely new to me. In this article
 I’ll try to compare the frameworks in a totally friendly way; if
-you’ve expect an epic flame war post you may very well stop reading
+you’ve expected an epic flame war post you may very well stop reading
 here. I’m obviously no Rails/Django guru, so if I’ve
 written something that is wrong - please feel free to correct me.&lt;/p&gt;
 
