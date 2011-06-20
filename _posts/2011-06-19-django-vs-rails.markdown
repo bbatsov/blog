@@ -529,7 +529,18 @@ offer an alternative to Rails's migrations. Luckily there is
 [South](http://south.aeracode.org/) - an extension that provides a
 simple, stable and database-independent migration layer to prevent all
 the hassle schema changes over time bring to your Django
-applications. I highly recommend it to everyone planning to use Django.
+applications. I highly recommend it to everyone planning to use
+Django.
+
+**JavaScript and AJAX**
+
+Unlike Rails, Django doesn't bundle any JavaScript libraries. You have
+to pick a JavaScript framework yourself (which a trivial process). The
+AJAX support in Django is both basic and extremely powerful in the
+same time - request.is_ajax(). What this means is that you can check
+if a request was regular or an AJAX request and respond
+accordingly. You don't need much more than that. More details can be
+found [here](https://code.djangoproject.com/wiki/AJAX).
 
 **The great divide**
 

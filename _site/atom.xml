@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-06-19T18:45:14+03:00</updated>
+  <updated>2011-06-20T23:40:46+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -542,7 +542,18 @@ offer an alternative to Rails’s migrations. Luckily there is
 &lt;a href=&quot;http://south.aeracode.org/&quot;&gt;South&lt;/a&gt; - an extension that provides a
 simple, stable and database-independent migration layer to prevent all
 the hassle schema changes over time bring to your Django
-applications. I highly recommend it to everyone planning to use Django.&lt;/p&gt;
+applications. I highly recommend it to everyone planning to use
+Django.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;JavaScript and AJAX&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Unlike Rails, Django doesn’t bundle any JavaScript libraries. You have
+to pick a JavaScript framework yourself (which a trivial process). The
+AJAX support in Django is both basic and extremely powerful in the
+same time - request.is_ajax(). What this means is that you can check
+if a request was regular or an AJAX request and respond
+accordingly. You don’t need much more than that. More details can be
+found &lt;a href=&quot;https://code.djangoproject.com/wiki/AJAX&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;The great divide&lt;/strong&gt;&lt;/p&gt;
 
