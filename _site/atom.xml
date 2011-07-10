@@ -4,13 +4,289 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-06-20T23:40:46+03:00</updated>
+  <updated>2011-07-10T12:25:55+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
     <email>bozhidar.batsov@gmail.com</email>
   </author>
 
+  
+  <entry>
+    <id>http://www.batsov.com/Linux/Debian/2011/07/04/debian-tips</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Linux/Debian/2011/07/04/debian-tips.html"/>
+    <title>Debian post installation setup &amp; tips</title>
+    <updated>2011-07-04T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;h1 id=&quot;overture&quot;&gt;Overture&lt;/h1&gt;
+
+&lt;p&gt;I’ve recently been using Debian a lot (mostly Debian Wheezy (aka
+testing)), So I’ve decided to adapt my
+&lt;a href=&quot;/Linux/Fedora/2011/05/31/fedora-15-tips.html&quot;&gt;Fedora 15 post installation setup &amp;amp; tips&lt;/a&gt;
+article for Debian. Here are some of the common things I add to a
+typical “graphical desktop” Debian installation as well as some tips
+and tricks that you’ll hopefully find useful. Btw, I highly recommend
+you to use the &lt;a href=&quot;http://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso&quot;&gt;netinstall Debian distribution&lt;/a&gt; - that way you’ll get an
+up-to-date installation immediately and you won’t have to download
+huge installation images.&lt;/p&gt;
+
+&lt;h1 id=&quot;tweak-defaults&quot;&gt;Tweak defaults&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Configure sudo&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;sudo gives you a way to execute single commands as the superuser. You
+can also do this with “su -c”, but you have to quote the commands there,
+which I don’t like very much. To enable sudo for some account first
+run the command:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; su -c &lt;span class=&quot;s2&quot;&gt;&amp;quot;visudo&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The file /etc/sudoers will open up in a customized vi editor. Append
+somewhere to the end of the file the following line:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;username ALL=(ALL) ALL&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should replace &lt;em&gt;username&lt;/em&gt; with your username.&lt;/p&gt;
+
+&lt;h1 id=&quot;apt-get--apt-cache-or-aptitude&quot;&gt;apt-get + apt-cache or aptitude&lt;/h1&gt;
+
+&lt;p&gt;There are two common ways (and many others less popular or obsolete)
+to manage packages on a Debian system these days - the simpler apt-get
++ apt-cache combo or the more advanced aptitude tool. I tend to prefer
+using aptitude since it’s a all-in-one solution - you could use it to both
+query and install packages and has both a CLI and a curses interface.&lt;/p&gt;
+
+&lt;p&gt;It doesn’t really matter whether you decided to use apt-get/apt-cache
+or aptitude, but you shouldn’t mix their usage - pick one and stay
+with it.&lt;/p&gt;
+
+&lt;h1 id=&quot;install-additional-software&quot;&gt;Install additional software&lt;/h1&gt;
+
+&lt;p&gt;I generally install Debian from the netinstall images and don’t
+customize very much the default package set since it’s so easy to
+install everything you need afterwards.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install REAL text editors&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;gedit is ok for causal text editing, but professionals like software
+engineers and system administrators will definitely need something more:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install emacs vim
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Personally I use Emacs most of the time and use vim only to edit
+config files that require root access. If you need an advanced Emacs
+setup my suggestion is the &lt;a href=&quot;https://github.com/bbatsov/emacs-dev-kit&quot;&gt;Emacs Dev Kit&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Z Shell&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s no secret that I love the Z Shell - after all I
+&lt;a href=&quot;/Z%20Shell/2011/04/29/one-shell-to-rule-them-all.html&quot;&gt;rave about it&lt;/a&gt;
+quite often. It should come as no surprise that I happen to use it and
+probably you should start using it as well:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install zsh
+&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo vim /etc/passwd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Find the line about your account and change there &lt;strong&gt;/bin/bash&lt;/strong&gt; to
+&lt;strong&gt;/usr/bin/zsh&lt;/strong&gt;. Afterwards start a new login shell and a simple wizard will
+fire up asking you some questions to create a default .zshrc file for
+you. Alternatively you can use the excellent &lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh&quot;&gt;O My Zsh&lt;/a&gt; config - I’m
+very fond of it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install guake(a drop down terminal)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I spend a lot of time at the terminal and like to have one at my
+fingertips always. Since I’m a GNOME user guake is the best option for
+me:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install guake
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install LibreOffice&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;LibreOffice is currently the best Linux option for word processing,
+spreadsheet handling and presentation creation. It’s generally
+installed by default if you select the “Graphical Desktop” option in
+the installation wizard, but you can install the
+most common components at any time with the following command:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install libreoffice-calc libreoffice-impress libreoffice-draw libreoffice-writer
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;LibreOffice uses hunspell to do spellchecking. An English dictionary
+will be installed by default, but you’ll need to install additional
+dictionaries manually:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install hunspell-bg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This command will install the Bulgarian hunspell dictionary. You
+likely don’t need it so install some more helpful dictionary instead. :-)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install OpenJDK&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you need to run Java programs/applets:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install openjdk-6-jre
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you’re planning to do some Java development:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install openjdk-6-jdk openjdk-6-doc openjdk-6-demo openjdk-6-source
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Deluge torrent client&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The default Transmission torrent client is pretty basic. I recommend
+you to replace it with the much more feature-rich deluge:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install deluge
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Inconsolata font&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I’m a software engineer and I obviously spend a lot of time reading
+and writing source code. I’m very picking about the monospace font
+that I use and currently Inconsolata happens to be my favorite:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install ttf-inconsolata
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install GIMP&lt;/strong&gt;
+A lot of you might need an image editor. GIMP is generally
+considered the best option so you might want to install it:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install gimp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;install-additional-patent-encumberedproprietary-software&quot;&gt;Install additional patent encumbered/proprietary software&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Enable non-free repo&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Just add contrib and non-free to the list of your enabled repos. Your
+first line in /etc/apt/sources.list should look like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;deb http://ftp.bg.debian.org/debian/ wheezy main contrib non-free&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then do a:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install proprietary codecs&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;No MP3 support in Debian by default? And almost no video codecs?
+Non-free to the rescue! Type this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install VLC&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;With MPlayer’s development in stagnation VLC has established itself as
+the best video player for Linux recently. Installing it is as easy as typing the following command:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install vlc
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Adobe Flash Player&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Love it or hate it - you probably need it.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install flashplugin-nonfree
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You can omit this if you’re planning to use Google Chrome (on a 32bit system), since it
+comes with Flash Player built-in.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Skype&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In a perfect world everyone would be using Google Talk… In the real one:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install skype
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Oracle JDK&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;OpenJDK is great, but due to licensing problems it’s not quite the
+same as the Oracle JDK. If you start experiencing strange problems
+(mostly in Swing programs) you’d probably do well to try the Oracle
+JDK instead. The magic incantation goes like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install sun-java6-jdk sun-java6-demo sun-java6-source sun-java6-plugin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Debian uses OpenJDK by default, so you’ll have to do some more work to
+tell it to start using Oracle JDK. The &lt;strong&gt;alternatives&lt;/strong&gt; program allows
+you to select between multiple installed versions of a program:&lt;/p&gt;
+
+&lt;p&gt;These commands will make alternative aware of the java binaries and
+set high priorities to them which will make them the default Java
+binaries. You can use “alternatives –config binaryname” to select
+active binaries manually.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Install Google Chrome&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Firefox is dying, Google Chrome is the new king of the
+browsers. Download it from the &lt;a href=&quot;http://www.google.com/chrome&quot;&gt;official site&lt;/a&gt; and install it:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo dpk -i ~/Downloads/google-chrome-stable_current_i386.deb 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Google Chrome will install a apt repository as well, so you’ll receive
+updates as soon as they arrive.&lt;/p&gt;
+
+&lt;p&gt;Alternatively you can use Chromium - Chrome’s open source sibling:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install chromium-browser
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Install DropBox&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.dropbox.com&quot;&gt;DropBox&lt;/a&gt; is a great file sharing service
+which allows you to sync files between all of your computers and
+mobile devices(Android, iPhone, iPad, etc). It has a great Linux
+client which I use all the time. It’s available in the non-free repo
+so you can install it like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo aptitude install nautilus-dropbox
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h1&gt;
+
+&lt;p&gt;Hopefully some of my setup has made your setup more enjoyable and more
+productive. I’ll update this article along the way if I stumble upon
+other things that I consider to be generally helpful.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <id>http://www.batsov.com/Ruby/Rails/Python/Django/2011/06/19/django-vs-rails</id>
@@ -1415,7 +1691,23 @@ try another distro”.&lt;/p&gt;
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
     </author>
-    <content type="html">
+    <content type="html">&lt;h1 id=&quot;overture&quot;&gt;Overture&lt;/h1&gt;
+&lt;p&gt;In the previous article of the series I’ve been discussing modern
+alternatives of the Java programming language. The Java 7 platform is
+just around the corner and so it happens that it brings us some
+language improvements as well as the usual JVM and standard library
+improvements. While the changes to the language are not something
+major (the really good stuff like support for closures was left for
+Java 8) I think they warrant a discussion. Java’s popularity is
+immense and as much I like alternative solutions like Scala and
+Clojure the truth is that probably Java.next() will be the next
+version of Java. :-)&lt;/p&gt;
+
+&lt;p&gt;I’ll use this article to discuss overall improvements and novelties in
+the Java 7 platform as well, so even if you’re not interested in the
+&lt;strong&gt;language&lt;/strong&gt; you might happen to read here something interesting about
+the platform.&lt;/p&gt;
+
 </content>
   </entry>
   

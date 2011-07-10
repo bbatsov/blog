@@ -41,6 +41,276 @@
                     </div>
                     <div id="content">
                         
+<h2 id="debian-post-installation-setup--tipslinuxdebian20110704debian-tipshtml"><a href="/Linux/Debian/2011/07/04/debian-tips.html">Debian post installation setup &amp; tips</a></h2>
+<h1 id="overture">Overture</h1>
+
+<p>I’ve recently been using Debian a lot (mostly Debian Wheezy (aka
+testing)), So I’ve decided to adapt my
+<a href="/Linux/Fedora/2011/05/31/fedora-15-tips.html">Fedora 15 post installation setup &amp; tips</a>
+article for Debian. Here are some of the common things I add to a
+typical “graphical desktop” Debian installation as well as some tips
+and tricks that you’ll hopefully find useful. Btw, I highly recommend
+you to use the <a href="http://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso">netinstall Debian distribution</a> - that way you’ll get an
+up-to-date installation immediately and you won’t have to download
+huge installation images.</p>
+
+<h1 id="tweak-defaults">Tweak defaults</h1>
+
+<p><strong>Configure sudo</strong></p>
+
+<p>sudo gives you a way to execute single commands as the superuser. You
+can also do this with “su -c”, but you have to quote the commands there,
+which I don’t like very much. To enable sudo for some account first
+run the command:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> su -c <span class="s2">&quot;visudo&quot;</span>
+</code></pre>
+</div>
+
+<p>The file /etc/sudoers will open up in a customized vi editor. Append
+somewhere to the end of the file the following line:</p>
+
+<p><code>username ALL=(ALL) ALL</code></p>
+
+<p>You should replace <em>username</em> with your username.</p>
+
+<h1 id="apt-get--apt-cache-or-aptitude">apt-get + apt-cache or aptitude</h1>
+
+<p>There are two common ways (and many others less popular or obsolete)
+to manage packages on a Debian system these days - the simpler apt-get
++ apt-cache combo or the more advanced aptitude tool. I tend to prefer
+using aptitude since it’s a all-in-one solution - you could use it to both
+query and install packages and has both a CLI and a curses interface.</p>
+
+<p>It doesn’t really matter whether you decided to use apt-get/apt-cache
+or aptitude, but you shouldn’t mix their usage - pick one and stay
+with it.</p>
+
+<h1 id="install-additional-software">Install additional software</h1>
+
+<p>I generally install Debian from the netinstall images and don’t
+customize very much the default package set since it’s so easy to
+install everything you need afterwards.</p>
+
+<p><strong>Install REAL text editors</strong></p>
+
+<p>gedit is ok for causal text editing, but professionals like software
+engineers and system administrators will definitely need something more:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install emacs vim
+</code></pre>
+</div>
+
+<p>Personally I use Emacs most of the time and use vim only to edit
+config files that require root access. If you need an advanced Emacs
+setup my suggestion is the <a href="https://github.com/bbatsov/emacs-dev-kit">Emacs Dev Kit</a>.</p>
+
+<p><strong>Install Z Shell</strong></p>
+
+<p>It’s no secret that I love the Z Shell - after all I
+<a href="/Z%20Shell/2011/04/29/one-shell-to-rule-them-all.html">rave about it</a>
+quite often. It should come as no surprise that I happen to use it and
+probably you should start using it as well:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install zsh
+<span class="gp">$</span> sudo vim /etc/passwd
+</code></pre>
+</div>
+
+<p>Find the line about your account and change there <strong>/bin/bash</strong> to
+<strong>/usr/bin/zsh</strong>. Afterwards start a new login shell and a simple wizard will
+fire up asking you some questions to create a default .zshrc file for
+you. Alternatively you can use the excellent <a href="https://github.com/robbyrussell/oh-my-zsh">O My Zsh</a> config - I’m
+very fond of it.</p>
+
+<p><strong>Install guake(a drop down terminal)</strong></p>
+
+<p>I spend a lot of time at the terminal and like to have one at my
+fingertips always. Since I’m a GNOME user guake is the best option for
+me:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install guake
+</code></pre>
+</div>
+
+<p><strong>Install LibreOffice</strong></p>
+
+<p>LibreOffice is currently the best Linux option for word processing,
+spreadsheet handling and presentation creation. It’s generally
+installed by default if you select the “Graphical Desktop” option in
+the installation wizard, but you can install the
+most common components at any time with the following command:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install libreoffice-calc libreoffice-impress libreoffice-draw libreoffice-writer
+</code></pre>
+</div>
+
+<p>LibreOffice uses hunspell to do spellchecking. An English dictionary
+will be installed by default, but you’ll need to install additional
+dictionaries manually:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install hunspell-bg
+</code></pre>
+</div>
+
+<p>This command will install the Bulgarian hunspell dictionary. You
+likely don’t need it so install some more helpful dictionary instead. :-)</p>
+
+<p><strong>Install OpenJDK</strong></p>
+
+<p>If you need to run Java programs/applets:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install openjdk-6-jre
+</code></pre>
+</div>
+
+<p>If you’re planning to do some Java development:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install openjdk-6-jdk openjdk-6-doc openjdk-6-demo openjdk-6-source
+</code></pre>
+</div>
+
+<p><strong>Install Deluge torrent client</strong></p>
+
+<p>The default Transmission torrent client is pretty basic. I recommend
+you to replace it with the much more feature-rich deluge:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install deluge
+</code></pre>
+</div>
+
+<p><strong>Install Inconsolata font</strong></p>
+
+<p>I’m a software engineer and I obviously spend a lot of time reading
+and writing source code. I’m very picking about the monospace font
+that I use and currently Inconsolata happens to be my favorite:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install ttf-inconsolata
+</code></pre>
+</div>
+
+<p><strong>Install GIMP</strong>
+A lot of you might need an image editor. GIMP is generally
+considered the best option so you might want to install it:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install gimp
+</code></pre>
+</div>
+
+<h1 id="install-additional-patent-encumberedproprietary-software">Install additional patent encumbered/proprietary software</h1>
+
+<p><strong>Enable non-free repo</strong></p>
+
+<p>Just add contrib and non-free to the list of your enabled repos. Your
+first line in /etc/apt/sources.list should look like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go">deb http://ftp.bg.debian.org/debian/ wheezy main contrib non-free</span>
+</code></pre>
+</div>
+
+<p>Then do a:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude update
+</code></pre>
+</div>
+
+<p><strong>Install proprietary codecs</strong></p>
+
+<p>No MP3 support in Debian by default? And almost no video codecs?
+Non-free to the rescue! Type this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install gstreamer-plugins-ugly gstreamer-plugins-bad gstreamer-ffmpeg
+</code></pre>
+</div>
+
+<p><strong>Install VLC</strong></p>
+
+<p>With MPlayer’s development in stagnation VLC has established itself as
+the best video player for Linux recently. Installing it is as easy as typing the following command:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install vlc
+</code></pre>
+</div>
+
+<p><strong>Install Adobe Flash Player</strong></p>
+
+<p>Love it or hate it - you probably need it.</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install flashplugin-nonfree
+</code></pre>
+</div>
+
+<p>You can omit this if you’re planning to use Google Chrome (on a 32bit system), since it
+comes with Flash Player built-in.</p>
+
+<p><strong>Install Skype</strong></p>
+
+<p>In a perfect world everyone would be using Google Talk… In the real one:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install skype
+</code></pre>
+</div>
+
+<p><strong>Install Oracle JDK</strong></p>
+
+<p>OpenJDK is great, but due to licensing problems it’s not quite the
+same as the Oracle JDK. If you start experiencing strange problems
+(mostly in Swing programs) you’d probably do well to try the Oracle
+JDK instead. The magic incantation goes like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install sun-java6-jdk sun-java6-demo sun-java6-source sun-java6-plugin
+</code></pre>
+</div>
+
+<p>Debian uses OpenJDK by default, so you’ll have to do some more work to
+tell it to start using Oracle JDK. The <strong>alternatives</strong> program allows
+you to select between multiple installed versions of a program:</p>
+
+<p>These commands will make alternative aware of the java binaries and
+set high priorities to them which will make them the default Java
+binaries. You can use “alternatives –config binaryname” to select
+active binaries manually.</p>
+
+<p><strong>Install Google Chrome</strong></p>
+
+<p>Firefox is dying, Google Chrome is the new king of the
+browsers. Download it from the <a href="http://www.google.com/chrome">official site</a> and install it:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo dpk -i ~/Downloads/google-chrome-stable_current_i386.deb 
+</code></pre>
+</div>
+
+<p>Google Chrome will install a apt repository as well, so you’ll receive
+updates as soon as they arrive.</p>
+
+<p>Alternatively you can use Chromium - Chrome’s open source sibling:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install chromium-browser
+</code></pre>
+</div>
+
+<p><strong>Install DropBox</strong></p>
+
+<p><a href="http://www.dropbox.com">DropBox</a> is a great file sharing service
+which allows you to sync files between all of your computers and
+mobile devices(Android, iPhone, iPad, etc). It has a great Linux
+client which I use all the time. It’s available in the non-free repo
+so you can install it like this:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install nautilus-dropbox
+</code></pre>
+</div>
+
+<h1 id="epilogue">Epilogue</h1>
+
+<p>Hopefully some of my setup has made your setup more enjoyable and more
+productive. I’ll update this article along the way if I stumble upon
+other things that I consider to be generally helpful.</p>
+
+<div style="font-style: italic; color: #7f9f7f;">Posted on 04 Jul 2011 by Bozhidar.</div>
+
+<p><a href="/Linux/Debian/2011/07/04/debian-tips.html#disqus_thread">Comments</a></p>
+
 <h2 id="django-13-vs-rails-3-a-not-so-final-showdownrubyrailspythondjango20110619django-vs-railshtml"><a href="/Ruby/Rails/Python/Django/2011/06/19/django-vs-rails.html">Django 1.3 vs Rails 3: A not so final showdown</a></h2>
 <h2 id="overture">Overture</h2>
 
@@ -1418,49 +1688,26 @@ try another distro”.</p>
 <p><a href="/Linux/Windows/Rant/2011/06/11/linux-desktop-experience-killing-linux-on-the-desktop.html#disqus_thread">Comments</a></p>
 
 <h2 id="javanext---java-7-the-king-is-dead-long-live-the-kingjava20110611jvm-langs-java-7html"><a href="/Java/2011/06/11/jvm-langs-java-7.html">Java.next() - Java 7: The King is dead, long live the King</a></h2>
+<h1 id="overture">Overture</h1>
+<p>In the previous article of the series I’ve been discussing modern
+alternatives of the Java programming language. The Java 7 platform is
+just around the corner and so it happens that it brings us some
+language improvements as well as the usual JVM and standard library
+improvements. While the changes to the language are not something
+major (the really good stuff like support for closures was left for
+Java 8) I think they warrant a discussion. Java’s popularity is
+immense and as much I like alternative solutions like Scala and
+Clojure the truth is that probably Java.next() will be the next
+version of Java. :-)</p>
+
+<p>I’ll use this article to discuss overall improvements and novelties in
+the Java 7 platform as well, so even if you’re not interested in the
+<strong>language</strong> you might happen to read here something interesting about
+the platform.</p>
 
 <div style="font-style: italic; color: #7f9f7f;">Posted on 11 Jun 2011 by Bozhidar.</div>
 
 <p><a href="/Java/2011/06/11/jvm-langs-java-7.html#disqus_thread">Comments</a></p>
-
-<h2 id="emacs-tip-1-set-the-default-font-in-emacs-23emacslinux20110605emacs-default-fonthtml"><a href="/Emacs/Linux/2011/06/05/emacs-default-font.html">Emacs Tip #1: Set the default font in Emacs 23</a></h2>
-<p>Emacs 23.2 will pick up the default GNOME monospaced font, so if
-you’re a GNOME user - you’re basically covered. If you’re not - don’t
-worry.</p>
-
-<p>The simplest way to set the Emacs font is just to add the following
-in your .emacs (or init.el):</p>
-
-<div class="highlight"><pre><code class="cl"><span class="p">(</span><span class="nv">set-default-font</span> <span class="s">&quot;Inconsolata-12&quot;</span><span class="p">)</span>
-</code></pre>
-</div>
-
-<p>This code will set the Emacs font to Inconsolata (my favorite
-monospaced font) with font size 12pt. The problem with this approach
-is that it will not work with a X Emacs client (emacsclient -c)
-connecting to an Emacs daemon (emacs –daemon), because the code will
-get run when the server starts and will basically mean nothing to
-it. You can alleviate this problem by using the appropriate hook for X
-clients, but I find this distasteful. A much simpler solution is to
-forget about <em>set-default-font</em> altogether and simply create a file
-named <strong>.Xdefaults</strong> in your home folder. Put the following in it:</p>
-
-<div class="highlight"><pre><code class="console"><span class="go">Emacs.font: Inconsolata-12</span>
-</code></pre>
-</div>
-
-<p>Afterwards run the following command:</p>
-
-<div class="highlight"><pre><code class="console"><span class="gp">$</span> xrdb -merge ~/.Xdefaults
-</code></pre>
-</div>
-
-<p>At this point you can start Emacs (in normal or daemon mode) and
-your new font settings should be in effect.</p>
-
-<div style="font-style: italic; color: #7f9f7f;">Posted on 05 Jun 2011 by Bozhidar.</div>
-
-<p><a href="/Emacs/Linux/2011/06/05/emacs-default-font.html#disqus_thread">Comments</a></p>
 
 
                     </div>
@@ -1509,6 +1756,8 @@ your new font settings should be in effect.</p>
                     <div class="sidebar_heading">Latest posts:</div>
                     <ul>
                         
+                        <li><a href="/Linux/Debian/2011/07/04/debian-tips.html">Debian post installation setup & tips</a></li>
+                        
                         <li><a href="/Ruby/Rails/Python/Django/2011/06/19/django-vs-rails.html">Django 1.3 vs Rails 3: A not so final showdown</a></li>
                         
                         <li><a href="/Linux/Windows/Rant/2011/06/14/linux-desktop-part-2.html">The Linux desktop experience is killing Linux on the desktop, Part II</a></li>
@@ -1516,8 +1765,6 @@ your new font settings should be in effect.</p>
                         <li><a href="/Linux/Windows/Rant/2011/06/11/linux-desktop-experience-killing-linux-on-the-desktop.html">The Linux desktop experience is killing Linux on the desktop</a></li>
                         
                         <li><a href="/Java/2011/06/11/jvm-langs-java-7.html">Java.next() - Java 7: The King is dead, long live the King</a></li>
-                        
-                        <li><a href="/Emacs/Linux/2011/06/05/emacs-default-font.html">Emacs Tip #1: Set the default font in Emacs 23</a></li>
                         
                     </ul>
                 </div>
@@ -1544,7 +1791,7 @@ your new font settings should be in effect.</p>
                         <li><a href="/categories/Z Shell/index.html">Z Shell(3)</a></li>
                         
                         
-                        <li><a href="/categories/Linux/index.html">Linux(11)</a></li>
+                        <li><a href="/categories/Linux/index.html">Linux(12)</a></li>
                         
                         
                         <li><a href="/categories/Java/index.html">Java(13)</a></li>
@@ -1608,6 +1855,9 @@ your new font settings should be in effect.</p>
                         
                         
                         <li><a href="/categories/Django/index.html">Django(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Debian/index.html">Debian(1)</a></li>
                         
                     </ul>
                 </div>
