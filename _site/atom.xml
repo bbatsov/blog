@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-07-10T12:25:55+03:00</updated>
+  <updated>2011-07-12T23:19:05+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -32,6 +32,9 @@ and tricks that you’ll hopefully find useful. Btw, I highly recommend
 you to use the &lt;a href=&quot;http://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso&quot;&gt;netinstall Debian distribution&lt;/a&gt; - that way you’ll get an
 up-to-date installation immediately and you won’t have to download
 huge installation images.&lt;/p&gt;
+
+&lt;p&gt;This article will be of use mostly to people using Debian as a desktop
+OS (with GNOME as their desktop environment) - it doesn’t discuss any server configurations.&lt;/p&gt;
 
 &lt;h1 id=&quot;tweak-defaults&quot;&gt;Tweak defaults&lt;/h1&gt;
 
@@ -97,7 +100,15 @@ probably you should start using it as well:&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Find the line about your account and change there &lt;strong&gt;/bin/bash&lt;/strong&gt; to
-&lt;strong&gt;/usr/bin/zsh&lt;/strong&gt;. Afterwards start a new login shell and a simple wizard will
+&lt;strong&gt;/usr/bin/zsh&lt;/strong&gt;. Alternatively you can use the chsh program to
+achieve the same result:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt; &lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; sudo chsh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Afterwards start a new login shell and a simple wizard will
 fire up asking you some questions to create a default .zshrc file for
 you. Alternatively you can use the excellent &lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh&quot;&gt;O My Zsh&lt;/a&gt; config - I’m
 very fond of it.&lt;/p&gt;

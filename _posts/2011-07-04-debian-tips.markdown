@@ -18,6 +18,9 @@ you to use the [netinstall Debian distribution](http://cdimage.debian.org/cdimag
 up-to-date installation immediately and you won't have to download
 huge installation images.
 
+This article will be of use mostly to people using Debian as a desktop
+OS (with GNOME as their desktop environment) - it doesn't discuss any server configurations.
+
 # Tweak defaults
 
 **Configure sudo**
@@ -82,7 +85,14 @@ $ sudo vim /etc/passwd
 {% endhighlight %}
 
 Find the line about your account and change there **/bin/bash** to
-**/usr/bin/zsh**. Afterwards start a new login shell and a simple wizard will
+**/usr/bin/zsh**. Alternatively you can use the chsh program to
+achieve the same result:
+
+{% highlight console %} 
+$ sudo chsh
+{% endhighlight %}
+
+Afterwards start a new login shell and a simple wizard will
 fire up asking you some questions to create a default .zshrc file for
 you. Alternatively you can use the excellent [O My Zsh](https://github.com/robbyrussell/oh-my-zsh) config - I'm
 very fond of it.

@@ -54,6 +54,9 @@ you to use the <a href="http://cdimage.debian.org/cdimage/daily-builds/daily/arc
 up-to-date installation immediately and you won’t have to download
 huge installation images.</p>
 
+<p>This article will be of use mostly to people using Debian as a desktop
+OS (with GNOME as their desktop environment) - it doesn’t discuss any server configurations.</p>
+
 <h1 id="tweak-defaults">Tweak defaults</h1>
 
 <p><strong>Configure sudo</strong></p>
@@ -118,7 +121,15 @@ probably you should start using it as well:</p>
 </div>
 
 <p>Find the line about your account and change there <strong>/bin/bash</strong> to
-<strong>/usr/bin/zsh</strong>. Afterwards start a new login shell and a simple wizard will
+<strong>/usr/bin/zsh</strong>. Alternatively you can use the chsh program to
+achieve the same result:</p>
+
+<div class="highlight"><pre><code class="console"><span class="go"> </span>
+<span class="gp">$</span> sudo chsh
+</code></pre>
+</div>
+
+<p>Afterwards start a new login shell and a simple wizard will
 fire up asking you some questions to create a default .zshrc file for
 you. Alternatively you can use the excellent <a href="https://github.com/robbyrussell/oh-my-zsh">O My Zsh</a> config - I’m
 very fond of it.</p>
