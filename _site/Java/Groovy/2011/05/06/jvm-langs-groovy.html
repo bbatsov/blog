@@ -300,19 +300,19 @@ source files without the need for any modifications. Groovy, however,
 builds heavily upon the standard Java’s syntax and you’ll do well to
 get a grip of Groovy’s core idioms. Groovy’s syntax in a nutshell:</p>
 
-<div class="highlight"><pre><code class="groovy"><span class="c">// old school Java code, but also valid Groovy code</span>
+<div class="highlight"><pre><code class="java"><span class="c1">// old school Java code, but also valid Groovy code</span>
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="o">);</span>
 
-<span class="c">// idiomatic Groovy</span>
+<span class="c1">// idiomatic Groovy</span>
 <span class="n">println</span> <span class="s">&quot;Hello, world!&quot;</span>
 
-<span class="c">// dynamic variable definition</span>
-<span class="kt">def</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Bozhidar&quot;</span>
+<span class="c1">// dynamic variable definition</span>
+<span class="n">def</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Bozhidar&quot;</span>
 
-<span class="c">// GString featuring string interpolation</span>
-<span class="n">println</span> <span class="s">&quot;Hello, $name&quot;</span>  <span class="c">// =&gt; &quot;Hello, Bozhidar&quot;</span>
+<span class="c1">// GString featuring string interpolation</span>
+<span class="n">println</span> <span class="s">&quot;Hello, $name&quot;</span>  <span class="c1">// =&gt; &quot;Hello, Bozhidar&quot;</span>
 
-<span class="c">// statically typed variable</span>
+<span class="c1">// statically typed variable</span>
 <span class="n">String</span> <span class="n">songName</span> <span class="o">=</span> <span class="s">&quot;Coding in the Name of&quot;</span>
 
 <span class="n">println</span> <span class="s">&quot;Now playing - $songName&quot;</span>
@@ -323,59 +323,59 @@ get a grip of Groovy’s core idioms. Groovy’s syntax in a nutshell:</p>
 
 <span class="n">println</span> <span class="n">multiline</span>
 
-<span class="c">// method definition</span>
-<span class="kt">def</span> <span class="nf">greet</span><span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+<span class="c1">// method definition</span>
+<span class="n">def</span> <span class="nf">greet</span><span class="o">(</span><span class="n">name</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">println</span> <span class="s">&quot;Hello, $name!&quot;</span>
 <span class="o">}</span>
 
-<span class="c">// method invocation</span>
+<span class="c1">// method invocation</span>
 <span class="n">greet</span> <span class="s">&quot;Bozhidar&quot;</span>
 <span class="n">greet</span><span class="o">(</span><span class="s">&quot;Bozhidar&quot;</span><span class="o">)</span>
 
-<span class="c">// safe dereferencing</span>
-<span class="kt">def</span> <span class="nf">showSize</span><span class="o">(</span><span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+<span class="c1">// safe dereferencing</span>
+<span class="n">def</span> <span class="nf">showSize</span><span class="o">(</span><span class="n">list</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">println</span> <span class="s">&quot;List size is: ${list?.size}&quot;</span>
 <span class="o">}</span>
 
 <span class="n">showSize</span><span class="o">([</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">])</span>
-<span class="c">// this is the important part</span>
+<span class="c1">// this is the important part</span>
 <span class="n">showSize</span><span class="o">(</span><span class="kc">null</span><span class="o">)</span>
 
-<span class="c">// a list</span>
-<span class="kt">def</span> <span class="n">beers</span> <span class="o">=</span> <span class="o">[</span><span class="s">&quot;Zagorka&quot;</span><span class="o">,</span> <span class="s">&quot;Bolyarka&quot;</span><span class="o">,</span> <span class="s">&quot;Shumensko&quot;</span><span class="o">,</span> <span class="s">&quot;Ariana&quot;</span><span class="o">]</span>
+<span class="c1">// a list</span>
+<span class="n">def</span> <span class="n">beers</span> <span class="o">=</span> <span class="o">[</span><span class="s">&quot;Zagorka&quot;</span><span class="o">,</span> <span class="s">&quot;Bolyarka&quot;</span><span class="o">,</span> <span class="s">&quot;Shumensko&quot;</span><span class="o">,</span> <span class="s">&quot;Ariana&quot;</span><span class="o">]</span>
 
-<span class="c">// list access</span>
+<span class="c1">// list access</span>
 <span class="n">println</span> <span class="s">&quot;My favourite beer is ${beers[1]}&quot;</span>
 
 <span class="n">beers</span><span class="o">.</span><span class="na">each</span> <span class="o">{</span> <span class="n">beer</span> <span class="o">-&gt;</span> <span class="n">println</span> <span class="n">beer</span> <span class="o">}</span>
 
-<span class="c">// imports can appear anywhere and support the creation of aliases</span>
+<span class="c1">// imports can appear anywhere and support the creation of aliases</span>
 <span class="kn">import</span> <span class="nn">static</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Calendar</span><span class="o">.</span><span class="na">getInstance</span> <span class="n">as</span> <span class="n">now</span>
 <span class="kn">import</span> <span class="nn">java.sql.Date</span> <span class="n">as</span> <span class="n">SDate</span>
 
 <span class="n">println</span> <span class="nf">now</span><span class="o">()</span>
-<span class="c">// java.util package is automatically imported in Groovy so this is java.util.Date</span>
+<span class="c1">// java.util package is automatically imported in Groovy so this is java.util.Date</span>
 <span class="n">println</span> <span class="k">new</span> <span class="nf">Date</span><span class="o">()</span>
 <span class="n">println</span> <span class="k">new</span> <span class="nf">SDate</span><span class="o">(</span><span class="mi">2011</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">5</span><span class="o">)</span>
 
-<span class="c">// language support for regular expressions</span>
+<span class="c1">// language support for regular expressions</span>
 <span class="k">if</span> <span class="o">(</span><span class="s">&quot;Hello, Groovy&quot;</span> <span class="o">=~</span> <span class="o">/</span><span class="err">\</span><span class="n">w</span><span class="o">+,</span><span class="err">\</span><span class="n">s</span><span class="err">\</span><span class="n">w</span><span class="o">+/)</span> <span class="o">{</span>
     <span class="n">println</span> <span class="s">&quot;It matches&quot;</span>
 <span class="o">}</span>
 
-<span class="c">// range filtering with higher-order functions</span>
+<span class="c1">// range filtering with higher-order functions</span>
 <span class="o">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="o">).</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="o">}.</span><span class="na">each</span> <span class="o">{</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">println</span> <span class="n">n</span> <span class="o">}</span>
 
-<span class="c">// map</span>
-<span class="kt">def</span> <span class="n">capitols</span> <span class="o">=</span> <span class="o">[</span><span class="nl">Bulgaria:</span> <span class="s">&quot;Sofia&quot;</span><span class="o">,</span> <span class="nl">USA:</span> <span class="s">&quot;Washington&quot;</span><span class="o">,</span> <span class="nl">England:</span><span class="s">&quot;London&quot;</span><span class="o">,</span> <span class="nl">France:</span><span class="s">&quot;Paris&quot;</span><span class="o">]</span>
+<span class="c1">// map</span>
+<span class="n">def</span> <span class="n">capitols</span> <span class="o">=</span> <span class="o">[</span><span class="nl">Bulgaria:</span> <span class="s">&quot;Sofia&quot;</span><span class="o">,</span> <span class="nl">USA:</span> <span class="s">&quot;Washington&quot;</span><span class="o">,</span> <span class="nl">England:</span><span class="s">&quot;London&quot;</span><span class="o">,</span> <span class="nl">France:</span><span class="s">&quot;Paris&quot;</span><span class="o">]</span>
 
-<span class="n">println</span> <span class="n">capitols</span><span class="o">[</span><span class="s">&quot;Bulgaria&quot;</span><span class="o">]</span> <span class="c">// =&gt; Sofia</span>
-<span class="n">println</span> <span class="n">capitols</span><span class="o">[</span><span class="s">&quot;France&quot;</span><span class="o">]</span>  <span class="c">// =&gt; Paris</span>
+<span class="n">println</span> <span class="n">capitols</span><span class="o">[</span><span class="s">&quot;Bulgaria&quot;</span><span class="o">]</span> <span class="c1">// =&gt; Sofia</span>
+<span class="n">println</span> <span class="n">capitols</span><span class="o">[</span><span class="s">&quot;France&quot;</span><span class="o">]</span>  <span class="c1">// =&gt; Paris</span>
 
-<span class="c">// class definition</span>
+<span class="c1">// class definition</span>
 <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
-    <span class="kt">def</span> <span class="n">name</span>
-    <span class="kt">def</span> <span class="n">age</span>
+    <span class="n">def</span> <span class="n">name</span>
+    <span class="n">def</span> <span class="n">age</span>
 
     <span class="nf">Person</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
         <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span>
@@ -388,7 +388,7 @@ get a grip of Groovy’s core idioms. Groovy’s syntax in a nutshell:</p>
     <span class="o">}</span>
 <span class="o">}</span>
 
-<span class="kt">def</span> <span class="n">me</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;Bozhidar&quot;</span><span class="o">,</span> <span class="mi">26</span><span class="o">)</span>
+<span class="n">def</span> <span class="n">me</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&quot;Bozhidar&quot;</span><span class="o">,</span> <span class="mi">26</span><span class="o">)</span>
 <span class="n">println</span> <span class="n">me</span>
 </code></pre>
 </div>
@@ -445,7 +445,7 @@ database queries and XML parsing.</p>
 <p>Groovy removes a lot of boilerplate when dealing with SQL queries
 compared to the native JDBC API:</p>
 
-<div class="highlight"><pre><code class="groovy"><span class="kn">import</span> <span class="nn">groovy.sql.Sql</span>
+<div class="highlight"><pre><code class="java"><span class="kn">import</span> <span class="nn">groovy.sql.Sql</span>
 <span class="n">sql</span> <span class="o">=</span> <span class="n">Sql</span><span class="o">.</span><span class="na">newInstance</span><span class="o">(</span><span class="s">&quot;jdbc:mysql://host/db&quot;</span><span class="o">,</span> <span class="s">&quot;username&quot;</span><span class="o">,</span> <span class="s">&quot;password&quot;</span><span class="o">,</span> <span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="o">)</span>
 <span class="n">sql</span><span class="o">.</span><span class="na">eachRow</span><span class="o">(</span><span class="s">&quot;select * from tableName&quot;</span><span class="o">,</span> <span class="o">{</span> <span class="n">println</span> <span class="n">it</span><span class="o">.</span><span class="na">id</span> <span class="o">+</span> <span class="s">&quot; -- ${it.firstName} --&quot;</span><span class="o">}</span> <span class="o">)</span>
 </code></pre>
@@ -497,7 +497,7 @@ possible. Let’s parse the following file:</p>
 
 <p>All the code we need to write is:</p>
 
-<div class="highlight"><pre><code class="groovy"><span class="kt">def</span> <span class="n">books</span> <span class="o">=</span> <span class="k">new</span> <span class="n">XmlSlurper</span><span class="o">().</span><span class="na">parse</span><span class="o">(</span><span class="s">&quot;books.xml&quot;</span><span class="o">)</span>
+<div class="highlight"><pre><code class="java"><span class="n">def</span> <span class="n">books</span> <span class="o">=</span> <span class="k">new</span> <span class="n">XmlSlurper</span><span class="o">().</span><span class="na">parse</span><span class="o">(</span><span class="s">&quot;books.xml&quot;</span><span class="o">)</span>
 <span class="n">books</span><span class="o">.</span><span class="na">book</span><span class="o">.</span><span class="na">each</span> <span class="o">{</span>
     <span class="n">println</span> <span class="s">&quot;Title = ${it.title}, Author: ${it.author.@firstname} ${it.author.@lastname}&quot;</span>
 <span class="o">}</span>
@@ -528,9 +528,9 @@ alternative to XML or lengthy programming code.</p>
 
 <p>One use for builders is the generation of markup:</p>
 
-<div class="highlight"><pre><code class="groovy"><span class="kn">import</span> <span class="nn">groovy.xml.*</span>
+<div class="highlight"><pre><code class="java"><span class="kn">import</span> <span class="nn">groovy.xml.*</span>
 
-<span class="kt">def</span> <span class="n">page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MarkupBuilder</span><span class="o">()</span>
+<span class="n">def</span> <span class="n">page</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MarkupBuilder</span><span class="o">()</span>
 <span class="n">page</span><span class="o">.</span><span class="na">html</span> <span class="o">{</span>
     <span class="n">head</span> <span class="o">{</span> <span class="n">title</span> <span class="err">&#39;</span><span class="n">Hello</span><span class="o">,</span> <span class="n">Groovy</span><span class="o">!</span><span class="err">&#39;</span> <span class="o">}</span>
     <span class="n">body</span> <span class="o">{</span>
@@ -563,7 +563,7 @@ alternative to XML or lengthy programming code.</p>
 
 <p>Builders can also be used to create Swing GUIs. Here’s a very small example:</p>
 
-<div class="highlight"><pre><code class="groovy"><span class="kn">import</span> <span class="nn">java.awt.FlowLayout</span>
+<div class="highlight"><pre><code class="java"><span class="kn">import</span> <span class="nn">java.awt.FlowLayout</span>
 
 <span class="n">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">groovy</span><span class="o">.</span><span class="na">swing</span><span class="o">.</span><span class="na">SwingBuilder</span><span class="o">()</span>
 <span class="n">langs</span> <span class="o">=</span> <span class="o">[</span><span class="s">&quot;Groovy&quot;</span><span class="o">,</span> <span class="s">&quot;Scala&quot;</span><span class="o">,</span> <span class="s">&quot;Clojure&quot;</span><span class="o">]</span>

@@ -246,7 +246,7 @@ source files without the need for any modifications. Groovy, however,
 builds heavily upon the standard Java's syntax and you'll do well to
 get a grip of Groovy's core idioms. Groovy's syntax in a nutshell:
 
-{% highlight groovy %}
+{% highlight java %}
 // old school Java code, but also valid Groovy code
 System.out.println("Hello, world!");
 
@@ -382,7 +382,7 @@ database queries and XML parsing.
 Groovy removes a lot of boilerplate when dealing with SQL queries
 compared to the native JDBC API:
 
-{% highlight groovy %}
+{% highlight java %}
 import groovy.sql.Sql
 sql = Sql.newInstance("jdbc:mysql://host/db", "username", "password", "com.mysql.jdbc.Driver")
 sql.eachRow("select * from tableName", { println it.id + " -- ${it.firstName} --"} )
@@ -434,7 +434,7 @@ possible. Let's parse the following file:
 
 All the code we need to write is:
 
-{% highlight groovy %}
+{% highlight java %}
 def books = new XmlSlurper().parse("books.xml")
 books.book.each {
     println "Title = ${it.title}, Author: ${it.author.@firstname} ${it.author.@lastname}"
@@ -465,7 +465,7 @@ alternative to XML or lengthy programming code.
 
 One use for builders is the generation of markup:
 
-{% highlight groovy %}
+{% highlight java %}
 import groovy.xml.*
 
 def page = new MarkupBuilder()
@@ -500,7 +500,7 @@ Result:
 
 Builders can also be used to create Swing GUIs. Here's a very small example:
 
-{% highlight groovy %}
+{% highlight java %}
 import java.awt.FlowLayout
 
 builder = new groovy.swing.SwingBuilder()
