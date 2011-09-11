@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-09-11T19:40:42+03:00</updated>
+  <updated>2011-09-12T00:36:04+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -353,6 +353,23 @@ improvements.&lt;/p&gt;
 
 &lt;p&gt;P.S. Btw &lt;a href=&quot;https://github.com/bbatsov/emacs-dev-kit&quot;&gt;The Emacs Dev Kit&lt;/a&gt; already makes use of some the new
 features from Emacs 24. In due time it will make use of much more of them.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;A lot of people have been asking me about the level of stability and
+usability of Emacs 24 at this point since I didn’t mention them at my
+article. I’ve been using Emacs 24 for all of my work for about a month
+now and I’ve experienced absolutely no crashes/freezes/any sort of
+instabilities. On the usability side I’ve encountered a few bugs that
+might be related to some work in progress (for instance face inheritance doesn’t
+work with deftheme), but nothing major.&lt;/p&gt;
+
+&lt;p&gt;If you’re considering trying out Emacs 24 more seriously - my advice
+is to go for it. With no clear release date in sight you might be in
+for a long wait before the final release is here and you’ll be missing
+on some really great features in the meantime. I’ll write a separate
+article soon detailing how to get started with Emacs 24 on the most
+popular platforms (Linux, OS X and Windows).&lt;/p&gt;
 </content>
   </entry>
   
