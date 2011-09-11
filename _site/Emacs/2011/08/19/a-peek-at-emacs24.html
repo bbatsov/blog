@@ -42,7 +42,7 @@
                     <div id="content">
                         <div id="post">
     <h2 class="title">A peek at Emacs 24</h2>
-    <h1 id="overture">Overture</h1>
+    <h2 id="overture">Overture</h2>
 
 <p>Recently I’ve decided to have a look at the current development
 version of Emacs - namely Emacs 24. I was quite impressed with the work done
@@ -52,7 +52,7 @@ I’ve found in Emacs 24.</p>
 <p>It seems to me that this will be the most important Emacs release in
 quite some time.</p>
 
-<h1 id="installation-changes-in-emacs-24">Installation changes in Emacs 24</h1>
+<h2 id="installation-changes-in-emacs-24">Installation changes in Emacs 24</h2>
 
 <p>There are a couple of new build flags support in Emacs 24 - most
 notably there is GTK 3.0 support present. You can enable it by passing
@@ -62,9 +62,9 @@ installed info and man pages are now compressed by default.</p>
 
 <p>All in all - nothing major has changed with the installation process.</p>
 
-<h1 id="general-changes">General changes</h1>
+<h2 id="general-changes">General changes</h2>
 
-<h2 id="completion-improvements">Completion improvements</h2>
+<h1 id="completion-improvements">Completion improvements</h1>
 
 <p>There has been a lot of work done in the completion department. For
 instance <strong>shell-mode</strong> now uses pcomplete rules and the standard
@@ -87,7 +87,7 @@ Instead, the bindings in <em>minibuffer-local-filename-completion-map</em> are c
 with minibuffer-local-must-match-map.</li>
 </ul>
 
-<h2 id="scrolling-improvements">Scrolling improvements</h2>
+<h1 id="scrolling-improvements">Scrolling improvements</h1>
 
 <p>Scrolling has always been a sour subject in Emacs. Emacs 24 finally
 alleviates many of the long standing issues in the scrolling department:</p>
@@ -123,7 +123,7 @@ margin.</p>
   </li>
 </ul>
 
-<h2 id="gtk-improvements">GTK improvements</h2>
+<h1 id="gtk-improvements">GTK improvements</h1>
 
 <p>Linux users are in for a treat:</p>
 
@@ -143,7 +143,7 @@ theme when Emacs is built with GTK.</li>
 off by customizing x-gtk-use-system-tooltips.</li>
 </ul>
 
-<h2 id="cocoa-os-x-improvements">Cocoa (OS X improvements)</h2>
+<h1 id="cocoa-os-x-improvements">Cocoa (OS X improvements)</h1>
 
 <p>OS X users seem to be a bit neglected, but still:</p>
 
@@ -154,7 +154,7 @@ off by customizing x-gtk-use-system-tooltips.</li>
 ns-auto-hide-menu-bar.</li>
 </ul>
 
-<h2 id="elpa-a-package-manager-for-emacs">ELPA (a package manager for Emacs)</h2>
+<h1 id="elpa-a-package-manager-for-emacs">ELPA (a package manager for Emacs)</h1>
 
 <ul>
   <li>
@@ -190,7 +190,7 @@ will be amended in the near future.</p>
 that will certainly prevent a lot of packages from being distributed
 via the official ELPA repo.</p>
 
-<h2 id="custom-color-themes">Custom color themes</h2>
+<h1 id="custom-color-themes">Custom color themes</h1>
 
 <p>Most hackers are very fond of custom color themes. I’m no exception -
 after all I’m the maintainer of the <a href="https://github.com/bbatsov/zenburn-emacs">Zenburn color theme for Emacs</a>. The
@@ -204,12 +204,12 @@ Emacs users can choose from (like tango). I’ve already ported Zenburn to the
 deftheme infrastructure, so if you like it be sure to give it a
 try. The magic command you’ll need to keep in mind is called <em>load-theme</em>.</p>
 
-<h1 id="editing-improvements">Editing improvements</h1>
+<h2 id="editing-improvements">Editing improvements</h2>
 
 <p>Emacs is after all mostly an editor and there is a lot of work done in
 the editing area in 24:</p>
 
-<h2 id="search-changes">Search changes</h2>
+<h1 id="search-changes">Search changes</h1>
 
 <ul>
   <li>
@@ -225,7 +225,7 @@ isearch-yank-kill.</p>
   </li>
 </ul>
 
-<h2 id="general">General</h2>
+<h1 id="general">General</h1>
 <ul>
   <li>
     <p>There is a new command <em>count-words-region</em>, which does what you expect.</p>
@@ -242,7 +242,7 @@ also deletes newlines around point.</p>
   </li>
 </ul>
 
-<h2 id="deletion-changes">Deletion changes</h2>
+<h1 id="deletion-changes">Deletion changes</h1>
 
 <ul>
   <li>
@@ -267,7 +267,7 @@ should use delete-char with a negative argument instead.</p>
   </li>
 </ul>
 
-<h2 id="selection-changes">Selection changes</h2>
+<h1 id="selection-changes">Selection changes</h1>
 
 <p>The default handling of clipboard and primary selections was changed
 to conform with modern X applications.  In short, most commands for
@@ -324,7 +324,7 @@ between applications.</p>
 <em>x-select-enable-clipboard-manager</em> to nil.</li>
 </ul>
 
-<h1 id="new-modes">New modes</h1>
+<h2 id="new-modes">New modes</h2>
 
 <ul>
   <li>
@@ -357,7 +357,7 @@ soap-inspect.el is an interactive inspector for SOAP WSDL structures.</p>
   </li>
 </ul>
 
-<h1 id="epilogue">Epilogue</h1>
+<h2 id="epilogue">Epilogue</h2>
 
 <p>Emacs 24 brings quite a lot to the table. I’ve barely scratch the
 surface as far as the new features are concerned. There is so much

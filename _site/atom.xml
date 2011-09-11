@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-09-11T13:54:35+03:00</updated>
+  <updated>2011-09-11T14:08:09+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -21,7 +21,7 @@
       <name>Bozhidar Batsov</name>
       <uri>http://www.batsov.com/</uri>
     </author>
-    <content type="html">&lt;h1 id=&quot;overture&quot;&gt;Overture&lt;/h1&gt;
+    <content type="html">&lt;h2 id=&quot;overture&quot;&gt;Overture&lt;/h2&gt;
 
 &lt;p&gt;Recently I’ve decided to have a look at the current development
 version of Emacs - namely Emacs 24. I was quite impressed with the work done
@@ -31,7 +31,7 @@ I’ve found in Emacs 24.&lt;/p&gt;
 &lt;p&gt;It seems to me that this will be the most important Emacs release in
 quite some time.&lt;/p&gt;
 
-&lt;h1 id=&quot;installation-changes-in-emacs-24&quot;&gt;Installation changes in Emacs 24&lt;/h1&gt;
+&lt;h2 id=&quot;installation-changes-in-emacs-24&quot;&gt;Installation changes in Emacs 24&lt;/h2&gt;
 
 &lt;p&gt;There are a couple of new build flags support in Emacs 24 - most
 notably there is GTK 3.0 support present. You can enable it by passing
@@ -41,9 +41,9 @@ installed info and man pages are now compressed by default.&lt;/p&gt;
 
 &lt;p&gt;All in all - nothing major has changed with the installation process.&lt;/p&gt;
 
-&lt;h1 id=&quot;general-changes&quot;&gt;General changes&lt;/h1&gt;
+&lt;h2 id=&quot;general-changes&quot;&gt;General changes&lt;/h2&gt;
 
-&lt;h2 id=&quot;completion-improvements&quot;&gt;Completion improvements&lt;/h2&gt;
+&lt;h1 id=&quot;completion-improvements&quot;&gt;Completion improvements&lt;/h1&gt;
 
 &lt;p&gt;There has been a lot of work done in the completion department. For
 instance &lt;strong&gt;shell-mode&lt;/strong&gt; now uses pcomplete rules and the standard
@@ -66,7 +66,7 @@ Instead, the bindings in &lt;em&gt;minibuffer-local-filename-completion-map&lt;/
 with minibuffer-local-must-match-map.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;scrolling-improvements&quot;&gt;Scrolling improvements&lt;/h2&gt;
+&lt;h1 id=&quot;scrolling-improvements&quot;&gt;Scrolling improvements&lt;/h1&gt;
 
 &lt;p&gt;Scrolling has always been a sour subject in Emacs. Emacs 24 finally
 alleviates many of the long standing issues in the scrolling department:&lt;/p&gt;
@@ -102,7 +102,7 @@ margin.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;gtk-improvements&quot;&gt;GTK improvements&lt;/h2&gt;
+&lt;h1 id=&quot;gtk-improvements&quot;&gt;GTK improvements&lt;/h1&gt;
 
 &lt;p&gt;Linux users are in for a treat:&lt;/p&gt;
 
@@ -122,7 +122,7 @@ theme when Emacs is built with GTK.&lt;/li&gt;
 off by customizing x-gtk-use-system-tooltips.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;cocoa-os-x-improvements&quot;&gt;Cocoa (OS X improvements)&lt;/h2&gt;
+&lt;h1 id=&quot;cocoa-os-x-improvements&quot;&gt;Cocoa (OS X improvements)&lt;/h1&gt;
 
 &lt;p&gt;OS X users seem to be a bit neglected, but still:&lt;/p&gt;
 
@@ -133,7 +133,7 @@ off by customizing x-gtk-use-system-tooltips.&lt;/li&gt;
 ns-auto-hide-menu-bar.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;elpa-a-package-manager-for-emacs&quot;&gt;ELPA (a package manager for Emacs)&lt;/h2&gt;
+&lt;h1 id=&quot;elpa-a-package-manager-for-emacs&quot;&gt;ELPA (a package manager for Emacs)&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -169,7 +169,7 @@ will be amended in the near future.&lt;/p&gt;
 that will certainly prevent a lot of packages from being distributed
 via the official ELPA repo.&lt;/p&gt;
 
-&lt;h2 id=&quot;custom-color-themes&quot;&gt;Custom color themes&lt;/h2&gt;
+&lt;h1 id=&quot;custom-color-themes&quot;&gt;Custom color themes&lt;/h1&gt;
 
 &lt;p&gt;Most hackers are very fond of custom color themes. I’m no exception -
 after all I’m the maintainer of the &lt;a href=&quot;https://github.com/bbatsov/zenburn-emacs&quot;&gt;Zenburn color theme for Emacs&lt;/a&gt;. The
@@ -183,12 +183,12 @@ Emacs users can choose from (like tango). I’ve already ported Zenburn to the
 deftheme infrastructure, so if you like it be sure to give it a
 try. The magic command you’ll need to keep in mind is called &lt;em&gt;load-theme&lt;/em&gt;.&lt;/p&gt;
 
-&lt;h1 id=&quot;editing-improvements&quot;&gt;Editing improvements&lt;/h1&gt;
+&lt;h2 id=&quot;editing-improvements&quot;&gt;Editing improvements&lt;/h2&gt;
 
 &lt;p&gt;Emacs is after all mostly an editor and there is a lot of work done in
 the editing area in 24:&lt;/p&gt;
 
-&lt;h2 id=&quot;search-changes&quot;&gt;Search changes&lt;/h2&gt;
+&lt;h1 id=&quot;search-changes&quot;&gt;Search changes&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -204,7 +204,7 @@ isearch-yank-kill.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;general&quot;&gt;General&lt;/h2&gt;
+&lt;h1 id=&quot;general&quot;&gt;General&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;There is a new command &lt;em&gt;count-words-region&lt;/em&gt;, which does what you expect.&lt;/p&gt;
@@ -221,7 +221,7 @@ also deletes newlines around point.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;deletion-changes&quot;&gt;Deletion changes&lt;/h2&gt;
+&lt;h1 id=&quot;deletion-changes&quot;&gt;Deletion changes&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -246,7 +246,7 @@ should use delete-char with a negative argument instead.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;selection-changes&quot;&gt;Selection changes&lt;/h2&gt;
+&lt;h1 id=&quot;selection-changes&quot;&gt;Selection changes&lt;/h1&gt;
 
 &lt;p&gt;The default handling of clipboard and primary selections was changed
 to conform with modern X applications.  In short, most commands for
@@ -303,7 +303,7 @@ between applications.&lt;/p&gt;
 &lt;em&gt;x-select-enable-clipboard-manager&lt;/em&gt; to nil.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;new-modes&quot;&gt;New modes&lt;/h1&gt;
+&lt;h2 id=&quot;new-modes&quot;&gt;New modes&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -336,7 +336,7 @@ soap-inspect.el is an interactive inspector for SOAP WSDL structures.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h1&gt;
+&lt;h2 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h2&gt;
 
 &lt;p&gt;Emacs 24 brings quite a lot to the table. I’ve barely scratch the
 surface as far as the new features are concerned. There is so much

@@ -5,7 +5,7 @@ categories:
 - Emacs
 ---
 
-# Overture
+## Overture
 
 Recently I've decided to have a look at the current development
 version of Emacs - namely Emacs 24. I was quite impressed with the work done
@@ -15,7 +15,7 @@ I've found in Emacs 24.
 It seems to me that this will be the most important Emacs release in
 quite some time.
 
-# Installation changes in Emacs 24
+## Installation changes in Emacs 24
 
 There are a couple of new build flags support in Emacs 24 - most
 notably there is GTK 3.0 support present. You can enable it by passing
@@ -25,9 +25,9 @@ installed info and man pages are now compressed by default.
 
 All in all - nothing major has changed with the installation process.
 
-# General changes
+## General changes
 
-## Completion improvements
+# Completion improvements
 
 There has been a lot of work done in the completion department. For
 instance **shell-mode** now uses pcomplete rules and the standard
@@ -48,7 +48,7 @@ _completing-read-function_.
 Instead, the bindings in _minibuffer-local-filename-completion-map_ are combined
 with minibuffer-local-must-match-map.
 
-## Scrolling improvements
+# Scrolling improvements
 
 Scrolling has always been a sour subject in Emacs. Emacs 24 finally
 alleviates many of the long standing issues in the scrolling department:
@@ -76,7 +76,7 @@ _scroll-down-aggressively_ and move point off the window, Emacs now
 scrolls the window so as to avoid positioning point inside the scroll
 margin.
 
-## GTK improvements
+# GTK improvements
 
 Linux users are in for a treat:
 
@@ -94,7 +94,7 @@ theme when Emacs is built with GTK.
 * Emacs uses GTK tooltips by default if built with GTK.  You can turn that
 off by customizing x-gtk-use-system-tooltips.
 
-## Cocoa (OS X improvements)
+# Cocoa (OS X improvements)
 
 OS X users seem to be a bit neglected, but still:
 
@@ -103,7 +103,7 @@ OS X users seem to be a bit neglected, but still:
 * the menu bar can be hidden by customizing
 ns-auto-hide-menu-bar.
 
-## ELPA (a package manager for Emacs)
+# ELPA (a package manager for Emacs)
 
 * An Emacs Lisp package manager (aka ELPA) is now included.
 This is a convenient way to download and install additional packages,
@@ -131,7 +131,7 @@ There is also the restrictive licensing policy that GNU enforces
 that will certainly prevent a lot of packages from being distributed
 via the official ELPA repo.
 
-## Custom color themes
+# Custom color themes
 
 Most hackers are very fond of custom color themes. I'm no exception -
 after all I'm the maintainer of the [Zenburn color theme for Emacs](https://github.com/bbatsov/zenburn-emacs). The
@@ -145,12 +145,12 @@ Emacs users can choose from (like tango). I've already ported Zenburn to the
 deftheme infrastructure, so if you like it be sure to give it a
 try. The magic command you'll need to keep in mind is called _load-theme_.
 
-# Editing improvements
+## Editing improvements
 
 Emacs is after all mostly an editor and there is a lot of work done in
 the editing area in 24:
 
-## Search changes
+# Search changes
 
 * C-y in Isearch is now bound to isearch-yank-kill, instead of
 isearch-yank-line.
@@ -160,7 +160,7 @@ isearch-yank-kill.
 
 * M-s C-e in Isearch is now bound to isearch-yank-line.
 
-## General
+# General
 * There is a new command _count-words-region_, which does what you expect.
 
 * _completion-at-point_ now handles tags and semantic completion.
@@ -170,7 +170,7 @@ isearch-yank-kill.
 * The command _just-one-space_ (C-SPC), if given a negative argument,
 also deletes newlines around point.
 
-## Deletion changes
+# Deletion changes
 
 * New option _delete-active-region_.
 If non-nil, C-d, [delete], and DEL delete the region if it is active
@@ -188,7 +188,7 @@ should use delete-char with a negative argument instead.
 
 * The option _mouse-region-delete-keys_ has been deleted.
 
-## Selection changes
+# Selection changes
 
 The default handling of clipboard and primary selections was changed
 to conform with modern X applications.  In short, most commands for
@@ -234,7 +234,7 @@ between applications.
 * To inhibit use of the clipboard manager, set
 _x-select-enable-clipboard-manager_ to nil.
 
-# New modes
+## New modes
 
 * Occur Edit mode applies edits made in \*Occur\* buffers to the
 original buffers.  It is bound to C-x C-q in Occur mode. This
@@ -260,7 +260,7 @@ Notifications API.  It requires D-Bus for communication.
 soap-inspect.el is an interactive inspector for SOAP WSDL structures.
 
 
-# Epilogue
+## Epilogue
 
 Emacs 24 brings quite a lot to the table. I've barely scratch the
 surface as far as the new features are concerned. There is so much
