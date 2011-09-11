@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-09-11T14:08:09+03:00</updated>
+  <updated>2011-09-11T19:40:42+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -7964,21 +7964,24 @@ for a new version of the EDK. &lt;/p&gt;
 
 &lt;p&gt;EDK currently offers enhanced(well, I know that this is subjective,
 but it feels enhanced at least to me) support for the following
-languages:
-* C/C++
-* Clojure
-* Common Lisp
-* Emacs Lisp
-* Haskell
-* Java
-* LaTeX
-* Perl
-* Prolog
-* Python
-* Ruby
-* Scala
-* Scheme
-* XML&lt;/p&gt;
+languages:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C/C++&lt;/li&gt;
+  &lt;li&gt;Clojure&lt;/li&gt;
+  &lt;li&gt;Common Lisp&lt;/li&gt;
+  &lt;li&gt;Emacs Lisp&lt;/li&gt;
+  &lt;li&gt;Haskell&lt;/li&gt;
+  &lt;li&gt;Java&lt;/li&gt;
+  &lt;li&gt;LaTeX&lt;/li&gt;
+  &lt;li&gt;Perl&lt;/li&gt;
+  &lt;li&gt;Prolog&lt;/li&gt;
+  &lt;li&gt;Python&lt;/li&gt;
+  &lt;li&gt;Ruby&lt;/li&gt;
+  &lt;li&gt;Scala&lt;/li&gt;
+  &lt;li&gt;Scheme&lt;/li&gt;
+  &lt;li&gt;XML&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;It also offers an advanced ERC configuration(so that you can ask your
 questions on #freenode), extended keybindings and lots of general

@@ -1,0 +1,677 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+  <title>Emacs @ www.batsov.com</title>
+  <link href="http://www.batsov.com/"/>
+  <link type="application/atom+xml" rel="self" href="http://www.batsov.com/emacs.xml"/>
+  <updated>2011-09-11T19:40:42+03:00</updated>
+  <id>Emacs @ http://www.batsov.com/</id>
+  <author>
+    <name>Bozhidar Batsov</name>
+    <email>bozhidar.batsov@gmail.com</email>
+  </author>
+
+  
+  <entry>
+    <id>http://www.batsov.com/Emacs/2011/08/19/a-peek-at-emacs24</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Emacs/2011/08/19/a-peek-at-emacs24.html"/>
+    <title>A peek at Emacs 24</title>
+    <updated>2011-08-19T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;h2 id=&quot;overture&quot;&gt;Overture&lt;/h2&gt;
+
+&lt;p&gt;Recently I’ve decided to have a look at the current development
+version of Emacs - namely Emacs 24. I was quite impressed with the work done
+by the development team so far so I decided to share some of the cool things
+I’ve found in Emacs 24.&lt;/p&gt;
+
+&lt;p&gt;It seems to me that this will be the most important Emacs release in
+quite some time.&lt;/p&gt;
+
+&lt;h2 id=&quot;installation-changes-in-emacs-24&quot;&gt;Installation changes in Emacs 24&lt;/h2&gt;
+
+&lt;p&gt;There are a couple of new build flags support in Emacs 24 - most
+notably there is GTK 3.0 support present. You can enable it by passing
+the &lt;strong&gt;–with-x-toolkit=gtk3&lt;/strong&gt; flag to &lt;em&gt;configure&lt;/em&gt;. There is also built-in
+support for selinux (that can be disabled at build time) and the
+installed info and man pages are now compressed by default.&lt;/p&gt;
+
+&lt;p&gt;All in all - nothing major has changed with the installation process.&lt;/p&gt;
+
+&lt;h2 id=&quot;general-changes&quot;&gt;General changes&lt;/h2&gt;
+
+&lt;h1 id=&quot;completion-improvements&quot;&gt;Completion improvements&lt;/h1&gt;
+
+&lt;p&gt;There has been a lot of work done in the completion department. For
+instance &lt;strong&gt;shell-mode&lt;/strong&gt; now uses pcomplete rules and the standard
+completion UI, which is pretty cool IMHO. Some other insteresting
+improvements (mostly copied directly from Emacs’ NEWS files):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Many packages have been changed to use &lt;em&gt;completion-at-point&lt;/em&gt; rather than
+their own completion code.&lt;/li&gt;
+  &lt;li&gt;Completion in a non-minibuffer now tries to detect the end of completion
+and pops down the *Completions* buffer accordingly.&lt;/li&gt;
+  &lt;li&gt;Completion can cycle, depending on completion-cycle-threshold.&lt;/li&gt;
+  &lt;li&gt;There is a new completion style called &lt;em&gt;substring&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Completion style can be set per-category with &lt;em&gt;completion-category-overrides&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;Completion of buffers now uses substring completion by default.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;completing-read&lt;/em&gt; can be customized using the new variable
+&lt;em&gt;completing-read-function&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;minibuffer-local-filename-must-match-map&lt;/em&gt; is not used any more.
+Instead, the bindings in &lt;em&gt;minibuffer-local-filename-completion-map&lt;/em&gt; are combined
+with minibuffer-local-must-match-map.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;scrolling-improvements&quot;&gt;Scrolling improvements&lt;/h1&gt;
+
+&lt;p&gt;Scrolling has always been a sour subject in Emacs. Emacs 24 finally
+alleviates many of the long standing issues in the scrolling department:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;New scrolling commands &lt;em&gt;scroll-up-command&lt;/em&gt; and &lt;em&gt;scroll-down-command&lt;/em&gt;
+(bound to C-v/[next] and M-v/[prior]) do not signal errors at top/bottom
+of buffer at first key-press (instead move to top/bottom of buffer)
+when a new variable &lt;em&gt;scroll-error-top-bottom&lt;/em&gt; is non-nil.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;New scrolling commands &lt;em&gt;scroll-up-line&lt;/em&gt; and &lt;em&gt;scroll-down-line&lt;/em&gt;
+scroll a line instead of full screen.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;New property &lt;em&gt;scroll-command&lt;/em&gt; should be set on a command’s symbol to
+define it as a scroll command affected by &lt;em&gt;scroll-preserve-screen-position&lt;/em&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you customize &lt;em&gt;scroll-conservatively&lt;/em&gt; to a value greater than 100,
+Emacs will never recenter point in the window when it scrolls due to
+cursor motion commands or commands that move point (e.f., &lt;em&gt;M-g M-g&lt;/em&gt;).
+Previously, you needed to use &lt;em&gt;most-positive-fixnum&lt;/em&gt; as the value of
+&lt;em&gt;scroll-conservatively&lt;/em&gt; to achieve the same effect.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Aggressive&lt;/strong&gt; scrolling now honors the scroll margins.
+If you customize &lt;em&gt;scroll-up-aggressively&lt;/em&gt; or
+&lt;em&gt;scroll-down-aggressively&lt;/em&gt; and move point off the window, Emacs now
+scrolls the window so as to avoid positioning point inside the scroll
+margin.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;gtk-improvements&quot;&gt;GTK improvements&lt;/h1&gt;
+
+&lt;p&gt;Linux users are in for a treat:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;GTK scroll bars are finally placed on the right by default. 
+You can still use &lt;em&gt;set-scroll-bar-mode&lt;/em&gt; to change this.&lt;/li&gt;
+  &lt;li&gt;GTK tool bars can have just text, just images or images and text.
+Customize &lt;em&gt;tool-bar-style&lt;/em&gt; to choose style.  On a Gnome desktop, the default
+is taken from the desktop settings.&lt;/li&gt;
+  &lt;li&gt;GTK tool bars can be placed on the left/right or top/bottom of the frame.
+The frame-parameter tool-bar-position controls this.  It takes the values
+top, left, right or bottom.  The &lt;strong&gt;Options =&amp;gt; Show/Hide&lt;/strong&gt; menu has entries
+for this.&lt;/li&gt;
+  &lt;li&gt;The colors for selected text (the region face) are taken from the GTK
+theme when Emacs is built with GTK.&lt;/li&gt;
+  &lt;li&gt;Emacs uses GTK tooltips by default if built with GTK.  You can turn that
+off by customizing x-gtk-use-system-tooltips.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;cocoa-os-x-improvements&quot;&gt;Cocoa (OS X improvements)&lt;/h1&gt;
+
+&lt;p&gt;OS X users seem to be a bit neglected, but still:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;the annoying bug with the cursor not having an inverse video face
+(meaning you couldn’t see the symbol under it) is finally fixed&lt;/li&gt;
+  &lt;li&gt;the menu bar can be hidden by customizing
+ns-auto-hide-menu-bar.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;elpa-a-package-manager-for-emacs&quot;&gt;ELPA (a package manager for Emacs)&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;An Emacs Lisp package manager (aka ELPA) is now included.
+This is a convenient way to download and install additional packages,
+from a package repository at elpa.gnu.org.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The addition of external repositories is also supported ( I’m
+particularly fond of the &lt;a href=&quot;http://marmalade-repo.org/&quot;&gt;Marmalade repo&lt;/a&gt;)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;M-x list-packages&lt;/em&gt; shows a list of packages, which can be
+selected for installation.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;New command &lt;em&gt;describe-package&lt;/em&gt;, bound to &lt;em&gt;C-h P&lt;/em&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;By default, all installed packages are loaded and activated
+automatically when Emacs starts up.  To disable this, set
+&lt;em&gt;package-enable-at-startup&lt;/em&gt; to nil.  To change which packages are
+loaded, customize &lt;em&gt;package-load-list&lt;/em&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’m personally a little bit underwhelmed by ELPA at this point. It
+lacks something that I deem rather critical - the ability to upgrade
+already installed packages automatically. Hopefully, this deficiency
+will be amended in the near future.&lt;/p&gt;
+
+&lt;p&gt;There is also the restrictive licensing policy that GNU enforces
+that will certainly prevent a lot of packages from being distributed
+via the official ELPA repo.&lt;/p&gt;
+
+&lt;h1 id=&quot;custom-color-themes&quot;&gt;Custom color themes&lt;/h1&gt;
+
+&lt;p&gt;Most hackers are very fond of custom color themes. I’m no exception -
+after all I’m the maintainer of the &lt;a href=&quot;https://github.com/bbatsov/zenburn-emacs&quot;&gt;Zenburn color theme for Emacs&lt;/a&gt;. The
+problems with custom color themes so far was that depended on the
+horrible external package color-theme, that wasn’t maintained
+particularly actively in the past few years.&lt;/p&gt;
+
+&lt;p&gt;Now Emacs 24 comes with a built-in theming infrastructure
+affectionately called &lt;strong&gt;deftheme&lt;/strong&gt; and several quite nice themes that
+Emacs users can choose from (like tango). I’ve already ported Zenburn to the
+deftheme infrastructure, so if you like it be sure to give it a
+try. The magic command you’ll need to keep in mind is called &lt;em&gt;load-theme&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;editing-improvements&quot;&gt;Editing improvements&lt;/h2&gt;
+
+&lt;p&gt;Emacs is after all mostly an editor and there is a lot of work done in
+the editing area in 24:&lt;/p&gt;
+
+&lt;h1 id=&quot;search-changes&quot;&gt;Search changes&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;C-y in Isearch is now bound to isearch-yank-kill, instead of
+isearch-yank-line.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;M-y in Isearch is now bound to isearch-yank-pop, instead of
+isearch-yank-kill.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;M-s C-e in Isearch is now bound to isearch-yank-line.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;general&quot;&gt;General&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;There is a new command &lt;em&gt;count-words-region&lt;/em&gt;, which does what you expect.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;completion-at-point&lt;/em&gt; now handles tags and semantic completion.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The default value of &lt;em&gt;backup-by-copying-when-mismatch&lt;/em&gt; is now t.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The command &lt;em&gt;just-one-space&lt;/em&gt; (C-SPC), if given a negative argument,
+also deletes newlines around point.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;deletion-changes&quot;&gt;Deletion changes&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;New option &lt;em&gt;delete-active-region&lt;/em&gt;.
+If non-nil, C-d, [delete], and DEL delete the region if it is active
+and no prefix argument is given.  If set to &lt;em&gt;kill&lt;/em&gt;, these commands
+kill instead.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;New command &lt;em&gt;delete-forward-char&lt;/em&gt;, bound to C-d and [delete].
+This is meant for interactive use, and obeys &lt;em&gt;delete-active-region&lt;/em&gt;.
+The command &lt;em&gt;delete-char&lt;/em&gt; does not obey &lt;em&gt;delete-active-region&lt;/em&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;delete-backward-char&lt;/em&gt; is now a Lisp function.
+Apart from obeying &lt;em&gt;delete-active-region&lt;/em&gt;, its behavior is unchanged.
+However, the byte compiler now warns if it is called from Lisp; you
+should use delete-char with a negative argument instead.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The option &lt;em&gt;mouse-region-delete-keys&lt;/em&gt; has been deleted.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;selection-changes&quot;&gt;Selection changes&lt;/h1&gt;
+
+&lt;p&gt;The default handling of clipboard and primary selections was changed
+to conform with modern X applications.  In short, most commands for
+killing and yanking text now use the clipboard, while mouse commands
+use the primary selection.&lt;/p&gt;
+
+&lt;p&gt;In the following, we provide a list of these changes, followed by a
+list of steps to get the old behavior back if you prefer that.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;select-active-regions&lt;/em&gt; now defaults to t.
+Merely selecting text (e.g. with drag-mouse-1) no longer puts it in
+the kill ring.  The selected text is put in the primary selection, if
+the system possesses a separate primary selection facility (e.g. X).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;select-active-regions&lt;/em&gt; also accepts a new value, &lt;em&gt;only&lt;/em&gt;.
+This means to only set the primary selection for temporarily active
+regions (usually made by mouse-dragging or shift-selection);
+“ordinary” active regions, such as those made with C-SPC followed by
+point motion, do not alter the primary selection.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;mouse-drag-copy-region&lt;/em&gt; now defaults to nil.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;mouse-2 is now bound to &lt;em&gt;mouse-yank-primary&lt;/em&gt;.
+This pastes from the primary selection, ignoring the kill-ring.
+Previously, mouse-2 was bound to &lt;em&gt;mouse-yank-at-click&lt;/em&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;x-select-enable-clipboard&lt;/em&gt; now defaults to t on all platforms.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;x-select-enable-primary&lt;/em&gt; now defaults to nil.
+Thus, commands that kill text or copy it to the kill-ring (such as
+M-w, C-w, and C-k) also use the clipboard—not the primary selection.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The “Copy”, “Cut”, and “Paste” items in the “Edit” menu are now
+exactly equivalent to, respectively M-w, C-w, and C-y.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Note that on MS-Windows, &lt;em&gt;x-select-enable-clipboard&lt;/em&gt; was already
+non-nil by default, as Windows does not support the primary selection
+between applications.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Support for X cut buffers has been removed.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Support for X clipboard managers has been added.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;To inhibit use of the clipboard manager, set
+&lt;em&gt;x-select-enable-clipboard-manager&lt;/em&gt; to nil.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;new-modes&quot;&gt;New modes&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Occur Edit mode applies edits made in *Occur* buffers to the
+original buffers.  It is bound to C-x C-q in Occur mode. This
+basically removes the need for an external package such as iedit.el.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;New global minor modes electric-pair-mode, electric-indent-mode,
+and electric-layout-mode. One of my favourite new
+additions. electric-pair-mode renders obsolete the popular
+autopair-mode and electric-indent-mode and electric-layout-mode
+provide a much more IDE feel to the editing experience in Emacs. This
+triumvirate of modes has been a long time coming&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;secrets.el is an implementation of the Secret Service API, an
+interface to password managers like GNOME Keyring or KDE Wallet.  The
+Secret Service API requires D-Bus for communication.  The command
+&lt;em&gt;secrets-show-secrets&lt;/em&gt; offers a buffer with a visualization of the
+secrets.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;notifications.el provides an implementation of the Desktop
+Notifications API.  It requires D-Bus for communication.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;soap-client.el supports access to SOAP web services from Emacs.
+soap-inspect.el is an interactive inspector for SOAP WSDL structures.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;epilogue&quot;&gt;Epilogue&lt;/h2&gt;
+
+&lt;p&gt;Emacs 24 brings quite a lot to the table. I’ve barely scratch the
+surface as far as the new features are concerned. There is so much
+more - improvements to lots of the existing modes (most notably much
+better support for distributed VC systems such as Git, Mercurial and
+Bazaar), internal cleanups and improvements, etc.&lt;/p&gt;
+
+&lt;p&gt;I truly feel that Emacs 24 will be the most important Emacs release in
+a long long time and I commend the new dev team leads for their
+passion and resolve to modernize Emacs.&lt;/p&gt;
+
+&lt;p&gt;Expect future blog posts dedicated to specific new features and
+improvements.&lt;/p&gt;
+
+&lt;p&gt;P.S. Btw &lt;a href=&quot;https://github.com/bbatsov/emacs-dev-kit&quot;&gt;The Emacs Dev Kit&lt;/a&gt; already makes use of some the new
+features from Emacs 24. In due time it will make use of much more of them.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/Emacs/Linux/2011/06/05/emacs-default-font</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Emacs/Linux/2011/06/05/emacs-default-font.html"/>
+    <title>Emacs Tip #1: Set the default font in Emacs 23</title>
+    <updated>2011-06-05T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Emacs 23.2 will pick up the default GNOME monospaced font, so if
+you’re a GNOME user - you’re basically covered. If you’re not - don’t
+worry.&lt;/p&gt;
+
+&lt;p&gt;The simplest way to set the Emacs font is just to add the following
+in your .emacs (or init.el):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;cl&quot;&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;set-default-font&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;Inconsolata-12&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This code will set the Emacs font to Inconsolata (my favorite
+monospaced font) with font size 12pt. The problem with this approach
+is that it will not work with a X Emacs client (emacsclient -c)
+connecting to an Emacs daemon (emacs –daemon), because the code will
+get run when the server starts and will basically mean nothing to
+it. You can alleviate this problem by using the appropriate hook for X
+clients, but I find this distasteful. A much simpler solution is to
+forget about &lt;em&gt;set-default-font&lt;/em&gt; altogether and simply create a file
+named &lt;strong&gt;.Xdefaults&lt;/strong&gt; in your home folder. Put the following in it:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;Emacs.font: Inconsolata-12&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Afterwards run the following command:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; xrdb -merge ~/.Xdefaults
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;At this point you can start Emacs (in normal or daemon mode) and
+your new font settings should be in effect.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/Emacs/2011/05/11/zenburn-emacs</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Emacs/2011/05/11/zenburn-emacs.html"/>
+    <title>A new Zenburn theme for Emacs</title>
+    <updated>2011-05-11T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://slinky.imukuppi.org/zenburnpage/&quot;&gt;Zenburn&lt;/a&gt; is a popular colour theme for
+vim, developed by Jani Nurminen. It’s my personal
+belief (and probably that of many of its users I presume) that it’s one of the
+best low contrast themes out there and that Zenburn is exceptionally
+easy on the eyes. Btw, I love Zenburn so much that I’ve even created a
+&lt;a href=&quot;https://github.com/bbatsov/blog/blob/master/css/syntax.css&quot;&gt;Zenburn theme for Jekyll&lt;/a&gt; to be able to use for my blog.&lt;/p&gt;
+
+&lt;p&gt;The project was originally
+&lt;a href=&quot;https://github.com/dbrock/zenburn-el&quot;&gt;ported to Emacs&lt;/a&gt; by Daniel
+Brockman, but it seems that he has lost interest in it recently - very
+few updates has been published by him in the past few years. This is
+the reason why I gathered all improvements that I could find laying
+around the Internet and applied them to the last official Zenburn
+version, effectively starting
+a &lt;a href=&quot;https://github.com/bbatsov/zenburn-emacs/blob/master/zenburn-legacy.el&quot;&gt;fork of the project&lt;/a&gt;. So far, so good…&lt;/p&gt;
+
+&lt;p&gt;Daniel’s version of Zenburn, however, had reached a state in which it took me
+too much to make improvements to it - since a lot of users had direct access
+to modify it everything in it was in complete disarray - it’s full of
+uses of colours that were not defined by the original zenburn,
+questionable coding practices and inconsistent theming of
+faces. Yesterday I decided to take a closer look at the code of the
+theme and clean it up a little - 20 minutes later I was writing &lt;a href=&quot;https://github.com/bbatsov/zenburn-emacs/blob/master/zenburn.el&quot;&gt;a new
+zenburn theme from scratch&lt;/a&gt;. I decided that making everything from
+the start will probably be less effort anyways. &lt;/p&gt;
+
+&lt;p&gt;I’ve added enough faces in the new theme to make it usable for most
+users and I’ll (hopefully) continue to improve the theme and expand
+the supported modes constantly. If you’re interested - give it a try!
+If you’re unhappy with something - create an issue in GitHub (or even
+better send me a pull request with your suggested improvements).&lt;/p&gt;
+
+&lt;p&gt;It’s my desire to make the new &lt;a href=&quot;https://github.com/bbatsov/zenburn-emacs&quot;&gt;Zenburn for Emacs&lt;/a&gt; just as good as the original.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/Programming/Emacs/2011/04/24/emacs-dev-kit</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Programming/Emacs/2011/04/24/emacs-dev-kit.html"/>
+    <title>Emacs Dev Kit</title>
+    <updated>2011-04-24T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;During the past few months I’ve been working on a project to convert
+my vast Emacs configuration into something generally useful and
+self-contained that could help the general software engineer. Thus the
+&lt;a href=&quot;https://github.com/bbatsov/emacs-dev-kit&quot;&gt;Emacs Dev Kit&lt;/a&gt; was
+born. Conceptually it’s similar to the older
+&lt;a href=&quot;https://github.com/technomancy/emacs-starter-kit&quot;&gt;Emacs Starter Kit&lt;/a&gt;
+and it even shares a bit of code with it. The Emacs Dev Kit, however,
+target more programming languages and features more
+customizations/enhancements.&lt;/p&gt;
+
+&lt;p&gt;EDT relies on ELPA for packages that are available there and packages
+everything else locally. At some point I’ve played with the idea of
+using el-get instead, but I had a lot of problems with it and thought
+that using only ELPA would be better since it would be part of
+Emacs 24. Everything is tested only on the latest version of GNU
+Emacs(currently 23.2). I’ve tried to do everything in the most
+efficient and modern way - for instance SLIME is supposed to be
+installed via Quicklisp so it could be easily updated without waiting
+for a new version of the EDK. &lt;/p&gt;
+
+&lt;p&gt;EDK currently offers enhanced(well, I know that this is subjective,
+but it feels enhanced at least to me) support for the following
+languages:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;C/C++&lt;/li&gt;
+  &lt;li&gt;Clojure&lt;/li&gt;
+  &lt;li&gt;Common Lisp&lt;/li&gt;
+  &lt;li&gt;Emacs Lisp&lt;/li&gt;
+  &lt;li&gt;Haskell&lt;/li&gt;
+  &lt;li&gt;Java&lt;/li&gt;
+  &lt;li&gt;LaTeX&lt;/li&gt;
+  &lt;li&gt;Perl&lt;/li&gt;
+  &lt;li&gt;Prolog&lt;/li&gt;
+  &lt;li&gt;Python&lt;/li&gt;
+  &lt;li&gt;Ruby&lt;/li&gt;
+  &lt;li&gt;Scala&lt;/li&gt;
+  &lt;li&gt;Scheme&lt;/li&gt;
+  &lt;li&gt;XML&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It also offers an advanced ERC configuration(so that you can ask your
+questions on #freenode), extended keybindings and lots of general
+purpose utility functions.&lt;/p&gt;
+
+&lt;p&gt;EDT goes a step further and even includes a different color-theme by
+default - zenburn. You can turn it off easily of course, but I have
+the feeling that many programmers will appreciate its eye strain
+reducing qualities.&lt;/p&gt;
+
+&lt;p&gt;The project is still very young and mostly untested. I’d be thankful
+for feedback, bug reports and suggestions.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/Emacs/Linux/2009/12/05/menubar-emacs</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Emacs/Linux/2009/12/05/menubar-emacs.html"/>
+    <title>Accessing the menu bar in Emacs</title>
+    <updated>2009-12-05T00:00:00+02:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;Have you ever been wondering how to access the Emacs menu bar, when
+using Emacs in console mode? The answer is easy - press &lt;strong&gt;F10&lt;/strong&gt; or type
+&lt;strong&gt;M-x menu-bar-open&lt;/strong&gt;(both methods work in X as well, of course).&lt;/p&gt;
+
+&lt;p&gt;Although the menu bar is rarely used by seasoned Emacs veterans,
+exploring it is a great way to get started with the capabilities of
+the new modes, so being able to access it is generally a good thing.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/Emacs/Git/2009/07/19/dotemacs-github</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Emacs/Git/2009/07/19/dotemacs-github.html"/>
+    <title>Emacs configuration in github</title>
+    <updated>2009-07-19T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;When you have applications, whose configuration is as complex as that
+of Emacs it’s always a good idea to store that configuration under
+version control so you can easily share it between multiple
+computers. You can always set up some version control system yourself,
+but it’s a lot more convenient (and much more reliable) to use an
+already existing code hosting solution such a GitHub. I have created a
+small repo there housing my humble Emacs configuration(.emacs, some
+custom stuff) and this way I can easily access it on all the computers
+that I happen to be working on.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;At some point my custom configuration grew into what is known today as
+the &lt;a href=&quot;https://github.com/bbatsov/emacs-dev-kit&quot;&gt;Emacs Dev Kit&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/Emacs/IntelliJ/2009/05/19/emacs-shift-return</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Emacs/IntelliJ/2009/05/19/emacs-shift-return.html"/>
+    <title>Emulate the behaviour of Return+Shift(insert new line) from popular IDEs(IDEA, Eclipse) in Emacs</title>
+    <updated>2009-05-19T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;I’m very fond of the ability to insert a new line below the line I’m
+currently at, and to position the cursor at the beginning of that new
+line, offered by most IDEs, such as IntelliJ IDEA, Eclipse. It’s
+usually bound to Return(Enter)+Shift. Emacs(as far as I know) doesn’t
+have a function that does this thing by default, but one can easily
+create one, combining several well known functions in the process and
+bind that new function to the desired key combination. Here’s the
+snippet one might have in his .emacs(or other) “configuration” file:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;cl&quot;&gt;&lt;span class=&quot;c1&quot;&gt;;; insert an empty line after the current line and position the cursor on its beginning&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;defun&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;insert-empty-line&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;interactive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;move-end-of-line&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;open-line&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;next-line&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;global-set-key&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;shift&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;&amp;#39;insert-empty-line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://www.batsov.com/Ruby/Emacs/Rails/2008/06/19/emacs-rails</id>
+    <link type="text/html" rel="alternate" href="http://www.batsov.com/Ruby/Emacs/Rails/2008/06/19/emacs-rails.html"/>
+    <title>Using Emacs for Rails development: The perfect setup</title>
+    <updated>2008-06-19T00:00:00+03:00</updated>
+    <author>
+      <name>Bozhidar Batsov</name>
+      <uri>http://www.batsov.com/</uri>
+    </author>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Updated 29/04/2011&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Lately, I’ve started digging more and more into Rails, preparing for
+the start of a Rails powered project. Although there are some IDEs
+offering decent Rails support(namely RubyMine, NetBeans, Komodo and
+Aptana Studio) I have always preferred the comfort of Emacs for
+various reasons. So naturally I embarked on a quest to setup a
+suitable environment for Rails development in Emacs. After a couple of
+days of searching and evaluating possible solutions I finally set up a
+worthy environment. It consists of a couple of components –
+&lt;a href=&quot;http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/misc/ruby-mode.el?view=log&quot;&gt;ruby-mode&lt;/a&gt;,
+&lt;a href=&quot;http://svn.ruby-lang.org/cgi-bin/viewvc.cgi/trunk/misc/inf-ruby.el?view=log&quot;&gt;inf-ruby&lt;/a&gt;,
+&lt;a href=&quot;http://code.google.com/p/autopair/&quot;&gt;autopair-mode&lt;/a&gt;,
+&lt;a href=&quot;http://ourcomments.org/Emacs/nXhtml/doc/nxhtml.html&quot;&gt;nxhtml-mode&lt;/a&gt;,
+&lt;a href=&quot;http://code.google.com/p/yasnippet/&quot;&gt;yasnippet&lt;/a&gt; and
+&lt;a href=&quot;http://rinari.rubyforge.org/&quot;&gt;rinari&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As you probably have guessed by now &lt;em&gt;ruby-mode&lt;/em&gt; provides support for
+editing ruby source files. The mode is pretty feature complete and
+under active development, headed by none other than Matz(Ruby’s
+creator) himself. I can only assume that Matz is an Emacs user
+himself. You can get it from the ruby svn repository if you’re using a
+version of Emacs older than Emacs 23(it’s built-in there).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;inf-ruby&lt;/em&gt; is a mode that spawns and inferior ruby process(irb shell)
+to which you can directly send code from the ruby buffer you’re
+currently editing. For instance - you can define a function and while
+your cursor is inside it you can press C-M-x - the function definition
+will be evaluated in irb automatically and you can test it there. This
+is extremely handy!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;autopair-mode&lt;/em&gt; provides auto insertion of closing braces, quotes,
+ends, etc. . Instructions how to setup both modes can be found
+here. It’s a much more generic version of the &lt;em&gt;ruby-electric&lt;/em&gt; mode
+that used to do similar tasks, but just in Ruby buffers.&lt;/p&gt;
+
+&lt;p&gt;Although many people recommend adding pabbrev(a mode which
+provides auto-completion) to the setup, I don’t recommend it – I find
+the mode mostly annoying and stick to the old school dumb
+auto-completion with M-/ . If you’re shopping for autocompletion,
+however, a much better and smarter choice would be a
+RSense[http://cx4a.org/software/rsense/].&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;yasnippet&lt;/em&gt; is a package that offers dynamically expandable code
+snippets(template), quite similar to ones in TextMate. It’s very easy
+to add your very own snippets if you wish to.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;nxhtml-mode&lt;/em&gt; is a pretty comprehensive package for web development in
+general. We need it for its excellent support for erb
+templates(.rhtml, .erb.html) and of course xhtml and css. Lately it’s
+not been as actively developed as it used to be, but it’s still a
+pretty good mode. Alternatively you can use
+&lt;a href=&quot;https://github.com/nex3/haml&quot;&gt;Haml&lt;/a&gt; and
+&lt;a href=&quot;https://github.com/antonj/scss-mode&quot;&gt;SASS&lt;/a&gt; and forget about
+nxhtml. Both have pretty decent Emacs modes available.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;rinari&lt;/em&gt; is a mode for Rails development – it contains rich
+functionality such as the ability to easily navigate between models,
+views and controllers in a Rails apfplication amongst other
+features. Instructions how to set up rinari together with nxhtml-mode
+can be found on rinari’s home page. &lt;/p&gt;
+
+&lt;p&gt;It’s always a good idea to add &lt;a href=&quot;http://ecb.sourceforge.net/&quot;&gt;ecb&lt;/a&gt;(the Emacs code browser) to the mix,
+though this is entirely optional.&lt;/p&gt;
+
+&lt;p&gt;A lot of the stuff I discussed here are part of the
+&lt;a href=&quot;https://github.com/bbatsov/emacs-dev-kit&quot;&gt;Emacs Dev Kit&lt;/a&gt; that I
+develop and maintain. I urge you to use the EDK as a starting point to
+develop your very own customized version of Emacs. EDK comes with a
+few ruby-mode customizations, yari(ri integration for Emacs), haml and
+sass modes, autopair, yaml-mode, yasnippet, css-mode, ecb and a lot of
+other goodies(find-file-in-project being one of my favourites). &lt;/p&gt;
+
+&lt;p&gt;I hope you enjoy this setup and it helps boost your Rails productivity in Emacs.&lt;/p&gt;
+</content>
+  </entry>
+  
+ 
+</feed>

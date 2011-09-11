@@ -29,6 +29,7 @@ for a new version of the EDK.
 EDK currently offers enhanced(well, I know that this is subjective,
 but it feels enhanced at least to me) support for the following
 languages:
+
 * C/C++
 * Clojure
 * Common Lisp
