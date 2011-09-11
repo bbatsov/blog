@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-09-11T11:35:57+03:00</updated>
+  <updated>2011-09-11T13:54:35+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -316,7 +316,7 @@ basically removes the need for an external package such as iedit.el.&lt;/p&gt;
 and electric-layout-mode. One of my favourite new
 additions. electric-pair-mode renders obsolete the popular
 autopair-mode and electric-indent-mode and electric-layout-mode
-provide a much more IDE feel to editing experience in Emacs. These
+provide a much more IDE feel to the editing experience in Emacs. This
 triumvirate of modes has been a long time coming&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;

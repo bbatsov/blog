@@ -244,7 +244,7 @@ basically removes the need for an external package such as iedit.el.
 and electric-layout-mode. One of my favourite new
 additions. electric-pair-mode renders obsolete the popular
 autopair-mode and electric-indent-mode and electric-layout-mode
-provide a much more IDE feel to editing experience in Emacs. These
+provide a much more IDE feel to the editing experience in Emacs. This
 triumvirate of modes has been a long time coming
 
 * secrets.el is an implementation of the Secret Service API, an
