@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-09-11T11:25:01+03:00</updated>
+  <updated>2011-09-11T11:35:57+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -165,7 +165,7 @@ lacks something that I deem rather critical - the ability to upgrade
 already installed packages automatically. Hopefully, this deficiency
 will be amended in the near future.&lt;/p&gt;
 
-&lt;p&gt;There is also the restrictive licensing restriction that GNU enforces
+&lt;p&gt;There is also the restrictive licensing policy that GNU enforces
 that will certainly prevent a lot of packages from being distributed
 via the official ELPA repo.&lt;/p&gt;
 

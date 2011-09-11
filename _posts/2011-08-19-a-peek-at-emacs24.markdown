@@ -127,7 +127,7 @@ lacks something that I deem rather critical - the ability to upgrade
 already installed packages automatically. Hopefully, this deficiency
 will be amended in the near future.
 
-There is also the restrictive licensing restriction that GNU enforces
+There is also the restrictive licensing policy that GNU enforces
 that will certainly prevent a lot of packages from being distributed
 via the official ELPA repo.
 
