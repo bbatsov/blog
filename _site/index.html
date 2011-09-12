@@ -43,6 +43,413 @@
                     </div>
                     <div id="content">
                         
+<h2 id="the-totally-unofficial-ruby-coding-style-guideprogrammingruby20110912ruby-style-guidehtml"><a href="/Programming/Ruby/2011/09/12/ruby-style-guide.html">The Totally Unofficial Ruby coding style guide</a></h2>
+<h2 id="prologue">Prologue</h2>
+
+<p>This document was created when I, as the Technical Lead of the company
+in which I work for, was asked by the CTO to create some internal
+documents describing good style and best practices for Ruby
+programming. Since I didn’t find any “official” coding guidelines I
+started off by copying
+<a href="https://github.com/chneukirchen/styleguide">this existing style guide</a>,
+because I concurred with most of the points in it. Afterwards I
+proceeded to built upon it and plan to improve it a lot more (the
+examples now are totally superficial, but I’m quite busy these
+days). I hope it will be useful to other people as well and I hope
+that I’ll get a lot of feedback and suggestions on how to improve the
+guide for the benefit of the entire Ruby community.</p>
+
+<h2 id="the-guide">The Guide</h2>
+<p># Formatting</p>
+
+<ul>
+  <li>Use UTF-8 as the source file encoding.</li>
+  <li>Use 2 space indent, no tabs. (Your editor/IDE should have a setting to help you with that)</li>
+  <li>Use Unix-style line endings. (Linux/OSX users are covered by default, Windows users have to be extra careful)
+    <ul>
+      <li>if you’re using Git you might want to do this <code>$ git config --global core.autocrlf true</code> to protect your project from Windows line endings creeping into your project</li>
+    </ul>
+  </li>
+  <li>Use spaces around operators, after commas, colons and semicolons, around { and before }.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">sum</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+<span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">?</span> <span class="kp">true</span> <span class="p">:</span> <span class="kp">false</span><span class="p">;</span> <span class="nb">puts</span> <span class="s2">&quot;Hi&quot;</span>
+<span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">e</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>No spaces after (, [ and before ], ).</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">some</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">.</span><span class="n">other</span>
+<span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">length</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Indent <strong>when</strong> as deep as <strong>case</strong>. (as suggested in the Pickaxe)</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">case</span>
+<span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Misty&quot;</span>
+  <span class="nb">puts</span> <span class="s2">&quot;Not again!&quot;</span> <span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">duration</span> <span class="o">&gt;</span> <span class="mi">120</span>
+  <span class="nb">puts</span> <span class="s2">&quot;Too long!&quot;</span> <span class="k">when</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">hour</span> <span class="o">&gt;</span> <span class="mi">21</span>
+  <span class="nb">puts</span> <span class="s2">&quot;It&#39;s too late&quot;</span>
+<span class="k">else</span>
+  <span class="n">song</span><span class="o">.</span><span class="n">play</span>
+<span class="k">end</span>
+
+<span class="n">kind</span> <span class="o">=</span> <span class="k">case</span> <span class="n">year</span>
+       <span class="k">when</span> <span class="mi">1850</span><span class="o">.</span><span class="n">.</span><span class="mi">1889</span> <span class="k">then</span> <span class="s2">&quot;Blues&quot;</span>
+       <span class="k">when</span> <span class="mi">1890</span><span class="o">.</span><span class="n">.</span><span class="mi">1909</span> <span class="k">then</span> <span class="s2">&quot;Ragtime&quot;</span>
+       <span class="k">when</span> <span class="mi">1910</span><span class="o">.</span><span class="n">.</span><span class="mi">1929</span> <span class="k">then</span> <span class="s2">&quot;New Orleans Jazz&quot;</span> <span class="k">when</span> <span class="mi">1930</span><span class="o">.</span><span class="n">.</span><span class="mi">1939</span> <span class="k">then</span> <span class="s2">&quot;Swing&quot;</span>
+       <span class="k">when</span> <span class="mi">1940</span><span class="o">.</span><span class="n">.</span><span class="mi">1950</span> <span class="k">then</span> <span class="s2">&quot;Bebop&quot;</span>
+       <span class="k">else</span> <span class="s2">&quot;Jazz&quot;</span>
+       <span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Use an empty line before the return value of a method (unless it
+only has one line), and an empty line between defs.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">some_method</span>
+  <span class="n">do_something</span>
+  <span class="n">do_something_else</span>
+
+  <span class="n">result</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">some_method</span>
+  <span class="n">result</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Use RDoc and its conventions for API documentation.  Don’t put an
+empty line between the comment block and the <strong>def</strong>.</li>
+  <li>Use empty lines to break up a method into logical paragraphs.</li>
+  <li>Keep lines fewer than 80 characters.
+    <ul>
+      <li>Emacs users should really have a look at whitespace-mode</li>
+    </ul>
+  </li>
+  <li>Avoid trailing whitespace.
+    <ul>
+      <li>Emacs users - whitespace-mode again comes to the rescue</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="syntax">Syntax</h1>
+
+<ul>
+  <li>Use <strong>def</strong> with parentheses when there are arguments. Omit the
+parentheses when the method doesn’t accept any arguments.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">some_method</span>
+  <span class="c1"># body omitted</span>
+ <span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">some_method_with_arguments</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+  <span class="c1"># body omitted</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Never use <strong>for</strong>, unless you exactly know why. Most of the time
+iterators should be used instead.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">arr</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+
+<span class="c1"># bad</span>
+<span class="k">for</span> <span class="n">elem</span> <span class="k">in</span> <span class="n">arr</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="n">elem</span>
+<span class="k">end</span>
+
+<span class="c1"># good</span>
+<span class="n">arr</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">elem</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Never use <strong>then</strong> for multiline <strong>if/unless</strong>.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
+<span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">odd?</span> <span class="k">then</span>
+  <span class="nb">puts</span> <span class="s2">&quot;odd&quot;</span>
+<span class="k">end</span>
+
+<span class="c1"># good</span>
+<span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">odd?</span>
+  <span class="nb">puts</span> <span class="s2">&quot;odd&quot;</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Use <strong>when x; …</strong> for one-line cases.</li>
+  <li>Use &amp;&amp;/|| for boolean expressions, and/or for control flow.  (Rule
+of thumb: If you have to use outer parentheses, you are using the
+wrong operators.)</li>
+  <li>Avoid multiline ?: (the ternary operator), use <strong>if/unless</strong> instead.</li>
+  <li>Favor modifier <strong>if/unless</strong> usage when you have a single-line body.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
+<span class="k">if</span> <span class="n">some_condition</span>
+  <span class="n">do_something</span>
+<span class="k">end</span>
+
+<span class="c1"># good</span>
+<span class="n">do_something</span> <span class="k">if</span> <span class="n">some_condition</span>
+
+<span class="c1"># another good option</span>
+<span class="n">some_condition</span> <span class="o">&amp;&amp;</span> <span class="n">do_something</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Favor <strong>unless</strong> over <strong>if</strong> for negative conditions:</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
+<span class="n">do_something</span> <span class="k">if</span> <span class="o">!</span><span class="n">some_condition</span>
+
+<span class="c1"># good</span>
+<span class="n">do_something</span> <span class="k">unless</span> <span class="n">some_condition</span>
+
+<span class="c1"># another good option</span>
+<span class="n">some_condition</span> <span class="o">||</span> <span class="n">do_something</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Suppress superfluous parentheses when calling methods, but keep them
+when calling “functions”, i.e. when you use the return value in the
+same line.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">x</span> <span class="o">=</span> <span class="no">Math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">array</span><span class="o">.</span><span class="n">delete</span> <span class="n">e</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>Prefer {…} over do…end for single-line blocks.  Avoid using {…} for multi-line blocks.  Always use do…end for
+“control flow” and “method definitions” (e.g. in Rakefiles and
+certain DSLs.)  Avoid do…end when chaining.</p>
+  </li>
+  <li>
+    <p>Avoid <strong>return</strong> where not required.</p>
+  </li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
+<span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">some_arr</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">some_arr</span><span class="o">.</span><span class="n">size</span>
+<span class="k">end</span>
+
+<span class="c1"># good</span>
+<span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">some_arr</span><span class="p">)</span>
+  <span class="n">some_arr</span><span class="o">.</span><span class="n">size</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Avoid line continuation (\) where not required. In practice avoid using line continuations at all.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
+<span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">\</span>
+<span class="mi">2</span>
+
+<span class="c1"># good</span>
+<span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">\</span>
+<span class="o">+</span> <span class="mi">2</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Using the return value of = is okay:</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">if</span> <span class="n">v</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">)</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Use</td>
+          <td> </td>
+          <td>= freely.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># set name to Bozhidar, only if it&#39;s nil or false</span>
+<span class="nb">name</span> <span class="o">||=</span> <span class="s2">&quot;Bozhidar&quot;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Avoid using Perl-style global variables(like $0-9, $`, …)</li>
+</ul>
+
+<h1 id="naming">Naming</h1>
+
+<ul>
+  <li>Use snake_case for methods and variables.</li>
+  <li>Use CamelCase for classes and modules.  (Keep acronyms like HTTP,
+RFC, XML uppercase.)</li>
+  <li>Use SCREAMING_SNAKE_CASE for other constants.</li>
+  <li>The length of an identifier determines its scope.  Use one-letter variables for short block/method parameters, according to this scheme:</li>
+</ul>
+
+<p>a,b,c: any object
+d: directory names
+e: elements of an Enumerable
+ex: rescued exceptions
+f: files and file names
+i,j: indexes
+k: the key part of a hash entry
+m: methods
+o: any object
+r: return values of short methods
+s: strings
+v: any value
+v: the value part of a hash entry
+x,y,z: numbers</p>
+
+<p>And in general, the first letter of the class name if all objects are of that type.</p>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>When using <strong>inject</strong> with short blocks, name the arguments **</td>
+          <td>a, e</td>
+          <td>** (mnemonic: accumulator, element)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>When defining binary operators, name the argument “other”.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">+</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+  <span class="c1"># body omitted</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Prefer <strong>map</strong> over <em>collect</em>, <strong>find</strong> over <em>detect</em>, <strong>find_all</strong> over <em>select</em>, <strong>size</strong> over <em>length</em>. This is not a hard requirement, though - if
+the use of the alias enhances readability - it’s ok to use it.</li>
+</ul>
+
+<h1 id="comments">Comments</h1>
+
+<ul>
+  <li>Write self documenting code and ignore the rest of this section.</li>
+  <li>Comments longer than a word are capitalized and use punctuation. Use two spaces after periods.</li>
+  <li>Avoid superfluous comments.</li>
+  <li>Keep existing comments up-to-date - no comment is better than an outdated comment.</li>
+</ul>
+
+<h1 id="misc">Misc</h1>
+
+<ul>
+  <li>Write <strong>ruby -w</strong> safe code.</li>
+  <li>Avoid hashes-as-optional-parameters.  Does the method do too much?</li>
+  <li>Avoid long methods (longer than 10 LOC). Ideally most methods will be shorter than 5 LOC. Empty line do not contribute to the relevant LOC.</li>
+  <li>Avoid long parameter lists (more than 3-4 params).</li>
+  <li>Use <strong>def self.method</strong> to define singleton methods. This makes the methods more resistent to refactoring changes.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">TestClass</span>
+  <span class="c1"># bad</span>
+  <span class="k">def</span> <span class="nc">TestClass</span><span class="o">.</span><span class="nf">some_method</span>
+    <span class="c1"># body omitted</span>
+  <span class="k">end</span>
+
+  <span class="c1"># good</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">some_other_method</span>
+    <span class="c1"># body omitted</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Add “global” methods to Kernel (if you have to) and make them private.</li>
+  <li>Avoid <strong>alias</strong> when <strong>alias_method</strong> will do.</li>
+  <li>Use <strong>OptionParser</strong> for parsing complex command line options and
+<em>*ruby -s</em> for trivial command line options.</li>
+  <li>Write for Ruby 1.9. Don’t use legacy Ruby 1.8 constructs.
+    <ul>
+      <li>use the new JavaScript literal hash syntax</li>
+      <li>use the new lambda syntax</li>
+      <li>methods like <strong>inject</strong> now accept methods names as arguments - <code>[1, 2, 3].inject(:+)</code></li>
+    </ul>
+  </li>
+  <li>Avoid needless metaprogramming.</li>
+</ul>
+
+<h1 id="design">Design</h1>
+
+<ul>
+  <li>Code in a functional way, avoid mutation when it makes sense.</li>
+  <li>Do not mutate arguments unless that is the purpose of the method.</li>
+  <li>Do not mess around in core classes when writing libraries. (do not monkey patch them)</li>
+  <li>Do not program defensively. See this <a href="http://www.erlang.se/doc/programming_rules.shtml#HDR11.">article</a> for more details.</li>
+  <li>Keep the code simple (subjective, but still…). Each method should have a single well-defined responsibility.</li>
+  <li>Avoid more than 3 Level of  block nesting.</li>
+  <li>Don’t overdesign. Overly complex solutions tend to be brittle and hard to maintain.</li>
+  <li>Don’t underdesign. A solution to a problem should be as simple as
+possible… but it should not be simpler than that. Poor initial design 
+can lead to a lot of problems in the future.</li>
+  <li>Be consistent. In an ideal world - be consistent with the points listed here in this guidelines.</li>
+  <li>Use common sense.</li>
+</ul>
+
+<h2 id="overture">Overture</h2>
+
+<p>I’ve created a <a href="https://github.com/bbatsov/ruby-style-guide">GitHub project</a>, so that everyone can easily participate
+in improving the quality of the guidelines. I hope that together we
+could make a resource that will benefit the entire Ruby community. I
+have a couple more guides like this one in the pipeline - one for
+Rails and for testing Ruby and Rails applications.</p>
+
+<p>If you’re an Emacs user - the <a href="https://github.com/bbatsov/emacs-dev-kit">Emacs Dev Kit</a> features
+customizations that enforce some of the stuff outlined in the guide -
+encoding, indentation, line length and lots of other goodies
+(whitespace cleanup, ri integration, autopair for quotes, brackets,
+etc, Ruby snippets, irb integration, git integration, haml, sass and
+coffeescript support out of the box…). You
+might want to check it out.</p>
+
+<div style="font-style: italic; color: #7f9f7f;">Posted on 12 Sep 2011 by Bozhidar.</div>
+
+<p><a href="/Programming/Ruby/2011/09/12/ruby-style-guide.html#disqus_thread">Comments</a></p>
+
 <h2 id="a-peek-at-emacs-24emacs20110819a-peek-at-emacs24html"><a href="/Emacs/2011/08/19/a-peek-at-emacs24.html">A peek at Emacs 24</a></h2>
 <h2 id="overture">Overture</h2>
 
@@ -1747,314 +2154,6 @@ decide whether we would save it or push it over the edge.  </p>
 
 <p><a href="/Linux/Windows/Rant/2011/06/14/linux-desktop-part-2.html#disqus_thread">Comments</a></p>
 
-<h2 id="the-linux-desktop-experience-is-killing-linux-on-the-desktoplinuxwindowsrant20110611linux-desktop-experience-killing-linux-on-the-desktophtml"><a href="/Linux/Windows/Rant/2011/06/11/linux-desktop-experience-killing-linux-on-the-desktop.html">The Linux desktop experience is killing Linux on the desktop</a></h2>
-<p><strong>Disclaimer</strong></p>
-
-<p><em>This post is a bona fide rant. It tells how a hardcore Linux user
-(me) decided to abandon Linux as a desktop platform and the reasons
-behind this decision. It might provoke some controversy, but
-I frankly don’t care.</em></p>
-
-<h1 id="overture">Overture</h1>
-
-<p>I’m generally known as one of the biggest supporters of GNU/Linux,
-I’ve taught courses on Linux administration, I’ve spoken at Linux
-conferences and I naturally use Linux as my primary desktop on all my
-machines. Well, that last part is not so true anymore. Here the story
-begins…</p>
-
-<h1 id="the-background">The background</h1>
-
-<p>I’ve been using GNU/Linux exclusively for 8 years now. I’ve spent a
-lot of time with Fedora, Gentoo and Arch Linux. I use it at home, I
-use it at work and along the way I’ve converted many Windows users to
-Linux. I’ve lived through a lot of driver and software problems
-with Linux, hoping that the day would come when it will become a
-first-class citizen of the desktop operating systems town. Alas, this
-day never came and probably never will.</p>
-
-<p>My patience ended this week and I’ll be gradually moving all my
-desktop machines back to Windows. What caused me to take such drastic
-course of action? I’ve bought myself a new ThinkPad T520 laptop,
-powered by Nvidia’s Optimus GPU switching technology - when the GPU
-load is low it uses the built-in Sandy Bridge GPU, when it gets higher
-- it switches to the discrete NVS 4200M GPU. Needless to say - this
-  technology is not supported under Linux, but I was prepared to live
-  without it. After all both Intel and Nvidia are known to have decent
-  Linux drivers so I was about to try both GPU and select the one with
-  the better performance. All I had to do was pick a shiny new
-  distribution to power my mobile powerhouse…</p>
-
-<h1 id="the-distribution">The Distribution</h1>
-
-<p>I love Fedora - always have, always will. They constantly deliver to
-the end users the cutting edge in Linux technologies (both desktop and
-server), so it’s naturally my distro of choice (I’m quite fond of
-cutting edge tech). I installed on the new
-laptop the latest Fedora 15 with GNOME 3.0 and here the problems
-started. GNOME 3 requires 3d acceleration to work properly - a
-reasonable requirement these days, at least on an operating system with
-normal video drivers. </p>
-
-<p>The Intel driver sucked so bad that I got constant screen corruption
-and hang-ups. Too bad, because I preferred to use the Intel GPU since
-I mostly work on the laptop. The open source Nvidia driver nouveau
-doesn’t support the NVS 4200, so I was forced to install the
-proprietary driver. It ran OK initially, but after some time my system
-just started to freeze while waiting for Plymouth (probably after some
-kernel update, which I didn’t notice). I could have tried the usual
-tricks and fixed the problem, but at this point I finally realized how
-idiotic it was of me to keep using Linux for a desktop OS after all
-the shit I’ve endured and the time I’ve wasted dealing with stuff that
-should have been “just working”. I just want to get some work done, I
-don’t want to waste my time debugging all kind of crap.</p>
-
-<h1 id="the-shit-i-endured">The Shit I endured</h1>
-
-<p><strong>Disclaimer</strong></p>
-
-<p><em>I’ve endured this Shit over the aforementioned period of 8
-years. Some of the problems here have been alleviated (like
-ethernet/wireless support) and some manifest mainly with newer
-hardware (released in the past 6-12 months). Many of the problems,
-unfortunately manifest on all kind of hardware no matter how old.</em> </p>
-
-<p><strong>Non-existing ethernet/wireless drivers</strong> - not so common today, but
-  try remembering the time circa 2005</p>
-
-<p><strong>Non-existing/crappy audio drivers</strong> - got an X-Fi 5 years ago, ALSA
-  driver was released 3-4 years later and was total piece of garbage,
-  OSS driver was barely usable. I don’t even get me started on USB
-  audio support - what a joke…</p>
-
-<p><strong>Lamest video card drivers ever</strong> - most video card drivers for Linux
-  are so bad I cannot even watch tear-free video. Nvidia have the only
-  decent video driver, but it’s far from perfect either - no KMS, poor
-  2D acceleration. AMD’s drivers are a punishment from the Lord and
-  Intel’s constantly “evolving” drivers are barely usable most of the
-  time. The video card drivers made me buy and HD media player and an
-  PS3 (for which I’m thankful), but I have to ask myself - why suffer
-  all this shit instead of getting a normal desktop OS like OS X or
-  Windows? Did I love Linux that much? Did I believe that much it’s
-  desktop day would come? What an idiot I was.</p>
-
-<p><strong>Lack of printer drivers</strong> - that’s a funny one. Often printers
-  listed as having Linux drivers are mostly unusable. The printer that
-  own is listed as having a “perfect” Linux compatability in
-  openprinting.org. If this is perfect I cannot begin to imagine what
-  is “poor” compatibility.</p>
-
-<p><strong>Crappiest suspend/resume support</strong> - laptop goes to sleep, but
-  doesn’t wake up. Wireless dies after wake up. Suspend/resume used to
-  be something mythical to most Linux users. Recently the situation
-  has improved a bit it’s still light years away from what you get
-  with Windows/OSX.</p>
-
-<p><strong>Poor power management</strong> - my older laptop’s battery lasted several
-  weeks while sleeping when I was using Windows on it. When I replaced
-  it with Linux the battery was being drained in 2 days while the
-  laptop was sleeping (and I had to wait about half a year for a set
-  of wireless and video drivers that actually made sleep a
-  possibility)… I’ve noticed that as far as dynamic power
-  management is concerned Windows generally managed to squeeze more time
-  out of the battery, while at the same time my rig generated less
-  heat (dynamic fan control is another weakness of Linux).</p>
-
-<p>I’ll stop writing about the driver problems now, because they affect
-so many thing. Even my fairly advanced mouse is missing some functions
-in Linux. I’m not even mentioning the things like support for “Turbo
-Memory”, Optimus, etc.</p>
-
-<p><strong>Lack of decent office software</strong> - call it OpenOffice.org and don’t
-  insult it anymore…</p>
-
-<p><strong>Problematic sound architecture</strong> - let me be completely blunt -
-  everything sound related in Linux sucks - OSS, ALSA, PulseAudio (the
-  sucker king). From a technical standpoint OSS never actually sucked,
-  but since it wasn’t picked up by the community the project fell
-  into oblivion. How many of you have enjoy Dolby Digital or DTS sound
-  from their Linux boxes? </p>
-
-<p><strong>Poor flash support</strong> - should I explain? Have you tried it on a 64
-  bit distro? Do I hate it? Sure. Do I hope HTML5 will kill it?
-  Sure. Do I need it? Sure. You think your video drivers work OK under
-  Linux? Have you tried playing a HD video clip in youtube with flash
-  player at full-screen? Very few Linux video drivers handle this task properly…</p>
-
-<p><strong>Poor skype support</strong> - Same story as with flash. I keep dreaming of
-  a world with more intelligent users where GTalk has a conference
-  mode and everybody’s using it instead of skype.</p>
-
-<p><strong>Poor quality of desktop apps</strong> - Known issues in core applications
-  such as Nautilus don’t get fixed for years. Such things naturally
-  piss me off. Trying to contribute to the solution of a problem is
-  often met with apathy by maintainers. Btw Linux users think that
-  Mozilla Firefox is very slow and memory hungry - but it turns out
-  that the Windows version is generally performing a lot better (not
-  to mention - supporting hardware video acceleration).</p>
-
-<p>I can keep listing things here forever. When I come to think about it
-for the entire time I’ve been using Linux only one major problem got
-resolved - USB devices support. I still remember the days when I had
-to write auto mounting policies myself or to use <em>mount</em> manually all
-the time. I won’t even mention the quality of most proprietary apps on
-Linux, the huge amount of missing essential application and the
-unavailability of mainstream video games.</p>
-
-<p>So this is it! Hasta la vista, Linux! You still remain the best server
-operating system, though. You’ll always have a special place in my
-heart and a VMWare instance on my Windows boxes. </p>
-
-<h1 id="what-ill-miss">What I’ll miss</h1>
-
-<ul>
-  <li>shell</li>
-  <li>transparency, control</li>
-  <li>package management</li>
-  <li>lack of viruses, malware</li>
-</ul>
-
-<p>Although most common desktop users probably don’t use the shell very
-often, I practically live(d) in it. OS X has zsh and bash, so it’s a
-long term option for me, but due to the need for new hardware I’ll be
-using Windows 7 on the desktop front for now. Hopefully the rumors
-that PowerShell is great will turned out to be true.</p>
-
-<p>The ability to tweak every aspect of the configuration, to build
-custom drivers and kernels will be missed as well, but I don’t tend to
-do this as often as I used to. And when something bad happens - most
-of the time you could do something about it. As a friend of mine used
-to say “The single biggest difference between Windows and Linux is
-that in Windows the restart will solve just about any problem, but in
-Linux it’s unlikely so solve any problem” (this statement was much
-more correct 8 years ago - modern Linux desktop distro have developed
-some of Windows’s old habits).  </p>
-
-<p>Probably the biggest loss for me would be the wonderful distro package
-management systems like YUM and APT.</p>
-
-<p>During the time I used Linux I totally forgot that things like viruses
-and malware existed. Now, after I installed Win 7 I was immediately
-encouraged to install an anti-virus program.</p>
-
-<h1 id="based-on-your-feedback">Based on your feedback</h1>
-
-<p>It seems a lot of people misunderstood the purpose of my rant so I’d
-like to clarify something for them:</p>
-
-<ul>
-  <li>
-    <p>I <strong>fuckin’</strong> love Linux. Linux is brilliant. Linux is fun. Linux
-rekindled my interest in computing at a time when I was about to
-give up on computing.</p>
-  </li>
-  <li>
-    <p>I’m not spreading FUD, I’m telling you a real story, a story that I
-know many have experienced and many will experience.</p>
-  </li>
-  <li>
-    <p>I’m trying to raise the awareness of Linux desktop users. They’ve
-been told that they have to be thankful for any kind of hardware
-support, no matter how basic, fucked up and all around shitty it
-might be. They’ve been told that they have to be grateful for every
-crappy app in existence. The fact that something is free (as in
-beer), doesn’t make it wrong for people to criticize it and complain
-about it. Ranting is what drives evolution. Same thing happens in
-life every day - the media and the people around us proclaim
-mediocrecy, they tell us that mediocrecy is OK, that we should be
-satisfied by what we have and that aspiring for greatness is a
-foolhardy mission. The Linux desktop community should put real
-pressure on hardware and software vendors to be taken seriously,
-instead of just waiting on their mercy. The Linux desktop community
-deserves a great Linux desktop.</p>
-  </li>
-  <li>
-    <p>Fanatics are dangerous. They cannot see past their beliefs, they
-cannot be reasoned with. The Linux community is full of them -
-zealots that never see any problems with Linux and feel that the
-entire world is on a quest to discredit their (mine) beloved
-OS. They won’t ever get this post, but hopefully YOU will.</p>
-  </li>
-  <li>
-    <p>Hardware support is a big part of the Linux desktop problem, but
-it’s not the only problem. Half-baked DE like KDE 4.0, Ubuntu’s
-Unity and GNOME 3.0 are just as dangerous.</p>
-  </li>
-  <li>
-    <p>Having some hardware support and having great hardware support are
-two different things.</p>
-  </li>
-  <li>
-    <p>I do know how to research hardware compatibility ( :-) surprising,
-eh?), but I do like
-cutting edge technologies as well (problematic…). Does it seems
-normal to you to avoid commodity hardware just on the ground that
-it’s “too new” to be properly employed by your OS of choice?</p>
-  </li>
-  <li>
-    <p>I’m not claiming that Windows 7 is the greatest thing after hot
-water, I don’t even say that I like it. I do, however, say that it
-offers superior desktop experience (when it works, that is).</p>
-  </li>
-</ul>
-
-<p>I’ll include here a great comment from Jan de Vos:</p>
-
-<p>_While I’m still using Linux (usually Ubuntu, sometimes Fedora)
-everywhere (at work and at home), I do agree with a lot of points in 
-this article; there are a lot of things that could be improved, and 
-there are a lot of frustrations that Windows users don’t have. Saying so
-is not FUD, it is a simple truth. If someone who clearly likes a lot of
-things in Linux decides to switch to something else, that really is a 
-bad thing, and an indication that there are real problems.</p>
-
-<p>In my opinion, ignoring these problems, or even denying they exist, may 
-be a lot more harmful than talking about them._</p>
-
-<p>I couldn’t agree more!</p>
-
-<h1 id="epilogue">Epilogue</h1>
-
-<p>I remember the first time I used Linux. A friend of mine installed
-Fedora 2 on my personal computer and there was a glitch in GRUB that
-prevented me from booting to Windows. My ethernet card wasn’t
-supported so I was left without Internet. I asked my friend can I at
-least watch a few movies, while he brought me a patched version of the
-buggy GRUB. He told me - you need to compile MPlayer from sources with
-several optimization, you need windows video codecs, etc. At the time this
-excited me a lot - adventure, excitement. I learned A LOT by using
-Linux non-stop for so long time. But at some point you stop learning
-exciting things and are just stuck with tedious things you have to
-keep doing over and over again. And as I already mentioned - I don’t
-want my time wasted, I want to get the job done with minimum hassle.</p>
-
-<p>I’ve been hearing each and every year that “year 20xx” will be the
-year of the Linux desktop. It never came and it’s my firm believe that
-it never will (unless something radically changes in the mindset of
-Linux desktop users). Constantly plagued by hardware and software woes Linux
-is doomed to fail. Without major support from hardware and software
-vendors every OS is ultimately doomed to fail. </p>
-
-<p>It’s no secret that a lot of money are made by Linux server businesses
-and this naturally drives a lot of the development in the area of
-improving server performance. Nobody put it better than
-<a href="http://apcmag.com/why_i_quit_kernel_developer_con_kolivas.htm">Con Colivas</a>
-- “<em>Linux is burdened with enterprise crap that makes it run poorly on
-  desktop PCs.</em>”. Linux will remain the king of the
-  server world, but on the desktop front it will always be an OS for
-  enthusiast and hackers only.</p>
-
-<p>Goodbye, my dear old friend. You’ll be missed… but not that much.</p>
-
-<p>P.S. Btw I’m as pro a Linux user as they get - a professional sys
-admin, a former kernel developer so don’t bother me with moronic
-comments from the type “you’re not doing something right/you should
-try another distro”.</p>
-
-<div style="font-style: italic; color: #7f9f7f;">Posted on 11 Jun 2011 by Bozhidar.</div>
-
-<p><a href="/Linux/Windows/Rant/2011/06/11/linux-desktop-experience-killing-linux-on-the-desktop.html#disqus_thread">Comments</a></p>
-
 
                     </div>
                 </div>
@@ -2102,6 +2201,8 @@ try another distro”.</p>
                     <div class="sidebar_heading">Latest posts:</div>
                     <ul>
                         
+                        <li><a href="/Programming/Ruby/2011/09/12/ruby-style-guide.html">The Totally Unofficial Ruby coding style guide</a></li>
+                        
                         <li><a href="/Emacs/2011/08/19/a-peek-at-emacs24.html">A peek at Emacs 24</a></li>
                         
                         <li><a href="/Linux/Debian/2011/07/04/debian-tips.html">Debian post installation setup & tips</a></li>
@@ -2109,8 +2210,6 @@ try another distro”.</p>
                         <li><a href="/Ruby/Rails/Python/Django/2011/06/19/django-vs-rails.html">Django 1.3 vs Rails 3: A not so final showdown</a></li>
                         
                         <li><a href="/Linux/Windows/Rant/2011/06/14/linux-desktop-part-2.html">The Linux desktop experience is killing Linux on the desktop, Part II</a></li>
-                        
-                        <li><a href="/Linux/Windows/Rant/2011/06/11/linux-desktop-experience-killing-linux-on-the-desktop.html">The Linux desktop experience is killing Linux on the desktop</a></li>
                         
                     </ul>
                 </div>
@@ -2125,7 +2224,7 @@ try another distro”.</p>
                         <li><a href="/categories/Hardware/index.html">Hardware(4)</a></li>
                         
                         
-                        <li><a href="/categories/Ruby/index.html">Ruby(6)</a></li>
+                        <li><a href="/categories/Ruby/index.html">Ruby(7)</a></li>
                         
                         
                         <li><a href="/categories/Emacs/index.html">Emacs(8)</a></li>
@@ -2173,7 +2272,7 @@ try another distro”.</p>
                         <li><a href="/categories/Jekyll/index.html">Jekyll(2)</a></li>
                         
                         
-                        <li><a href="/categories/Programming/index.html">Programming(5)</a></li>
+                        <li><a href="/categories/Programming/index.html">Programming(6)</a></li>
                         
                         
                         <li><a href="/categories/Scala/index.html">Scala(2)</a></li>

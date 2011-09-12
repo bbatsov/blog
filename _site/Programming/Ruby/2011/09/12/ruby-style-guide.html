@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+        <link href="/css/site.css" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+        <link rel="alternate" type="application/atom+xml"
+              href="/atom.xml" title="Atom feed">
+        <link rel="alternate" type="application/atom+xml" href="/emacs.xml" title="Atom feed">
+        <title>(think) - The Totally Unofficial Ruby coding style guide</title>
+
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-22917580-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </head>
+
+    <body>
+        <div id="page">
+            <div id="content">
+                <div id="header">
+                    <h1>(think)</h1>
+                    <p class="comment">/** An online novel about the Source, the Force, the real life and everything
+                    in between...**/</p>
+                </div>
+                <div id="middle">
+                    <div id="menu">
+                        <ul id="list-nav">
+                            <li><a href="/index.html">Home</a></li>
+                            <li><a href="/archive.html">Archive</a></li>
+                            <li><a href="/projects.html">Projects</a></li>
+                            <li><a href="/about.html">About</a></li>
+                            <li><a href="/contacts.html">Contacts</a></li>
+                        </ul>
+                    </div>
+                    <div id="content">
+                        <div id="post">
+    <h2 class="title">The Totally Unofficial Ruby coding style guide</h2>
+    <h2 id="prologue">Prologue</h2>
+
+<p>This document was created when I, as the Technical Lead of the company
+in which I work for, was asked by the CTO to create some internal
+documents describing good style and best practices for Ruby
+programming. Since I didn’t find any “official” coding guidelines I
+started off by copying
+<a href="https://github.com/chneukirchen/styleguide">this existing style guide</a>,
+because I concurred with most of the points in it. Afterwards I
+proceeded to built upon it and plan to improve it a lot more (the
+examples now are totally superficial, but I’m quite busy these
+days). I hope it will be useful to other people as well and I hope
+that I’ll get a lot of feedback and suggestions on how to improve the
+guide for the benefit of the entire Ruby community.</p>
+
+<h2 id="the-guide">The Guide</h2>
+<p># Formatting</p>
+
+<ul>
+  <li>Use UTF-8 as the source file encoding.</li>
+  <li>Use 2 space indent, no tabs. (Your editor/IDE should have a setting to help you with that)</li>
+  <li>Use Unix-style line endings. (Linux/OSX users are covered by default, Windows users have to be extra careful)
+    <ul>
+      <li>if you’re using Git you might want to do this <code>$ git config --global core.autocrlf true</code> to protect your project from Windows line endings creeping into your project</li>
+    </ul>
+  </li>
+  <li>Use spaces around operators, after commas, colons and semicolons, around { and before }.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">sum</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+<span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">?</span> <span class="kp">true</span> <span class="p">:</span> <span class="kp">false</span><span class="p">;</span> <span class="nb">puts</span> <span class="s2">&quot;Hi&quot;</span>
+<span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">e</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>No spaces after (, [ and before ], ).</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">some</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">.</span><span class="n">other</span>
+<span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">].</span><span class="n">length</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Indent <strong>when</strong> as deep as <strong>case</strong>. (as suggested in the Pickaxe)</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">case</span>
+<span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Misty&quot;</span>
+  <span class="nb">puts</span> <span class="s2">&quot;Not again!&quot;</span> <span class="k">when</span> <span class="n">song</span><span class="o">.</span><span class="n">duration</span> <span class="o">&gt;</span> <span class="mi">120</span>
+  <span class="nb">puts</span> <span class="s2">&quot;Too long!&quot;</span> <span class="k">when</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">hour</span> <span class="o">&gt;</span> <span class="mi">21</span>
+  <span class="nb">puts</span> <span class="s2">&quot;It&#39;s too late&quot;</span>
+<span class="k">else</span>
+  <span class="n">song</span><span class="o">.</span><span class="n">play</span>
+<span class="k">end</span>
+
+<span class="n">kind</span> <span class="o">=</span> <span class="k">case</span> <span class="n">year</span>
+       <span class="k">when</span> <span class="mi">1850</span><span class="o">.</span><span class="n">.</span><span class="mi">1889</span> <span class="k">then</span> <span class="s2">&quot;Blues&quot;</span>
+       <span class="k">when</span> <span class="mi">1890</span><span class="o">.</span><span class="n">.</span><span class="mi">1909</span> <span class="k">then</span> <span class="s2">&quot;Ragtime&quot;</span>
+       <span class="k">when</span> <span class="mi">1910</span><span class="o">.</span><span class="n">.</span><span class="mi">1929</span> <span class="k">then</span> <span class="s2">&quot;New Orleans Jazz&quot;</span> <span class="k">when</span> <span class="mi">1930</span><span class="o">.</span><span class="n">.</span><span class="mi">1939</span> <span class="k">then</span> <span class="s2">&quot;Swing&quot;</span>
+       <span class="k">when</span> <span class="mi">1940</span><span class="o">.</span><span class="n">.</span><span class="mi">1950</span> <span class="k">then</span> <span class="s2">&quot;Bebop&quot;</span>
+       <span class="k">else</span> <span class="s2">&quot;Jazz&quot;</span>
+       <span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Use an empty line before the return value of a method (unless it
+only has one line), and an empty line between defs.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">some_method</span>
+  <span class="n">do_something</span>
+  <span class="n">do_something_else</span>
+
+  <span class="n">result</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">some_method</span>
+  <span class="n">result</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Use RDoc and its conventions for API documentation.  Don’t put an
+empty line between the comment block and the <strong>def</strong>.</li>
+  <li>Use empty lines to break up a method into logical paragraphs.</li>
+  <li>Keep lines fewer than 80 characters.
+    <ul>
+      <li>Emacs users should really have a look at whitespace-mode</li>
+    </ul>
+  </li>
+  <li>Avoid trailing whitespace.
+    <ul>
+      <li>Emacs users - whitespace-mode again comes to the rescue</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="syntax">Syntax</h1>
+
+<ul>
+  <li>Use <strong>def</strong> with parentheses when there are arguments. Omit the
+parentheses when the method doesn’t accept any arguments.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">some_method</span>
+  <span class="c1"># body omitted</span>
+ <span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">some_method_with_arguments</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+  <span class="c1"># body omitted</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Never use <strong>for</strong>, unless you exactly know why. Most of the time
+iterators should be used instead.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">arr</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">]</span>
+
+<span class="c1"># bad</span>
+<span class="k">for</span> <span class="n">elem</span> <span class="k">in</span> <span class="n">arr</span> <span class="k">do</span>
+  <span class="nb">puts</span> <span class="n">elem</span>
+<span class="k">end</span>
+
+<span class="c1"># good</span>
+<span class="n">arr</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">elem</span> <span class="p">}</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Never use <strong>then</strong> for multiline <strong>if/unless</strong>.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
+<span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">odd?</span> <span class="k">then</span>
+  <span class="nb">puts</span> <span class="s2">&quot;odd&quot;</span>
+<span class="k">end</span>
+
+<span class="c1"># good</span>
+<span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">odd?</span>
+  <span class="nb">puts</span> <span class="s2">&quot;odd&quot;</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Use <strong>when x; …</strong> for one-line cases.</li>
+  <li>Use &amp;&amp;/|| for boolean expressions, and/or for control flow.  (Rule
+of thumb: If you have to use outer parentheses, you are using the
+wrong operators.)</li>
+  <li>Avoid multiline ?: (the ternary operator), use <strong>if/unless</strong> instead.</li>
+  <li>Favor modifier <strong>if/unless</strong> usage when you have a single-line body.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
+<span class="k">if</span> <span class="n">some_condition</span>
+  <span class="n">do_something</span>
+<span class="k">end</span>
+
+<span class="c1"># good</span>
+<span class="n">do_something</span> <span class="k">if</span> <span class="n">some_condition</span>
+
+<span class="c1"># another good option</span>
+<span class="n">some_condition</span> <span class="o">&amp;&amp;</span> <span class="n">do_something</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Favor <strong>unless</strong> over <strong>if</strong> for negative conditions:</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
+<span class="n">do_something</span> <span class="k">if</span> <span class="o">!</span><span class="n">some_condition</span>
+
+<span class="c1"># good</span>
+<span class="n">do_something</span> <span class="k">unless</span> <span class="n">some_condition</span>
+
+<span class="c1"># another good option</span>
+<span class="n">some_condition</span> <span class="o">||</span> <span class="n">do_something</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Suppress superfluous parentheses when calling methods, but keep them
+when calling “functions”, i.e. when you use the return value in the
+same line.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">x</span> <span class="o">=</span> <span class="no">Math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">array</span><span class="o">.</span><span class="n">delete</span> <span class="n">e</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>Prefer {…} over do…end for single-line blocks.  Avoid using {…} for multi-line blocks.  Always use do…end for
+“control flow” and “method definitions” (e.g. in Rakefiles and
+certain DSLs.)  Avoid do…end when chaining.</p>
+  </li>
+  <li>
+    <p>Avoid <strong>return</strong> where not required.</p>
+  </li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
+<span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">some_arr</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">some_arr</span><span class="o">.</span><span class="n">size</span>
+<span class="k">end</span>
+
+<span class="c1"># good</span>
+<span class="k">def</span> <span class="nf">some_method</span><span class="p">(</span><span class="n">some_arr</span><span class="p">)</span>
+  <span class="n">some_arr</span><span class="o">.</span><span class="n">size</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Avoid line continuation (\) where not required. In practice avoid using line continuations at all.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
+<span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">\</span>
+<span class="mi">2</span>
+
+<span class="c1"># good</span>
+<span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">\</span>
+<span class="o">+</span> <span class="mi">2</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Using the return value of = is okay:</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">if</span> <span class="n">v</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">)</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Use</td>
+          <td> </td>
+          <td>= freely.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="c1"># set name to Bozhidar, only if it&#39;s nil or false</span>
+<span class="nb">name</span> <span class="o">||=</span> <span class="s2">&quot;Bozhidar&quot;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Avoid using Perl-style global variables(like $0-9, $`, …)</li>
+</ul>
+
+<h1 id="naming">Naming</h1>
+
+<ul>
+  <li>Use snake_case for methods and variables.</li>
+  <li>Use CamelCase for classes and modules.  (Keep acronyms like HTTP,
+RFC, XML uppercase.)</li>
+  <li>Use SCREAMING_SNAKE_CASE for other constants.</li>
+  <li>The length of an identifier determines its scope.  Use one-letter variables for short block/method parameters, according to this scheme:</li>
+</ul>
+
+<p>a,b,c: any object
+d: directory names
+e: elements of an Enumerable
+ex: rescued exceptions
+f: files and file names
+i,j: indexes
+k: the key part of a hash entry
+m: methods
+o: any object
+r: return values of short methods
+s: strings
+v: any value
+v: the value part of a hash entry
+x,y,z: numbers</p>
+
+<p>And in general, the first letter of the class name if all objects are of that type.</p>
+
+<ul>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>When using <strong>inject</strong> with short blocks, name the arguments **</td>
+          <td>a, e</td>
+          <td>** (mnemonic: accumulator, element)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>When defining binary operators, name the argument “other”.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">+</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+  <span class="c1"># body omitted</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Prefer <strong>map</strong> over <em>collect</em>, <strong>find</strong> over <em>detect</em>, <strong>find_all</strong> over <em>select</em>, <strong>size</strong> over <em>length</em>. This is not a hard requirement, though - if
+the use of the alias enhances readability - it’s ok to use it.</li>
+</ul>
+
+<h1 id="comments">Comments</h1>
+
+<ul>
+  <li>Write self documenting code and ignore the rest of this section.</li>
+  <li>Comments longer than a word are capitalized and use punctuation. Use two spaces after periods.</li>
+  <li>Avoid superfluous comments.</li>
+  <li>Keep existing comments up-to-date - no comment is better than an outdated comment.</li>
+</ul>
+
+<h1 id="misc">Misc</h1>
+
+<ul>
+  <li>Write <strong>ruby -w</strong> safe code.</li>
+  <li>Avoid hashes-as-optional-parameters.  Does the method do too much?</li>
+  <li>Avoid long methods (longer than 10 LOC). Ideally most methods will be shorter than 5 LOC. Empty line do not contribute to the relevant LOC.</li>
+  <li>Avoid long parameter lists (more than 3-4 params).</li>
+  <li>Use <strong>def self.method</strong> to define singleton methods. This makes the methods more resistent to refactoring changes.</li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">TestClass</span>
+  <span class="c1"># bad</span>
+  <span class="k">def</span> <span class="nc">TestClass</span><span class="o">.</span><span class="nf">some_method</span>
+    <span class="c1"># body omitted</span>
+  <span class="k">end</span>
+
+  <span class="c1"># good</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">some_other_method</span>
+    <span class="c1"># body omitted</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Add “global” methods to Kernel (if you have to) and make them private.</li>
+  <li>Avoid <strong>alias</strong> when <strong>alias_method</strong> will do.</li>
+  <li>Use <strong>OptionParser</strong> for parsing complex command line options and
+<em>*ruby -s</em> for trivial command line options.</li>
+  <li>Write for Ruby 1.9. Don’t use legacy Ruby 1.8 constructs.
+    <ul>
+      <li>use the new JavaScript literal hash syntax</li>
+      <li>use the new lambda syntax</li>
+      <li>methods like <strong>inject</strong> now accept methods names as arguments - <code>[1, 2, 3].inject(:+)</code></li>
+    </ul>
+  </li>
+  <li>Avoid needless metaprogramming.</li>
+</ul>
+
+<h1 id="design">Design</h1>
+
+<ul>
+  <li>Code in a functional way, avoid mutation when it makes sense.</li>
+  <li>Do not mutate arguments unless that is the purpose of the method.</li>
+  <li>Do not mess around in core classes when writing libraries. (do not monkey patch them)</li>
+  <li>Do not program defensively. See this <a href="http://www.erlang.se/doc/programming_rules.shtml#HDR11.">article</a> for more details.</li>
+  <li>Keep the code simple (subjective, but still…). Each method should have a single well-defined responsibility.</li>
+  <li>Avoid more than 3 Level of  block nesting.</li>
+  <li>Don’t overdesign. Overly complex solutions tend to be brittle and hard to maintain.</li>
+  <li>Don’t underdesign. A solution to a problem should be as simple as
+possible… but it should not be simpler than that. Poor initial design 
+can lead to a lot of problems in the future.</li>
+  <li>Be consistent. In an ideal world - be consistent with the points listed here in this guidelines.</li>
+  <li>Use common sense.</li>
+</ul>
+
+<h2 id="overture">Overture</h2>
+
+<p>I’ve created a <a href="https://github.com/bbatsov/ruby-style-guide">GitHub project</a>, so that everyone can easily participate
+in improving the quality of the guidelines. I hope that together we
+could make a resource that will benefit the entire Ruby community. I
+have a couple more guides like this one in the pipeline - one for
+Rails and for testing Ruby and Rails applications.</p>
+
+<p>If you’re an Emacs user - the <a href="https://github.com/bbatsov/emacs-dev-kit">Emacs Dev Kit</a> features
+customizations that enforce some of the stuff outlined in the guide -
+encoding, indentation, line length and lots of other goodies
+(whitespace cleanup, ri integration, autopair for quotes, brackets,
+etc, Ruby snippets, irb integration, git integration, haml, sass and
+coffeescript support out of the box…). You
+might want to check it out.</p>
+
+    <div class="meta">Posted on 12 Sep 2011 by Bozhidar. Filed under Programming and Ruby.</div>
+    <br/>
+        <span  class='st_reddit_large' ></span><span  class='st_linkedin_large' ></span><span  class='st_google_reader_large' ></span><span  class='st_dzone_large' ></span><span  class='st_digg_large' ></span><span  class='st_twitter_large' ></span><span  class='st_facebook_large' ></span><span  class='st_yahoo_large' ></span><span  class='st_gbuzz_large' ></span><span  class='st_email_large' ></span><span  class='st_sharethis_large' ></span>
+    <hr />
+    <div id="disqus">
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'batsov'; // required: replace example with your forum shortname
+
+    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+    var disqus_identifier = document.location.href;
+    var disqus_url = document.location.href;
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'e857ac4f-d3f6-4aa1-9e1f-06210ab5480e'});</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+</div>
+
+                    </div>
+                </div>
+                <div id="footer">
+                    Copyright &copy; 2010-2011 <a href="mailto:bozhidar.batsov@gmail.com">Bozhidar Batsov</a>. All Rights Reserved.
+                    <br/>
+                    Powered by <a href="http://jekyllrb.com/">Jekyll</a>.
+                </div>
+            </div>
+            <div id="sidebar">
+                <div id="twitter">
+                    <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        new TWTR.Widget({
+                        version: 2,
+                        type: 'profile',
+                        rpp: 4,
+                        interval: 6000,
+                        width: 250,
+                        height: 300,
+                        theme: {
+                        shell: {
+                        background: '#333333',
+                        color: '#ffffff'
+                        },
+                        tweets: {
+                        background: '#000000',
+                        color: '#ffffff',
+                        links: '#4aed05'
+                        }
+                        },
+                        features: {
+                        scrollbar: false,
+                        loop: false,
+                        live: false,
+                        hashtags: true,
+                        timestamp: true,
+                        avatars: false,
+                        behavior: 'all'
+                        }
+                        }).render().setUser('bbatsov').start();
+                    </script>
+                </div>
+                <div id="latest">
+                    <div class="sidebar_heading">Latest posts:</div>
+                    <ul>
+                        
+                        <li><a href="/Programming/Ruby/2011/09/12/ruby-style-guide.html">The Totally Unofficial Ruby coding style guide</a></li>
+                        
+                        <li><a href="/Emacs/2011/08/19/a-peek-at-emacs24.html">A peek at Emacs 24</a></li>
+                        
+                        <li><a href="/Linux/Debian/2011/07/04/debian-tips.html">Debian post installation setup & tips</a></li>
+                        
+                        <li><a href="/Ruby/Rails/Python/Django/2011/06/19/django-vs-rails.html">Django 1.3 vs Rails 3: A not so final showdown</a></li>
+                        
+                        <li><a href="/Linux/Windows/Rant/2011/06/14/linux-desktop-part-2.html">The Linux desktop experience is killing Linux on the desktop, Part II</a></li>
+                        
+                    </ul>
+                </div>
+                <div id="tags">
+                    <div class="sidebar_heading">Categories:</div>
+                    <ul>
+                        
+                        
+                        <li><a href="/categories/Misc/index.html">Misc(6)</a></li>
+                        
+                        
+                        <li><a href="/categories/Hardware/index.html">Hardware(4)</a></li>
+                        
+                        
+                        <li><a href="/categories/Ruby/index.html">Ruby(7)</a></li>
+                        
+                        
+                        <li><a href="/categories/Emacs/index.html">Emacs(8)</a></li>
+                        
+                        
+                        <li><a href="/categories/Rails/index.html">Rails(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Z Shell/index.html">Z Shell(3)</a></li>
+                        
+                        
+                        <li><a href="/categories/Linux/index.html">Linux(12)</a></li>
+                        
+                        
+                        <li><a href="/categories/Java/index.html">Java(13)</a></li>
+                        
+                        
+                        <li><a href="/categories/Design Patterns/index.html">Design Patterns(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/IntelliJ/index.html">IntelliJ(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Eclipse/index.html">Eclipse(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Fedora/index.html">Fedora(5)</a></li>
+                        
+                        
+                        <li><a href="/categories/Git/index.html">Git(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/JBoss/index.html">JBoss(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Swing/index.html">Swing(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/NetBeans/index.html">NetBeans(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/LaTeX/index.html">LaTeX(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Jekyll/index.html">Jekyll(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Programming/index.html">Programming(6)</a></li>
+                        
+                        
+                        <li><a href="/categories/Scala/index.html">Scala(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Common Lisp/index.html">Common Lisp(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Python/index.html">Python(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Groovy/index.html">Groovy(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Clojure/index.html">Clojure(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Books/index.html">Books(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Windows/index.html">Windows(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Rant/index.html">Rant(2)</a></li>
+                        
+                        
+                        <li><a href="/categories/Django/index.html">Django(1)</a></li>
+                        
+                        
+                        <li><a href="/categories/Debian/index.html">Debian(1)</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+    var disqus_shortname = 'batsov'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+    </body>
+</html>
