@@ -290,17 +290,7 @@ certain DSLs.)  Avoid do…end when chaining.</p>
 </div>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>Use</td>
-          <td> </td>
-          <td>= freely.</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>Use ||= freely.</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="c1"># set name to Bozhidar, only if it&#39;s nil or false</span>
@@ -319,10 +309,10 @@ certain DSLs.)  Avoid do…end when chaining.</p>
   <li>Use CamelCase for classes and modules.  (Keep acronyms like HTTP,
 RFC, XML uppercase.)</li>
   <li>Use SCREAMING_SNAKE_CASE for other constants.</li>
-  <li>The length of an identifier determines its scope.  Use one-letter variables for short block/method parameters, according to this scheme:</li>
-</ul>
+  <li>
+    <p>The length of an identifier determines its scope.  Use one-letter variables for short block/method parameters, according to this scheme:</p>
 
-<p>a,b,c: any object
+    <pre><code>a,b,c: any object
 d: directory names
 e: elements of an Enumerable
 ex: rescued exceptions
@@ -335,22 +325,12 @@ r: return values of short methods
 s: strings
 v: any value
 v: the value part of a hash entry
-x,y,z: numbers</p>
+x,y,z: numbers
+</code></pre>
 
-<p>And in general, the first letter of the class name if all objects are of that type.</p>
-
-<ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>When using <strong>inject</strong> with short blocks, name the arguments **</td>
-          <td>a, e</td>
-          <td>** (mnemonic: accumulator, element)</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>And in general, the first letter of the class name if all objects are of that type.</p>
   </li>
+  <li>When using <strong>inject</strong> with short blocks, name the arguments <strong>|a, e|</strong> (mnemonic: accumulator, element)</li>
   <li>When defining binary operators, name the argument “other”.</li>
 </ul>
 
@@ -402,12 +382,12 @@ the use of the alias enhances readability - it’s ok to use it.</li>
   <li>Add “global” methods to Kernel (if you have to) and make them private.</li>
   <li>Avoid <strong>alias</strong> when <strong>alias_method</strong> will do.</li>
   <li>Use <strong>OptionParser</strong> for parsing complex command line options and
-<em>*ruby -s</em> for trivial command line options.</li>
+<strong>ruby -s</strong> for trivial command line options.</li>
   <li>Write for Ruby 1.9. Don’t use legacy Ruby 1.8 constructs.
     <ul>
       <li>use the new JavaScript literal hash syntax</li>
       <li>use the new lambda syntax</li>
-      <li>methods like <strong>inject</strong> now accept methods names as arguments - <code>[1, 2, 3].inject(:+)</code></li>
+      <li>methods like <strong>inject</strong> now accept method names as arguments - <code>[1, 2, 3].inject(:+)</code></li>
     </ul>
   </li>
   <li>Avoid needless metaprogramming.</li>
@@ -421,7 +401,7 @@ the use of the alias enhances readability - it’s ok to use it.</li>
   <li>Do not mess around in core classes when writing libraries. (do not monkey patch them)</li>
   <li>Do not program defensively. See this <a href="http://www.erlang.se/doc/programming_rules.shtml#HDR11.">article</a> for more details.</li>
   <li>Keep the code simple (subjective, but still…). Each method should have a single well-defined responsibility.</li>
-  <li>Avoid more than 3 Level of  block nesting.</li>
+  <li>Avoid more than 3 levels of block nesting.</li>
   <li>Don’t overdesign. Overly complex solutions tend to be brittle and hard to maintain.</li>
   <li>Don’t underdesign. A solution to a problem should be as simple as
 possible… but it should not be simpler than that. Poor initial design 

@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-09-13T00:57:06+03:00</updated>
+  <updated>2011-09-13T08:43:48+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -267,17 +267,7 @@ certain DSLs.)  Avoid do…end when chaining.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;table&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;Use&lt;/td&gt;
-          &lt;td&gt; &lt;/td&gt;
-          &lt;td&gt;= freely.&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
+  &lt;li&gt;Use ||= freely.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# set name to Bozhidar, only if it&amp;#39;s nil or false&lt;/span&gt;
@@ -296,10 +286,10 @@ certain DSLs.)  Avoid do…end when chaining.&lt;/p&gt;
   &lt;li&gt;Use CamelCase for classes and modules.  (Keep acronyms like HTTP,
 RFC, XML uppercase.)&lt;/li&gt;
   &lt;li&gt;Use SCREAMING_SNAKE_CASE for other constants.&lt;/li&gt;
-  &lt;li&gt;The length of an identifier determines its scope.  Use one-letter variables for short block/method parameters, according to this scheme:&lt;/li&gt;
-&lt;/ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The length of an identifier determines its scope.  Use one-letter variables for short block/method parameters, according to this scheme:&lt;/p&gt;
 
-&lt;p&gt;a,b,c: any object
+    &lt;pre&gt;&lt;code&gt;a,b,c: any object
 d: directory names
 e: elements of an Enumerable
 ex: rescued exceptions
@@ -312,22 +302,12 @@ r: return values of short methods
 s: strings
 v: any value
 v: the value part of a hash entry
-x,y,z: numbers&lt;/p&gt;
+x,y,z: numbers
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;And in general, the first letter of the class name if all objects are of that type.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;table&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;When using &lt;strong&gt;inject&lt;/strong&gt; with short blocks, name the arguments **&lt;/td&gt;
-          &lt;td&gt;a, e&lt;/td&gt;
-          &lt;td&gt;** (mnemonic: accumulator, element)&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
+    &lt;p&gt;And in general, the first letter of the class name if all objects are of that type.&lt;/p&gt;
   &lt;/li&gt;
+  &lt;li&gt;When using &lt;strong&gt;inject&lt;/strong&gt; with short blocks, name the arguments &lt;strong&gt;|a, e|&lt;/strong&gt; (mnemonic: accumulator, element)&lt;/li&gt;
   &lt;li&gt;When defining binary operators, name the argument “other”.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -379,12 +359,12 @@ the use of the alias enhances readability - it’s ok to use it.&lt;/li&gt;
   &lt;li&gt;Add “global” methods to Kernel (if you have to) and make them private.&lt;/li&gt;
   &lt;li&gt;Avoid &lt;strong&gt;alias&lt;/strong&gt; when &lt;strong&gt;alias_method&lt;/strong&gt; will do.&lt;/li&gt;
   &lt;li&gt;Use &lt;strong&gt;OptionParser&lt;/strong&gt; for parsing complex command line options and
-&lt;em&gt;*ruby -s&lt;/em&gt; for trivial command line options.&lt;/li&gt;
+&lt;strong&gt;ruby -s&lt;/strong&gt; for trivial command line options.&lt;/li&gt;
   &lt;li&gt;Write for Ruby 1.9. Don’t use legacy Ruby 1.8 constructs.
     &lt;ul&gt;
       &lt;li&gt;use the new JavaScript literal hash syntax&lt;/li&gt;
       &lt;li&gt;use the new lambda syntax&lt;/li&gt;
-      &lt;li&gt;methods like &lt;strong&gt;inject&lt;/strong&gt; now accept methods names as arguments - &lt;code&gt;[1, 2, 3].inject(:+)&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;methods like &lt;strong&gt;inject&lt;/strong&gt; now accept method names as arguments - &lt;code&gt;[1, 2, 3].inject(:+)&lt;/code&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Avoid needless metaprogramming.&lt;/li&gt;
@@ -398,7 +378,7 @@ the use of the alias enhances readability - it’s ok to use it.&lt;/li&gt;
   &lt;li&gt;Do not mess around in core classes when writing libraries. (do not monkey patch them)&lt;/li&gt;
   &lt;li&gt;Do not program defensively. See this &lt;a href=&quot;http://www.erlang.se/doc/programming_rules.shtml#HDR11.&quot;&gt;article&lt;/a&gt; for more details.&lt;/li&gt;
   &lt;li&gt;Keep the code simple (subjective, but still…). Each method should have a single well-defined responsibility.&lt;/li&gt;
-  &lt;li&gt;Avoid more than 3 Level of  block nesting.&lt;/li&gt;
+  &lt;li&gt;Avoid more than 3 levels of block nesting.&lt;/li&gt;
   &lt;li&gt;Don’t overdesign. Overly complex solutions tend to be brittle and hard to maintain.&lt;/li&gt;
   &lt;li&gt;Don’t underdesign. A solution to a problem should be as simple as
 possible… but it should not be simpler than that. Poor initial design 

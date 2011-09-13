@@ -195,7 +195,7 @@ result = 1 \
 {% highlight ruby %}
 if v = array.grep(/foo/) ...
 {% endhighlight %}
-* Use ||= freely.
+* Use \|\|= freely.
 {% highlight ruby %}
 # set name to Bozhidar, only if it's nil or false
 name ||= "Bozhidar"
@@ -210,24 +210,24 @@ name ||= "Bozhidar"
 * Use SCREAMING_SNAKE_CASE for other constants.
 * The length of an identifier determines its scope.  Use one-letter variables for short block/method parameters, according to this scheme:
 
-a,b,c: any object
-d: directory names
-e: elements of an Enumerable
-ex: rescued exceptions
-f: files and file names
-i,j: indexes
-k: the key part of a hash entry
-m: methods
-o: any object
-r: return values of short methods
-s: strings
-v: any value
-v: the value part of a hash entry
-x,y,z: numbers
+      a,b,c: any object
+      d: directory names
+      e: elements of an Enumerable
+      ex: rescued exceptions
+      f: files and file names
+      i,j: indexes
+      k: the key part of a hash entry
+      m: methods
+      o: any object
+      r: return values of short methods
+      s: strings
+      v: any value
+      v: the value part of a hash entry
+      x,y,z: numbers
 
    And in general, the first letter of the class name if all objects are of that type.
 
-* When using **inject** with short blocks, name the arguments **|a, e|** (mnemonic: accumulator, element)
+* When using **inject** with short blocks, name the arguments **\|a, e\|** (mnemonic: accumulator, element)
 * When defining binary operators, name the argument "other".
 {% highlight ruby %}
 def +(other)
@@ -267,11 +267,11 @@ end
 * Add "global" methods to Kernel (if you have to) and make them private.
 * Avoid **alias** when **alias_method** will do.
 * Use **OptionParser** for parsing complex command line options and
-  **ruby -s* for trivial command line options.
+  **ruby -s** for trivial command line options.
 * Write for Ruby 1.9. Don't use legacy Ruby 1.8 constructs.
     * use the new JavaScript literal hash syntax
     * use the new lambda syntax
-    * methods like **inject** now accept methods names as arguments - `[1, 2, 3].inject(:+)`
+    * methods like **inject** now accept method names as arguments - `[1, 2, 3].inject(:+)`
 * Avoid needless metaprogramming.
 
 # Design
@@ -281,7 +281,7 @@ end
 * Do not mess around in core classes when writing libraries. (do not monkey patch them)
 * Do not program defensively. See this [article](http://www.erlang.se/doc/programming_rules.shtml#HDR11.) for more details.
 * Keep the code simple (subjective, but still...). Each method should have a single well-defined responsibility.
-* Avoid more than 3 Level of  block nesting.
+* Avoid more than 3 levels of block nesting.
 * Don't overdesign. Overly complex solutions tend to be brittle and hard to maintain.
 * Don't underdesign. A solution to a problem should be as simple as
 possible... but it should not be simpler than that. Poor initial design 
