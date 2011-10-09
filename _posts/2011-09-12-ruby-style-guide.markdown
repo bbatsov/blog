@@ -297,10 +297,15 @@ could make a resource that will benefit the entire Ruby community. I
 have a couple more guides like this one in the pipeline - one for
 Rails and for testing Ruby and Rails applications.
 
-If you're an Emacs user - the [Emacs Dev Kit](https://github.com/bbatsov/emacs-dev-kit) features
+If you're an Emacs user - the [Emacs Prelude](https://github.com/bbatsov/emacs-prelude) features
 customizations that enforce some of the stuff outlined in the guide -
 encoding, indentation, line length and lots of other goodies
 (whitespace cleanup, ri integration, autopair for quotes, brackets,
 etc, Ruby snippets, irb integration, git integration, haml, sass and
 coffeescript support out of the box...). You
 might want to check it out.
+
+**P.S. The version of the Ruby style guide here is out of date. Please,
+  refer to the
+  [GitHub project](https://github.com/bbatsov/ruby-style-guide) for
+  the latest and greatest version.**

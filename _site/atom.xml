@@ -4,7 +4,7 @@
   <title>www.batsov.com</title>
   <link href="http://www.batsov.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.batsov.com/atom.xml"/>
-  <updated>2011-09-13T08:43:48+03:00</updated>
+  <updated>2011-10-09T14:38:25+03:00</updated>
   <id>http://www.batsov.com/</id>
   <author>
     <name>Bozhidar Batsov</name>
@@ -395,13 +395,18 @@ could make a resource that will benefit the entire Ruby community. I
 have a couple more guides like this one in the pipeline - one for
 Rails and for testing Ruby and Rails applications.&lt;/p&gt;
 
-&lt;p&gt;If you’re an Emacs user - the &lt;a href=&quot;https://github.com/bbatsov/emacs-dev-kit&quot;&gt;Emacs Dev Kit&lt;/a&gt; features
+&lt;p&gt;If you’re an Emacs user - the &lt;a href=&quot;https://github.com/bbatsov/emacs-prelude&quot;&gt;Emacs Prelude&lt;/a&gt; features
 customizations that enforce some of the stuff outlined in the guide -
 encoding, indentation, line length and lots of other goodies
 (whitespace cleanup, ri integration, autopair for quotes, brackets,
 etc, Ruby snippets, irb integration, git integration, haml, sass and
 coffeescript support out of the box…). You
 might want to check it out.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;P.S. The version of the Ruby style guide here is out of date. Please,
+  refer to the
+  &lt;a href=&quot;https://github.com/bbatsov/ruby-style-guide&quot;&gt;GitHub project&lt;/a&gt; for
+  the latest and greatest version.&lt;/strong&gt;&lt;/p&gt;
 </content>
   </entry>
   
@@ -744,8 +749,10 @@ passion and resolve to modernize Emacs.&lt;/p&gt;
 &lt;p&gt;Expect future blog posts dedicated to specific new features and
 improvements.&lt;/p&gt;
 
-&lt;p&gt;P.S. Btw &lt;a href=&quot;https://github.com/bbatsov/emacs-dev-kit&quot;&gt;The Emacs Dev Kit&lt;/a&gt; already makes use of some the new
-features from Emacs 24. In due time it will make use of much more of them.&lt;/p&gt;
+&lt;p&gt;P.S. Btw &lt;a href=&quot;https://github.com/bbatsov/emacs-prelude&quot;&gt;The Emacs Prelude&lt;/a&gt;
+already makes use of some the new features from Emacs 24. In due time
+it will make use of much more of them. It’s one of the very few
+advanced Emacs setups targeting exclusively Emacs 24.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;&lt;/p&gt;
 
