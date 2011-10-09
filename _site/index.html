@@ -43,6 +43,135 @@
                     </div>
                     <div id="content">
                         
+<h2 id="getting-started-with-emacs-24emacs20111009getting-started-with-emacs-24html"><a href="/Emacs/2011/10/09/getting-started-with-emacs-24.html">Getting started with Emacs 24</a></h2>
+<h2 id="prelude">Prelude</h2>
+
+<p>Last month I’ve blogged about the
+<a href="http://batsov.com/Emacs/2011/08/19/a-peek-at-emacs24.html">exciting things are coming up in Emacs 24</a>. What
+I failed to mention originally is that altough Emacs 24 is slated for
+a Spring 2012 (tentatively) release there is no real reason not to start using it
+now. You should also keep in mind that it’s feature complete since it
+officially entered the feature freeze of its development cycle in July 2011.</p>
+
+<p>I’ve been using Emacs 24 for several months now and it has been
+nothing but rock solid. I guess the only real obstacle currently is
+that the way to obtain Emacs 24 is not particularly straightfoward/clear,
+hence this post.</p>
+
+<p>I’ll discuss here the installation and initial configuration of Emacs
+24 on OSX, GNU/Linux and Windows.</p>
+
+<h2 id="installing-emacs-24">Installing Emacs 24</h2>
+
+<h1 id="os-x">OS X</h1>
+
+<p>Obtaining Emacs 24 on OS X is really simple. There are two popular
+ways to do it. The first is to simply download a pretest (or a nightly
+build) from <a href="http://emacsformacosx.com">Emacs for OSX</a>. My personal
+recommendation would be to get the latest pretest (which is ironically
+the first pretest as well) from
+<a href="http://emacsformacosx.com/emacs-builds/Emacs-pretest-24.0.90-universal-10.6.7.dmg">here</a>.</p>
+
+<p>That was really easy, right?</p>
+
+<p>The second easy way to obtain Emacs 24 is via
+<a href="http://mxcl.github.com/homebrew/">homebrew</a>. Just type the following
+incantation in your shell and you’re done:</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>brew install emacs --cocoa --use-git-head --HEAD
+<span class="nv">$ </span>cp -r /usr/local/Cellar/emacs/HEAD/Emacs.app /Applications/
+</code></pre>
+</div>
+
+<p>The second step is optional, but it’s recommended if you like to start
+Emacs from the launchpad or from Spotlight. Personally I prefer to
+start Emacs in daemon mode (emacs –daemon), so that I could share a
+single Emacs instance between several Emacs clients (emacsclient
+-c/t).</p>
+
+<p>That’s all folk! You may now proceed to the configuration section.</p>
+
+<h1 id="linux">Linux</h1>
+
+<p>Given that Linux is more or less the home os of Emacs it presents us
+with the most installation options. Of course, we can build Emacs from
+<a href="https://github.com/emacsmirror/emacs">source</a> on every distribution
+out there, but I rarely bother to do so. Using the distribution’s
+package manager is a better idea for many reasons - you don’t need to
+install a build chain and lots of dev libraries, you get updated
+versions when they are released and you get automated dependency
+manager, just to name a few.</p>
+
+<p>That said, few distributions include in their primary repositories
+builds of Emacs 24. Luckily there are some unofficial repos that come
+to the rescue.</p>
+
+<p>Debian/Ubuntu users should look no further than the amazing
+<a href="http://emacs.naquadah.org/">emacs-snapshot APT repo</a>. You’ll find
+installation instructions there for all the relevant Debian and Ubuntu
+versions out there. High quality, highly recommended builds!</p>
+
+<p>Gentoo users have even less to do, since Emacs 24 can be obtained via
+the emacs-vcs package in portage, as noted in the official
+<a href="http://www.gentoo.org/proj/en/lisp/emacs/emacs.xml">Emacs on Gentoo page</a>.</p>
+
+<p>Unfortunately I wasn’t able to find prebuilt Emacs 24 packages for any
+of the RPM distros (Fedora, SUSE, Mandriva, etc). Since, I’m Debian
+user I have to admit that I didn’t look that far, but the source
+installation is not particularly hard and is always an option.</p>
+
+<h1 id="windows">Windows</h1>
+
+<p>There are several ways to obtain precompiled Emacs 24 binaries if
+you’re a Windows users. The most popular are
+<a href="http://ourcomments.org/cgi-bin/emacsw32-dl-latest.pl">EmacsW32</a>,
+<a href="http://code.google.com/p/emacs-for-windows/">Emacs for Windows</a> and
+of course the official
+<a href="http://alpha.gnu.org/gnu/emacs/windows/">Emacs Windows builds</a>. I’ve
+,personally, never used any builds other than the official ones. The
+unofficial builds usually include installers and various patches that
+might be of use to some users.</p>
+
+<p>Since I rarely use Windows I cannot give you any more advice on the
+choice of a binary vendor.</p>
+
+<h2 id="initial-configuration">Initial configuration</h2>
+
+<p>Installing Emacs has always been the easy part, configuring it
+properly - not that much. That’s why I’ve created the
+<a href="https://github.com/bbatsov/emacs-prelude">Emacs Prelude</a> - an
+advanced Emacs setup specifically for Emacs 24 that has been tested to
+properly work on OSX, Linux and Windows.</p>
+
+<p>Its installation is dead simple:</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>git clone git://github.com/bbatsov/emacs-prelude.git path/to/local/repo
+<span class="nv">$ </span>ln -s path/to/local/repo ~/.emacs.d
+</code></pre>
+</div>
+
+<p>For Windows Vista/7 the ~(home) folder is
+<em>*C:\Users&lt;USER&gt;\AppData\Roaming*</em>.</p>
+
+<p>The configuration in the Prelude is commented extensively and will be
+improved more along the way. Reading it will be an enlightening
+experience for all new Emacs users.</p>
+
+<p>The Prelude itself is a moving target. I’ve created it recently and I
+plan to add a lot more cool things very soon, so stay tuned. If you
+have any problems with it or have feature suggestions - do not
+hesitate to open tickets and send pull requests. :-)</p>
+
+<h2 id="epilogue">Epilogue</h2>
+
+<p>Now that I’ve shown you how easy it is to get a hold of Emacs 24 and
+I’ve provided you with a starting configuration there is really no
+excuse not to switch to Emacs 24. Install it, use it, love it!</p>
+
+<div style="font-style: italic; color: #7f9f7f;">Posted on 09 Oct 2011 by Bozhidar.</div>
+
+<p><a href="/Emacs/2011/10/09/getting-started-with-emacs-24.html#disqus_thread">Comments</a></p>
+
 <h2 id="the-totally-unofficial-ruby-coding-style-guideprogrammingruby20110912ruby-style-guidehtml"><a href="/Programming/Ruby/2011/09/12/ruby-style-guide.html">The Totally Unofficial Ruby coding style guide</a></h2>
 <h2 id="prologue">Prologue</h2>
 
@@ -1765,382 +1894,6 @@ really liked a lot of aspects of Django as well.</p>
 
 <p><a href="/Ruby/Rails/Python/Django/2011/06/19/django-vs-rails.html#disqus_thread">Comments</a></p>
 
-<h2 id="the-linux-desktop-experience-is-killing-linux-on-the-desktop-part-iilinuxwindowsrant20110614linux-desktop-part-2html"><a href="/Linux/Windows/Rant/2011/06/14/linux-desktop-part-2.html">The Linux desktop experience is killing Linux on the desktop, Part II</a></h2>
-<p><strong>Disclaimer</strong></p>
-
-<p><em>Read this with an open mind.</em></p>
-
-<h1 id="overture">Overture</h1>
-
-<p>A few days back I wrote a somewhat controversial article called,
-<a href="/Linux/Windows/Rant/2011/06/11/linux-desktop-experience-killing-linux-on-the-desktop.html">“The Linux desktop experience is killing Linux on the desktop”</a>. While
-many readers seem to have grasped the true purpose of the article, a
-lot of people claimed that it was nothing but FUD (a favorite term
-of many people in the Linux community, who would rather ignore
-existing problems than face/acknowledge them).</p>
-
-<p>If you’ve read my last post and generally agree with it - don’t bother
-reading this one. It’s basically more of the same - in greater detail
-and with less profanities. </p>
-
-<p>In this article I’ll have a look at the state of the Linux desktop,
-it’s usability, strengths and weaknesses. </p>
-
-<h1 id="lets-get-some-facts-straight">Let’s get some facts straight</h1>
-
-<p>I’m writing this post from my Emacs 23.2 client (in Markdown, to
-publish it via git to my jekyll powered blog) connected to my Emacs
-daemon, running on my Fedora 15 GNOME 3.0 desktop at home. This
-machine has its every part carefully selected for maximum Linux
-compatibility (the machine is a bit old, but that wasn’t always the case) -
-a GeForce 9600GT known to work “great” with the open-source nouveau
-driver, an Asus Xonar DX sound card, supported by the great Oxygen HD
-audio driver, etc. I do know how to buy hardware (contrary to popular
-belief). Actually I’ve been a hardware
-enthusiast for most of my life and I know much more about the inner
-workings of computer components than most people. That said - the hardware that
-I bought for my home PC was not the hardware that I wanted to buy, but
-the one I had to buy. </p>
-
-<p>Even the ill-fated T520 Sandy Bridge laptop was supposed to work very
-well with Linux - after all Intel and Nvidia video cards are the
-safest bet in town. </p>
-
-<p>One of the great things about using a free (as in speech) OS like
-Linux is that you get to do things exactly the way you want to do
-them. You’re in control. Everything is transparent. Nothing magically
-happens behind the scenes. It’s sad that this
-doesn’t extend to the ability to pick any piece of fairly generic
-hardware and properly enjoy it. Often you just have to hope
-and pray - and sometimes you might get lucky.</p>
-
-<p>A reader pointed me to
-<a href="http://blog.eracc.com/2011/06/14/the-century-of-the-linux-desktop/">this piece</a>
-- a rebuttal of my article. Here’s an excerpt:</p>
-
-<p><em>Here we go again. Some fellow has gotten all whiny about being such a
-big Linux fan, “… hardcore Linux user …”, but he just had to go back
-to Microsoft to get things done. Why? Because he is tired of having to
-tinker with Fedora Linux to make things work, or fail to work, with
-cutting edge hardware … and 64-bit Flash on 64-bit Linux is sucky …
-and Skype on Linux is sucky … and … and … and. It was all just so
-painful and time consuming he could not take it any longer and went
-back to the safe arms of Microsoft to escape the horror that is
-Linux. Good grief.
-Okay, first and foremost, a true “hardcore Linux user”, in my mind a
-fan of Linux, is unlikely to switch from Linux to anything else. Oh
-yes, he or she will switch Linux distributions in a heartbeat, or
-maybe three heartbeats, if a distribution fails to work as needed. But
-switching to Microsoft and leaving the Linux desktop behind? Not
-likely, my friends. I consider myself a true “hardcore Linux user” and
-I see no voluntary switch from Linux in my future … ever.</em></p>
-
-<p>This bit produced a sad smile on my face. Had to go back to Microsoft?
-Absolutely not! Chose to use Windows 7 (for the time
-being)… If I was to go back to something it should have been FreeBSD
-since it was the OS I was using before Linux (and of course Windows
-before that indeed). I actually switched quite reluctantly from
-FreeBSD to Linux for a simple reason - Linux supported wider hardware
-variety and there were more native apps for it.</p>
-
-<p>All Unix-derived OSes are more or less the same from an user’s
-perspective - mostly the same environment, the same applications. The
-only thing that really makes the difference is the hardware support
-and Linux is clearly far ahead of its competition.</p>
-
-<p>Hardcore user? You bet! But hardcore doesn’t mean an ‘unreasonable
-idiot, blinded by zealously’. It’s not always that someone’s favorite
-technologies are the best solution to a problem. The section “the shit
-I’ve endured” had a dual purpose - list a “few” problems and show how
-resilient I am.</p>
-
-<p>Distro hopping is something that mostly newbies do, because they fail
-to grasp a fundamental thing in the land of Linux - 95% of the stuff
-that comprises a distribution is generic stuff found in most other
-distros. You cannot seriously expect that the same drivers in a
-different distro will yield wildly different results… Sure, bugs do
-tend to occur, and sometimes they are truly distribution
-specific. Sure, some distros happen to patch the stuff they ship
-heavily, while others favor shipping vanilla versions of both software ant
-the kernel.</p>
-
-<h1 id="the-process-of-driver-development">The process of driver development</h1>
-
-<p>My former post placed a heavy emphasis on existing driver
-issues. While I abhor some Linux drivers I’ve never ever blamed the
-authors of open source drivers. Here’s why:</p>
-
-<p>The year and a half I’ve spent writing Linux drivers for a proprietary
-Austrian company was some of the hardest time in my professional
-career. Writing drivers is fairly hard task for two reasons - you have
-to have very intimate knowledge of the hardware at hand and you have
-to write very safe code (and carefully test it), because otherwise you might bring the whole
-kernel down. I was basically reading tech specs (most boring read in
-the world) most of the day and
-writing very little code in end. Debugging drivers is not a pleasant
-task either. </p>
-
-<p>Linux certainly has some of the best developers in the world. I have
-little doubt in that. The problem is that these same developers spent
-their days working other jobs and you cannot seriously expect them to
-have the time or the energy (not to mention the specs required) to
-produce drivers that are on par with commercial counterparts developed
-for OSX and Windows by big team with vast resources at their disposal.</p>
-
-<p>This is the actual problem as I see it - we’re expecting individuals
-to create good drivers for us out the kindness of their hearts in
-their little spare time with little or no hardware specs on which to
-rely for absolutely no money.</p>
-
-<p>I’ve read the source code of many network layer drivers in the Linux
-kernel and I’ve noticed a common trend - a lot of the drivers were
-actually written by hardware engineers (instead of software engineers)
-- they are filled with copy/paste segments from other drivers, lots of
-  useless/dubious/dangerous code. This doesn’t surprise me - few
-  software engineers have solid grasp of hardware and/or the will to
-  take part in driver development. This is a big problem with no easy solution. </p>
-
-<p>The hardware vendors are the only party that deserves blame for the
-sorry state of many drivers. I cannot believe how hard it is for a
-company with the size of AMD to deliver a decent Linux driver
-for so many years. Their driver is a monument of everything that is
-wrong with hardware vendors as far as Linux is concerned - no support
-for latest kernels/X, no support for current state-of-the-art Linux
-video technologies, notorious instability and performance. Nvidia fare
-a lot better but still - their driver lacks the support basic stuff
-such as KMS…</p>
-
-<p>So what can we do? Obviously not everyone can start writing better
-drivers, but still everyone could try to help…</p>
-
-<p>For most desktop hardware vendors Linux is a non-existing OS. Linux
-truly has a small market share, but that is not the actual
-problem. The actual problem is that Linux desktop user would rather
-wait for someone from the community to come up with a solution instead
-of the pressure the vendors into action. Fill their mailboxes with angry
-letters, write blog posts about their inadequacy to properly support
-the third largest desktop OS in the world. Companies love to make
-money and hate bad press…</p>
-
-<h1 id="the-desktop-software-stack">The desktop software stack</h1>
-
-<p>The Linux desktop stack has some great qualities - for instance it
-often comes with batteries included. You have most of your day to day
-need covered as soon as you install your distro - a decent browser, a
-good email client, an office suit, disk burning utility, torrent
-downloader, IM client, text editors, photo organizers, image editors,
-etc. When I installed Windows 7 I was a bit surprised how bare the
-initial installation is and how many third party apps I needed to
-install. And of course most of the Linux desktop apps coming from the
-same environment (KDE, GNOME, XFCE, etc) have a very uniform look and
-feel to them which I personally value a lot.</p>
-
-<p>Unfortunately not everything is great…</p>
-
-<p>The Linux desktop application stack suffers from a few serious
-problems:</p>
-
-<ul>
-  <li>a few individuals make crucial decisions without taking any input
-from the user community</li>
-  <li>many projects have only one principle developer that happens to do
-things his way without regard for anyone else</li>
-  <li>often highly unstable beta quality software is pushed as stable to
-the end users</li>
-  <li>a lot of prominent apps that are multi-platform seem to undergo
-sub-par testing/QA process under Linux and experience common problems
-like crashes and memory leaks that don’t manifest that often on
-other platforms</li>
-</ul>
-
-<p>In more details…</p>
-
-<p><strong>Is it really better for the users?</strong></p>
-
-<p>Often a new feature arrives that is marketed as a huge improvement for
-the end-users. Most of the time the end-users are never inquired about
-their opinion of the feature. PulseAudio is a great example. I was
-pretty happy using ALSA directly, but nobody asked me what I thought
-about the change. Initially it was fairly easy to disable pulse audio,
-but as it became more and more integrated into the desktops the
-process became harder (luckily pulse audio improved in the
-process). While I’m perfectly aware of the technical reasoning that
-lead to pulse audio’s creation I do find it rather useless. With only
-one major architecture left (almost no one uses OSS on Linux these
-days) the introduction of intermediate sound layer of dubious quality
-never made that much sense to me. Sure, ALSA needed a simpler API, but
-we didn’t deserve to be punished with pulse audio…</p>
-
-<p><strong>It’s my way or the highway</strong></p>
-
-<p>Most of you probably remember that Pidgin (formerly Gaim) used to be
-the default IM client in GNOME based distros. At some point this
-quickly changed and Empathy became the default client. Part of the
-reason for the switch was the unwillingness of the lead developer in the
-Pidgin project to collaborate with the GNOME developers. I still
-remember the controversial fix that made the input area non-resizable
-with no option to go back to the previous setting. I guess GNOME’s
-devs were really pissed about something since they replaced the all around great
-Pidgin with a vastly inferior and immensely buggy (at least for the
-first year and a half) product.</p>
-
-<p>Too much power of the hands of a single person with no overseer is
-dangerous. In the open-source world one can easily fork a project, but
-this is a dangerous path as well that is often likely to wreak havoc
-into the development of the project. </p>
-
-<p><strong>Are we your users or your beta testers?</strong></p>
-
-<p>A few examples from recent years:</p>
-
-<p>KDE 4.0</p>
-
-<p>GNOME 3.0</p>
-
-<p>Empathy</p>
-
-<p>PulseAudio</p>
-
-<p>NetworkManager</p>
-
-<p>Beagle</p>
-
-<p>The list could go on and on… Microsoft and Apple have certainly had
-their fair share of mistakes (Win ME, Win Vista, OS X Leopard), but
-nothing on a scale as epic as KDE 4.0 or GNOME 3.0…</p>
-
-<p><strong>Some users are more important then others it seems…</strong></p>
-
-<p>All those programs run on all major OS, but they perform worst on Linux:</p>
-
-<p>Firefox</p>
-
-<p>OpenOffice</p>
-
-<p>Flash Player</p>
-
-<p>Obviously writing great multi-platform apps is possible as illustrated
-by software such as VLC and Google Chrome. But what about all the
-rest. I feel that Firefox’s days as the dominant browser on the Linux
-desktop are numbered - most of my friends that use Linux have already
-switched to Chrome (or the open source Chromium). Firefox on Linux is
-like a bad joke - slow, memory hungry and unstable. I keep hearing
-that it runs a lot better on OSX and Windows, probably because it got
-a lot more testing on those platforms. I understand their reasoning -
-most of their clients use those two OSes so it makes sense to make them
-important in the dev/testing phases. But they should remember
-something - Firefox is (for now) the default
-browser only in most Linux distros and it’s never going to be the
-default in Windows or OSX…</p>
-
-<p>Same goes for OpenOffice to the letter. </p>
-
-<p>And flash is well -
-flash. It’s not the greatest piece of software on any platform, but
-it’s absolutely horrible in Linux. When I open a flash intensive web
-site my CPU load generally spikes up to the sky (thank God for AdBlock
-&amp; FlashBlock).</p>
-
-<p>Skype was not even mentioned here (until now obviously) since the Linux version is so far behind
-the one for OSX and Windows that I wouldn’t even consider it a
-port. It’s just some pile of crap compiled to be able to list Linux as
-a supported OS on their website… They promised improvements, they
-promised an open-source Linux client - two years later we’re still
-using Skype 2.1 BETA. I wish more people had the sense to use a
-service like Google Talk so I wouldn’t have to put up with skype at all.  </p>
-
-<h1 id="the-community-communist-model">The community (communist) model</h1>
-
-<p>I live in a country from the former Soviet block (Bulgaria) and I’ve seen first
-hand what Communism leads to. I’ve also seen first-hand why Communism
-doesn’t actually work - few people actually live and abide by it and
-the rest of society simply practices the fine art of “getting by” and
-lives on their shoulders. The Communism can only really work if
-everyone is pulling their own weight in it (which sounds a bit absurd indeed).</p>
-
-<p>Something similar is happening on the Linux desktop ship - everybody
-says he’s on board, but very few people are actually rowing and
-bringing the Linux desktop to it’s designated port.</p>
-
-<p>I’ve written only two desktop project for Linux from scratch (an
-English-Bulgarian dictionary utility and a GUI front-end for pacman on
-Arch Linux), but I’ve contributed bug reports and patches to lots of
-projects. No matter what your opinion about me is - I’ve done
-something for the Linux desktop and I’m doing something for the desktop now
-as well - writing this article…</p>
-
-<p>What have you done? Sure, very few users are software engineers, but
-that doesn’t mean they can’t help. Bug reports are just as important
-as patches. Ideas and suggestions for improvements are highly valued
-as well. Don’t sit in the shadows doing nothing - step into the light
-and do something to help your favorite project get a little bit
-better.</p>
-
-<p>Step by step. Fix by fix. Improvement by improvement. This is how good
-software gets created.</p>
-
-<p>The bottom line is - the more of us that pitch in the fight for a
-proper Linux desktop experience, the bigger the chances of the dream
-becoming reality become.</p>
-
-<h1 id="future">Future</h1>
-
-<p>Unless something radically changes in the near future I don’t see how
-Linux can rise up to be a mainstream desktop OS. With very few
-companies having any stakes in the Linux desktop that isn’t happening
-any time soon. I find a somewhat troubling trend in recent years - a
-lot of companies that worked for a better desktop experience are now
-gone. Ximian (the company behind GNOME) was purchased by Novell and
-later Novell crumbled, making the future of one of the most popular
-desktop distributions OpenSUSE doubtful. Mandrake was once one of the
-most powerful Linux companies and Mandrake Linux was widely
-used. Currently Mandriva is constantly on the brink of
-bankruptcy. There are many other examples - Xandros, VidaLinux,
-etc… Even the “mighty” Canonical struggles to build a successful
-business model around their widely successful Ubuntu OS.</p>
-
-<p>Desktop Linux has to be made somehow profitable for companies to start
-investing more heavily in it. This is the hard, but honest truth. As
-long as the primarily development is carried out with little (or no
-funding), mostly by volunteers the hour of the desktop Linux will
-never come.</p>
-
-<p>There is one more serious problem - diversity. There are two many
-distributions bring too little value to the table. The time spent
-repacking the same software for a hundred distros could be better
-utilized developing new applications/drivers and improving existing
-ones. We need to have at least a couple rock solid desktop
-distros/environments, otherwise the whole diversity thing means
-basically nothing. </p>
-
-<p>Few good options are worth more than a million half-baked options!</p>
-
-<h1 id="epilogue">Epilogue</h1>
-
-<p>This article (and the one before it) was never about jumping the
-ship, claiming that Windows or OSX are better than Linux or spreading
-“FUD” (if I totally hate a term this is the one). It was always about
-raising the awareness of existing issues in the land of desktop
-Linux. After all just a few days before <a href="/Linux/Fedora/2011/05/31/fedora-15-tips.html">I had written a post
-installation guide for Fedora 15</a>.</p>
-
-<p>While I was writing the last paragraph I got another GNOME 3 shell corruption (time
-for killall gnome-shell to take the stage) on my totally supported
-hardware… A skype sound notification interrupted the song I was
-listening to (thanks a lot, PulseAudio)… And yet I’m still here. I
-did switch to Windows 7 on my laptop and I do intend to use Window 7
-at least for a while there. It’s not perfect either, trust me about
-that. Poor terminal emulator (though great PowerShell), a few random
-application crashes (but these happen in Linux as well in recent
-years) just to name a few.</p>
-
-<p>The Linux desktop is at the edge of a cliff now. It’s up to us to
-decide whether we would save it or push it over the edge.  </p>
-
-<div style="font-style: italic; color: #7f9f7f;">Posted on 14 Jun 2011 by Bozhidar.</div>
-
-<p><a href="/Linux/Windows/Rant/2011/06/14/linux-desktop-part-2.html#disqus_thread">Comments</a></p>
-
 
                     </div>
                 </div>
@@ -2188,6 +1941,8 @@ decide whether we would save it or push it over the edge.  </p>
                     <div class="sidebar_heading">Latest posts:</div>
                     <ul>
                         
+                        <li><a href="/Emacs/2011/10/09/getting-started-with-emacs-24.html">Getting started with Emacs 24</a></li>
+                        
                         <li><a href="/Programming/Ruby/2011/09/12/ruby-style-guide.html">The Totally Unofficial Ruby coding style guide</a></li>
                         
                         <li><a href="/Emacs/2011/08/19/a-peek-at-emacs24.html">A peek at Emacs 24</a></li>
@@ -2195,8 +1950,6 @@ decide whether we would save it or push it over the edge.  </p>
                         <li><a href="/Linux/Debian/2011/07/04/debian-tips.html">Debian post installation setup & tips</a></li>
                         
                         <li><a href="/Ruby/Rails/Python/Django/2011/06/19/django-vs-rails.html">Django 1.3 vs Rails 3: A not so final showdown</a></li>
-                        
-                        <li><a href="/Linux/Windows/Rant/2011/06/14/linux-desktop-part-2.html">The Linux desktop experience is killing Linux on the desktop, Part II</a></li>
                         
                     </ul>
                 </div>
@@ -2214,7 +1967,7 @@ decide whether we would save it or push it over the edge.  </p>
                         <li><a href="/categories/Ruby/index.html">Ruby(7)</a></li>
                         
                         
-                        <li><a href="/categories/Emacs/index.html">Emacs(8)</a></li>
+                        <li><a href="/categories/Emacs/index.html">Emacs(9)</a></li>
                         
                         
                         <li><a href="/categories/Rails/index.html">Rails(2)</a></li>
