@@ -24,6 +24,7 @@
     </head>
 
     <body>
+        <a href="http://github.com/bbatsov"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
         <div id="page">
             <div id="content">
                 <div id="header">
@@ -44,12 +45,12 @@
                     <div id="content">
                         <div id="post">
     <h2 class="title">Java.next() - The Groovy Programming Language</h2>
-    <p>In a series of articles labeled “Java.next()” I’ll be discussing
+    <p>In a series of articles labeled &quot;Java.next()&quot; I'll be discussing
 modern alternatives to the Java programming language for use with the
-Java Platform. This is the first installment of the series - “The
-Groovy Programming Language”.</p>
+Java Platform. This is the first installment of the series - &quot;The
+Groovy Programming Language&quot;.</p>
 
-<h1 id="overture">Overture</h1>
+<h1>Overture</h1>
 
 <p>We all know and love the Java <em>platform</em>(note the emphasis on
 platform) for a couple of obvious reasons. Most notably it features a
@@ -58,11 +59,11 @@ environment - the Java Virtual Machine(JVM). The JVM is known to
 posses the following qualities:</p>
 
 <ul>
-  <li>Runs on all major platforms</li>
-  <li>Enterprise ready</li>
-  <li>Extremely stable</li>
-  <li>Extremely fast</li>
-  <li>Highly customizable - many aspects of its work can easily be
+<li>Runs on all major platforms</li>
+<li>Enterprise ready</li>
+<li>Extremely stable</li>
+<li>Extremely fast</li>
+<li>Highly customizable - many aspects of its work can easily be
 adjusted such as GC settings, heap settings, etc.</li>
 </ul>
 
@@ -71,42 +72,42 @@ contributed an immense amount of high quality software vital to the
 success of Java. Hibernate, Spring, Eclipse, NetBeans, the myriad of
 Apache projects are all community efforts.</p>
 
-<p>So far so good, but it’s not all rainbows and unicorns in the land of
+<p>So far so good, but it's not all rainbows and unicorns in the land of
 Java. The Java programming language is a common source of gripe
-amongst many developers for various reasons. I’ll list here some of
+amongst many developers for various reasons. I'll list here some of
 the more notable of them:</p>
 
 <ul>
-  <li>It’s not a pure OOP language(there is a difference between primitive
+<li>It's not a pure OOP language(there is a difference between primitive
 and reference data types)</li>
-  <li>It uses static typing(highly subjective topic, but commonly brought up)</li>
-  <li>It doesn’t have support for closures(which instantly kills half of
-functional’s programming ideas such as higher order functions)</li>
-  <li>It has limited meta programming capabilities(compared to Ruby and
+<li>It uses static typing(highly subjective topic, but commonly brought up)</li>
+<li>It doesn't have support for closures(which instantly kills half of
+functional's programming ideas such as higher order functions)</li>
+<li>It has limited meta programming capabilities(compared to Ruby and
 Lisp for instance)</li>
-  <li>There is no concept of top-level procedures(outside of class
-definitions)(this makes Java unsuitable for creating “script” programs)</li>
-  <li>Its syntax is too verbose</li>
-  <li>It’s not suitable for the creation of DSLs</li>
-  <li>Its development is sluggish and restrained by the corporate promise of backward compatibility </li>
-  <li>It’s an imperative language</li>
-  <li>Its parallel programming model is revolving mostly around locks and
+<li>There is no concept of top-level procedures(outside of class
+definitions)(this makes Java unsuitable for creating &quot;script&quot; programs)</li>
+<li>Its syntax is too verbose</li>
+<li>It's not suitable for the creation of DSLs</li>
+<li>Its development is sluggish and restrained by the corporate promise of backward compatibility </li>
+<li>It's an imperative language</li>
+<li>Its parallel programming model is revolving mostly around locks and
 threads</li>
 </ul>
 
-<p>Naturally there are some languages that alleviate some(most) of Java’s
+<p>Naturally there are some languages that alleviate some(most) of Java's
 problems such as:</p>
 
 <ul>
-  <li>Ruby</li>
-  <li>Python</li>
-  <li>Lisp</li>
-  <li>Erlang</li>
-  <li>Haskell</li>
+<li>Ruby</li>
+<li>Python</li>
+<li>Lisp</li>
+<li>Erlang</li>
+<li>Haskell</li>
 </ul>
 
 <p>They all, however, lack(with their default implementations at least)
-an execution environment that can match the JVM. They also lack Java’s
+an execution environment that can match the JVM. They also lack Java's
 immense amount of libraries currently available. When enthusiasts
 started porting existing languages to the JVM this came as no surprise
 - it was only logical. A good language get a good execution
@@ -116,38 +117,38 @@ lot of good has come from such ports they was also a price to pay. In
 the case of Ruby and Python some libraries are not written in
 Ruby/Python, but in C for performance reasons, which naturally leads
 to problems when you factor in a Java implementation of the
-language. There is also the fact that the JVM(currently) doesn’t have
+language. There is also the fact that the JVM(currently) doesn't have
 support for dynamic memory dispatching which is feature vital for
 dynamically typed languages to get a decent performance. For this
 reason Jython is notoriously slow. The JRuby team did a much better
 work, circumvented a lot of the JVM limitations and actually managed
 to create a Ruby implementation that in some scenarios beats the
-performance of the standard MRI Ruby 1.9 with it’s custom YARV virtual
+performance of the standard MRI Ruby 1.9 with it's custom YARV virtual
 machine implemented in C. JRuby will be the object of a further
 discussion down the road. Some of the languages that were ported to
-the JVM suffer from another problem as well - it’s not straightforward
+the JVM suffer from another problem as well - it's not straightforward
 and efficient in them to reuse existing Java libraries directly.</p>
 
-<p>I’d like to lead this discussion in another direction, however -
+<p>I'd like to lead this discussion in another direction, however -
 programming languages that were implemented from scratch with the JVM
 as their execution environment. While there are many of those three
 stand out and have gathered a significant momentum in recent
 years. They will be the subject of this post and the following
-two. Without further adieu I’d like you to meet Groovy, Scala and
+two. Without further adieu I'd like you to meet Groovy, Scala and
 Clojure.</p>
 
-<p>We’ll begin our discussion with Groovy…</p>
+<p>We'll begin our discussion with Groovy...</p>
 
 <p><strong>Disclaimer</strong></p>
 
-<p><em>Before I start I’d like to point out that my knowledge of Groovy is
+<p><em>Before I start I'd like to point out that my knowledge of Groovy is
 limited compared to my knowledge of Scala and Clojure. Despite this I
-decided to share my thoughts on the language because it’s certainly one
-of the most popular JVM languages out there. If I’ve made any errors
-in the article I didn’t mean to insult anyone with my ignorance and
-I’ll certainly be glad to fix them when someone points them out.</em></p>
+decided to share my thoughts on the language because it's certainly one
+of the most popular JVM languages out there. If I've made any errors
+in the article I didn't mean to insult anyone with my ignorance and
+I'll certainly be glad to fix them when someone points them out.</em></p>
 
-<h1 id="a-little-bit-of-groovy-history">A little bit of Groovy history</h1>
+<h1>A little bit of Groovy history</h1>
 
 <p>James Strachan first talked about the development of Groovy in his
 <a href="http://radio-weblogs.com/0112098/2003/08/29.html">blog</a> in August
@@ -155,15 +156,15 @@ I’ll certainly be glad to fix them when someone points them out.</em></p>
 JCP(yep, you read that correct - Groovy is actually a Java standard
 which is great or scary depending on your point of view)
 standardization process began, the version numbering was changed and a
-version called “1.0” was released on January 2, 2007. After various
+version called &quot;1.0&quot; was released on January 2, 2007. After various
 betas and release candidates numbered 1.1, on December 7, 2007, Groovy
 1.1 Final was released and immediately rebranded as Groovy 1.5 as a
 reflection of the many changes that were made.</p>
 
-<p>In July 2009, Strachan wrote on his blog that “I can honestly say if
+<p>In July 2009, Strachan wrote on his blog that &quot;I can honestly say if
 someone had shown me the Programming in Scala book by Martin Odersky,
-Lex Spoon &amp; Bill Venners back in 2003 I’d probably have never created
-Groovy.” Strachan left the project silently a year before the
+Lex Spoon &amp; Bill Venners back in 2003 I'd probably have never created
+Groovy.&quot; Strachan left the project silently a year before the
 Groovy 1.0 release in 2007. Leadership of the project was assumed by
 Guillaume Laforge (Project Manager and JSR-241 Spec Lead). Under his
 guidance Groovy thrived and his risen to be arguably the most widely
@@ -172,22 +173,22 @@ used JVM language apart from Java.</p>
 <p>Currently the development of Groovy proceeds with a very fast pace and
 the latest major update 1.8.0 was released just a couple of days ago.</p>
 
-<h1 id="installation--getting-started">Installation &amp; Getting started</h1>
+<h1>Installation &amp; Getting started</h1>
 
 <p><strong>Platform independent installation</strong>
 These instructions describe how to install a binary distribution of Groovy.</p>
 
 <ul>
-  <li>download a <a href="http://groovy.codehaus.org/Download">binary distribution of Groovy</a> and unpack it into some file on your local file system</li>
-  <li>set your GROOVY_HOME environment variable to the directory you unpacked the distribution</li>
-  <li>add GROOVY_HOME/bin to your PATH environment variable</li>
-  <li>set your JAVA_HOME environment variable to point to your JDK. On OS
+<li>download a <a href="http://groovy.codehaus.org/Download">binary distribution of Groovy</a> and unpack it into some file on your local file system</li>
+<li>set your GROOVY_HOME environment variable to the directory you unpacked the distribution</li>
+<li>add GROOVY_HOME/bin to your PATH environment variable</li>
+<li>set your JAVA_HOME environment variable to point to your JDK. On OS
 X this is /Library/Java/Home, on other unixes its often /usr/java
-etc. If you’ve already installed tools like Ant or Maven you’ve
+etc. If you've already installed tools like Ant or Maven you've
 probably already done this step.</li>
 </ul>
 
-<p>For instance here’s the relevant information of my shell’s
+<p>For instance here's the relevant information of my shell's
 configuration:</p>
 
 <div class="highlight"><pre><code class="bash"><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java/latest
@@ -232,7 +233,7 @@ can install it like this:</p>
 </code></pre>
 </div>
 
-<p>Personally I’d prefer the platform-independent installation method,
+<p>Personally I'd prefer the platform-independent installation method,
 since some distribution package Groovy in a non-standard manner which
 confuses IDEs for instance.</p>
 
@@ -240,67 +241,67 @@ confuses IDEs for instance.</p>
 
 <p>Groovy features a native <a href="http://dist.codehaus.org/groovy/distributions/installers/windows/nsis/groovy-1.8.0-installer.exe">Windows installer</a>.</p>
 
-<h1 id="meet-groovy">Meet Groovy</h1>
+<h1>Meet Groovy</h1>
 
-<p><em>“Groovy is like a super version of Java. It can leverage Java’s
+<p><em>&quot;Groovy is like a super version of Java. It can leverage Java's
 enterprise capabilities but also has cool productivity features like
 closures, builders and dynamic typing. If you are a developer, tester
-or script guru, you have to love Groovy.”</em> - praise for Groovy from
+or script guru, you have to love Groovy.&quot;</em> - praise for Groovy from
 <a href="http://groovy.codehaus.org/">http://groovy.codehaus.org/</a></p>
 
 <p>Groovy is:</p>
 
 <ul>
-  <li>is one of the two standard languages for the JVM(the other is Java
+<li>is one of the two standard languages for the JVM(the other is Java
 of course)</li>
-  <li>is an agile and dynamic language for the Java Virtual Machine</li>
-  <li>builds upon the strengths of Java but has additional power features inspired by languages like Python, Ruby and Smalltalk</li>
-  <li>makes modern programming features available to Java developers with almost-zero learning curve</li>
-  <li>supports Domain-Specific Languages and other compact syntax so your
+<li>is an agile and dynamic language for the Java Virtual Machine</li>
+<li>builds upon the strengths of Java but has additional power features inspired by languages like Python, Ruby and Smalltalk</li>
+<li>makes modern programming features available to Java developers with almost-zero learning curve</li>
+<li>supports Domain-Specific Languages and other compact syntax so your
 code becomes easy to read and maintain </li>
-  <li>makes writing shell and build scripts easy with its powerful processing primitives, OO abilities and an Ant DSL</li>
-  <li>increases developer productivity by reducing scaffolding code when developing web, GUI, database or console applications</li>
-  <li>simplifies testing by supporting unit testing and mocking out-of-the-box</li>
-  <li>seamlessly integrates with all existing Java classes and libraries</li>
-  <li>compiles straight to Java bytecode so you can use it anywhere you
+<li>makes writing shell and build scripts easy with its powerful processing primitives, OO abilities and an Ant DSL</li>
+<li>increases developer productivity by reducing scaffolding code when developing web, GUI, database or console applications</li>
+<li>simplifies testing by supporting unit testing and mocking out-of-the-box</li>
+<li>seamlessly integrates with all existing Java classes and libraries</li>
+<li>compiles straight to Java bytecode so you can use it anywhere you
 can use Java</li>
 </ul>
 
-<p>Some of Groovy’s most compelling features are:</p>
+<p>Some of Groovy's most compelling features are:</p>
 
 <ul>
-  <li>Pure OOP language</li>
-  <li>Mostly Java compatible syntax</li>
-  <li>Optional typing</li>
-  <li>No need to wait for a future version of Java to get:
-    <ul>
-      <li>Closures</li>
-      <li>Attributes</li>
-      <li>Smart switch</li>
-    </ul>
-  </li>
-  <li>Duck typing</li>
-  <li>BigInteger based arithmetic
-    <ul>
-      <li>This deserves some special explanation because of a rather
+<li>Pure OOP language</li>
+<li>Mostly Java compatible syntax</li>
+<li>Optional typing</li>
+<li>No need to wait for a future version of Java to get:
+
+<ul>
+<li>Closures</li>
+<li>Attributes</li>
+<li>Smart switch</li>
+</ul></li>
+<li>Duck typing</li>
+<li>BigInteger based arithmetic
+
+<ul>
+<li>This deserves some special explanation because of a rather
 strange design decision in Groovy. Groovy will create a
-BigIntiger out of a large enough number literal, but it won’t
+BigIntiger out of a large enough number literal, but it won't
 promote the result of an integer operation into BigInteger - 
 the result will actually overflow, in contrast to the semantics of most
 other dynamically typed languages. Multiply 1000 * 1000000000
 and you will end up with -727379968 in Groovy.</li>
-    </ul>
-  </li>
-  <li>SQL, XML &amp; Swing improvements</li>
-  <li>Unified data access API</li>
+</ul></li>
+<li>SQL, XML &amp; Swing improvements</li>
+<li>Unified data access API</li>
 </ul>
 
 <p>A core idea, guiding the design of Groovy, is making it easy to use for
-existing Java developers. Groovy’s designers have gone so far in that
+existing Java developers. Groovy's designers have gone so far in that
 direction that the Groovy compiler will happily compile most Java
 source files without the need for any modifications. Groovy, however,
-builds heavily upon the standard Java’s syntax and you’ll do well to
-get a grip of Groovy’s core idioms. Groovy’s syntax in a nutshell:</p>
+builds heavily upon the standard Java's syntax and you'll do well to
+get a grip of Groovy's core idioms. Groovy's syntax in a nutshell:</p>
 
 <div class="highlight"><pre><code class="java"><span class="c1">// old school Java code, but also valid Groovy code</span>
 <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="o">);</span>
@@ -400,10 +401,10 @@ Python Groovy has language support for commonly used data structures
 such as lists, maps, ranges and regular expressions:</p>
 
 <ul>
-  <li>List - def number = [1, 2, 3]</li>
-  <li>Map - def countries = [BG: “Bulgaria”, DE: “Germany]</li>
-  <li>Range - def range = 1..1000 </li>
-  <li>Regular expressions - def whitespace = /\s+/</li>
+<li>List - def number = [1, 2, 3]</li>
+<li>Map - def countries = [BG: “Bulgaria”, DE: “Germany]</li>
+<li>Range - def range = 1..1000 </li>
+<li>Regular expressions - def whitespace = /\s+/</li>
 </ul>
 
 <p>You might have noticed another interesting feature in Groovy - the
@@ -413,33 +414,33 @@ dynamically typed variables in Groovy.</p>
 
 <p>Groovy comes with its very own standard library(GDK) which builds upon
 the JDK(for instance the File and String classes are enhanced in
-Groovy) and offer some new features like the Groovy’s famous builders.</p>
+Groovy) and offer some new features like the Groovy's famous builders.</p>
 
-<h1 id="oop-in-groovy">OOP in Groovy</h1>
+<h1>OOP in Groovy</h1>
 
 <p>Groovy is a pure object oriented language. Everything is an object,
 operations are methods, etc. Compared the Java the picture looks right
 about this way:</p>
 
 <ul>
-  <li>Similar capabilities to Java
-    <ul>
-      <li>Define classes, interfaces, enums, annotations</li>
-    </ul>
-  </li>
-  <li>Differences to Java
-    <ul>
-      <li>Classes (and interfaces etc.) public by default</li>
-      <li>Methods public by default</li>
-      <li>Property support within classes (auto-setters/getters)</li>
-      <li>Duck typing</li>
-    </ul>
-  </li>
+<li><p>Similar capabilities to Java</p>
+
+<ul>
+<li>Define classes, interfaces, enums, annotations</li>
+</ul></li>
+<li><p>Differences to Java</p>
+
+<ul>
+<li>Classes (and interfaces etc.) public by default</li>
+<li>Methods public by default</li>
+<li>Property support within classes (auto-setters/getters)</li>
+<li>Duck typing</li>
+</ul></li>
 </ul>
 
 <p>Java developers should feel mostly at home.</p>
 
-<h1 id="sql-and-xml-handling">SQL and XML handling</h1>
+<h1>SQL and XML handling</h1>
 
 <p>Groovy offers some nice improvements over JDBC and JAXP for handling
 database queries and XML parsing.</p>
@@ -458,7 +459,7 @@ need to adjust all the parameters to newInstance to connect to your
 database, especially username and password.  Finally the third line
 calls the eachRow method of sql, passing in two arguments, the first
 being the query string, the second being a closure to print out some
-values.  Notice that in the closure the fields of “it” are accessed in
+values.  Notice that in the closure the fields of &quot;it&quot; are accessed in
 two different ways. The first is as a simple field reference,
 accessing the id field of it. The second is the included Groovy
 expression mentioned above.</p>
@@ -472,9 +473,9 @@ expression mentioned above.</p>
 </code></pre>
 </div>
 
-<p>XML processing is common enough task in computing and Groovy’s
+<p>XML processing is common enough task in computing and Groovy's
 developers tried to make it simple and straightforward as
-possible. Let’s parse the following file:</p>
+possible. Let's parse the following file:</p>
 
 <div class="highlight"><pre><code class="xml"><span class="nt">&lt;books&gt;</span>
     <span class="nt">&lt;book&gt;</span>
@@ -506,19 +507,19 @@ possible. Let’s parse the following file:</p>
 </code></pre>
 </div>
 
-<p>Ruby and Python developers probably aren’t particularly impressed, but
+<p>Ruby and Python developers probably aren't particularly impressed, but
 I can only imagine the look on the faces of Java developers that are
 generally required to write huge amount of boilerplate code when
 dealing with XML.</p>
 
-<h1 id="builders">Builders</h1>
+<h1>Builders</h1>
 
 <p>Groovy has special syntax support for List and Maps. This is great
 because it gives a concise representation of the actual object being
 defined, so its easier to keep track of what a program or script is
 doing. But what about programs which contain arbitrary nested tree
 structures. Surely, they are the hardest ones to keep track of what is
-going on. Isn’t that an area where syntactic help will be most
+going on. Isn't that an area where syntactic help will be most
 beneficial?</p>
 
 <p>The answer is definitely yes and Groovy comes to the party with its
@@ -563,7 +564,7 @@ alternative to XML or lengthy programming code.</p>
 </code></pre>
 </div>
 
-<p>Builders can also be used to create Swing GUIs. Here’s a very small example:</p>
+<p>Builders can also be used to create Swing GUIs. Here's a very small example:</p>
 
 <div class="highlight"><pre><code class="java"><span class="kn">import</span> <span class="nn">java.awt.FlowLayout</span>
 
@@ -590,88 +591,88 @@ alternative to XML or lengthy programming code.</p>
 
 <p>Run the code to see the resulting GUI!</p>
 
-<h1 id="groovy-tooling">Groovy tooling</h1>
+<h1>Groovy tooling</h1>
 
 <ul>
-  <li>IDE
-    <ul>
-      <li><a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> - the ultimate
-Groovy IDE. It’s excellent Groovy support is part of its open
+<li><p>IDE</p>
+
+<ul>
+<li><a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> - the ultimate
+Groovy IDE. It's excellent Groovy support is part of its open
 source Community Edition.</li>
-      <li><a href="http://groovy.codehaus.org/Eclipse+Plugin">Eclipse</a> - the most
+<li><a href="http://groovy.codehaus.org/Eclipse+Plugin">Eclipse</a> - the most
 popular Java IDE has an actively maintained Groovy plugin</li>
-      <li><a href="http://netbeans.org/features/groovy/">NetBeans</a> - Like IDEA
+<li><a href="http://netbeans.org/features/groovy/">NetBeans</a> - Like IDEA
 NetBeans features built-in Groovy support</li>
-    </ul>
-  </li>
-  <li>Groovy distribution
-    <ul>
-      <li>groovysh - A Groovy REPL for exploratory programming</li>
-      <li>groovyConsole - A GUI groovy shell with extended capabilities,
+</ul></li>
+<li><p>Groovy distribution</p>
+
+<ul>
+<li>groovysh - A Groovy REPL for exploratory programming</li>
+<li>groovyConsole - A GUI groovy shell with extended capabilities,
 that is handy for the development and testing of small Groovy scripts</li>
-      <li>groovyc - the Groovy compiler</li>
-    </ul>
-  </li>
-  <li>Build tools
-    <ul>
-      <li><a href="http://maven.apache.org">Apache Maven</a></li>
-      <li><a href="http://buildr.apache.org">Apache Buildr</a></li>
-      <li><a href="http://gradle.org">Gradle</a></li>
-    </ul>
-  </li>
+<li>groovyc - the Groovy compiler</li>
+</ul></li>
+<li><p>Build tools</p>
+
+<ul>
+<li><a href="http://maven.apache.org">Apache Maven</a></li>
+<li><a href="http://buildr.apache.org">Apache Buildr</a></li>
+<li><a href="http://gradle.org">Gradle</a></li>
+</ul></li>
 </ul>
 
-<h1 id="killer-apps">Killer apps</h1>
+<h1>Killer apps</h1>
 
 <ul>
-  <li><a href="http://grails.org">Grails</a>
-    <ul>
-      <li>Groovy port of Ruby on Rails</li>
-      <li>Leverages the best Java technologies
-        <ul>
-          <li>Hibernate</li>
-          <li>Spring</li>
-          <li>Tomcat</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><a href="http://gradle.org">Gradle</a> - powerful build tool, considered by many vastly superior to
+<li><a href="http://grails.org">Grails</a>
+
+<ul>
+<li>Groovy port of Ruby on Rails</li>
+<li>Leverages the best Java technologies
+
+<ul>
+<li>Hibernate</li>
+<li>Spring</li>
+<li>Tomcat</li>
+</ul></li>
+</ul></li>
+<li><a href="http://gradle.org">Gradle</a> - powerful build tool, considered by many vastly superior to
 Maven. Several high profile projects(such as Hibernate) already
 migrated their builds to Gradle.</li>
-  <li><a href="http://griffon.codehaus.org/">Griffon</a> - a Grails like application
+<li><a href="http://griffon.codehaus.org/">Griffon</a> - a Grails like application
 framework for developing desktop applications</li>
 </ul>
 
-<h1 id="common-use-cases">Common use cases</h1>
+<h1>Common use cases</h1>
 
-<p>Groovy is a general purpose language, but it’s used for some tasks
-more often than for others. It’s extremely suitable for:</p>
+<p>Groovy is a general purpose language, but it's used for some tasks
+more often than for others. It's extremely suitable for:</p>
 
 <ul>
-  <li>web application development(usually with Grails)</li>
-  <li>scripting(although you have to factor in the cold startup time of
+<li>web application development(usually with Grails)</li>
+<li>scripting(although you have to factor in the cold startup time of
 the JVM before you start writing all your scripts in Groovy)</li>
-  <li>tests development - it’s a common practice in many Java projects to
+<li>tests development - it's a common practice in many Java projects to
 have the tests written in Groovy</li>
-  <li>GUI development(usually with Griffon)</li>
-  <li>Rapid prototyping - you’d do a quick app prototype in Groovy as a
-proof on concept and then you’d create a Java application based on
+<li>GUI development(usually with Griffon)</li>
+<li>Rapid prototyping - you'd do a quick app prototype in Groovy as a
+proof on concept and then you'd create a Java application based on
 it</li>
-  <li>Exploratory programming - the groovysh is a great way to test class
+<li>Exploratory programming - the groovysh is a great way to test class
 capabilities, methods and ideas with almost zero overhead - no
 annoying compile/run cycles to slow you down</li>
 </ul>
 
-<p>When performance is critical you’d probably want to avoid
+<p>When performance is critical you'd probably want to avoid
 Groovy. According to some benchmarks around the Internet(like
 <a href="http://stronglytypedblog.blogspot.com/2010/02/java-vs-scala-vs-groovy-vs-groovy.html">this one</a>)
-Groovy is much slower than Java for certain tasks. I, however, haven’t
+Groovy is much slower than Java for certain tasks. I, however, haven't
 read any new benchmarks on the subject and have no idea how reliable
 the old ones are and how relevant they are to the current Groovy
 version.</p>
 
-<h1 id="future-prospects">Future prospects</h1>
+<h1>Future prospects</h1>
 
 <p>With so many languages being created all the time developers
 naturally ask themselves the same question over and over again -
@@ -679,11 +680,11 @@ should I waste my time learning this language? Related questions seem
 to be:</p>
 
 <ul>
-  <li>Will it endure the test of time?</li>
-  <li>Does it have a vibrant and committed community around it?</li>
-  <li>Can I find professional support?</li>
-  <li>Does it integrate well with out current infrastructure?</li>
-  <li>Does it have good tooling?</li>
+<li>Will it endure the test of time?</li>
+<li>Does it have a vibrant and committed community around it?</li>
+<li>Can I find professional support?</li>
+<li>Does it integrate well with out current infrastructure?</li>
+<li>Does it have good tooling?</li>
 </ul>
 
 <p>After all most of the currently popular languages like Java, C# and
@@ -697,8 +698,8 @@ new languages a relatively easy and painless experience.</p>
 Spring framework, now a division of VMWare) employs most of the core
 Groovy developers and offers both <a href="http://www.springsource.com/developer/grails">Groovy and Grails support</a>. The fact
 that a company such as this one believes in the technology is very
-important whey you’re trying to sell using Groovy in your current
-company. And if you’re existing infrastructure is built around Java -
+important whey you're trying to sell using Groovy in your current
+company. And if you're existing infrastructure is built around Java -
 well, you have next to nothing to worry about, except maybe will Java 7
 deliver the promised speed improvement for dynamic languages
 implemented on top of it.</p>
@@ -707,28 +708,28 @@ implemented on top of it.</p>
 language itself - constantly evolving. </p>
 
 <p>NetBeans and IntelliJ have built-in Groovy support, which is a big
-testament to the language’s popularity as well.</p>
+testament to the language's popularity as well.</p>
 
-<p>In a sentence I don’t see Groovy disappearing or dying anytime soon
+<p>In a sentence I don't see Groovy disappearing or dying anytime soon
 even if its original creator has lost faith in it.</p>
 
-<h1 id="groovy-resources">Groovy resources</h1>
+<h1>Groovy resources</h1>
 
 <ul>
-  <li>Books
-    <ul>
-      <li><a href="http://www.manning.com/koenig2/">“Groovy in Action”</a></li>
-      <li><a href="http://pragprog.com/titles/vslg/programming-groovy">“Programming Groovy”</a>    </li>
-    </ul>
-  </li>
-  <li>On-line resources
-    <ul>
-      <li><a href="http://groovy.codehaus.org/User+Guide">Official documentation</a></li>
-    </ul>
-  </li>
+<li>Books
+
+<ul>
+<li><a href="http://www.manning.com/koenig2/">&quot;Groovy in Action&quot;</a></li>
+<li><a href="http://pragprog.com/titles/vslg/programming-groovy">&quot;Programming Groovy&quot;</a><br></li>
+</ul></li>
+<li>On-line resources
+
+<ul>
+<li><a href="http://groovy.codehaus.org/User+Guide">Official documentation</a></li>
+</ul></li>
 </ul>
 
-<h1 id="epilogue">Epilogue</h1>
+<h1>Epilogue</h1>
 
 <p>Groovy is a language aiming to bring dynamic productivity to Java
 developer without introducing them to a steep learning curve. The
@@ -737,23 +738,24 @@ the existing Java libraries and infrastructure. My biggest gripe with
 Groovy was the lack of advanced support for parallel and concurrent
 programming. A few days before I wrote this article, however, Groovy
 1.8.0 was released and it features the excellent library for parallel
-programming <a href="http://gpars.codehaus.org/">GPars</a>. Groovy’s performance
+programming <a href="http://gpars.codehaus.org/">GPars</a>. Groovy's performance
 is not stellar at this point, but I guess
 this will be improved upon in Java 7. </p>
 
 <p>With its easy to grasp Java-like syntax Groovy is a solid contender
 for the attention of Java developers. A growing number of Groovy
-related job offerings is a sign of Groovy’s acceptance as a industrial
+related job offerings is a sign of Groovy's acceptance as a industrial
 strength tool. </p>
 
 <p>Some people criticize Groovy for the lack of innovation and claim that
-it’s simply an amalgam of ideas borrowed from other languages. I don’t
+it's simply an amalgam of ideas borrowed from other languages. I don't
 see nothing bad with that approach as long as the features are
 tastefully combined. Groovy might not be the most elegant language out
-there, but it’s one of the most practical ones and will help you get
+there, but it's one of the most practical ones and will help you get
 the job done.</p>
 
-<hr />
+<hr>
+
 <p><em>P.S. Coming up next is a discussion of the Scala programming
 language.</em></p>
 

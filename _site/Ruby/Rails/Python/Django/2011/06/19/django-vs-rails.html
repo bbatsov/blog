@@ -24,6 +24,7 @@
     </head>
 
     <body>
+        <a href="http://github.com/bbatsov"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
         <div id="page">
             <div id="content">
                 <div id="header">
@@ -44,13 +45,13 @@
                     <div id="content">
                         <div id="post">
     <h2 class="title">Django 1.3 vs Rails 3: A not so final showdown</h2>
-    <h2 id="overture">Overture</h2>
+    <h2>Overture</h2>
 
-<p>I’ve recently started a new job at an American start-up company. My
+<p>I've recently started a new job at an American start-up company. My
 position in the company is the one of Technical Lead - the person responsible for
 the selection of technologies around which the projects are being
-built. Since we’ll be doing mostly web development we’ve had a long
-kick-off discussion with the company’s CTO about the direction which we should
+built. Since we'll be doing mostly web development we've had a long
+kick-off discussion with the company's CTO about the direction which we should
 initially take. He had PHP in mind, but I convinced him that Ruby or
 Python would make much better platforms for our futures apps. So he
 tasked me to research the two leading frameworks in the Ruby and
@@ -58,24 +59,24 @@ Python land - namely Ruby on Rails 3 and Django 1.3. I had a week to
 prepare some prototypes with both and create on overview for my
 boss. I had some experience with Rails 2 a few years back and I have
 fairly decent knowledge of Ruby. My Python is not as fluent
-(admittedly), but still - I’ve played a lot with Python
+(admittedly), but still - I've played a lot with Python
 recently. Django, however, was completely new to me. In this article
-I’ll try to compare the frameworks in a totally friendly way; if
-you’ve expected an epic flame war post you may very well stop reading
-here. I’m obviously no Rails/Django guru, so if I’ve
+I'll try to compare the frameworks in a totally friendly way; if
+you've expected an epic flame war post you may very well stop reading
+here. I'm obviously no Rails/Django guru, so if I've
 written something that is wrong - please feel free to correct me.</p>
 
 <p>Please, keep in mind that a short comparison article cannot even begin
 to scratch the immense power and complexity of such frameworks. The overview,
-that you’ll find here is a bit on the superficial side, but it should
+that you'll find here is a bit on the superficial side, but it should
 give you enough pointers to get you started.</p>
 
 <p>Hopefully this article will be useful to people that are in the same
 boat as was - picking between Rails and Django.</p>
 
-<h2 id="setup--getting-started">Setup &amp; Getting started</h2>
+<h2>Setup &amp; Getting started</h2>
 
-<h1 id="rails">Rails</h1>
+<h1>Rails</h1>
 
 <p><strong>Linux &amp; OSX</strong></p>
 
@@ -83,7 +84,7 @@ boat as was - picking between Rails and Django.</p>
 <a href="https://rvm.beginrescueend.com/">RVM</a>. RVM allows you to have several
 version of Ruby installed at the same time and to easily switch
 between them. It also allows you to create gem sets, which are quite
-handy in testing. After you’ve installed RVM it’s easy to install any
+handy in testing. After you've installed RVM it's easy to install any
 Ruby interpreter and Rails. This example shows how to get RVM, MRI 1.9.2
 and Rails current (3.0.9):</p>
 
@@ -103,10 +104,10 @@ and Rails current (3.0.9):</p>
 </div>
 
 <p>Since RVM builds Ruby environments from source you might need to
-install a few dependencies first. After you’ve install RVM it will
+install a few dependencies first. After you've install RVM it will
 output those packages as instructions.</p>
 
-<p>If you’re using Z Shell (like me) you should replace .bash_profile
+<p>If you're using Z Shell (like me) you should replace .bash_profile
 with .zshenv or .zshrc.</p>
 
 <p><strong>Windows</strong></p>
@@ -201,12 +202,12 @@ recent beta already features Ruby 1.9.2. </p>
 
 <p>As you can see the structure of a Rails project consists of quite a
 few folders and files. This is a bit intimidating at first, but
-becomes quite valuable once you’ve used to the predefined
-structure. You’ll find a good overview of the structure <a href="http://ruby.railstutorial.org/book/ruby-on-rails-tutorial#sec:the_first_application">here</a>.</p>
+becomes quite valuable once you've used to the predefined
+structure. You'll find a good overview of the structure <a href="http://ruby.railstutorial.org/book/ruby-on-rails-tutorial#sec:the_first_application">here</a>.</p>
 
 <p>Open your browser and type
 <a href="http://localhost:3000">http://localhost:3000</a> as the url. If
-everything is OK you’ll see a Rails welcome page.</p>
+everything is OK you'll see a Rails welcome page.</p>
 
 <p>At this point you should probably either start playing with
 scaffolding or read the rest of this article and start playing with
@@ -220,7 +221,7 @@ scaffolding afterwards :-) For instance you can try:</p>
 
 <p>Open your browser and type
 <a href="http://localhost/users:3000">http://localhost:3000</a> as the
-url. “Magic” like this made Rails famous originally.</p>
+url. &quot;Magic&quot; like this made Rails famous originally.</p>
 
 <p>By default Rails apps use SQLite as a database backend, so might have
 to install it as well.</p>
@@ -229,11 +230,11 @@ to install it as well.</p>
 plug-in installation, running a rails console, running a development
 web server, etc.</p>
 
-<h1 id="django">Django</h1>
+<h1>Django</h1>
 
 <p><strong>Linux</strong></p>
 
-<p>I prefer to install django from the distribution’s package manager. On
+<p>I prefer to install django from the distribution's package manager. On
 a Red Hat distro like Fedora I would do:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install Django
@@ -277,15 +278,15 @@ to the rails script) - it can sync the model with the database, run a
 development web server, run a django console, etc.</p>
 
 <p>To test the new project open
-<a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> in your browser.</p>
+<a href="http://127.0.0.1:8000/"><a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></a> in your browser.</p>
 
-<h2 id="features-at-a-glance">Features at a glance</h2>
+<h2>Features at a glance</h2>
 
-<h1 id="rails-1">Rails</h1>
+<h1>Rails</h1>
 
 <p><strong>Convention over configuration</strong></p>
 
-<p>The centerpiece of Rails’s philosophy is called convention over
+<p>The centerpiece of Rails's philosophy is called convention over
 configuration(CoC). This basically means that a Rails project has a
 predefined layout and sensible defaults. All components (models,
 views, controllers, layouts, css, javascript, etc) have standard
@@ -295,8 +296,8 @@ any additional effort on your part. </p>
 <p>People seem to underestimate the importance of CoC in practice
 initially - it
 makes it a lot easier to reason about a project and a lot easier to
-configure the project. On the other hand if some of the defaults don’t
-work for you - you’d have to jump through some hoops. Recent versions
+configure the project. On the other hand if some of the defaults don't
+work for you - you'd have to jump through some hoops. Recent versions
 of Rails, however, have made it a lot easier to tweak the defaults.</p>
 
 <p>All in all I feel that CoC is a big win for developers and I guess
@@ -313,7 +314,7 @@ domain objects are treated as resources and could be handled in a
 uniform manner using just the standard HTTP verbs like GET, PUT,
 DELETE, POST. REST is extremely good fit for data driven applications.</p>
 
-<p>As usual the model houses the application’s business logic, the
+<p>As usual the model houses the application's business logic, the
 controller invokes functionality from the model layer and feeds the
 resulting data to the view layer, which display the data in a
 meaningful way to the user.</p>
@@ -321,8 +322,8 @@ meaningful way to the user.</p>
 <p>The model layer is the home of your domain objects and the business
 logic surrounding them. Domain objects (a.k.a. entities) are mapped to
 database tables (at least in RDBMS). Unlike most object relational
-mappers Rails’s ActiveRecord (the default ORM; could be substituted
-with something else if you wish) doesn’t require you to explicitly
+mappers Rails's ActiveRecord (the default ORM; could be substituted
+with something else if you wish) doesn't require you to explicitly
 declare the structure of the objects, but rather extracts it
 automatically from your DB table definitions. A simple class, modeling
 an application user might look like this:</p>
@@ -339,7 +340,7 @@ recommended) - the class could have very well had an empty body. Rails
 would know to look for a table named Users in the database and extract
 the field information from it.</p>
 
-<p>Rails generates automatically for us “finders” that we can use to make
+<p>Rails generates automatically for us &quot;finders&quot; that we can use to make
 queries about objects in pure Ruby. It also provides an elegant DSL to
 express relationships between various model classes (belongs_to,
 has_many, etc)</p>
@@ -350,25 +351,25 @@ community contributed alternatives, however, with HAML being the most
 prominent one. On a similar note Rails allows you to use SASS as a
 replacement for traditional CSS.</p>
 
-<p>Another centerpiece in Rails is the “Don’t Repeat Yourself”(DRY)
+<p>Another centerpiece in Rails is the &quot;Don't Repeat Yourself&quot;(DRY)
 principle. In the view layer partial templates, layouts and helpers
 are some of the tools available to help you abide by that
-principle. You’ll certainly make heavy use of them in your
+principle. You'll certainly make heavy use of them in your
 applications so you should pay them some special attention.</p>
 
 <p><strong>Database migrations</strong></p>
 
-<p>Everyone that has done some serious programming knows that it’s not
-realistic to presume that the initial database schema won’t ever
+<p>Everyone that has done some serious programming knows that it's not
+realistic to presume that the initial database schema won't ever
 change - fields get added/removed, new tables get introduced,
-etc. All those changes are commonly referred to as “migrations” and
+etc. All those changes are commonly referred to as &quot;migrations&quot; and
 traditionally every team unrolls its own handling of the problem. On
 my last job I was tasked at some point to write a tool in Java that
 analyzed a config file and a directory structure filled with SQL
 scripts and applied them selectively to various target databases. In
 Rails you get this functionally for free - you can express your
 migrations as simple Ruby scripts and you can use rake to generate the
-appropriate SQL statements for any supported database. Here’s a simple
+appropriate SQL statements for any supported database. Here's a simple
 migration script, that creates the Users table:</p>
 
 <div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
@@ -391,7 +392,7 @@ migration script, that creates the Users table:</p>
 </div>
 
 <p>The up method gets invoked when the migration is applied and the down
-method gets invoked when it’s reverted. Rails 3.1 will offer even more
+method gets invoked when it's reverted. Rails 3.1 will offer even more
 elegant migrations. To execute all migrations:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> rake db:migrate
@@ -420,10 +421,10 @@ my favorite plugins are <a href="https://github.com/indirect/jquery-rails">jQuer
 
 <p>What I particularly like about Rails is that it heavily promotes
 testing your code. All of the Rails generators would generate test
-stubs, that you’ll do good to fill in. Rails supports all major Ruby test
+stubs, that you'll do good to fill in. Rails supports all major Ruby test
 frameworks - Test::Unit, RSpec, Cucumber. You have fixtures support, test
 database support, the ability to run unit and functional test
-separately. I don’t recall using any other framework that pays as much
+separately. I don't recall using any other framework that pays as much
 attention to having tests as Rails and for that I can only
 congratulate the Rails team.</p>
 
@@ -447,9 +448,9 @@ Rubinius (as mentioned above), that offer exciting new possibilities. For instan
 JRuby allows you to deploy a Rails app into a Java application server
 like JBoss or Glassfish and to tap into all those great Java libraries
 and frameworks around. Using JRuby also gives you the opportunity to
-deploy your apps on Google’s App Engine.</p>
+deploy your apps on Google's App Engine.</p>
 
-<h1 id="django-1">Django</h1>
+<h1>Django</h1>
 
 <p><strong>A simpler project layout</strong></p>
 
@@ -457,17 +458,17 @@ deploy your apps on Google’s App Engine.</p>
 Django was something totally new to me. I expected it to be more or
 less Rails for Python, but when I created my first Django app I was
 surprised to see that the project folder consisted of only three
-files (I’m obviously not counting the python package file
+files (I'm obviously not counting the python package file
 <strong>init</strong>.py).</p>
 
 <p>My initial surprise aside it turned out that most differences were
 just superficial and that Django and Rails have quite a lot of
-similarities. I’ll, however, speak a bit more about the different
+similarities. I'll, however, speak a bit more about the different
 stuff than the similar stuff.</p>
 
 <p><strong>MVC(MTV), Django style</strong></p>
 
-<p>While Django is a MVC controller framework as well, it’s built around a
+<p>While Django is a MVC controller framework as well, it's built around a
 different mindset. Django is totally configurable and minimalistic
 framework that empowers the developers to tailor it to their needs. </p>
 
@@ -476,12 +477,12 @@ the other hand are comprised of models, views and templates. Django
 differs a bit in terminology with Rails - the Rails controllers are
 views in Django and the Rails views are called templates in Django. You
 can sometimes hear that Django is a Model-Template-View framework -
-that shouldn’t confuse you. Although the terminology is different the
+that shouldn't confuse you. Although the terminology is different the
 principles are the same.</p>
 
-<p>Django’s default ORM is somewhat reminiscent of frameworks like
+<p>Django's default ORM is somewhat reminiscent of frameworks like
 Hibernate. Entity classes declare explicitly the all the
-attributes. Let’s consider again the User model class:</p>
+attributes. Let's consider again the User model class:</p>
 
 <div class="highlight"><pre><code class="python"><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
 
@@ -494,47 +495,47 @@ attributes. Let’s consider again the User model class:</p>
 </div>
 
 <p>Both approaches have their strengths and weaknesses an usual. In
-Django’s case we have increased verbosity, but on the other had we
-don’t have to inquire the database to figure out the exact definition
+Django's case we have increased verbosity, but on the other had we
+don't have to inquire the database to figure out the exact definition
 of model records.</p>
 
-<p>Like in Rails we get useful “finders” that can be used to query for model
+<p>Like in Rails we get useful &quot;finders&quot; that can be used to query for model
 objects in pure python (as opposed to using sql).</p>
 
 <p><strong>In the template layer</strong></p>
 
 <p>While ERB is basically HTML with Ruby embedded in it, Django features
-a custom templating language with it’s own (extendable) tag
+a custom templating language with it's own (extendable) tag
 library. This generally means that Django templates tend to be a bit
-cleaner than Rails’s templates, since you’re not allowed to abuse them
+cleaner than Rails's templates, since you're not allowed to abuse them
 very much. On the other hand you can do virtually anything by
 embedding code directly in a template, so as usual - each design
 decision has its pros and cons. </p>
 
-<p>Django supports alternative templating libraries, so you’re covered in
-case you don’t like the default one.</p>
+<p>Django supports alternative templating libraries, so you're covered in
+case you don't like the default one.</p>
 
 <p>Django also features a powerful form generation/handling facilities
 that integrate seamlessly with the templating layer. For instance - it
 very easy to generate a form matching the structure of a domain model
 object with automatic property validation.</p>
 
-<p><strong>You’re in charge</strong></p>
+<p><strong>You're in charge</strong></p>
 
-<p>Django has doesn’t adhere to the Rails CoC philosophy. It’s assumed
+<p>Django has doesn't adhere to the Rails CoC philosophy. It's assumed
 that developers know best what layout and configurations options make
-the most sense in their applications. I haven’t played that much with
-Django yet, but I still haven’t come by two different Django apps that
+the most sense in their applications. I haven't played that much with
+Django yet, but I still haven't come by two different Django apps that
 are structured in the same manner. While I understand the benefits of
-Django’s approach I still prefer Rails’s approach. I’ve worked long
-enough to know that you’re rarely in the position to make better
+Django's approach I still prefer Rails's approach. I've worked long
+enough to know that you're rarely in the position to make better
 decisions about the structure and the defaults of your app, than the
 exceptional developers with huge experience that develop frameworks
 like Rails and Django.</p>
 
 <p>To illustrate this consider the strong emphasis Rails places on
 REST. In Django you could certainly use restful access your resources
-as well, but it’s all up to you. The framework makes no
+as well, but it's all up to you. The framework makes no
 suggestions. You can unroll any URL mapping scheme by simply
 associating regular expressions in urls.py with callback view
 functions:</p>
@@ -555,13 +556,13 @@ template or directly returns some Http response.</p>
 
 <p>Django has a built-in support to generate an admin UI for your
 website. This is a very useful feature indeed and is supported in
-Rails as well through plugins (I’ve mentioned the one I like the
+Rails as well through plugins (I've mentioned the one I like the
 best).</p>
 
 <p><strong>Database migrations</strong></p>
 
-<p>One of the few gripes I have with stock Django is that it doesn’t
-offer an alternative to Rails’s migrations. Luckily there is
+<p>One of the few gripes I have with stock Django is that it doesn't
+offer an alternative to Rails's migrations. Luckily there is
 <a href="http://south.aeracode.org/">South</a> - an extension that provides a
 simple, stable and database-independent migration layer to prevent all
 the hassle schema changes over time bring to your Django
@@ -570,12 +571,12 @@ Django.</p>
 
 <p><strong>JavaScript and AJAX</strong></p>
 
-<p>Unlike Rails, Django doesn’t bundle any JavaScript libraries. You have
+<p>Unlike Rails, Django doesn't bundle any JavaScript libraries. You have
 to pick a JavaScript framework yourself (which a trivial process). The
 AJAX support in Django is both basic and extremely powerful in the
 same time - request.is_ajax(). What this means is that you can check
 if a request was regular or an AJAX request and respond
-accordingly. You don’t need much more than that. More details can be
+accordingly. You don't need much more than that. More details can be
 found <a href="https://code.djangoproject.com/wiki/AJAX">here</a>.</p>
 
 <p><strong>The great divide</strong></p>
@@ -583,14 +584,14 @@ found <a href="https://code.djangoproject.com/wiki/AJAX">here</a>.</p>
 <p>Some of you probably know that Python is currently at a bit of a
 crossroads. Python 2.x was the stable Python version for many years,
 but recently it was replaced by Python 3.x. Python 3.x is all around
-great in my personal opinion, but unfortunately it’s backward
+great in my personal opinion, but unfortunately it's backward
 incompatible with the older 2.x series. For that reason very few high
-profile projects still don’t support it - Django is one such
+profile projects still don't support it - Django is one such
 project. The current version 1.3 require at least Python 2.4 and will
 run with every Python up to 2.7. This is a bit of a disappointment
-since you’ll be missing on a few very cool new features. On a more
+since you'll be missing on a few very cool new features. On a more
 positive note Python 2.7 did backport some goodies from Python 3, so
-not all is lost. I’ve read (at totally unofficial places) that Django 2.0 will be targeting Python 3
+not all is lost. I've read (at totally unofficial places) that Django 2.0 will be targeting Python 3
 and I expect it will be available in about a year.</p>
 
 <p><strong>Deployment</strong></p>
@@ -599,15 +600,15 @@ and I expect it will be available in about a year.</p>
 deployment options - Apache, Nginx and my favorite - Google App
 Engine. Python, being one of the two supported languages on the App
 Engine (the other one is, of course, Java) makes it very easy to deploy
-Django apps on the App Engine (though you’ll need the Django support
+Django apps on the App Engine (though you'll need the Django support
 for non-relational databases to be able to use it).</p>
 
 <p>The also the possibility to deploy Django apps on Java or .Net
 infrastructure using Jython or IronPython. </p>
 
-<h2 id="community">Community</h2>
+<h2>Community</h2>
 
-<p>When you’re selecting the technology for a major project you have to
+<p>When you're selecting the technology for a major project you have to
 make sure that the technology is in good shape - there is a solid
 community around it, there is no lack of support, innovation and
 deployment options.</p>
@@ -618,83 +619,83 @@ and stackoverflow.com (by the number of question about tagged with
 django or rails) indicate that Rails currently has larger
 community than Django.</p>
 
-<p>I haven’t had any direct communication with the Django community yet,
-but I’ve found a lot of excellent resources about Django on-line. </p>
+<p>I haven't had any direct communication with the Django community yet,
+but I've found a lot of excellent resources about Django on-line. </p>
 
 <p>Rails has one of the most vibrant, passionate and innovative
-communities. I’ve had contact with a lot of people from the Rails
-community and I’m certain that it has played a tremendous role in
-Rails’s growth.  </p>
+communities. I've had contact with a lot of people from the Rails
+community and I'm certain that it has played a tremendous role in
+Rails's growth.  </p>
 
-<h2 id="tooling">Tooling</h2>
+<h2>Tooling</h2>
 
 <p>Traditionally Ruby &amp; Python hackers have been working with just a
-powerful programmer’s editor like Emacs, vim or TextMate. While there
-is nothing inherently wrong with this approach (I’m an avid Emacs user
+powerful programmer's editor like Emacs, vim or TextMate. While there
+is nothing inherently wrong with this approach (I'm an avid Emacs user
 myself), I do find IDEs quite helpful when working on larger code
 bases, with their trademark features such as intelligent
 autocompletion (aka intellisense), safe refactorings, on-the-fly syntax checking, etc. So
-here’s what we’ve got:</p>
+here's what we've got:</p>
 
 <ul>
-  <li><a href="http://www.jetbrains.com/ruby/">RubyMine</a> - hands down the best Ruby and Rails IDE I’ve ever
+<li><a href="http://www.jetbrains.com/ruby/">RubyMine</a> - hands down the best Ruby and Rails IDE I've ever
 used. The <a href="http://www.jetbrains.com/ruby/features/index.html">list of features</a> is epic as is the quality of the
 project. It support Rails 3, git, RSpec, Cucumber, sass, haml and
-many other cool Ruby/Rails related technologies. Sure, it’s a
+many other cool Ruby/Rails related technologies. Sure, it's a
 commercial project, but is priced very reasonably. </li>
-  <li><a href="http://www.aptana.com/">Aptana Studio</a> - a Web development IDE,
+<li><a href="http://www.aptana.com/">Aptana Studio</a> - a Web development IDE,
 built on top of the Eclipse platform. Among many other features it
 supports Ruby on Rails.</li>
-  <li><a href="http://www.activestate.com/komodo-ide">Komodo</a> - an IDE focusing on
+<li><a href="http://www.activestate.com/komodo-ide">Komodo</a> - an IDE focusing on
 dynamic programming language. Great support for both Django and
 Rails development. </li>
-  <li><a href="http://www.jetbrains.com/pycharm/">PyCharm</a> - from the same company that develops RubyMine, PyCharm
+<li><a href="http://www.jetbrains.com/pycharm/">PyCharm</a> - from the same company that develops RubyMine, PyCharm
 is the king of IDEs when it comes down to Python. It has full
 featured Django support - there is even autocompletion in the Django
 templates.</li>
-  <li><a href="http://pydev.org/">PyDev</a> - an Eclipse plug-in for Python and Django development.</li>
+<li><a href="http://pydev.org/">PyDev</a> - an Eclipse plug-in for Python and Django development.</li>
 </ul>
 
-<p>I have to admit I’m totally biased. Having been a long time Java
-developer I’ve grown extremely fond of the exceptional IntelliJ
+<p>I have to admit I'm totally biased. Having been a long time Java
+developer I've grown extremely fond of the exceptional IntelliJ
 IDEA. RubyMine and PyCharm are both based on the IntelliJ platform and
 bring to the Ruby and Python developers much of the might and magic of
 IDEA. There are both commercial products, but their price tags are
 quite low and their quality is great - highly recommended.</p>
 
-<p>I’m not affiliated in any way with any of these products - I just
+<p>I'm not affiliated in any way with any of these products - I just
 happen to like them that much.</p>
 
-<h2 id="resources">Resources</h2>
+<h2>Resources</h2>
 
 <p>The are LOTS of resources about Rails and Django on-line. Here are
 just my favorites.</p>
 
-<h1 id="rails-2">Rails</h1>
+<h1>Rails</h1>
 
 <ul>
-  <li><a href="http://guides.rubyonrails.org/">Rails Guides</a> - best short
+<li><a href="http://guides.rubyonrails.org/">Rails Guides</a> - best short
 introduction to Rails ever. Immediately updated for new Rails
 versions, fantastic starting point for any aspiring Rails developer.</li>
-  <li><a href="http://ruby.railstutorial.org/">Rails Tutorial</a> - best Rails 3 book
+<li><a href="http://ruby.railstutorial.org/">Rails Tutorial</a> - best Rails 3 book
 on the market and it even has a free on-line edition. Nice follow up
 of the Rails Guides.</li>
-  <li><a href="http://railscasts.com/">RailsCasts</a> - Ryan Bates in true Ruby
+<li><a href="http://railscasts.com/">RailsCasts</a> - Ryan Bates in true Ruby
 hero. He has compiled a unique set of high quality Rails screencasts
 that often illustrate some advanced techniques. And they are all
-free. We all owe a very big “Thanks!” to Ryan.</li>
+free. We all owe a very big &quot;Thanks!&quot; to Ryan.</li>
 </ul>
 
-<h1 id="django-2">Django</h1>
+<h1>Django</h1>
 
 <ul>
-  <li><a href="https://docs.djangoproject.com/en/1.3/">Official Docs</a> - best
-official project documentation I’ve read. It’s actually so good,
+<li><a href="https://docs.djangoproject.com/en/1.3/">Official Docs</a> - best
+official project documentation I've read. It's actually so good,
 that I never (well - almost never) bothered to look for anything else. All my questions
 were answered by the official documentation.</li>
 </ul>
 
-<h2 id="epilogue">Epilogue</h2>
+<h2>Epilogue</h2>
 
 <p>Choosing Django or Rails is basically a win-win situation - you cannot
 go wrong. There are too many similarities between the frameworks and
@@ -704,7 +705,7 @@ the differences are not something paramount.</p>
 provides you with more defaults and does a can do a lot of heavy
 lifting for you automagically. </p>
 
-<p>Django on the other hand let’s you specify most configuration details
+<p>Django on the other hand let's you specify most configuration details
 yourself, without making the configuration burdensome (like that of
 older Java web frameworks).</p>
 
@@ -722,13 +723,13 @@ Python 2.4.</p>
 like Ruby or Python better and whether you like the defaults imposed
 to you by Rails.</p>
 
-<p>I’ve planned to write a much longer and detailed article, but it’s
-summer here and it’s sunday and I’d rather go out and drink a few
-beers with my friends. Hopefully you’ve enjoyed the article. I’ll try
+<p>I've planned to write a much longer and detailed article, but it's
+summer here and it's sunday and I'd rather go out and drink a few
+beers with my friends. Hopefully you've enjoyed the article. I'll try
 to expand it a bit in the coming days.</p>
 
-<p>P.S. Btw, in case you’re wondering - we’ve picked Rails for our
-company’s projects. It was a very close call, though, since I
+<p>P.S. Btw, in case you're wondering - we've picked Rails for our
+company's projects. It was a very close call, though, since I
 really liked a lot of aspects of Django as well.</p>
 
     <div class="meta">Posted on 19 Jun 2011 by Bozhidar. Filed under Ruby, Rails, Python, and Django.</div>

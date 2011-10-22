@@ -67,17 +67,17 @@ _rinari_ is a mode for Rails development – it contains rich
 functionality such as the ability to easily navigate between models,
 views and controllers in a Rails apfplication amongst other
 features. Instructions how to set up rinari together with nxhtml-mode
-can be found on rinari’s home page. 
+can be found on rinari’s home page.
 
 It’s always a good idea to add [ecb](http://ecb.sourceforge.net/)(the Emacs code browser) to the mix,
 though this is entirely optional.
 
 A lot of the stuff I discussed here are part of the
-[Emacs Dev Kit](https://github.com/bbatsov/emacs-dev-kit) that I
-develop and maintain. I urge you to use the EDK as a starting point to
-develop your very own customized version of Emacs. EDK comes with a
+[Emacs Prelude](https://github.com/bbatsov/emacs-prelude) that I
+develop and maintain. I urge you to use the Emacs Prelude as a starting point to
+develop your very own customized version of Emacs. Prelude comes with a
 few ruby-mode customizations, yari(ri integration for Emacs), haml and
 sass modes, autopair, yaml-mode, yasnippet, css-mode, ecb and a lot of
-other goodies(find-file-in-project being one of my favourites). 
+other goodies(projectile being one of my favourites).
 
 I hope you enjoy this setup and it helps boost your Rails productivity in Emacs.

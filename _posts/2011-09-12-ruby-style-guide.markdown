@@ -63,7 +63,7 @@ kind = case year
        when 1940..1950 then "Bebop"
        else "Jazz"
        end
-{% endhighlight %}               
+{% endhighlight %}
 
 * Use an empty line before the return value of a method (unless it
   only has one line), and an empty line between defs.
@@ -79,7 +79,7 @@ end
 def some_method
   result
 end
-{% endhighlight %}        
+{% endhighlight %}
 * Use RDoc and its conventions for API documentation.  Don't put an
   empty line between the comment block and the **def**.
 * Use empty lines to break up a method into logical paragraphs.
@@ -113,7 +113,7 @@ end
 
 # good
 arr.each { |elem| puts elem }
-{% endhighlight %}        
+{% endhighlight %}
 * Never use **then** for multiline **if/unless**.
 {% highlight ruby %}
 # bad
@@ -162,7 +162,7 @@ some_condition || do_something
 {% highlight ruby %}
 x = Math.sin(y)
 array.delete e
-{% endhighlight %}        
+{% endhighlight %}
 
 * Prefer {...} over do...end for single-line blocks.  Avoid using {...} for multi-line blocks.  Always use do...end for
   "control flow" and "method definitions" (e.g. in Rakefiles and
@@ -284,7 +284,7 @@ end
 * Avoid more than 3 levels of block nesting.
 * Don't overdesign. Overly complex solutions tend to be brittle and hard to maintain.
 * Don't underdesign. A solution to a problem should be as simple as
-possible... but it should not be simpler than that. Poor initial design 
+possible... but it should not be simpler than that. Poor initial design
 can lead to a lot of problems in the future.
 * Be consistent. In an ideal world - be consistent with the points listed here in this guidelines.
 * Use common sense.

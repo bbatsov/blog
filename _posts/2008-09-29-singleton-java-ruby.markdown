@@ -15,7 +15,7 @@ patterns and I was surprised to see how few people where aware of
 them. For example since Java 5 the best way to implement the Singleton
 pattern is simply to use an enum like this:
 
-{% highlight java%}
+{% highlight java %}
 public enum SomeClass {
     INSTANCE;
 }

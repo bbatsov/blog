@@ -24,6 +24,7 @@
     </head>
 
     <body>
+        <a href="http://github.com/bbatsov"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
         <div id="page">
             <div id="content">
                 <div id="header">
@@ -49,18 +50,18 @@ develop applications in an incremental interactive manner - you write
 one function, compile it, load into your current REPL session, make
 some adjustments and repeat this process until you get satisfactory
 results. You never stop to compile your project, you never have to
-restart your application server. Without those distractions it’s
+restart your application server. Without those distractions it's
 easier to maintain your concentration and to remain in the <em>flow</em>.</p>
 
 <p>With languages like Scala and Java, however, you cannot do this - at
 least without a bit of external help. This help comes in the form of an
 application called <a href="http://www.zeroturnaround.com/jrebel/">JRebel</a>, which basically reloads the classes in your
 program as you make changes to them and recompile them. JRebel is a commercial
-application and generally you have to pay to use it… unless you want
+application and generally you have to pay to use it... unless you want
 to you use it for Scala development, that is. ZeroTurnaround(the
 company that makes JRebel) offers
 <a href="http://sales.zeroturnaround.com/wp-content/themes/zeroturnaround4.0/modals/applyForLicense.php">free licences to Scala developers</a>
-and if you’re one of them you should definitely get one.</p>
+and if you're one of them you should definitely get one.</p>
 
 <p>Installing JRebel is trivial - generally you have to only extract a
 zip file(or use an installer) somewhere and drop in the JRebel folder
@@ -68,7 +69,7 @@ the licence file that they have e-mail you. Afterwards you simply have
 to integrate JRebel with your build system. JRebel can also be
 integrated with IDEs, but I want cover this here. I use mostly
 <a href="http://maven.apache.org">Maven 3</a> and
-<a href="http://code.google.com/p/simple-build-tool/">SBT</a> so I’ll show you
+<a href="http://code.google.com/p/simple-build-tool/">SBT</a> so I'll show you
 what to do for them. With Maven you have to add the following to the
 <em>$MAVEN_OPTS</em> environmental variable:</p>
 
@@ -77,8 +78,8 @@ what to do for them. With Maven you have to add the following to the
 </div>
 
 <p>Since most people use JRebel for web development to avoid the need to
-restart their application containers and Scala’s most prominent
-framework is <a href="http://liftweb.net">Lift</a> you’d probably want to enable
+restart their application containers and Scala's most prominent
+framework is <a href="http://liftweb.net">Lift</a> you'd probably want to enable
 the JRebel Lift plug-in as well:</p>
 
 <div class="highlight"><pre><code class="console"><span class="go">export MAVEN_OPTS=-noverify -javaagent:/home/bozhidar/work/jrebel/jrebel.jar</span>
@@ -86,7 +87,7 @@ the JRebel Lift plug-in as well:</p>
 </code></pre>
 </div>
 
-<p>Stick this in your shell’s init file and source it to make it
+<p>Stick this in your shell's init file and source it to make it
 available in the shell.</p>
 
 <p>Now when you start your web app with</p>
@@ -106,7 +107,7 @@ the changed classes behind the scenes. The development process this
 way starts to feel a bit like using a scripting language such as Ruby
 or PHP.</p>
 
-<p>If you’re using SBT you should modify the sbt startup script to
+<p>If you're using SBT you should modify the sbt startup script to
 include the same options that I mentioned in the section about Maven
 configuration. Mine sbt script looks like this:</p>
 

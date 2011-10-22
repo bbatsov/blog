@@ -24,6 +24,7 @@
     </head>
 
     <body>
+        <a href="http://github.com/bbatsov"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
         <div id="page">
             <div id="content">
                 <div id="header">
@@ -44,33 +45,34 @@
                     <div id="content">
                         <div id="post">
     <h2 class="title">The Totally Unofficial Ruby coding style guide</h2>
-    <h2 id="prologue">Prologue</h2>
+    <h2>Prologue</h2>
 
 <p>This document was created when I, as the Technical Lead of the company
 in which I work for, was asked by the CTO to create some internal
 documents describing good style and best practices for Ruby
-programming. Since I didn’t find any “official” coding guidelines I
+programming. Since I didn't find any &quot;official&quot; coding guidelines I
 started off by copying
 <a href="https://github.com/chneukirchen/styleguide">this existing style guide</a>,
 because I concurred with most of the points in it. Afterwards I
 proceeded to built upon it and plan to improve it a lot more (the
-examples now are totally superficial, but I’m quite busy these
+examples now are totally superficial, but I'm quite busy these
 days). I hope it will be useful to other people as well and I hope
-that I’ll get a lot of feedback and suggestions on how to improve the
+that I'll get a lot of feedback and suggestions on how to improve the
 guide for the benefit of the entire Ruby community.</p>
 
-<h2 id="the-guide">The Guide</h2>
-<p># Formatting</p>
+<h2>The Guide</h2>
+
+<h1>Formatting</h1>
 
 <ul>
-  <li>Use UTF-8 as the source file encoding.</li>
-  <li>Use 2 space indent, no tabs. (Your editor/IDE should have a setting to help you with that)</li>
-  <li>Use Unix-style line endings. (Linux/OSX users are covered by default, Windows users have to be extra careful)
-    <ul>
-      <li>if you’re using Git you might want to do this <code>$ git config --global core.autocrlf true</code> to protect your project from Windows line endings creeping into your project</li>
-    </ul>
-  </li>
-  <li>Use spaces around operators, after commas, colons and semicolons, around { and before }.</li>
+<li>Use UTF-8 as the source file encoding.</li>
+<li>Use 2 space indent, no tabs. (Your editor/IDE should have a setting to help you with that)</li>
+<li>Use Unix-style line endings. (Linux/OSX users are covered by default, Windows users have to be extra careful)
+
+<ul>
+<li>if you're using Git you might want to do this <code>$ git config --global core.autocrlf true</code> to protect your project from Windows line endings creeping into your project</li>
+</ul></li>
+<li>Use spaces around operators, after commas, colons and semicolons, around { and before }.</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="n">sum</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
@@ -81,7 +83,7 @@ guide for the benefit of the entire Ruby community.</p>
 </div>
 
 <ul>
-  <li>No spaces after (, [ and before ], ).</li>
+<li>No spaces after (, [ and before ], ).</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="n">some</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span><span class="o">.</span><span class="n">other</span>
@@ -90,7 +92,7 @@ guide for the benefit of the entire Ruby community.</p>
 </div>
 
 <ul>
-  <li>Indent <strong>when</strong> as deep as <strong>case</strong>. (as suggested in the Pickaxe)</li>
+<li>Indent <strong>when</strong> as deep as <strong>case</strong>. (as suggested in the Pickaxe)</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="k">case</span>
@@ -113,7 +115,7 @@ guide for the benefit of the entire Ruby community.</p>
 </div>
 
 <ul>
-  <li>Use an empty line before the return value of a method (unless it
+<li>Use an empty line before the return value of a method (unless it
 only has one line), and an empty line between defs.</li>
 </ul>
 
@@ -131,26 +133,26 @@ only has one line), and an empty line between defs.</li>
 </div>
 
 <ul>
-  <li>Use RDoc and its conventions for API documentation.  Don’t put an
+<li>Use RDoc and its conventions for API documentation.  Don't put an
 empty line between the comment block and the <strong>def</strong>.</li>
-  <li>Use empty lines to break up a method into logical paragraphs.</li>
-  <li>Keep lines fewer than 80 characters.
-    <ul>
-      <li>Emacs users should really have a look at whitespace-mode</li>
-    </ul>
-  </li>
-  <li>Avoid trailing whitespace.
-    <ul>
-      <li>Emacs users - whitespace-mode again comes to the rescue</li>
-    </ul>
-  </li>
-</ul>
-
-<h1 id="syntax">Syntax</h1>
+<li>Use empty lines to break up a method into logical paragraphs.</li>
+<li>Keep lines fewer than 80 characters.
 
 <ul>
-  <li>Use <strong>def</strong> with parentheses when there are arguments. Omit the
-parentheses when the method doesn’t accept any arguments.</li>
+<li>Emacs users should really have a look at whitespace-mode</li>
+</ul></li>
+<li>Avoid trailing whitespace.
+
+<ul>
+<li>Emacs users - whitespace-mode again comes to the rescue</li>
+</ul></li>
+</ul>
+
+<h1>Syntax</h1>
+
+<ul>
+<li>Use <strong>def</strong> with parentheses when there are arguments. Omit the
+parentheses when the method doesn't accept any arguments.</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">some_method</span>
@@ -164,7 +166,7 @@ parentheses when the method doesn’t accept any arguments.</li>
 </div>
 
 <ul>
-  <li>Never use <strong>for</strong>, unless you exactly know why. Most of the time
+<li>Never use <strong>for</strong>, unless you exactly know why. Most of the time
 iterators should be used instead.</li>
 </ul>
 
@@ -181,7 +183,7 @@ iterators should be used instead.</li>
 </div>
 
 <ul>
-  <li>Never use <strong>then</strong> for multiline <strong>if/unless</strong>.</li>
+<li>Never use <strong>then</strong> for multiline <strong>if/unless</strong>.</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
@@ -197,12 +199,12 @@ iterators should be used instead.</li>
 </div>
 
 <ul>
-  <li>Use <strong>when x; …</strong> for one-line cases.</li>
-  <li>Use &amp;&amp;/|| for boolean expressions, and/or for control flow.  (Rule
+<li>Use <strong>when x; ...</strong> for one-line cases.</li>
+<li>Use &amp;&amp;/|| for boolean expressions, and/or for control flow.  (Rule
 of thumb: If you have to use outer parentheses, you are using the
 wrong operators.)</li>
-  <li>Avoid multiline ?: (the ternary operator), use <strong>if/unless</strong> instead.</li>
-  <li>Favor modifier <strong>if/unless</strong> usage when you have a single-line body.</li>
+<li>Avoid multiline ?: (the ternary operator), use <strong>if/unless</strong> instead.</li>
+<li>Favor modifier <strong>if/unless</strong> usage when you have a single-line body.</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
@@ -219,7 +221,7 @@ wrong operators.)</li>
 </div>
 
 <ul>
-  <li>Favor <strong>unless</strong> over <strong>if</strong> for negative conditions:</li>
+<li>Favor <strong>unless</strong> over <strong>if</strong> for negative conditions:</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
@@ -234,8 +236,8 @@ wrong operators.)</li>
 </div>
 
 <ul>
-  <li>Suppress superfluous parentheses when calling methods, but keep them
-when calling “functions”, i.e. when you use the return value in the
+<li>Suppress superfluous parentheses when calling methods, but keep them
+when calling &quot;functions&quot;, i.e. when you use the return value in the
 same line.</li>
 </ul>
 
@@ -245,14 +247,10 @@ same line.</li>
 </div>
 
 <ul>
-  <li>
-    <p>Prefer {…} over do…end for single-line blocks.  Avoid using {…} for multi-line blocks.  Always use do…end for
-“control flow” and “method definitions” (e.g. in Rakefiles and
-certain DSLs.)  Avoid do…end when chaining.</p>
-  </li>
-  <li>
-    <p>Avoid <strong>return</strong> where not required.</p>
-  </li>
+<li><p>Prefer {...} over do...end for single-line blocks.  Avoid using {...} for multi-line blocks.  Always use do...end for
+&quot;control flow&quot; and &quot;method definitions&quot; (e.g. in Rakefiles and
+certain DSLs.)  Avoid do...end when chaining.</p></li>
+<li><p>Avoid <strong>return</strong> where not required.</p></li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
@@ -268,7 +266,7 @@ certain DSLs.)  Avoid do…end when chaining.</p>
 </div>
 
 <ul>
-  <li>Avoid line continuation (\) where not required. In practice avoid using line continuations at all.</li>
+<li>Avoid line continuation (\) where not required. In practice avoid using line continuations at all.</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="c1"># bad</span>
@@ -282,7 +280,7 @@ certain DSLs.)  Avoid do…end when chaining.</p>
 </div>
 
 <ul>
-  <li>Using the return value of = is okay:</li>
+<li>Using the return value of = is okay:</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="k">if</span> <span class="n">v</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">grep</span><span class="p">(</span><span class="sr">/foo/</span><span class="p">)</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
@@ -290,7 +288,7 @@ certain DSLs.)  Avoid do…end when chaining.</p>
 </div>
 
 <ul>
-  <li>Use ||= freely.</li>
+<li>Use ||= freely.</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="c1"># set name to Bozhidar, only if it&#39;s nil or false</span>
@@ -299,39 +297,39 @@ certain DSLs.)  Avoid do…end when chaining.</p>
 </div>
 
 <ul>
-  <li>Avoid using Perl-style global variables(like $0-9, $`, …)</li>
+<li>Avoid using Perl-style global variables(like $0-9, $`, ...)</li>
 </ul>
 
-<h1 id="naming">Naming</h1>
+<h1>Naming</h1>
 
 <ul>
-  <li>Use snake_case for methods and variables.</li>
-  <li>Use CamelCase for classes and modules.  (Keep acronyms like HTTP,
+<li>Use snake_case for methods and variables.</li>
+<li>Use CamelCase for classes and modules.  (Keep acronyms like HTTP,
 RFC, XML uppercase.)</li>
-  <li>Use SCREAMING_SNAKE_CASE for other constants.</li>
-  <li>
-    <p>The length of an identifier determines its scope.  Use one-letter variables for short block/method parameters, according to this scheme:</p>
+<li>Use SCREAMING_SNAKE_CASE for other constants.</li>
+<li><p>The length of an identifier determines its scope.  Use one-letter variables for short block/method parameters, according to this scheme:</p>
 
-    <pre><code>a,b,c: any object
-d: directory names
-e: elements of an Enumerable
-ex: rescued exceptions
-f: files and file names
-i,j: indexes
-k: the key part of a hash entry
-m: methods
-o: any object
-r: return values of short methods
-s: strings
-v: any value
-v: the value part of a hash entry
-x,y,z: numbers
-</code></pre>
+<p>a,b,c: any object
+  d: directory names
+  e: elements of an Enumerable
+  ex: rescued exceptions
+  f: files and file names
+  i,j: indexes
+  k: the key part of a hash entry
+  m: methods
+  o: any object
+  r: return values of short methods
+  s: strings
+  v: any value
+  v: the value part of a hash entry
+  x,y,z: numbers</p></li>
+</ul>
 
-    <p>And in general, the first letter of the class name if all objects are of that type.</p>
-  </li>
-  <li>When using <strong>inject</strong> with short blocks, name the arguments <strong>|a, e|</strong> (mnemonic: accumulator, element)</li>
-  <li>When defining binary operators, name the argument “other”.</li>
+<p>And in general, the first letter of the class name if all objects are of that type.</p>
+
+<ul>
+<li>When using <strong>inject</strong> with short blocks, name the arguments <strong>|a, e|</strong> (mnemonic: accumulator, element)</li>
+<li>When defining binary operators, name the argument &quot;other&quot;.</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">+</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
@@ -341,27 +339,27 @@ x,y,z: numbers
 </div>
 
 <ul>
-  <li>Prefer <strong>map</strong> over <em>collect</em>, <strong>find</strong> over <em>detect</em>, <strong>find_all</strong> over <em>select</em>, <strong>size</strong> over <em>length</em>. This is not a hard requirement, though - if
-the use of the alias enhances readability - it’s ok to use it.</li>
+<li>Prefer <strong>map</strong> over <em>collect</em>, <strong>find</strong> over <em>detect</em>, <strong>find_all</strong> over <em>select</em>, <strong>size</strong> over <em>length</em>. This is not a hard requirement, though - if
+the use of the alias enhances readability - it's ok to use it.</li>
 </ul>
 
-<h1 id="comments">Comments</h1>
+<h1>Comments</h1>
 
 <ul>
-  <li>Write self documenting code and ignore the rest of this section.</li>
-  <li>Comments longer than a word are capitalized and use punctuation. Use two spaces after periods.</li>
-  <li>Avoid superfluous comments.</li>
-  <li>Keep existing comments up-to-date - no comment is better than an outdated comment.</li>
+<li>Write self documenting code and ignore the rest of this section.</li>
+<li>Comments longer than a word are capitalized and use punctuation. Use two spaces after periods.</li>
+<li>Avoid superfluous comments.</li>
+<li>Keep existing comments up-to-date - no comment is better than an outdated comment.</li>
 </ul>
 
-<h1 id="misc">Misc</h1>
+<h1>Misc</h1>
 
 <ul>
-  <li>Write <strong>ruby -w</strong> safe code.</li>
-  <li>Avoid hashes-as-optional-parameters.  Does the method do too much?</li>
-  <li>Avoid long methods (longer than 10 LOC). Ideally most methods will be shorter than 5 LOC. Empty line do not contribute to the relevant LOC.</li>
-  <li>Avoid long parameter lists (more than 3-4 params).</li>
-  <li>Use <strong>def self.method</strong> to define singleton methods. This makes the methods more resistent to refactoring changes.</li>
+<li>Write <strong>ruby -w</strong> safe code.</li>
+<li>Avoid hashes-as-optional-parameters.  Does the method do too much?</li>
+<li>Avoid long methods (longer than 10 LOC). Ideally most methods will be shorter than 5 LOC. Empty line do not contribute to the relevant LOC.</li>
+<li>Avoid long parameter lists (more than 3-4 params).</li>
+<li>Use <strong>def self.method</strong> to define singleton methods. This makes the methods more resistent to refactoring changes.</li>
 </ul>
 
 <div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">TestClass</span>
@@ -379,51 +377,51 @@ the use of the alias enhances readability - it’s ok to use it.</li>
 </div>
 
 <ul>
-  <li>Add “global” methods to Kernel (if you have to) and make them private.</li>
-  <li>Avoid <strong>alias</strong> when <strong>alias_method</strong> will do.</li>
-  <li>Use <strong>OptionParser</strong> for parsing complex command line options and
+<li>Add &quot;global&quot; methods to Kernel (if you have to) and make them private.</li>
+<li>Avoid <strong>alias</strong> when <strong>alias_method</strong> will do.</li>
+<li>Use <strong>OptionParser</strong> for parsing complex command line options and
 <strong>ruby -s</strong> for trivial command line options.</li>
-  <li>Write for Ruby 1.9. Don’t use legacy Ruby 1.8 constructs.
-    <ul>
-      <li>use the new JavaScript literal hash syntax</li>
-      <li>use the new lambda syntax</li>
-      <li>methods like <strong>inject</strong> now accept method names as arguments - <code>[1, 2, 3].inject(:+)</code></li>
-    </ul>
-  </li>
-  <li>Avoid needless metaprogramming.</li>
-</ul>
-
-<h1 id="design">Design</h1>
+<li>Write for Ruby 1.9. Don't use legacy Ruby 1.8 constructs.
 
 <ul>
-  <li>Code in a functional way, avoid mutation when it makes sense.</li>
-  <li>Do not mutate arguments unless that is the purpose of the method.</li>
-  <li>Do not mess around in core classes when writing libraries. (do not monkey patch them)</li>
-  <li>Do not program defensively. See this <a href="http://www.erlang.se/doc/programming_rules.shtml#HDR11.">article</a> for more details.</li>
-  <li>Keep the code simple (subjective, but still…). Each method should have a single well-defined responsibility.</li>
-  <li>Avoid more than 3 levels of block nesting.</li>
-  <li>Don’t overdesign. Overly complex solutions tend to be brittle and hard to maintain.</li>
-  <li>Don’t underdesign. A solution to a problem should be as simple as
-possible… but it should not be simpler than that. Poor initial design 
-can lead to a lot of problems in the future.</li>
-  <li>Be consistent. In an ideal world - be consistent with the points listed here in this guidelines.</li>
-  <li>Use common sense.</li>
+<li>use the new JavaScript literal hash syntax</li>
+<li>use the new lambda syntax</li>
+<li>methods like <strong>inject</strong> now accept method names as arguments - <code>[1, 2, 3].inject(:+)</code></li>
+</ul></li>
+<li>Avoid needless metaprogramming.</li>
 </ul>
 
-<h2 id="overture">Overture</h2>
+<h1>Design</h1>
 
-<p>I’ve created a <a href="https://github.com/bbatsov/ruby-style-guide">GitHub project</a>, so that everyone can easily participate
+<ul>
+<li>Code in a functional way, avoid mutation when it makes sense.</li>
+<li>Do not mutate arguments unless that is the purpose of the method.</li>
+<li>Do not mess around in core classes when writing libraries. (do not monkey patch them)</li>
+<li>Do not program defensively. See this <a href="http://www.erlang.se/doc/programming_rules.shtml#HDR11.">article</a> for more details.</li>
+<li>Keep the code simple (subjective, but still...). Each method should have a single well-defined responsibility.</li>
+<li>Avoid more than 3 levels of block nesting.</li>
+<li>Don't overdesign. Overly complex solutions tend to be brittle and hard to maintain.</li>
+<li>Don't underdesign. A solution to a problem should be as simple as
+possible... but it should not be simpler than that. Poor initial design
+can lead to a lot of problems in the future.</li>
+<li>Be consistent. In an ideal world - be consistent with the points listed here in this guidelines.</li>
+<li>Use common sense.</li>
+</ul>
+
+<h2>Overture</h2>
+
+<p>I've created a <a href="https://github.com/bbatsov/ruby-style-guide">GitHub project</a>, so that everyone can easily participate
 in improving the quality of the guidelines. I hope that together we
 could make a resource that will benefit the entire Ruby community. I
 have a couple more guides like this one in the pipeline - one for
 Rails and for testing Ruby and Rails applications.</p>
 
-<p>If you’re an Emacs user - the <a href="https://github.com/bbatsov/emacs-prelude">Emacs Prelude</a> features
+<p>If you're an Emacs user - the <a href="https://github.com/bbatsov/emacs-prelude">Emacs Prelude</a> features
 customizations that enforce some of the stuff outlined in the guide -
 encoding, indentation, line length and lots of other goodies
 (whitespace cleanup, ri integration, autopair for quotes, brackets,
 etc, Ruby snippets, irb integration, git integration, haml, sass and
-coffeescript support out of the box…). You
+coffeescript support out of the box...). You
 might want to check it out.</p>
 
 <p><strong>P.S. The version of the Ruby style guide here is out of date. Please,

@@ -24,6 +24,7 @@
     </head>
 
     <body>
+        <a href="http://github.com/bbatsov"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
         <div id="page">
             <div id="content">
                 <div id="header">
@@ -44,28 +45,28 @@
                     <div id="content">
                         <div id="post">
     <h2 class="title">Debian post installation setup & tips</h2>
-    <h1 id="overture">Overture</h1>
+    <h1>Overture</h1>
 
-<p>I’ve recently been using Debian a lot (mostly Debian Wheezy (aka
-testing)), So I’ve decided to adapt my
+<p>I've recently been using Debian a lot (mostly Debian Wheezy (aka
+testing)), So I've decided to adapt my
 <a href="/Linux/Fedora/2011/05/31/fedora-15-tips.html">Fedora 15 post installation setup &amp; tips</a>
 article for Debian. Here are some of the common things I add to a
-typical “graphical desktop” Debian installation as well as some tips
-and tricks that you’ll hopefully find useful. Btw, I highly recommend
-you to use the <a href="http://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso">netinstall Debian distribution</a> - that way you’ll get an
-up-to-date installation immediately and you won’t have to download
+typical &quot;graphical desktop&quot; Debian installation as well as some tips
+and tricks that you'll hopefully find useful. Btw, I highly recommend
+you to use the <a href="http://cdimage.debian.org/cdimage/daily-builds/daily/arch-latest/amd64/iso-cd/debian-testing-amd64-netinst.iso">netinstall Debian distribution</a> - that way you'll get an
+up-to-date installation immediately and you won't have to download
 huge installation images.</p>
 
 <p>This article will be of use mostly to people using Debian as a desktop
-OS (with GNOME as their desktop environment) - it doesn’t discuss any server configurations.</p>
+OS (with GNOME as their desktop environment) - it doesn't discuss any server configurations.</p>
 
-<h1 id="tweak-defaults">Tweak defaults</h1>
+<h1>Tweak defaults</h1>
 
 <p><strong>Configure sudo</strong></p>
 
 <p>sudo gives you a way to execute single commands as the superuser. You
-can also do this with “su -c”, but you have to quote the commands there,
-which I don’t like very much. To enable sudo for some account first
+can also do this with &quot;su -c&quot;, but you have to quote the commands there,
+which I don't like very much. To enable sudo for some account first
 run the command:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> su -c <span class="s2">&quot;visudo&quot;</span>
@@ -79,22 +80,22 @@ somewhere to the end of the file the following line:</p>
 
 <p>You should replace <em>username</em> with your username.</p>
 
-<h1 id="apt-get--apt-cache-or-aptitude">apt-get + apt-cache or aptitude</h1>
+<h1>apt-get + apt-cache or aptitude</h1>
 
 <p>There are two common ways (and many others less popular or obsolete)
 to manage packages on a Debian system these days - the simpler apt-get
 + apt-cache combo or the more advanced aptitude tool. I tend to prefer
-using aptitude since it’s a all-in-one solution - you could use it to both
+using aptitude since it's a all-in-one solution - you could use it to both
 query and install packages and has both a CLI and a curses interface.</p>
 
-<p>It doesn’t really matter whether you decided to use apt-get/apt-cache
-or aptitude, but you shouldn’t mix their usage - pick one and stay
+<p>It doesn't really matter whether you decided to use apt-get/apt-cache
+or aptitude, but you shouldn't mix their usage - pick one and stay
 with it.</p>
 
-<h1 id="install-additional-software">Install additional software</h1>
+<h1>Install additional software</h1>
 
-<p>I generally install Debian from the netinstall images and don’t
-customize very much the default package set since it’s so easy to
+<p>I generally install Debian from the netinstall images and don't
+customize very much the default package set since it's so easy to
 install everything you need afterwards.</p>
 
 <p><strong>Install REAL text editors</strong></p>
@@ -112,7 +113,7 @@ setup my suggestion is the <a href="https://github.com/bbatsov/emacs-dev-kit">Em
 
 <p><strong>Install Z Shell</strong></p>
 
-<p>It’s no secret that I love the Z Shell - after all I
+<p>It's no secret that I love the Z Shell - after all I
 <a href="/Z%20Shell/2011/04/29/one-shell-to-rule-them-all.html">rave about it</a>
 quite often. It should come as no surprise that I happen to use it and
 probably you should start using it as well:</p>
@@ -133,13 +134,13 @@ achieve the same result:</p>
 
 <p>Afterwards start a new login shell and a simple wizard will
 fire up asking you some questions to create a default .zshrc file for
-you. Alternatively you can use the excellent <a href="https://github.com/robbyrussell/oh-my-zsh">O My Zsh</a> config - I’m
+you. Alternatively you can use the excellent <a href="https://github.com/robbyrussell/oh-my-zsh">O My Zsh</a> config - I'm
 very fond of it.</p>
 
 <p><strong>Install guake(a drop down terminal)</strong></p>
 
 <p>I spend a lot of time at the terminal and like to have one at my
-fingertips always. Since I’m a GNOME user guake is the best option for
+fingertips always. Since I'm a GNOME user guake is the best option for
 me:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install guake
@@ -149,8 +150,8 @@ me:</p>
 <p><strong>Install LibreOffice</strong></p>
 
 <p>LibreOffice is currently the best Linux option for word processing,
-spreadsheet handling and presentation creation. It’s generally
-installed by default if you select the “Graphical Desktop” option in
+spreadsheet handling and presentation creation. It's generally
+installed by default if you select the &quot;Graphical Desktop&quot; option in
 the installation wizard, but you can install the
 most common components at any time with the following command:</p>
 
@@ -159,7 +160,7 @@ most common components at any time with the following command:</p>
 </div>
 
 <p>LibreOffice uses hunspell to do spellchecking. An English dictionary
-will be installed by default, but you’ll need to install additional
+will be installed by default, but you'll need to install additional
 dictionaries manually:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install hunspell-bg
@@ -167,7 +168,7 @@ dictionaries manually:</p>
 </div>
 
 <p>This command will install the Bulgarian hunspell dictionary. You
-likely don’t need it so install some more helpful dictionary instead. :-)</p>
+likely don't need it so install some more helpful dictionary instead. :-)</p>
 
 <p><strong>Install OpenJDK</strong></p>
 
@@ -177,7 +178,7 @@ likely don’t need it so install some more helpful dictionary instead. :-)</p>
 </code></pre>
 </div>
 
-<p>If you’re planning to do some Java development:</p>
+<p>If you're planning to do some Java development:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install openjdk-6-jdk openjdk-6-doc openjdk-6-demo openjdk-6-source
 </code></pre>
@@ -194,8 +195,8 @@ you to replace it with the much more feature-rich deluge:</p>
 
 <p><strong>Install Inconsolata font</strong></p>
 
-<p>I’m a software engineer and I obviously spend a lot of time reading
-and writing source code. I’m very picking about the monospace font
+<p>I'm a software engineer and I obviously spend a lot of time reading
+and writing source code. I'm very picking about the monospace font
 that I use and currently Inconsolata happens to be my favorite:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install ttf-inconsolata
@@ -210,7 +211,7 @@ considered the best option so you might want to install it:</p>
 </code></pre>
 </div>
 
-<h1 id="install-additional-patent-encumberedproprietary-software">Install additional patent encumbered/proprietary software</h1>
+<h1>Install additional patent encumbered/proprietary software</h1>
 
 <p><strong>Enable non-free repo</strong></p>
 
@@ -238,7 +239,7 @@ Non-free to the rescue! Type this:</p>
 
 <p><strong>Install VLC</strong></p>
 
-<p>With MPlayer’s development in stagnation VLC has established itself as
+<p>With MPlayer's development in stagnation VLC has established itself as
 the best video player for Linux recently. Installing it is as easy as typing the following command:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install vlc
@@ -253,12 +254,12 @@ the best video player for Linux recently. Installing it is as easy as typing the
 </code></pre>
 </div>
 
-<p>You can omit this if you’re planning to use Google Chrome (on a 32bit system), since it
+<p>You can omit this if you're planning to use Google Chrome (on a 32bit system), since it
 comes with Flash Player built-in.</p>
 
 <p><strong>Install Skype</strong></p>
 
-<p>In a perfect world everyone would be using Google Talk… In the real one:</p>
+<p>In a perfect world everyone would be using Google Talk... In the real one:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install skype
 </code></pre>
@@ -266,22 +267,22 @@ comes with Flash Player built-in.</p>
 
 <p><strong>Install Oracle JDK</strong></p>
 
-<p>OpenJDK is great, but due to licensing problems it’s not quite the
+<p>OpenJDK is great, but due to licensing problems it's not quite the
 same as the Oracle JDK. If you start experiencing strange problems
-(mostly in Swing programs) you’d probably do well to try the Oracle
+(mostly in Swing programs) you'd probably do well to try the Oracle
 JDK instead. The magic incantation goes like this:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install sun-java6-jdk sun-java6-demo sun-java6-source sun-java6-plugin
 </code></pre>
 </div>
 
-<p>Debian uses OpenJDK by default, so you’ll have to do some more work to
+<p>Debian uses OpenJDK by default, so you'll have to do some more work to
 tell it to start using Oracle JDK. The <strong>alternatives</strong> program allows
 you to select between multiple installed versions of a program:</p>
 
 <p>These commands will make alternative aware of the java binaries and
 set high priorities to them which will make them the default Java
-binaries. You can use “alternatives –config binaryname” to select
+binaries. You can use &quot;alternatives --config binaryname&quot; to select
 active binaries manually.</p>
 
 <p><strong>Install Google Chrome</strong></p>
@@ -293,10 +294,10 @@ browsers. Download it from the <a href="http://www.google.com/chrome">official s
 </code></pre>
 </div>
 
-<p>Google Chrome will install a apt repository as well, so you’ll receive
+<p>Google Chrome will install a apt repository as well, so you'll receive
 updates as soon as they arrive.</p>
 
-<p>Alternatively you can use Chromium - Chrome’s open source sibling:</p>
+<p>Alternatively you can use Chromium - Chrome's open source sibling:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install chromium-browser
 </code></pre>
@@ -307,17 +308,17 @@ updates as soon as they arrive.</p>
 <p><a href="http://www.dropbox.com">DropBox</a> is a great file sharing service
 which allows you to sync files between all of your computers and
 mobile devices(Android, iPhone, iPad, etc). It has a great Linux
-client which I use all the time. It’s available in the non-free repo
+client which I use all the time. It's available in the non-free repo
 so you can install it like this:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo aptitude install nautilus-dropbox
 </code></pre>
 </div>
 
-<h1 id="epilogue">Epilogue</h1>
+<h1>Epilogue</h1>
 
 <p>Hopefully some of my setup has made your setup more enjoyable and more
-productive. I’ll update this article along the way if I stumble upon
+productive. I'll update this article along the way if I stumble upon
 other things that I consider to be generally helpful.</p>
 
     <div class="meta">Posted on 04 Jul 2011 by Bozhidar. Filed under Linux and Debian.</div>

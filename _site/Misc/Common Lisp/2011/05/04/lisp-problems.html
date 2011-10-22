@@ -24,6 +24,7 @@
     </head>
 
     <body>
+        <a href="http://github.com/bbatsov"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
         <div id="page">
             <div id="content">
                 <div id="header">
@@ -64,12 +65,13 @@ single asterisk (*) are easy. If you have successfully solved the
 preceeding problems you should be able to solve them within a few (say
 15) minutes. Problems marked with two asterisks (**) are of
 intermediate difficulty. If you are a skilled Prolog programmer it
-shouldn’t take you more than 30-90 minutes to solve them. Problems
+shouldn't take you more than 30-90 minutes to solve them. Problems
 marked with three asterisks (***) are more difficult. You may need
 more time (i.e. a few hours or more) to find a good solution.</p>
 
-<h2 id="lisp-lists">Lisp Lists</h2>
-<hr />
+<h2>Lisp Lists</h2>
+
+<hr>
 
 <p><strong>1.01 (*) Find the last element of a list.</strong></p>
 
@@ -141,7 +143,7 @@ more time (i.e. a few hours or more) to find a good solution.</p>
 
 <p><strong>1.07 (**) Flatten a nested list structure.</strong></p>
 
-<p><em>Transform a list, possibly holding lists as elements into a ‘flat’
+<p><em>Transform a list, possibly holding lists as elements into a 'flat'
 list by replacing each list with its elements (recursively).</em></p>
 
 <div class="highlight"><pre><code class="cl"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">flatten</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">a</span> <span class="p">(</span><span class="nv">b</span> <span class="nv">c</span><span class="p">)</span> <span class="p">((</span><span class="nv">d</span> <span class="nv">e</span><span class="p">)</span> <span class="nv">f</span><span class="p">)))</span>
@@ -220,7 +222,7 @@ with duplicates are transferred as (number element) terms.</em></p>
 <p><strong>1.13 (**) Run-length encoding of a list (direct solution).</strong></p>
 
 <p><em>Implement the so-called run-length encoding data compression method
-directly. I.e. don’t explicitly create the sublists containing the
+directly. I.e. don't explicitly create the sublists containing the
 duplicates, as in problem 1.09, but only count them. As in problem
 1.11, simplify the result list by replacing the singleton terms (1 X)
 by X.</em></p>
@@ -250,7 +252,7 @@ by X.</em></p>
 
 <p><a href="https://github.com/bbatsov/cl-99-problems/blob/master/p115.lisp">View solution</a></p>
 
-<p><strong>1.16 (**) Drop every N’th element from a list.</strong></p>
+<p><strong>1.16 (**) Drop every N'th element from a list.</strong></p>
 
 <div class="highlight"><pre><code class="cl"><span class="nv">LISP-PROBLEMS&gt;</span> <span class="p">(</span><span class="nv">drop</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
 <span class="p">(</span><span class="mi">1</span> <span class="mi">3</span> <span class="mi">5</span> <span class="mi">7</span> <span class="mi">9</span><span class="p">)</span>
@@ -292,7 +294,7 @@ by X.</em></p>
 
 <p><em>Hint: Use the predefined functions LENGTH and APPEND, as well as the result of problem 1.17.</em></p>
 
-<p><strong>1.20 (*) Remove the n’th element from a list.</strong></p>
+<p><strong>1.20 (*) Remove the n'th element from a list.</strong></p>
 
 <div class="highlight"><pre><code class="cl"><span class="nv">CL-USER&gt;</span> <span class="p">(</span><span class="nv">remove-nth</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
 <span class="p">(</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">)</span>
@@ -378,7 +380,7 @@ In how many ways can a committee of 3 be chosen from a group of 12 people? We al
 L = [a,b,c] ;
 L = [a,b,d] ;
 L = [a,b,e] ;
-… </p>
+... </p>
 
 <p><strong>1.27 (**) Group the elements of a set into disjoint subsets.</strong>
 a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3 and 4 persons? Write a predicate that generates all the possibilities via backtracking.</p>
@@ -393,7 +395,7 @@ a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3
 <p>Example:
 ?- group3([aldo,beat,carla,david,evi,flip,gary,hugo,ida],G1,G2,G3).
 G1 = [aldo,beat], G2 = [carla,david,evi], G3 = [flip,gary,hugo,ida]
-…</p>
+...</p>
 
 <p>b) Generalize the above predicate in a way that we can specify a list of group sizes and the predicate will return a list of groups.</p>
 
@@ -407,11 +409,11 @@ G1 = [aldo,beat], G2 = [carla,david,evi], G3 = [flip,gary,hugo,ida]
 <p>Example:
 ?- group([aldo,beat,carla,david,evi,flip,gary,hugo,ida],[2,2,5],Gs).
 Gs = [[aldo,beat],[carla,david],[evi,flip,gary,hugo,ida]]
-…</p>
+...</p>
 
-<p>Note that we do not want permutations of the group members; i.e. [[aldo,beat],…] is the same solution as [[beat,aldo],…]. However, we make a difference between [[aldo,beat],[carla,david],…] and [[carla,david],[aldo,beat],…].</p>
+<p>Note that we do not want permutations of the group members; i.e. [[aldo,beat],...] is the same solution as [[beat,aldo],...]. However, we make a difference between [[aldo,beat],[carla,david],...] and [[carla,david],[aldo,beat],...].</p>
 
-<p>You may find more about this combinatorial problem in a good book on discrete mathematics under the term “multinomial coefficients”. </p>
+<p>You may find more about this combinatorial problem in a good book on discrete mathematics under the term &quot;multinomial coefficients&quot;. </p>
 
 <p><strong>1.28 (**) Sorting a list of lists according to length of sublists</strong>
 a) We suppose that a list (InList) contains elements that are lists themselves. The objective is to sort the elements of InList according to their length. E.g. short lists first, longer lists later, or vice versa.</p>
@@ -442,8 +444,9 @@ L = [[i, j, k, l], [o], [a, b, c], [f, g, h], [d, e], [d, e], [m, n]]</p>
 
 <p>Note that in the above example, the first two lists in the result L have length 4 and 1, both lengths appear just once. The third and forth list have length 3; there are two list of this length. And finally, the last three lists have length 2. This is the most frequent length. </p>
 
-<h2 id="arithmetic">Arithmetic</h2>
-<hr />
+<h2>Arithmetic</h2>
+
+<hr>
 
 <p><strong>2.01 (**) Determine whether a given integer number is prime.</strong></p>
 
@@ -459,20 +462,25 @@ L = [[i, j, k, l], [o], [a, b, c], [f, g, h], [d, e], [d, e], [m, n]]</p>
 <p><em>The Sieve of Eratosthenes is an algorithm for finding prime numbers,
 that you might find helpful.</em></p>
 
-<h2 id="logic-and-codes">Logic and Codes</h2>
-<hr />
+<h2>Logic and Codes</h2>
 
-<h2 id="binary-trees">Binary Trees</h2>
-<hr />
+<hr>
 
-<h2 id="multiway-trees">Multiway Trees</h2>
-<hr />
+<h2>Binary Trees</h2>
 
-<h2 id="graphs">Graphs</h2>
-<hr />
+<hr>
 
-<h2 id="misc">Misc</h2>
-<hr />
+<h2>Multiway Trees</h2>
+
+<hr>
+
+<h2>Graphs</h2>
+
+<hr>
+
+<h2>Misc</h2>
+
+<hr>
 
     <div class="meta">Posted on 04 May 2011 by Bozhidar. Filed under Misc and Common Lisp.</div>
     <br/>

@@ -24,6 +24,7 @@
     </head>
 
     <body>
+        <a href="http://github.com/bbatsov"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
         <div id="page">
             <div id="content">
                 <div id="header">
@@ -44,23 +45,23 @@
                     <div id="content">
                         <div id="post">
     <h2 class="title">Fedora 15 post installation setup & tips</h2>
-    <h1 id="overture">Overture</h1>
+    <h1>Overture</h1>
 
-<p>I’ve recently upgraded all my systems to Fedora 15. The default
+<p>I've recently upgraded all my systems to Fedora 15. The default
 installation is not very usable for some tasks for several reasons -
 like CD size limitations and software patents for instance. I also
 happen to disagree with some defaults in Fedora like the fact that
 sudo is not enabled by default (like in Ubuntu) and the use of the
-bash shell. In this article I’ll share some of the things I do after a
+bash shell. In this article I'll share some of the things I do after a
 fresh Fedora 15 installation to enhance it (at least by my standards).</p>
 
-<h1 id="tweak-defaults">Tweak defaults</h1>
+<h1>Tweak defaults</h1>
 
 <p><strong>Configure sudo</strong></p>
 
 <p>sudo gives you a way to execute single commands as the superuser. You
-can also do this with “su -c”, but you have to quote the commands there,
-which I don’t like very much. To enable sudo for some account first
+can also do this with &quot;su -c&quot;, but you have to quote the commands there,
+which I don't like very much. To enable sudo for some account first
 run the command:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> su -c <span class="s2">&quot;visudo&quot;</span>
@@ -85,7 +86,7 @@ fastest mirror plug-in. You can install it like this:</p>
 
 <p><strong>Disable SELinux</strong></p>
 
-<p>If you’re a desktop Linux user you want to disable SELinux - trust
+<p>If you're a desktop Linux user you want to disable SELinux - trust
 me. Open the file /etc/selinux/config and change this line:</p>
 
 <p><code>SELINUX=enforcing</code></p>
@@ -96,11 +97,11 @@ me. Open the file /etc/selinux/config and change this line:</p>
 
 <p>Restart afterwards.</p>
 
-<h1 id="install-additional-software">Install additional software</h1>
+<h1>Install additional software</h1>
 
-<p>Fedora’s default installation medium is a 700MB CD. It’s
+<p>Fedora's default installation medium is a 700MB CD. It's
 understandable that not everything can be fitted in there. Luckily
-adding new software from the vast Fedora on-line repos is child’s play.</p>
+adding new software from the vast Fedora on-line repos is child's play.</p>
 
 <p><strong>Install REAL text editors</strong></p>
 
@@ -116,7 +117,7 @@ config files that require root access. </p>
 
 <p><strong>Install Z Shell</strong></p>
 
-<p>It’s no secret that I love the Z Shell - after all I <a href="/Z%20Shell/2011/04/29/one-shell-to-rule-them-all.html">rave about it</a>
+<p>It's no secret that I love the Z Shell - after all I <a href="/Z%20Shell/2011/04/29/one-shell-to-rule-them-all.html">rave about it</a>
 quite often. It should come as no surprise that I happen to use it
 and probably you should start using it as well:</p>
 
@@ -140,7 +141,7 @@ most common components with the following command:</p>
 </div>
 
 <p>LibreOffice uses hunspell to do spellchecking. An English dictionary
-will be installed by default, but you’ll need to install additional
+will be installed by default, but you'll need to install additional
 dictionaries manually:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install hunspell-bg
@@ -148,7 +149,7 @@ dictionaries manually:</p>
 </div>
 
 <p>This command will install the Bulgarian hunspell dictionary. You
-likely don’t need it so install some more helpful dictionary instead. :-)</p>
+likely don't need it so install some more helpful dictionary instead. :-)</p>
 
 <p><strong>Install OpenJDK</strong></p>
 
@@ -158,7 +159,7 @@ likely don’t need it so install some more helpful dictionary instead. :-)</p>
 </code></pre>
 </div>
 
-<p>If you’re planning to do some Java development:</p>
+<p>If you're planning to do some Java development:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install java-1.6.0-openjdk-devel java-1.6.0-openjdk-javadoc java-1.6.0-openjdk-src
 </code></pre>
@@ -175,8 +176,8 @@ you to replace it with the much more feature-rich deluge:</p>
 
 <p><strong>Install Inconsolata font</strong></p>
 
-<p>I’m a software engineer and I obviously spend a lot of time reading
-and writing source code. I’m very picking about the monospace font
+<p>I'm a software engineer and I obviously spend a lot of time reading
+and writing source code. I'm very picking about the monospace font
 that I use and currently Inconsolata happens to be my favorite:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install levien-inconsolata-fonts
@@ -209,11 +210,11 @@ settings. It does not have OK or Apply buttons, but simply selecting the
 options performs the changes. Some changes may require logging out and
 logging back in.</p>
 
-<h1 id="install-additional-patent-encumberedproprietary-software">Install additional patent encumbered/proprietary software</h1>
+<h1>Install additional patent encumbered/proprietary software</h1>
 
 <p><strong>Enable RPMFusion</strong></p>
 
-<p>RPMFusion is the most popular third party repository for Fedora. It’s
+<p>RPMFusion is the most popular third party repository for Fedora. It's
 full of goodness like audio/video codecs, proprietary drivers, etc. To
 enable it just run the following command:</p>
 
@@ -234,8 +235,8 @@ RPMFusion to the rescue! Type this:</p>
 
 <p><strong>Install VLC</strong></p>
 
-<p>With MPlayer’s development in stagnation VLC has established itself as
-the best video player for Linux recently. It’s in RPMFusion, so if you
+<p>With MPlayer's development in stagnation VLC has established itself as
+the best video player for Linux recently. It's in RPMFusion, so if you
 enabled it installing it is as easy as typing the following command:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum install vlc
@@ -251,14 +252,14 @@ enabled it installing it is as easy as typing the following command:</p>
 </code></pre>
 </div>
 
-<p>You can omit this if you’re planning to use Google Chrome, since it
+<p>You can omit this if you're planning to use Google Chrome, since it
 comes with Flash Player built-in.</p>
 
 <p><strong>Install Skype</strong></p>
 
 <p>Download Skype from the
 <a href="http://www.skype.com/intl/en/get-skype/on-your-computer/linux/downloading.fedora">official site</a>. Assuming
-you’ve downloaded it to ~/Downloads, you can install it like this:</p>
+you've downloaded it to ~/Downloads, you can install it like this:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo yum localinstall Downloads/skype-2.2.0.25-fedora.i586.rpm
 </code></pre>
@@ -268,19 +269,19 @@ you’ve downloaded it to ~/Downloads, you can install it like this:</p>
 
 <p><strong>Install Oracle JDK</strong></p>
 
-<p>OpenJDK is great, but due to licensing problems it’s not quite the
+<p>OpenJDK is great, but due to licensing problems it's not quite the
 same as the Oracle JDK. If you start experiencing strange problems
-(mostly in Swing programs) you’d probably do well to try the Oracle
-JDK instead. Download Oracle’s JDK from the
+(mostly in Swing programs) you'd probably do well to try the Oracle
+JDK instead. Download Oracle's JDK from the
 <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">official site</a>. Select
-“Linux x86 - RPM Installer” or “Linux x64 - RPM Installer” depending
+&quot;Linux x86 - RPM Installer&quot; or &quot;Linux x64 - RPM Installer&quot; depending
 on your distribution and install the JDK like this:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">$</span> sudo sh jre-6u25-linux-i586-rpm.bin
 </code></pre>
 </div>
 
-<p>Fedora uses OpenJDK by default, so you’ll have to do some more work to
+<p>Fedora uses OpenJDK by default, so you'll have to do some more work to
 tell it to start using Oracle JDK. The <strong>alternatives</strong> program allows
 you to select between multiple installed versions of a program:</p>
 
@@ -292,7 +293,7 @@ you to select between multiple installed versions of a program:</p>
 
 <p>These commands will make alternative aware of the java binaries and
 set high priorities to them which will make them the default Java
-binaries. You can use “alternatives –config binaryname” to select
+binaries. You can use &quot;alternatives --config binaryname&quot; to select
 active binaries manually.</p>
 
 <p><strong>Install Google Chrome</strong></p>
@@ -304,7 +305,7 @@ browsers. Download it from the <a href="http://www.google.com/chrome">official s
 </code></pre>
 </div>
 
-<p>Google Chrome will install a yum repository as well, so you’ll receive
+<p>Google Chrome will install a yum repository as well, so you'll receive
 updates as soon as they arrive.</p>
 
 <p><strong>Install DropBox</strong></p>
@@ -320,10 +321,10 @@ this:</p>
 </code></pre>
 </div>
 
-<h1 id="epilogue">Epilogue</h1>
+<h1>Epilogue</h1>
 
 <p>Hopefully some of my setup has made your setup more enjoyable and more
-productive. I’ll update this article along the way if I stumble upon
+productive. I'll update this article along the way if I stumble upon
 other things that I consider to be generally helpful.</p>
 
     <div class="meta">Posted on 31 May 2011 by Bozhidar. Filed under Linux and Fedora.</div>

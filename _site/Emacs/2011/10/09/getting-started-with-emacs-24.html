@@ -24,6 +24,7 @@
     </head>
 
     <body>
+        <a href="http://github.com/bbatsov"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/71eeaab9d563c2b3c590319b398dd35683265e85/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub"></a>
         <div id="page">
             <div id="content">
                 <div id="header">
@@ -44,26 +45,26 @@
                     <div id="content">
                         <div id="post">
     <h2 class="title">Getting started with Emacs 24</h2>
-    <h2 id="prelude">Prelude</h2>
+    <h2>Prelude</h2>
 
-<p>Last month I’ve blogged about the
+<p>Last month I've blogged about the
 <a href="http://batsov.com/Emacs/2011/08/19/a-peek-at-emacs24.html">exciting things are coming up in Emacs 24</a>. What
 I failed to mention originally is that altough Emacs 24 is slated for
 a Spring 2012 (tentatively) release there is no real reason not to start using it
-now. You should also keep in mind that it’s feature complete since it
+now. You should also keep in mind that it's feature complete since it
 officially entered the feature freeze of its development cycle in July 2011.</p>
 
-<p>I’ve been using Emacs 24 for several months now and it has been
+<p>I've been using Emacs 24 for several months now and it has been
 nothing but rock solid. I guess the only real obstacle currently is
 that the way to obtain Emacs 24 is not particularly straightfoward/clear,
 hence this post.</p>
 
-<p>I’ll discuss here the installation and initial configuration of Emacs
+<p>I'll discuss here the installation and initial configuration of Emacs
 24 on OSX, GNU/Linux and Windows.</p>
 
-<h2 id="installing-emacs-24">Installing Emacs 24</h2>
+<h2>Installing Emacs 24</h2>
 
-<h1 id="os-x">OS X</h1>
+<h1>OS X</h1>
 
 <p>Obtaining Emacs 24 on OS X is really simple. There are two popular
 ways to do it. The first is to simply download a pretest (or a nightly
@@ -76,28 +77,28 @@ the first pretest as well) from
 
 <p>The second easy way to obtain Emacs 24 is via
 <a href="http://mxcl.github.com/homebrew/">homebrew</a>. Just type the following
-incantation in your shell and you’re done:</p>
+incantation in your shell and you're done:</p>
 
 <div class="highlight"><pre><code class="bash"><span class="nv">$ </span>brew install emacs --cocoa --use-git-head --HEAD
 <span class="nv">$ </span>cp -r /usr/local/Cellar/emacs/HEAD/Emacs.app /Applications/
 </code></pre>
 </div>
 
-<p>The second step is optional, but it’s recommended if you like to start
+<p>The second step is optional, but it's recommended if you like to start
 Emacs from the launchpad or from Spotlight. Personally I prefer to
-start Emacs in daemon mode (emacs –daemon), so that I could share a
+start Emacs in daemon mode (emacs --daemon), so that I could share a
 single Emacs instance between several Emacs clients (emacsclient
 -c/t).</p>
 
-<p>That’s all folk! You may now proceed to the configuration section.</p>
+<p>That's all folk! You may now proceed to the configuration section.</p>
 
-<h1 id="linux">Linux</h1>
+<h1>Linux</h1>
 
 <p>Given that Linux is more or less the home os of Emacs it presents us
 with the most installation options. Of course, we can build Emacs from
 <a href="https://github.com/emacsmirror/emacs">source</a> on every distribution
-out there, but I rarely bother to do so. Using the distribution’s
-package manager is a better idea for many reasons - you don’t need to
+out there, but I rarely bother to do so. Using the distribution's
+package manager is a better idea for many reasons - you don't need to
 install a build chain and lots of dev libraries, you get updated
 versions when they are released and you get automated dependency
 manager, just to name a few.</p>
@@ -107,7 +108,7 @@ builds of Emacs 24. Luckily there are some unofficial repos that come
 to the rescue.</p>
 
 <p>Debian/Ubuntu users should look no further than the amazing
-<a href="http://emacs.naquadah.org/">emacs-snapshot APT repo</a>. You’ll find
+<a href="http://emacs.naquadah.org/">emacs-snapshot APT repo</a>. You'll find
 installation instructions there for all the relevant Debian and Ubuntu
 versions out there. High quality, highly recommended builds!</p>
 
@@ -115,19 +116,19 @@ versions out there. High quality, highly recommended builds!</p>
 the emacs-vcs package in portage, as noted in the official
 <a href="http://www.gentoo.org/proj/en/lisp/emacs/emacs.xml">Emacs on Gentoo page</a>.</p>
 
-<p>Unfortunately I wasn’t able to find prebuilt Emacs 24 packages for any
-of the RPM distros (Fedora, SUSE, Mandriva, etc). Since, I’m Debian
-user I have to admit that I didn’t look that far, but the source
+<p>Unfortunately I wasn't able to find prebuilt Emacs 24 packages for any
+of the RPM distros (Fedora, SUSE, Mandriva, etc). Since, I'm Debian
+user I have to admit that I didn't look that far, but the source
 installation is not particularly hard and is always an option.</p>
 
-<h1 id="windows">Windows</h1>
+<h1>Windows</h1>
 
 <p>There are several ways to obtain precompiled Emacs 24 binaries if
-you’re a Windows users. The most popular are
+you're a Windows users. The most popular are
 <a href="http://ourcomments.org/cgi-bin/emacsw32-dl-latest.pl">EmacsW32</a>,
 <a href="http://code.google.com/p/emacs-for-windows/">Emacs for Windows</a> and
 of course the official
-<a href="http://alpha.gnu.org/gnu/emacs/windows/">Emacs Windows builds</a>. I’ve
+<a href="http://alpha.gnu.org/gnu/emacs/windows/">Emacs Windows builds</a>. I've
 ,personally, never used any builds other than the official ones. The
 unofficial builds usually include installers and various patches that
 might be of use to some users.</p>
@@ -135,10 +136,10 @@ might be of use to some users.</p>
 <p>Since I rarely use Windows I cannot give you any more advice on the
 choice of a binary vendor.</p>
 
-<h2 id="initial-configuration">Initial configuration</h2>
+<h2>Initial configuration</h2>
 
 <p>Installing Emacs has always been the easy part, configuring it
-properly - not that much. That’s why I’ve created the
+properly - not that much. That's why I've created the
 <a href="https://github.com/bbatsov/emacs-prelude">Emacs Prelude</a> - an
 advanced Emacs setup specifically for Emacs 24 that has been tested to
 properly work on OSX, Linux and Windows.</p>
@@ -151,21 +152,21 @@ properly work on OSX, Linux and Windows.</p>
 </div>
 
 <p>For Windows Vista/7 the ~(home) folder is
-<em>*C:\Users&lt;USER&gt;\AppData\Roaming*</em>.</p>
+<strong>C:\Users&lt;USER&gt;\AppData\Roaming</strong>.</p>
 
 <p>The configuration in the Prelude is commented extensively and will be
 improved more along the way. Reading it will be an enlightening
 experience for all new Emacs users.</p>
 
-<p>The Prelude itself is a moving target. I’ve created it recently and I
+<p>The Prelude itself is a moving target. I've created it recently and I
 plan to add a lot more cool things very soon, so stay tuned. If you
 have any problems with it or have feature suggestions - do not
 hesitate to open tickets and send pull requests. :-)</p>
 
-<h2 id="epilogue">Epilogue</h2>
+<h2>Epilogue</h2>
 
-<p>Now that I’ve shown you how easy it is to get a hold of Emacs 24 and
-I’ve provided you with a starting configuration there is really no
+<p>Now that I've shown you how easy it is to get a hold of Emacs 24 and
+I've provided you with a starting configuration there is really no
 excuse not to switch to Emacs 24. Install it, use it, love it!</p>
 
     <div class="meta">Posted on 09 Oct 2011 by Bozhidar. Filed under Emacs.</div>
